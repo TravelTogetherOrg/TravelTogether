@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+*{margin: 0; padding: 0; border: 0; font-size: 100%;
+	vertical-align: baseline; box-sizing: border-box;}
+
+body{
+	font-family: Pretendard-Regular;
+	line-height: 1;
+}
+@font-face{
+	font-family: ohsquare;
+	src: url("http://localhost:8080/VeggiEats/common/font/Cafe24Ohsquare.ttf");
+}
+@font-face{
+	font-family: ohsquareair;
+	src: url("http://localhost:8080/VeggiEats/common/font/Cafe24Ohsquareair.ttf");
+}
+@font-face{
+	font-family: Pretendard-Light;
+	src: url("http://localhost:8080/VeggiEats/common/font/Pretendard-Light.ttf");
+}
+@font-face{
+	font-family: 'Pretendard-Medium';
+	src: url("http://localhost:8080/VeggiEats/common/font/Pretendard-Medium.ttf");
+}
+@font-face{
+	font-family: Pretendard-Regular;
+	src: url("http://localhost:8080/VeggiEats/common/font/Pretendard-Regular.ttf");
+}
+/*
+@font-face {
+    font-family: Pretendard-Regular;
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+*/
+ul,ol{
+	list-style: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+a{
+	text-decoration-line: none;
+	color: #000;
+}
