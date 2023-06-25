@@ -5,163 +5,312 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="base.css">
 <link rel="stylesheet" href="board.css">
-<link rel="stylesheet" href="bootstrap.min.css">
-<title>Insert title here</title>
+<!-- 
+    <link rel="stylesheet" href="bootstrap.min.css">
+-->
+
+<title>축제 동행 찾기</title>
 </head>
 <body>
-    <!-- 메인 부트스트랩 -->
-    <div class="container-lg">
+    <div class="container">
         <section id="festivalSearch">  <!-- 드롭다운 축제 -->
-            <form> 
-                <div>축제 동행 구하기  &nbsp;&nbsp;
+            <form action="#" method=""> 
+                <div>
+                    <p>축제 동행 찾기</p> &nbsp;&nbsp;
                     <select name="festival">
-                        <option disabled selected>이번달 축제별 검색</option>
+                        <option disabled selected>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;어떤 축제를 찾으시나요?</option>
                         <option value="">축제1</option>
                         <option value="">축제2</option>
                     </select>
-                    &nbsp;&nbsp;검색 아이콘
+                    <button type="submit"><img src="img/search.svg"></button>
+                    
                     <!-- 검색 아이콘 누르면 submit(검색) -->
+                    <!--옵션아이콘(드롭박스)-최신순/모집중 표시 -->
                 </div>
             </form>
         </section>
         <section id="boardList" >  <!-- 동행 게시글 리스트 -->
-            <div class="roW"> <!-- 부트스트랩하고 class명 겹쳐서 끝을 대문자로 함 -->
-                <div class="coL">
+            <div class="row"> 
+                <div class="col">
                     <div class="top">
-                        이미지
-                        <div class="topInfo">닉네임<br>연령대 . 성별</div>
-                        <div class="|">|</div>
-                        <div class="topInfo">축제명<br>날짜</div>
+                        <img class="profileImage" src="img/vector_profile_willy.svg">
+                        <div class="topInfo">
+                            <p>닉네임</p>
+                            <div class="ageandgender">
+                                <p>20대</p>
+                                <div>·</div>
+                                <p>여성</p>
+                            </div> 
+                        </div>
+                        <div class="line">|</div>
+                        <div class="topInfo">주류박람회<br>2023-06-23</div>
                     </div>
                     <div class="middle">
-                        썸네일
+                        <img class="thumnail" src="img/IMG_2359.JPG">
                         <div class="middleHover">
-                            모집여부/조회수/댓글수
+                            <div class="state">모집중</div>
+                            <div class="viewandchat">
+                                <div class="view">
+                                    <img src="img/eye.svg">
+                                    <p>30</p>
+                                </div>
+                                <div class="view">
+                                    <img src="img/chat.svg">
+                                    <p>2</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="bottom">
-                        게시글 내용(일부)
+                        <p class="listTitle">Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text,</p>
+                        <p class="listContent">t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
                     </div>
                 </div>
-                <div class="coL">
+                <div class="col">
                     <div class="top">
-                        이미지
-                        <div class="topInfo">닉네임<br>연령대 . 성별</div>
-                        <div class="|">|</div>
-                        <div class="topInfo">축제명<br>날짜</div>
+                        <img class="profileImage" src="img/vector_profile_willy.svg">
+                        <div class="topInfo">
+                            <p>닉네임</p>
+                            <div class="ageandgender">
+                                <p>20대</p>
+                                <div>·</div>
+                                <p>여성</p>
+                            </div> 
+                        </div>
+                        <div class="line">|</div>
+                        <div class="topInfo">주류박람회<br>2023-06-23</div>
                     </div>
                     <div class="middle">
-                        썸네일
+                        <img class="thumnail" src="img/IMG_2359.JPG">
                         <div class="middleHover">
-                            모집여부/조회수/댓글수
+                            <div class="state">모집중</div>
+                            <div class="viewandchat">
+                                <div class="view">
+                                    <img src="img/eye.svg">
+                                    <p>30</p>
+                                </div>
+                                <div class="view">
+                                    <img src="img/chat.svg">
+                                    <p>2</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="bottom">
-                        게시글 내용(일부)
+                        <p class="listTitle">Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text,</p>
+                        <p class="listContent">t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
                     </div>
                 </div>
-                <div class="coL">
+                <div class="col">
                     <div class="top">
-                        이미지
-                        <div class="topInfo">닉네임<br>연령대 . 성별</div>
-                        <div class="|">|</div>
-                        <div class="topInfo">축제명<br>날짜</div>
+                        <img class="profileImage" src="img/vector_profile_willy.svg">
+                        <div class="topInfo">
+                            <p>닉네임</p>
+                            <div class="ageandgender">
+                                <p>20대</p>
+                                <div>·</div>
+                                <p>여성</p>
+                            </div> 
+                        </div>
+                        <div class="line">|</div>
+                        <div class="topInfo">주류박람회<br>2023-06-23</div>
                     </div>
                     <div class="middle">
-                        썸네일
+                        <img class="thumnail" src="img/IMG_2359.JPG">
                         <div class="middleHover">
-                            모집여부/조회수/댓글수
+                            <div class="state">모집중</div>
+                            <div class="viewandchat">
+                                <div class="view">
+                                    <img src="img/eye.svg">
+                                    <p>30</p>
+                                </div>
+                                <div class="view">
+                                    <img src="img/chat.svg">
+                                    <p>2</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="bottom">
-                        게시글 내용(일부)
+                        <p class="listTitle">Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text,</p>
+                        <p class="listContent">t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
                     </div>
                 </div>
-                <div class="coL">
+                <div class="col">
                     <div class="top">
-                        이미지
-                        <div class="topInfo">닉네임<br>연령대 . 성별</div>
-                        <div class="|">|</div>
-                        <div class="topInfo">축제명<br>날짜</div>
+                        <img class="profileImage" src="img/vector_profile_willy.svg">
+                        <div class="topInfo">
+                            <p>닉네임</p>
+                            <div class="ageandgender">
+                                <p>20대</p>
+                                <div>·</div>
+                                <p>여성</p>
+                            </div> 
+                        </div>
+                        <div class="line">|</div>
+                        <div class="topInfo">주류박람회<br>2023-06-23</div>
                     </div>
                     <div class="middle">
-                        썸네일
+                        <img class="thumnail" src="img/IMG_2359.JPG">
                         <div class="middleHover">
-                            모집여부/조회수/댓글수
+                            <div class="state">모집중</div>
+                            <div class="viewandchat">
+                                <div class="view">
+                                    <img src="img/eye.svg">
+                                    <p>30</p>
+                                </div>
+                                <div class="view">
+                                    <img src="img/chat.svg">
+                                    <p>2</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="bottom">
-                        게시글 내용(일부)
+                        <p class="listTitle">Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text,</p>
+                        <p class="listContent">t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
                     </div>
                 </div>
             </div>
-            <div class="roW"> <!-- 부트스트랩하고 class명 겹쳐서 끝을 대문자로 함 -->
-                <div class="coL">
+            <div class="row">
+                <div class="col">
                     <div class="top">
-                        이미지
-                        <div class="topInfo">닉네임<br>연령대 . 성별</div>
-                        <div class="|">|</div>
-                        <div class="topInfo">축제명<br>날짜</div>
+                        <img class="profileImage" src="img/vector_profile_willy.svg">
+                        <div class="topInfo">
+                            <p>닉네임</p>
+                            <div class="ageandgender">
+                                <p>20대</p>
+                                <div>·</div>
+                                <p>여성</p>
+                            </div> 
+                        </div>
+                        <div class="line">|</div>
+                        <div class="topInfo">주류박람회<br>2023-06-23</div>
                     </div>
                     <div class="middle">
-                        썸네일
+                        <img class="thumnail" src="img/IMG_2359.JPG">
                         <div class="middleHover">
-                            모집여부/조회수/댓글수
+                            <div class="state">모집중</div>
+                            <div class="viewandchat">
+                                <div class="view">
+                                    <img src="img/eye.svg">
+                                    <p>30</p>
+                                </div>
+                                <div class="view">
+                                    <img src="img/chat.svg">
+                                    <p>2</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="bottom">
-                        게시글 내용(일부)
+                        <p class="listTitle">Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text,</p>
+                        <p class="listContent">t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
                     </div>
                 </div>
-                <div class="coL">
+                <div class="col">
                     <div class="top">
-                        이미지
-                        <div class="topInfo">닉네임<br>연령대 . 성별</div>
-                        <div class="|">|</div>
-                        <div class="topInfo">축제명<br>날짜</div>
+                        <img class="profileImage" src="img/vector_profile_willy.svg">
+                        <div class="topInfo">
+                            <p>닉네임</p>
+                            <div class="ageandgender">
+                                <p>20대</p>
+                                <div>·</div>
+                                <p>여성</p>
+                            </div> 
+                        </div>
+                        <div class="line">|</div>
+                        <div class="topInfo">주류박람회<br>2023-06-23</div>
                     </div>
                     <div class="middle">
-                        썸네일
+                        <img class="thumnail" src="img/IMG_2359.JPG">
                         <div class="middleHover">
-                            모집여부/조회수/댓글수
+                            <div class="state">모집중</div>
+                            <div class="viewandchat">
+                                <div class="view">
+                                    <img src="img/eye.svg">
+                                    <p>30</p>
+                                </div>
+                                <div class="view">
+                                    <img src="img/chat.svg">
+                                    <p>2</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="bottom">
-                        게시글 내용(일부)
+                        <p class="listTitle">Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text,</p>
+                        <p class="listContent">t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
                     </div>
                 </div>
-                <div class="coL">
+                <div class="col">
                     <div class="top">
-                        이미지
-                        <div class="topInfo">닉네임<br>연령대 . 성별</div>
-                        <div class="|">|</div>
-                        <div class="topInfo">축제명<br>날짜</div>
+                        <img class="profileImage" src="img/vector_profile_willy.svg">
+                        <div class="topInfo">
+                            <p>닉네임</p>
+                            <div class="ageandgender">
+                                <p>20대</p>
+                                <div>·</div>
+                                <p>여성</p>
+                            </div> 
+                        </div>
+                        <div class="line">|</div>
+                        <div class="topInfo">주류박람회<br>2023-06-23</div>
                     </div>
                     <div class="middle">
-                        썸네일
+                        <img class="thumnail" src="img/IMG_2359.JPG">
                         <div class="middleHover">
-                            모집여부/조회수/댓글수
+                            <div class="state">모집중</div>
+                            <div class="viewandchat">
+                                <div class="view">
+                                    <img src="img/eye.svg">
+                                    <p>30</p>
+                                </div>
+                                <div class="view">
+                                    <img src="img/chat.svg">
+                                    <p>2</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="bottom">
-                        게시글 내용(일부)
+                        <p class="listTitle">Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text,</p>
+                        <p class="listContent">t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
                     </div>
                 </div>
-                <div class="coL">
+                <div class="col">
                     <div class="top">
-                        이미지
-                        <div class="topInfo">닉네임<br>연령대 . 성별</div>
-                        <div class="|">|</div>
-                        <div class="topInfo">축제명<br>날짜</div>
+                        <img class="profileImage" src="img/vector_profile_willy.svg">
+                        <div class="topInfo">
+                            <p>닉네임</p>
+                            <div class="ageandgender">
+                                <p>20대</p>
+                                <div>·</div>
+                                <p>여성</p>
+                            </div> 
+                        </div>
+                        <div class="line">|</div>
+                        <div class="topInfo">주류박람회<br>2023-06-23</div>
                     </div>
                     <div class="middle">
-                        썸네일
+                        <img class="thumnail" src="img/IMG_2359.JPG">
                         <div class="middleHover">
-                            모집여부/조회수/댓글수
+                            <div class="state">모집중</div>
+                            <div class="viewandchat">
+                                <div class="view">
+                                    <img src="img/eye.svg">
+                                    <p>30</p>
+                                </div>
+                                <div class="view">
+                                    <img src="img/chat.svg">
+                                    <p>2</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="bottom">
-                        게시글 내용(일부)
+                        <p class="listTitle">Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text,</p>
+                        <p class="listContent">t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
                     </div>
                 </div>
             </div>
@@ -172,7 +321,7 @@
     </div>
 
 <script src="jquery-3.6.4.js"></script>
-<script type="text/javascript" src="bootstrap.min.js"></script>
+<!--  <script type="text/javascript" src="bootstrap.min.js"></script> -->
 <script type="text/javascript" src="board.js"></script>
 </body>
 </html>
