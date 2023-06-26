@@ -19,8 +19,13 @@ for(let i=0;i<col.length;i++){
     })
 }
 
-/* board */
+
+/* boardWrite */
 /* 지역td 선택시 bg/color 바뀌게 */
+let regions = document.querySelectorAll('#regions td');
+regions.forEach((el)=>{
+    el.className='region';
+});
 let boardSelectRegion = document.getElementsByClassName('region');
 for(let i=0; i<boardSelectRegion.length; i++){
     boardSelectRegion[i].addEventListener('click', function(event){
@@ -29,11 +34,40 @@ for(let i=0; i<boardSelectRegion.length; i++){
                 boardSelectRegion[j].style.background = 'white';
                 boardSelectRegion[j].style.color = 'black';
             }
-        }
+        };
         boardSelectRegion[i].style.background = 'cornflowerblue';
-        boardSelectRegion[i].style.color = 'white'; 
+        boardSelectRegion[i].style.color = 'white';
+
+        /* 지역 선택시 해당지역 축제 리스트로 바뀌게*/
+        let divs = document.getElementsByTagName('div');
+        for(let k=0; k<divs.length; k++){
+            if(divs[k].id.startsWith(boardSelectRegion[i].id)){
+                divs[k].style.display='block';
+            }
+            else if(divs[k].id.endsWith('Festival')){
+                divs[k].style.display='none';
+            }
+
+        }
     })
-    console.log(boardSelectRegion[0].style.background);
 }
 
-/* 각 table td 선택시 옆 div 바뀌게 */
+/* 각 축제td 선택시 글자색 바뀌게 */
+let festivalsByRegion = document.querySelectorAll('#festivalsByRegion td');
+festivalsByRegion.forEach((el)=>{
+    el.className='festival';
+});
+
+let festivals = document.getElementsByClassName('festival');
+for(let i=0; i<festivals.length; i++){
+    festivals[i].addEventListener('click', function(event){
+        for(let j=0; j<festivals.length; j++){
+            if(festivals[j].style.color = 'cornflowerblue'){
+                festivals[j].style.color = 'black';
+            }
+        }
+        festivals[i].style.color = 'cornflowerblue';
+    });
+}
+
+
