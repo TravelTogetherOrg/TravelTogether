@@ -70,4 +70,15 @@ for(let i=0; i<festivals.length; i++){
     });
 }
 
+/* 1박 이상 선택시 input date 추가 */
+let moreDaysCheckbox = document.getElementById('moreDays');
+let lastDayInput = document.getElementById('lastDay');
+moreDaysCheckbox.addEventListener('click', function(event){
+    if(moreDaysCheckbox.checked){
+        lastDayInput.style.display='block';
+    }
+    else{
+        lastDayInput.style.display='none';
+    }
+});
 

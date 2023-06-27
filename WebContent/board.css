@@ -203,15 +203,19 @@ select:focus{
 }
 
 /* boardWrite */
+.container-md{
+    justify-content: center;
+    text-align: center;
+}
 .intro{
     width: unset;
     text-align: center;
-    background-image: url();
+    /*background-image: url();
     background-size: cover;
-    background-position: center center;
+    background-position: center center;*/
     margin-top: 5em;
 
-    border: 0.1em solid black;
+    /*border: 0.1em solid black;*/
 }
 .intro div{
     height: 21.3125em;
@@ -220,9 +224,21 @@ select:focus{
     align-items: center;
     justify-content: center;
     user-select: none;
+    background-image: url(img/IMG_2359.JPG);
+    background-size: cover;
+}.intro div::before{
+    content: "";
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000;
 }
+
 .intro P{
     margin: 0;
+    color: white;
 }
 .intro p:first-child{
     font-size: 1.25em;
@@ -231,9 +247,12 @@ select:focus{
     font-size: 3.125em;
     margin-top: 0.3em;
 }
-
+.chooseDetail{
+    border: 0.1em solid black;
+    border-radius: 0.5em;
+    padding: 1.5em;
+}
 .selectFestival{
-    margin-top: 2em;
     display: flex;
     flex-direction: row;
     /*align-items: center;
@@ -253,7 +272,7 @@ select:focus{
     /*border-right: 0.1em solid black;*/
 }
 #regions td{
-    width: 12.5em;
+    width: 10%;
     font-size: 1.25em;
     padding: 0.5em 0;
     cursor: pointer;
@@ -263,15 +282,53 @@ select:focus{
     background-color: cornflowerblue;
     color: white;
 }
+
 #festivalsByRegion td{
-    width: 12.5em;
-    font-size: 1.25em;
+    width: 14.375em;
+    font-size: 1.15em;
     padding: 0.3em;
     cursor: pointer;
+    vertical-align: middle;
 }
 
 /* 맨 처음 보여지는 지역 외 div는 숨기기 */
 #gyeonggidoFestival{
+    display: none;
+}
+
+.peopleAndDate{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 0.5em;
+}
+.people select{
+    background-image: none;
+    width: 5.5em;
+    border: 0.05em black solid;
+    text-align: center;
+    box-shadow: none;
+    appearance: menulist-button;
+}
+.date{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    
+}
+.date div{
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em;
+    text-align: center;
+}
+.date input{
+    border: 0.05em black solid;
+    border-radius: 1em;
+    padding: 0.4em;
+}
+#lastDay{
     display: none;
 }
 
@@ -319,6 +376,7 @@ select:focus{
     height: 3em;
     cursor: pointer;
     border-radius: 0.5em;
+    margin-top: 0.5em;
 }
 .submitButton{
     background-color: lightblue;
@@ -345,10 +403,6 @@ select:focus{
 .boardContents{
     padding: 4.375em 0 15.625em;
     text-align: left;
-    /*border: 0.1em solid black;*/
-}
-.boardContent{
-    
     /*border: 0.1em solid black;*/
 }
 .boardTitle{
