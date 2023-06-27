@@ -203,6 +203,7 @@ select:focus{
 }
 
 /* boardWrite */
+<<<<<<< HEAD
 .container-md{
     justify-content: center;
     text-align: center;
@@ -216,6 +217,17 @@ select:focus{
     margin-top: 5em;
 
     /*border: 0.1em solid black;*/
+=======
+.intro{
+    width: unset;
+    text-align: center;
+    background-image: url();
+    background-size: cover;
+    background-position: center center;
+    margin-top: 5em;
+
+    border: 0.1em solid black;
+>>>>>>> 3506a521a2798a0399b8455e5d50d997475e05f6
 }
 .intro div{
     height: 21.3125em;
@@ -224,6 +236,7 @@ select:focus{
     align-items: center;
     justify-content: center;
     user-select: none;
+<<<<<<< HEAD
     background-image: url(img/IMG_2359.JPG);
     background-size: cover;
 }.intro div::before{
@@ -239,6 +252,11 @@ select:focus{
 .intro P{
     margin: 0;
     color: white;
+=======
+}
+.intro P{
+    margin: 0;
+>>>>>>> 3506a521a2798a0399b8455e5d50d997475e05f6
 }
 .intro p:first-child{
     font-size: 1.25em;
@@ -247,12 +265,18 @@ select:focus{
     font-size: 3.125em;
     margin-top: 0.3em;
 }
+<<<<<<< HEAD
 .chooseDetail{
     border: 0.1em solid black;
     border-radius: 0.5em;
     padding: 1.5em;
 }
 .selectFestival{
+=======
+
+.selectFestival{
+    margin-top: 2em;
+>>>>>>> 3506a521a2798a0399b8455e5d50d997475e05f6
     display: flex;
     flex-direction: row;
     /*align-items: center;
@@ -272,7 +296,11 @@ select:focus{
     /*border-right: 0.1em solid black;*/
 }
 #regions td{
+<<<<<<< HEAD
     width: 10%;
+=======
+    width: 12.5em;
+>>>>>>> 3506a521a2798a0399b8455e5d50d997475e05f6
     font-size: 1.25em;
     padding: 0.5em 0;
     cursor: pointer;
@@ -282,6 +310,7 @@ select:focus{
     background-color: cornflowerblue;
     color: white;
 }
+<<<<<<< HEAD
 
 #festivalsByRegion td{
     width: 14.375em;
@@ -289,6 +318,13 @@ select:focus{
     padding: 0.3em;
     cursor: pointer;
     vertical-align: middle;
+=======
+#festivalsByRegion td{
+    width: 12.5em;
+    font-size: 1.25em;
+    padding: 0.3em;
+    cursor: pointer;
+>>>>>>> 3506a521a2798a0399b8455e5d50d997475e05f6
 }
 
 /* 맨 처음 보여지는 지역 외 div는 숨기기 */
@@ -296,6 +332,7 @@ select:focus{
     display: none;
 }
 
+<<<<<<< HEAD
 .peopleAndDate{
     display: flex;
     flex-direction: row;
@@ -332,6 +369,8 @@ select:focus{
     display: none;
 }
 
+=======
+>>>>>>> 3506a521a2798a0399b8455e5d50d997475e05f6
 .writeImage{
     margin-top: 2em;
 }
@@ -376,7 +415,10 @@ select:focus{
     height: 3em;
     cursor: pointer;
     border-radius: 0.5em;
+<<<<<<< HEAD
     margin-top: 0.5em;
+=======
+>>>>>>> 3506a521a2798a0399b8455e5d50d997475e05f6
 }
 .submitButton{
     background-color: lightblue;
@@ -405,6 +447,13 @@ select:focus{
     text-align: left;
     /*border: 0.1em solid black;*/
 }
+<<<<<<< HEAD
+=======
+.boardContent{
+    
+    /*border: 0.1em solid black;*/
+}
+>>>>>>> 3506a521a2798a0399b8455e5d50d997475e05f6
 .boardTitle{
     font-weight: 400;
     font-size: 2em;
