@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+*{margin: 0; padding: 0; border: 0; font-size: 100%;
+	vertical-align: baseline; box-sizing: border-box;}
+
+body{
+	font-family: Pretendard-Regular;
+	line-height: 1;
+}
+ul,ol{
+	list-style: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+a{
+	text-decoration-line: none;
+	color: #000;
+}
+p{
+	margin: 0;
+}
