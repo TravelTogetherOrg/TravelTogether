@@ -207,6 +207,7 @@ select:focus{
     justify-content: center;
     text-align: center;
 }
+
 .intro{
     width: unset;
     text-align: center;
@@ -226,7 +227,8 @@ select:focus{
     user-select: none;
     background-image: url(img/IMG_2359.JPG);
     background-size: cover;
-}.intro div::before{
+}
+.intro div::before{
     content: "";
     opacity: 0.5;
     top: 0;
@@ -247,12 +249,15 @@ select:focus{
     font-size: 3.125em;
     margin-top: 0.3em;
 }
+
 .chooseDetail{
     border: 0.1em solid black;
     border-radius: 0.5em;
     padding: 1.5em;
 }
+
 .selectFestival{
+    margin-top: 2em;
     display: flex;
     flex-direction: row;
     /*align-items: center;
@@ -272,7 +277,7 @@ select:focus{
     /*border-right: 0.1em solid black;*/
 }
 #regions td{
-    width: 10%;
+    width: 12.5em;
     font-size: 1.25em;
     padding: 0.5em 0;
     cursor: pointer;
@@ -405,6 +410,7 @@ select:focus{
     text-align: left;
     /*border: 0.1em solid black;*/
 }
+
 .boardTitle{
     font-weight: 400;
     font-size: 2em;
