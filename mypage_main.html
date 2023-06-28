@@ -3,106 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지</title>
-<style>
-* {
-	padding: 0;
-	margin: 0;
-	border: 0;
-	border-collapse:collapse;
-	box-sizing:border-box;
-	text-decoration:none;
-}
-html{ 
-	height : 100%;
-}
-body{
-	height : 100%;
-}
-.wrap{
-	min-height:100%;
-	position : relative;
-	padding-bottom : 200px;
-}
-.container{
-	float:left;
-}
-.myicon{
-	width: 160px;
-    height: 180px;
-    display: flex;
-    text-align: center;
-    border-radius: 15px;
-}
-.myicon:hover{
-	background: #fdf8e0;
-}
-.myicon img{
-	width: 115px;
-	height: 115px;
-}
-#MyPage{
-	margin: 0 auto;
-	width: 1000px;
-	text-align: center;
-	margin-bottom: 50px;
-	
-}
-#profile_img{
-	display: inline-block;
-	width: 40%;
-	height: 300px;
-	float: left;
-	text-align: right;
-	padding-right: 10px 50px 10px 50px;
-}
-#info{
-	display: inline-block;
-	width: 50%;
-	height: 300px;
-	padding: 30px 0px 30px 60px;
-}
-#hr{
-	border-top-color: #0AC5A8;
-	margin-top: 50px;
-}
-.my_img{
-	width: 180px;
-	height: 180px;
-	display: inline-block;
-	margin-bottom: 10px;
-}
-#modifyBtn{
-	background: #2C3C5B;
-	color: white;
-	float: right;
-}
-#unread2 {
-	line-height: 1;
-	float: right;
-	font-size: 15px;
-	font-weight: 700;
-	color: white;
-	padding : 4px;
-	border-radius : 4px;
-	background-color: rgba(255,0,0,0.7);
-}
-#infobox{
-	background: #f5f5f5a6;
-    width: 800px;
-    height: 300px;
-    margin: 0 auto;
-    border-radius: 25px;
-    box-shadow: 5px 5px 5px lightgrey;
-}
-#modifyBtn{
-	margin-top: 220px;
-}
-td h5{
-	margin-top: 7px;
-    margin-bottom: 7px;
-}
-</style>
-
+<link rel="stylesheet" type="text/css" href="./css/mypage.css">
 </head>
 <body>
 	<div class="wrap">
@@ -113,7 +14,7 @@ td h5{
 			
 			<div id="profile_img">
 				
-				<img src="./image/3.jpg" style="width: 280px; height: 280px; display: inline; padding: 20px;margin-top: 15px;">
+				<img src="./image/3.jpg" style="width: 280px; height: 280px; display: inline; padding: 10px; margin-top: 10px;">
 			
 			</div>
 			
@@ -133,6 +34,23 @@ td h5{
 						<td></td>
 	
 					</tr>
+					
+					<tr>
+						<td>
+							<h5><font color="#0AC5A8" style="font-weight: bold;">생년월일 : </font>&nbsp;&nbsp;</h5>
+						</td>
+						<td></td>
+	
+					</tr>
+					
+					<tr>
+						<td>
+							<h5><font color="#0AC5A8" style="font-weight: bold;">성별 : </font>&nbsp;&nbsp;</h5>
+						</td>
+						<td></td>
+	
+					</tr>
+					
 					<tr>
 						<td>
 							<h5><font color="#0AC5A8" style="font-weight: bold;">가입일 : </font>&nbsp;&nbsp;</h5>
@@ -146,6 +64,7 @@ td h5{
 						</td>
 						<td></td>
 					</tr>
+										
 					<tr>
 	
 						<td><h5><font color="#0AC5A8" style="font-weight: bold;">소개글 : </font>&nbsp;&nbsp;</h5></td>
@@ -154,18 +73,17 @@ td h5{
 				</table>
 				
 				<button type="button" id="modifyBtn" class="btn btn-default" onclick="location.href='${ProfileUpdateForm}'">수정하기</button>
+		
 			</div>
 			
-			</div>
+</div>
 			
-			
-		<br><br><br><br>
+		<br><br>
 		<div class="container">
 			<div class="myicon">
 				<div style="display: inline; cursor: pointer;" title="채팅방" onclick="#"> <!-- 채팅방 -->
-				<span id="unread2"></span>
 				<img class="my_img" src="#">
-				<br><font size="3" color="gray">예약내역</font>
+				<br><p>채팅</p>
 				</div>
 			</div>
 			<div class="myicon">
@@ -193,13 +111,23 @@ td h5{
 				<img class="my_img" src="#"></a>
 				<p>여행후기</p>
 			</div>
+			
+			<div class="myicon">
+				<a href="#" title="여행후기">
+				<img class="my_img" src="#"></a>
+				<p>여행후기</p>
+			</div>
+			
 			<div class="myicon">
 				<div style="display: inline; cursor: pointer;" title="회원탈퇴">
 				<img data-toggle="modal" data-target=".bs-example-modal-sm" class="my_img" src="#"></div>
 				<br><p>회원탈퇴</p>
 			</div>
 		</div>
-		</div>
+	</div>
+	
+	
+
 		
 	<!-- 	
 		탈퇴 모달

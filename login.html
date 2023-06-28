@@ -1,251 +1,88 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>ë§ˆì´í˜ì´ì§€</title>
-<style>
-* {
-	padding: 0;
-	margin: 0;
-	border: 0;
-	border-collapse:collapse;
-	box-sizing:border-box;
-	text-decoration:none;
-}
-html{ 
-	height : 100%;
-}
-body{
-	height : 100%;
-}
-.wrap{
-	min-height:100%;
-	position : relative;
-	padding-bottom : 200px;
-}
-.myicon{
-	align: center;
-	width: 160px;
-    height: 180px;
-    display: inline-block;
-    text-align: center;
-    border-radius: 15px;
-}
-.myicon:hover{
-	background: #fdf8e0;
-}
-.myicon img{
-	width: 70px;
-	height: 70px;
-	
-}
-#MyPage{
-	margin: 0 auto;
-	width: 1000px;
-	text-align: center;
-	margin-bottom: 50px;
-	
-	
-}
-#profile_img{
-	display: inline-block;
-	width: 40%;
-	height: 280px;
-	float: left;
-	text-align: right;
-	padding-right: 10px 50px 10px 50px;
-}
-#info{
-	display: inline-block;
-	width: 50%;
-	height: 300px;
-	padding: 30px 0px 30px 60px;
-	
-}
-#hr{
-	border-top-color: #0AC5A8;
-	margin-top: 50px;
-}
-.my_img{
-	width: 180px;
-	height: 180px;
-	display: inline-block;
-	margin-bottom: 10px;
-}
-#modifyBtn{
-	background: #2C3C5B;
-	color: white;
-	float: right;
-}
-
-#infobox{
-	background: #f5f5f5a6;
-    width: 800px;
-    height: 300px;
-    margin: 0 auto;
-    border-radius: 25px;
-    box-shadow: 5px 5px 5px lightgrey;
-      
-   
-}
-#modifyBtn{
-	margin-top: 220px;
-}
-td h5{
-	margin-top: 7px;
-    margin-bottom: 7px;
-}
-</style>
-
+<meta charset="EUC-KR">
+<title>·Î±×ÀÎ</title>
+<link rel="stylesheet" type="text/css" href="./css/login.css">
 </head>
 <body>
+</head>
+<body>
+<div class="main" align="center">
 	<div class="wrap">
-	
-		<div id="MyPage">
-			<h3 style="margin-bottom: 50px;">ë§ˆì´í˜ì´ì§€</h3>
-			<div id="infobox">
-			
-			<div id="profile_img">
-				
-				<img src="./image/3.jpg" style="width: 280px; height: 280px; display: inline; padding: 10px; margin-top: 10px;">
-			
-			</div>
-			
-			<div id="info">
-				<table id="info_table" style="float: left;">
-					<tr>
-						<td>
-							<h5><font color="#0AC5A8" style="font-weight: bold;">ì•„ì´ë”” : </font>&nbsp;&nbsp;</h5>
-						</td>
-						<td></td>
-	
-					</tr>
-					<tr>
-						<td>
-							<h5><font color="#0AC5A8" style="font-weight: bold;">ì´ë¦„ : </font>&nbsp;&nbsp;</h5>
-						</td>
-						<td></td>
-	
-					</tr>
-					
-					<tr>
-						<td>
-							<h5><font color="#0AC5A8" style="font-weight: bold;">ìƒë…„ì›”ì¼ : </font>&nbsp;&nbsp;</h5>
-						</td>
-						<td></td>
-	
-					</tr>
-					
-					<tr>
-						<td>
-							<h5><font color="#0AC5A8" style="font-weight: bold;">ì„±ë³„ : </font>&nbsp;&nbsp;</h5>
-						</td>
-						<td></td>
-	
-					</tr>
-					
-					<tr>
-						<td>
-							<h5><font color="#0AC5A8" style="font-weight: bold;">ê°€ì…ì¼ : </font>&nbsp;&nbsp;</h5>
-						</td>
-						<td></td>
-					</tr>
-					
-					<tr>
-						<td>
-							<h5><font color="#0AC5A8" style="font-weight: bold;">í¬ì¸íŠ¸ : </font>&nbsp;&nbsp;</h5>
-						</td>
-						<td></td>
-					</tr>
+		<div id = "common" style="width : 1000px; padding : 80px 0px;">
+			<div class = "content_container">
+            <div class = "content_container_div2">
+                <div class="login_container">
+					<div class="login_item login_item1">
+						<div>
+							<h2>Travel Together(logo)</h2>
+						</div>
+					</div>
+					<div class="login_item login_item2">
+						<div  style="padding-top:65px; text-align : center; height:465px;">
+							<form action="LoginCtl.do" method="post">
+								<table id="table_tr">
+									<tr id="table_tr_id">
 										
-					<tr>
-	
-						<td><h5><font color="#0AC5A8" style="font-weight: bold;">ì†Œê°œê¸€ : </font>&nbsp;&nbsp;</h5></td>
-						<td></td>
-					</tr>
-				</table>
-				
-				<button type="button" id="modifyBtn" class="btn btn-default" onclick="location.href='${ProfileUpdateForm}'">ìˆ˜ì •í•˜ê¸°</button>
-		
-			</div>
-			
-</div>
-			
-		<br><br>
-		<div class="container">
-			<div class="myicon">
-				<div style="display: inline; cursor: pointer;" title="ì±„íŒ…ë°©" onclick="#"> <!-- ì±„íŒ…ë°© -->
-				<img class="my_img" src="#">
-				<br><p>ì±„íŒ…</p>
-				</div>
-			</div>
-			<div class="myicon">
-				<a href="#" title="ë‚´ ë™í–‰ ê²Œì‹œê¸€">
-				<img class="my_img" src="#"></a>
-				<br><p>ë‚´ ë™í–‰ ê²Œì‹œê¸€</p>
-			</div>
-			<div class="myicon">
-				<a href="#" title="ì˜ˆì•½ë‚´ì—­">
-				<img class="my_img" src="#"></a>
-				<br><p>ì˜ˆì•½ë‚´ì—­</p>
-			</div>
-			<div class="myicon">
-				<a href="#" title="í‚¤ì›Œë“œ ì„¤ì •">
-				<img class="my_img" src="#"></a>
-				<br><p>í‚¤ì›Œë“œ ì„¤ì •</p>
-			</div><br><br>
-			<div class="myicon">
-				<a href="#" title="ë¬¸ì˜í•˜ê¸°">
-				<img class="my_img" src="#"></a>
-				<br><p>ë¬¸ì˜í•˜ê¸°</p>
-			</div>
-			<div class="myicon">
-				<a href="#" title="ì—¬í–‰í›„ê¸°">
-				<img class="my_img" src="#"></a>
-				<p>ì—¬í–‰í›„ê¸°</p>
-			</div>
-			
-			<div class="myicon">
-				<a href="#" title="ì—¬í–‰í›„ê¸°">
-				<img class="my_img" src="#"></a>
-				<p>ì—¬í–‰í›„ê¸°</p>
-			</div>
-			
-			<div class="myicon">
-				<div style="display: inline; cursor: pointer;" title="íšŒì›íƒˆí‡´">
-				<img data-toggle="modal" data-target=".bs-example-modal-sm" class="my_img" src="#"></div>
-				<br><p>íšŒì›íƒˆí‡´</p>
-			</div>
-		</div>
-	</div>
-	
-	
+										<td colspan="2"><input type="text" name="m_id"
+											id="m_id" class="login_input" placeholder="¾ÆÀÌµğ" required ></td>
+									</tr>
+									<tr id="table_tr_middle">
+										<td colspan="3">&nbsp;</td>
+									</tr>
+									<tr id="table_tr_pw">
+										<td colspan="2"><input type="password"
+											name="m_pw" id="m_pw" class="login_input"
+											placeholder="ºñ¹Ğ¹øÈ£" required></td>
+									</tr>
+									<tr id="table_tr_middle">
+										<td colspan="3">&nbsp;</td>
+									</tr>
+									<tr id="table_tr_btn">
+										<td></td>
+										<td><input type="submit" value="·Î±×ÀÎ"
+											class="middle_input"></td>
+										<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>  <!-- °¡¿îµ¥ °£°İ -->
+										<td><input type="reset" value="Ãë¼Ò"
+											class="middle_input"></td>
+									</tr>
+									<tr>
+										<td colspan="3">&nbsp;</td>
+									</tr>
 
-		
-	<!-- 	
-		íƒˆí‡´ ëª¨ë‹¬
-		<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-		  <div class="modal-dialog modal-sm">
-		    <div id="exModal" class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<h4 class="modal-title">íšŒì› íƒˆí‡´</h4>
+									<tr id="table_tr_btn2">
+										<td></td>
+										<td><a href="./join.html"><input type="button" value="È¸¿ø°¡ÀÔ"
+												class="right_input" id="join_btn"></a></td>
+												<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>     <!-- °¡¿îµ¥ °£°İ -->
+										<td><a href="#"><input type="button" value="¾ÆÀÌµğ Ã£±â"
+												class="right_input" id="search_page"></a></td>
+									</tr>
+								</table>
+							</form>
+							
+							
+							<!-- ³ªÁß¿¡ °£Æí·Î±×ÀÎ ÇØº¸ÀÚ -->
+							<div id="sns" style="text-align:center; padding-top : 30px;">
+								<button style="margin-left: 35px;">
+									<img src="./image/±¸±Û3.png" class="snsImg">
+								</button>
+								<button style="margin-left : 30px;">
+									<img src="./image/ÆäÀÌ½ººÏ.png" class="snsImg">
+								</button>
+								<button style="margin-left : 30px;">
+									<img src="./image/ÀÎ½ºÅ¸±×·¥.png" class="snsImg">
+								</button>
+							</div>
+						</div>
 					</div>
-					<div class="modal-body">
-						<p>ì •ë§ íƒˆí‡´í•˜ê² ìŠµë‹ˆê¹Œ?</p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">ì·¨ì†Œ</button>
-						<button id="exBtn" type="button" class="btn btn-primary">íƒˆí‡´í•˜ê¸°</button>
 				</div>
-			</div>
+            </div>
 		</div>
 	</div>
-	
-	 -->
-	
 </div>
+</div>
+	
 </body>
 </html>
