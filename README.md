@@ -9,6 +9,11 @@
 👨🏻‍💻[KCY](https://github.com/kimchoyool)
 👨🏻‍💻[JJH](https://github.com/RaspberryIcecream)
 
+## :bookmark_tabs: Notion
+:round_pushpin:https://www.notion.so/Team-Project-Tt-9b1b4bad9885424ca212ff5c22a2d0c6
+
+
+
 ## ⭐️ Rule
 - 매일 각자 정해진 파트 수행하여 각자 branch에 올리기
 
@@ -32,8 +37,7 @@
 
 ## 💡 branch 사용 방법
 - 각자 branch 사용
-- 본인 폴더로 이용 
-- 시간 상관 없이 해결한 문제 코드 각자 폴더에 push
+- 본인 폴더로 이용
 
 
 
