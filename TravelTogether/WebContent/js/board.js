@@ -125,3 +125,12 @@ boardImage.addEventListener('mouseover', function(event){
 boardImage.addEventListener("mouseout", function(event){
     boardMap.style.display='none';
 });
+/* 답글달기 누르면 댓글 작성창에 @아이디뜨게 */
+let commentWrite = document.querySelector('#commentWrite textarea');
+let commentusers = document.getElementsByClassName('commentUserName');
+let recommentbuttons = document.getElementsByClassName('recommentWrite');
+for(let i=0; i<recommentbuttons.length; i++){
+    recommentbuttons[i].addEventListener('click', function(event){
+        commentWrite.innerText= '@'+commentusers[i].innerText+" ";
+    });
+}
