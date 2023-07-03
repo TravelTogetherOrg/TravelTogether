@@ -29,10 +29,8 @@ a{
     color: #222;
 }
 
-#container{
-	
-	
-}
+
+
 
 
 /*member sign in*/
@@ -64,6 +62,7 @@ a{
     margin-bottom: 5px;
 }
 
+
 /*input 중 radio 는 width 가 100%면 안되니까 */
 .member input:not(input[type=radio]),.member select{
     border: 1px solid #dadada;
@@ -72,15 +71,18 @@ a{
     margin-bottom: 5px;
 }
 
+.member input:focus,
+.member select:focus {
+    border-color: #0AC5A8 !important;
+    outline: none;
+}
+
 .member input[type=button],
 .member input[type=submit]{
 background-color: #0AC5A8;
-color:#fff
+color:#fff;
 }
 
-.member input:focus, .member select:focus{
-    border: 1px solid #0AC5A8;
-}
 
 .field input:focus {
   border-color: #0AC5A8; 
@@ -166,4 +168,3 @@ color:#fff
 }
 
 
-}
