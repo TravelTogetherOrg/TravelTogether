@@ -72,7 +72,7 @@
 
       /* hover 상태일 때 스타일 */
       .btn:hover {
-        color: red;
+        color: rgb(247, 212, 237);
         /* 다른 스타일 속성들 */
       }
 
@@ -136,6 +136,11 @@
     }
 
 
+    /* 포스터 옆 글씨 */
+    #fest {
+      padding-left: 10px;
+    }
+
     </style>
   
   <style>
@@ -153,46 +158,15 @@
   <body>
     
 <header>
-  <div class="collapse bg-dark" id="navbarHeader">
-    <div class="container">
-      <div class="row">
-
-        <div class="col-sm-8 col-md-7 py-4">
-          <h4 class="text-white">About</h4>
-          <p class="text-muted">
-            Add some information about the album below, the author, or any other 
-            background context. Make it a few sentences long so folks can pick up some informative tidbits. 
-            Then, link them off to some social networking sites or contact information.</p>
-        </div>
-
-        <div class="col-sm-4 offset-md-1 py-4">
-          <h4 class="text-white">Contact</h4>
-          <ul class="list-unstyled">
-            <li><a href="#" class="text-white">Follow on Twitter</a></li>
-            <li><a href="#" class="text-white">Like on Facebook</a></li>
-            <li><a href="#" class="text-white">Email me</a></li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-  </div>
   <div class="navbar navbar-skyblue bg-skyblue shadow-sm">
     <div class="container">
       <a href="festivalList.html" class="navbar-brand d-flex align-items-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="60" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
         <strong>Header</strong>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
     </div>
   </div>
 </header>
-
-
-
-
 
 
 
@@ -205,23 +179,24 @@
         <button type="button" class="btn btn-outline-primary" style="font-family: 'SUITE-Regular', sans-serif;">
           <i class="bi bi-heart-fill text-primary" ></i> 좋아요 <b>100</b>
         </button>
+        &nbsp;&nbsp;
         <button type="button" class="btn btn-outline-primary" style="font-family: 'SUITE-Regular', sans-serif;">
           <i class="bi bi-bookmark-plus text-primary"></i> 찜하기 <b>200</b>
         </button>
-        <button type="button" class="btn btn-outline-primary"  
+        <button type="button" class="btn btn-lg btn-outline-primary"  
                 style="font-family: 'SUITE-Regular', sans-serif;"
-                onclick="location.href='http://127.0.0.1:5500/html/festivalList.html'">
+                onclick="location.href='festivalList.html'">
           <i class="bi bi-chat-right-dots text-primary"></i> 동행자구하기
         </button>
       </p>
         
         <div class="row py-lg-3">
           <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="fw-bold" style="font-family: 'Dovemayo_gothic', sans-serif; ">휴애리 봄 수국축제</h1>
-            <h4 class="d-inline-flex p-2 bd-highlight" 
-                style="background-color: red; font-family: 'SUITE-Regular', sans-serif; border-radius: 10px; color: white;">
+            <h1 class="fw-bold fs-1" style="font-family: 'Dovemayo_gothic', sans-serif; ">휴애리 봄 수국축제</h1>
+            <h5 class="d-inline-flex p-2 bd-highlight" 
+                style="background-color: #f7d4ed; font-family: 'SUITE-Regular', sans-serif; border-radius: 10px; color: white; ">
                 축제 진행중
-            </h4>
+            </h5>
 
                 <!-- <h4 class="card-body fw-bold text-danger" style="font-family: 'SUITE-Regular', sans-serif;">축제진행중</h4> -->
             <h4 class="fw-bold" style="font-family: 'SUITE-Regular', sans-serif;">2023.06.22 - 2023.07.01</h4>
@@ -309,7 +284,7 @@
     </div>
 
     <br>
-    <div class="container text-center my-3">
+    <div class="container my-3">
       <p class="text-start" style="font-family: 'SUITE-Regular', sans-serif; font-size: 18px; line-height: 2.5em;">
         서귀포시 남원읍 신례리에 위치한 휴애리 자연생활공원은 제주도민과 제주를 찾는 관광객에게 보다 나은 볼거리를 제공하고 또 힐링의 공간이 되고자 오는 4월 7일부터 “휴애리 봄 수국축제”를 개최한다고 밝혔다.<br>
         이번 2023 휴애리 봄 수국축제는 정성스럽게 키운 다양한 수국을 온실, 수국정원, 등 공원 곳곳에서 감상할 수 있어 제주도민과 상춘객에게 인기가 좋은 제주 대표 봄 축제가 될 것으로 전망된다. 특별히 온실에서 다양한 수국을 올 봄 가장 많게 만나 볼 수 있으며 여름수국 과 유럽수국까지 준비하여 늦여름까지 진행할 예정이다.<br>
@@ -317,10 +292,12 @@
         휴애리는 여러 해 전부터 지역사회 환원 차원에서 제주도내 장애인단체, 보육원, 양로원 등은 축제 때마다 무료입장(사전예약 필수)을 진행하고 있으며 도민과 관광객 가운데 3자녀이상(소인, 청소년) 입장료 50%할인행사를 별도로 진행하고 있다.<br>
                 
         <br>
+        <div class="text-center" style="font-family: 'SUITE-Regular', sans-serif; font-size: 18px; line-height: 2.5em;">
         [행사내용]<br>
         ■ 상철체험프로그램<br>
         동물먹이주기체험(산토끼, 염소, 말, 흑돼지등)<br>
         자연 학습체험, 전통놀이체험(돌탑쌓기, 투호던지기, 굴렁쇠 체험, 제기차기, 널뛰기 등)
+      </div>
       </p>
 
       <hr>
@@ -335,7 +312,7 @@
               <img src="https://korean.visitkorea.or.kr/kfes/resources/img/valentine_day.png" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="40" height="40">
             </img>
           </td>
-            <td>2023.04.07 ~ 2023.05.31<br></td>
+            <td id="fest">2023.04.07 ~ 2023.05.31<br></td>
           </tr>
 
           <tr>
@@ -346,7 +323,7 @@
             <td><img src="https://korean.visitkorea.or.kr/kfes/resources/img/location_ico.png" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="40" height="40">
             </img>
           </td>
-            <td>
+            <td id="fest">
               제주특별자치도 서귀포시 신례동로 256 휴애리<br>
             </td>
           </tr>
@@ -358,7 +335,7 @@
           <tr style="vertical-align: top;">
             <td><img src="https://korean.visitkorea.or.kr/kfes/resources/img/coin_ico.png" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="40" height="40">
             </img></td>
-            <td>
+            <td id="fest">
           성 인 : 13,000원/단체:9,000원/도민:8,000원<br>
           청소년 : 11,000원/단체:8,000원/도민:7,000원<br>
           어린이 : 10,000원/단체:7,000원/도민:6,000원<br>
@@ -378,7 +355,7 @@
           <tr>
             <td> <img src="https://korean.visitkorea.or.kr/kfes/resources/img/megaphone_ico.png" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="40" height="40">
             </img></td>
-            <td>휴애리 자연생활공원</td>
+            <td id="fest">휴애리 자연생활공원</td>
           </tr>
 
           <tr>
@@ -388,17 +365,17 @@
           <tr>
             <td><img src="https://korean.visitkorea.or.kr/kfes/resources/img/call_ico.png" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="40" height="40">
             </img></td>
-            <td>064-732-2144</td>
+            <td id="fest">064-732-2144</td>
           </tr>
 
           <tr>
             <td><img src="https://korean.visitkorea.or.kr/kfes/resources/img/instagram_ico.png" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="40" height="40">
             </img></td>
-            <td><a style="text-decoration:  none;" href="https://www.instagram.com/jeju_hueree/" class="link-info">jeju_hueree</a></td>
+            <td id="fest"><a style="text-decoration:  none;" href="https://www.instagram.com/jeju_hueree/" class="link-info">jeju_hueree</a></td>
           </tr>
         </table>
         <br>
-        <a class="btn btn-primary text-white d-block text-left" href="http://hueree.com/index.php" role="button">공식홈페이지</a>
+        <a class="btn btn-primary text-white d-block text-center" href="http://hueree.com/index.php" role="button">공식홈페이지</a>
 
         
         <br>
@@ -411,26 +388,29 @@
       </div>
     </div>    
 
-    <hr>
+
     <!-- 지도 -->
     <div class="container">
-      <div id="map" class="container text-center my-3" style="width:1300px;height:400px;"></div>
-      <div id="roadview" class="container text-center my-3" style="width:1300px;height:400px"></div>
+      <div id="map" class="container text-center my-3" style="width:1300px;height:500px; border-radius: 10px; border-radius: 20px;"></div>
+      <!-- <div id="roadview" class="container text-center my-3" style="width:1300px;height:400px"></div> -->
     </div>
     
 
-    <hr>
 
-    <div class="container py-4" style="text-align: start;">
+
+
+    <!-- 댓글 목록 -->
+    <!-- 댓글 입력 폼 -->
+    <!-- <div class="container py-4" style="text-align: start;">
       <h1>댓글</h1>
 
-      <!-- 댓글 목록 -->
+      
 
 
       <div id="commentList"></div>
 
 
-      <!-- 댓글 입력 폼 -->
+      
       <form id="commentForm" class="mb-4" action="">
         <div class="mb-3">
           <label for="name" class="form-label">이름</label>
@@ -445,7 +425,7 @@
   
       
     </div>
-    
+     -->
 
 </main>
 
@@ -537,6 +517,9 @@
   rvClient.getNearestPanoId(mapCenter, 50, function(panoId) {
       rv.setPanoId(panoId, mapCenter); //panoId와 중심좌표를 통해 로드뷰 실행
   });
+
+  var zoomControl = new kakao.maps.ZoomControl();
+  map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
   
   kakao.maps.event.addListener(rv, 'init', function() {
   
@@ -559,8 +542,7 @@
       rv.setViewpoint(viewpoint); //커스텀 오버레이를 로드뷰의 가운데에 오도록 로드뷰의 시점을 변화 시킵니다.
   });
 
-  var zoomControl = new kakao.maps.ZoomControl();
-  map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
 
   </script>
 
