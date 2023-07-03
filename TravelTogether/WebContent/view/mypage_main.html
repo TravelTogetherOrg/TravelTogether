@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="./js/jquery-3.6.4.js"></script>
+
+<style>
+
+	#tabs{
+		overflow: hidden;
+		zoom: 1;
+
+	}
+	#tabs li{
+		display: block;
+		list-style: none;
+		margin: 0; padding: 0;
+		float: left;
+
+	}
+	#tabs li a{
+		display: block;
+		padding: 2px 5px;
+		border: 2px solid #ccc;
+		border-bottom: 0 none;
+		text-align: center;
+
+	}
+	.tab-section{
+		padding: 10px;
+		border: 2px solid #ccc;
+
+	}
+	#tabs li a.current{
+		background: blue;
+		color: white;
+	}
+</style>
+<script>
+
+	$(()=>{
+		$('#tabs a').bind('click', function(){
+
+			$('#tabs a.current').removeClass('current'); 
+			$('.tab-section:visible').hide();
+			$(this.hash).show();
+			
+			e.preventDefault;
+
+		}).filter(':first').click();
+	});
+
+
+</script>
+</head>
+<body>
+	<h1>마이페이지</h1>
+	<br>
+	
+	<ul id="tabs">
+		<li><a href="#description" >계정설정</a></li>
+		<li><a href="./mypage_companion.jsp">동행신청정보</a></li>
+		<li><a href="#details">예약내역</a></li>
+		<li><a href="#review">여행후기</a></li>
+	
+	</ul>
+
+	<div id="description" class="tab-section" style="background: skyblue;">
+		<h2>계정설정</h2>
+		<div style="display: flex; align-items: flex-start;">
+			<table id="info_table">
+				<tr>
+					<td>
+						<h5><font style="font-weight: bold;">아이디 : </font>&nbsp;&nbsp;</h5>
+					</td>
+						
+				</tr>
+				<tr>
+					<td>
+						<h5><font style="font-weight: bold;">이름 : </font>&nbsp;&nbsp;</h5>
+					</td>
+				
+				</tr>
+				
+				<tr>
+					<td>
+						<h5><font style="font-weight: bold;">생년월일 : </font>&nbsp;&nbsp;</h5>
+					</td>
+					
+				</tr>
+				
+				<tr>
+					<td>
+						<h5><font style="font-weight: bold;">성별 : </font>&nbsp;&nbsp;</h5>
+					</td>
+					
+
+				</tr>
+				
+				<tr>
+					<td>
+						<h5><font style="font-weight: bold;">가입일 : </font>&nbsp;&nbsp;</h5>
+					</td>
+					
+				</tr>
+				
+				<tr>
+					<td>
+						<h5><font style="font-weight: bold;">포인트 : </font>&nbsp;&nbsp;</h5>
+					</td>
+					
+				</tr>
+									
+				<tr>
+
+					<td><h5><font style="font-weight: bold;">소개글 : </font>&nbsp;&nbsp;</h5></td>
+					
+				</tr>
+			</table>
+			
+			<button type="button" id="modifyBtn" class="btn btn-default" onclick="location.href='${ProfileUpdateForm}'">수정하기</button>
+		</div>
+	</div>
+	
+	
+	<div id="details" class="tab-section" style="background: yellowgreen">
+		<h2>예약내역</h2>
+		<p>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
+	</div>
+	<div id="review" class="tab-section" style="background:goldenrod">
+		<h2>여행후기</h2>
+		<p>~~~~~~~~~~~~~~~~~~~~~~~~.</p>
+	</div>
+	
+</body>
+</html>
+
+
