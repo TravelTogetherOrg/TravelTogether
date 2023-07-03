@@ -1,136 +1,122 @@
-/* boardList */
-let col = document.getElementsByClassName('col');
-let middleHover = document.getElementsByClassName('middleHover');
-let thumnail = document.getElementsByClassName('thumnail');
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/WebContent/css/bootstrap.min.css">
+    <link rel='stylesheet' type='text/css' media='all' href='/WebContent/css/base.css'>
+    <link rel='stylesheet' type='text/css' media='all' href='/WebContent/css/board.css'>
+    <title>동행 게시글</title>
+</head>
+<body>
+    <main class="container-md boardMain">
+        <section> <!--배경으로 이미지-->
+            <div class="container boardImageAndMap">
+                <!--<div id="boardImage">-->
+                    <img id="boardImage" alt="이미지" src="/WebContent/image/board/IMG_2359.JPG">
+                <!--</div>-->
+                <div id="boardMap" class="container">
+                    <iframe id="boardMapIframe"></iframe>
+                </div>
+            </div>
+            
+        </section>
+        <div class="boardContents">
+            <div class="boardContent"><!--게시글 내용-->
+                <div class="boardTitle">
+                    <p>동행 게시글 제목</p>
+                </div>
+                <div class="writerInfo"><!--작성자 프로필-->
+                    <div>
+                        <img src="/WebContent/image/board/vector_profile_willy.svg">
+                    </div>
+                    <div class="writerInfoInner">
+                        <span>닉네임</span>
+                        <span>2023.06.29 12:00:30</span>
+                    </div>
+                </div>
+                <div class="boardInfo">
+                    <div class="boardFestivalAndPeople">
+                        <div class="boardFestival">
+                            <p>축제</p>
+                            <span>창덕궁 달빛기행</span>
+                        </div>
+                        <div class="boardPeople"> 
+                            <p>모집인원</p>
+                            <span>2명</span>
+                        </div>
+                    </div>
+                    <div class="boardDate">
+                        <svg width="14" height="14" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block;">
+                            <path d="M13.8828 4.3846C13.8829 4.10977 13.8294 3.83763 13.7256 3.58372C13.6218 3.32981 13.4696 3.09909 13.2777 2.90475C13.0858 2.7104 12.858 2.55624 12.6072 2.45106C12.3565 2.34588 12.0878 2.29175 11.8164 2.29175H2.08262C1.53477 2.29215 1.00949 2.51283 0.622273 2.90528C0.235052 3.29773 0.0175774 3.82983 0.0176569 4.3846V5.9756H0V13.806C0 14.3879 0.228278 14.946 0.634616 15.3575C1.04095 15.7689 1.59206 16.0001 2.16671 16.0001H11.6988C12.2734 15.9999 12.8244 15.7687 13.2307 15.3573C13.637 14.9459 13.8653 14.3879 13.8655 13.806V6.21561H13.8828V4.3846Z" fill="#9A9A9A"></path>
+                            <path d="M3.22294 3.04927C2.98173 3.04927 2.75041 2.95348 2.57985 2.78298C2.40929 2.61249 2.31348 2.38124 2.31348 2.14012V0.909143C2.31348 0.668024 2.40929 0.436779 2.57985 0.266282C2.75041 0.0957845 2.98173 0 3.22294 0C3.46414 0 3.69547 0.0957845 3.86602 0.266282C4.03658 0.436779 4.1324 0.668024 4.1324 0.909143V2.14012C4.1324 2.38124 4.03658 2.61249 3.86602 2.78298C3.69547 2.95348 3.46414 3.04927 3.22294 3.04927Z" fill="#9A9A9A"></path>
+                            <path d="M10.8584 3.04927C10.6172 3.04927 10.3859 2.95348 10.2153 2.78298C10.0448 2.61249 9.94897 2.38124 9.94897 2.14012V0.909143C9.94897 0.668024 10.0448 0.436779 10.2153 0.266282C10.3859 0.0957845 10.6172 0 10.8584 0C11.0996 0 11.331 0.0957845 11.5015 0.266282C11.6721 0.436779 11.7679 0.668024 11.7679 0.909143V2.14012C11.7679 2.38124 11.6721 2.61249 11.5015 2.78298C11.331 2.95348 11.0996 3.04927 10.8584 3.04927Z" fill="#9A9A9A"></path>
+                            <path d="M14 5.57568H0.117188V6.82461H14V5.57568Z" fill="white"></path>
+                        </svg>
+                        <span>2023.06.26 ~ 2023.06.27</span>
+                    </div>
+                </div>
+                <p class="boardSubstance">동행 게시글 내용</p>
+            </div>
+            <div class="boardSub"><!--날짜/조회수/댓글-->
+                <div>
+                    <p>2023.06.26 17:02 · 조회수 10 </p>
+                    <button>신고하기</button>
+                </div>
+                <div class="comment">
+                    <form>
+                        <div id="commentWrite">
+                            <textarea placeholder="댓글을 입력해주세요." required></textarea>
+                            <button type="submit">게시</button>
+                        </div>
+                    </form>
+                    <div id="commentList"> <!--댓글 리스트-->
+                        <div id="eachComment">
+                            <div class="commentUserInfo"><!--프로필사진/닉네임/작성한 날짜,시간-->
+                                <div>
+                                    <img src="/WebContent/image/board/vector_profile_willy.svg">
+                                </div>
+                                <div class="commentUserInfoInner">
+                                    <span class="commentUserName">댓글닉네임</span>
+                                    <span>2023.06.29 12:00:30</span>
+                                </div>
+                            </div>
+                            <div class="userComment"><!--작성한 댓글-->
+                                <span>동행하고 싶어요</span>
+                            </div>
+                            <div class="recommentAndDelete"><!--답글달기 삭제하기-->
+                                <button class="recommentWrite">답글달기</button>
+                                <span>|</span>
+                                <button class="commentDelete">삭제하기</button>
+                            </div>
+                            <div class="recomment"><!--답글-->
+                                <div class="commentUserInfo"><!--프로필사진/닉네임/작성한 날짜,시간-->
+                                    <div>
+                                        <img src="/WebContent/image/board/vector_profile_willy.svg">
+                                    </div>
+                                    <div class="commentUserInfoInner">
+                                        <span class="commentUserName">답글닉네임</span>
+                                        <span>2023.06.30 09:10:33</span>
+                                    </div>
+                                </div>
+                                <div class="userComment"><!--작성한 댓글-->
+                                    <span>답글 예시</span>
+                                </div>
+                                <div class="recommentAndDelete"><!--답글달기 삭제하기-->
+                                    <button class="recommentWrite">답글달기</button>
+                                    <span>|</span>
+                                    <button class="commentDelete">삭제하기</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-for(let i=0;i<col.length;i++){
-    col[i].addEventListener('mouseover', function(event){
-        middleHover[i].style.display = 'block';
-        thumnail[i].style.transform = 'scale(1.2)';
-        thumnail[i].style.transition = 'all 0.5s';
-        
-
-    })
-    col[i].addEventListener("mouseout", function(event){
-        middleHover[i].style.display = 'none';
-        thumnail[i].style.transform = 'scale(1)';
-        thumnail[i].style.transition = 'all 0.5s';
-
-    })
-}
-
-
-/* boardWrite */
-/* 지역td 선택시 bg/color 바뀌게 */
-let regions = document.querySelectorAll('#regions td');
-regions.forEach((el)=>{
-    el.className='region';
-});
-let boardSelectRegion = document.getElementsByClassName('region');
-for(let i=0; i<boardSelectRegion.length; i++){
-    boardSelectRegion[i].addEventListener('click', function(event){
-        for(let j=0; j<boardSelectRegion.length; j++){
-            if(boardSelectRegion[j].style.background = 'rgb(192, 228, 255)'){
-                boardSelectRegion[j].style.background = 'white';
-                boardSelectRegion[j].style.color = 'black';
-            }
-        };
-        boardSelectRegion[i].style.background = 'rgb(192, 228, 255)';
-        /*boardSelectRegion[i].style.color = 'white';*/
-
-        /* 지역 선택시 해당지역 축제 리스트로 바뀌게*/
-        let divs = document.getElementsByTagName('div');
-        for(let k=0; k<divs.length; k++){
-            if(divs[k].id.startsWith(boardSelectRegion[i].id)){
-                divs[k].style.display='block';
-            }
-            else if(divs[k].id.endsWith('Festival')){
-                divs[k].style.display='none';
-            }
-            /* 지역 전환시 클릭했던 축제 색 초기화 */
-            for(let j=0; j<festivals.length; j++){
-                festivals[j].style.color = 'black';
-            }
-        }
-    })
-}
-
-/* 각 축제td 선택시 글자색 바뀌게 */
-let festivalsByRegion = document.querySelectorAll('#festivalsByRegion td');
-festivalsByRegion.forEach((el)=>{
-    el.className='festival';
-});
-
-let festivals = document.getElementsByClassName('festival');
-for(let i=0; i<festivals.length; i++){
-    festivals[i].addEventListener('click', function(event){
-        for(let j=0; j<festivals.length; j++){
-            if(festivals[j].style.color = 'rgb(192, 228, 255)'){
-                festivals[j].style.color = 'black';
-            }
-        }
-        festivals[i].style.color = 'rgb(192, 228, 255)';
-    });
-}
-
-/* 1박 이상 선택시 input date 추가 */
-let moreDaysCheckbox = document.getElementById('moreDays');
-let lastDayInput = document.getElementById('lastDay');
-if(moreDaysCheckbox != null){
-    moreDaysCheckbox.addEventListener('click', function(event){
-        if(moreDaysCheckbox.checked){
-            lastDayInput.style.display='block';
-        }
-        else{
-            lastDayInput.style.display='none';
-        }
-    });
-}
-
-
-
-/* board */
-
-if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(success);
-    console.log('지원함.');
-}else{
-    /*alert('지원하지 않습니다.');*/
-
-    console.log('지원하지 않습니다.');
-}
-function success(position){ //자동으로 가져옴
-    let lat = position.coords.latitude; //위도
-    let lon = position.coords.longitude; //경도
-
-    lat = lat.toPrecision(6);
-    lon = lon.toPrecision(6);
-
-    let map = document.getElementById('boardMapIframe');
-
-    map.src="https://www.openstreetmap.org/export/embed.html?bbox="+
-    (parseFloat(lon)-0.003)+"%2C"+(parseFloat(lat)-0.003)+"%2C"+
-    (parseFloat(lon)+0.003)+"%2C"+(parseFloat(lat)+0.003);
-    //%2C == ,
-    //줌: -0.003, +0.003 숫자 변경으로 가능
-    //정확도가 이상하게 안맞음
-
-}
-
-let boardImage = document.getElementById('boardImage');
-let boardMap = document.getElementById('boardMap');
-boardImage.addEventListener('mouseover', function(event){
-    boardMap.style.display='block';
-});
-boardImage.addEventListener("mouseout", function(event){
-    boardMap.style.display='none';
-});
-/* 답글달기 누르면 댓글 작성창에 @아이디뜨게 */
-let commentWrite = document.querySelector('#commentWrite textarea');
-let commentusers = document.getElementsByClassName('commentUserName');
-let recommentbuttons = document.getElementsByClassName('recommentWrite');
-for(let i=0; i<recommentbuttons.length; i++){
-    recommentbuttons[i].addEventListener('click', function(event){
-        commentWrite.innerText= '@'+commentusers[i].innerText+" ";
-    });
-}
+    </main>
+    <script src="/WebContent/js/jquery-3.6.4.js"></script>
+    <script type="text/javascript" src="/WebContent/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/WebContent/js/board.js"></script>
+</body>
+</html>
