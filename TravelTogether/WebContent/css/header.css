@@ -1,0 +1,136 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@1,900&display=swap');
+
+
+:root {
+    --accent-color: orange;
+    --text-color: black;
+    --background-color: azure;  /*메뉴바 배경색 변경*/
+    --icons-color: blue;
+    }
+    
+body { 
+    margin: 0;
+    background-color: var(--bodybackground-color);
+    font-size: 1.8em;
+    padding-top: 0px; 
+  }
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--background-color);
+    padding: 14px 12px;
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+  .navbar:hover{
+    background-color: white;
+    border-bottom: 1px solid lightgray;
+  }
+  .navbar__logo{
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: bolder;
+  }
+
+  .navbar__logo span {
+    color: var(--accent-color);
+    padding-left: 0;
+  }
+  a{
+    text-decoration: none;
+    color: var(--text-color);
+  }
+  .navbar__menu {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding-left: 0;
+    font-family: 'GmarketSansMedium';
+  }
+  .navbar__menu li {
+    padding: 8px 30px;
+  }
+  .navbar__icons {
+    list-style: none;
+    display: flex;
+    color: var(--icons-color);
+    margin: 0;
+    padding-left: 0;
+  }
+  .navbar__icons li {
+    padding: 8px 12px;
+    margin: 0;
+  }
+  .navbar__menu li:hover {
+    background-color: var(--accent-color);
+    border-radius: 3px;
+  }
+  .navbar__toggleBtn {
+    color: var(--text-color);
+    position: absolute;
+    right: 15px;
+    font-size: 20px;
+    display: none;
+  }
+  /* ----------스크롤시 메뉴바 변경점------------- */
+    .navbar.active{
+        background-color: white;
+        border-bottom: 1px solid lightgray;
+  }
+
+  /* --------width 700px이하 변경점--------- */
+  @media screen and (max-width: 980px) {
+    
+    .navbar__logo{
+        padding-left: 50%;
+        transform: translateX(-22%);
+    }
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 0;
+      }
+    .navbar__menu {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .navbar__menu li {
+    width: 100%;
+    text-align: left;
+    padding-top: 30px;
+  }
+  .navbar__icons {
+    display: none;
+    justify-content: center;
+    width: 100%;
+    padding-top: 30;
+  }
+  .navbar__toggleBtn {
+    display: block;
+  }
+  
+  .navbar__menu.active,
+  .navbar__icons.active {
+    display: flex;
+  }
+
+  }
+ 
+  
