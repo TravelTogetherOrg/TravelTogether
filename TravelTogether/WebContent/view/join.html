@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입</title>
+<link rel="stylesheet" type="text/css" href="./css/join.css">
+</head>
+<body>
+<div class="member">
+        <!-- 1. 로고 넣을자리 -->
+        
+        <img class="logo" src="#">
+        <h2 align="center" style="font-size:40px">회원가입</h2><br><br>
+        <h4>입력사항 <span style="color:#0AC5A8;">(필수)</span></h4>
+
+        <!-- 2. 필드 -->
+        <div id="container">
+        <div class="field">
+            
+            <span class="placehold-text"><input type="text" placeholder="이메일 주소" required></span>
+        </div>
+        <div class="field">
+            
+            <input class="userpw" type="password" placeholder="비밀번호(8~12자, 영문+숫자+특수문자 사용)" required>
+        </div>
+        <div class="field">
+            
+            <input class="userpw-confirm" type="password" placeholder="비밀번호 재확인" required>
+        </div>
+        <div class="field">
+            
+            <input type="text" placeholder="이름" required>
+        </div>
+
+        <!-- 3. 필드(생년월일) -->
+        <div class="field birth">
+            
+            <div>
+                <input type="number" placeholder="년(ex.1900)" min="1">                
+                <select>
+                    <option value="">월</option>
+                    <option value="">1월</option>
+                    <option value="">2월</option>
+                    <option value="">3월</option>
+                    <option value="">4월</option>
+                    <option value="">5월</option>
+                    <option value="">6월</option>
+                    <option value="">7월</option>
+                    <option value="">8월</option>
+                    <option value="">9월</option>
+                    <option value="">10월</option>
+                    <option value="">11월</option>
+                    <option value="">12월</option>
+                </select>
+                <input type="number" placeholder="일" min="1">
+            </div>
+        </div>
+
+        <!-- 4. 필드(성별) -->
+        <div class="field gender">
+         
+            <select>
+      			<option value="">성별</option>
+     			<option value="남">남</option>
+       			<option value="여">여</option>
+   			 </select>
+        </div>
+
+        <!-- 5. 전화번호 -->
+        <div class="field tel-number">
+           <select>
+                <option value="">+82 대한민국</option>
+                <option value="">+30 그리스</option>
+                <option value="">+31 네덜란드</option>
+                <option value="">+47 노르웨이</option>
+                <option value="">+64 뉴질랜드</option>
+                <option value="">+886 대만</option>
+                <option value="">+1 미국/캐나다</option>
+                <option value="">+45 덴마크</option>
+                <option value="">+49 독일</option>
+                <option value="">+44 영국</option>
+                <option value="">+967 예멘</option>
+                <option value="">+65 싱가포르</option>
+                <option value="">+86 중국</option>
+                <option value="">+81 일본</option>
+            </select>
+            <div>
+                <input type="tel" placeholder="전화번호 입력">
+                <input type="button" value="인증번호 받기">
+            </div>
+            <input type="text" placeholder="인증번호를 입력하세요">
+        </div>
+      
+       <!-- 6. 프로필이미지 넣기 -->
+       <table class="field">
+		<tr><td>
+			<div class="filebox">
+				<span id="imgspan"></span> <label for="upfile"><b>프로필 이미지</b></label>
+				<input type="file" name="upfile" id="upfile">
+				</div>
+			</td>
+		</tr>
+		</table>
+		</div>
+        <!-- 7. 가입하기 버튼 -->
+        <input type="submit" value="가입하기">
+
+        <!-- 8. 약관 -->
+        <div class="agreement">
+            <span><a href="#none">copyright ⓒ all rights resvered</a></span>
+        </div>
+    </div>
+ 
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
