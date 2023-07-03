@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 .container{
-    width: 1200px; /*1120*/
+    width: 1120px; /*1120*/
     justify-content: center;
     text-align: center;
     margin: 0 auto;
@@ -17,22 +17,33 @@
     
 }
 
+/* boardList */
 #festivalSearch{
     margin-top: 2em;
     vertical-align: middle;
     padding-top: 5em;
 }
 #festivalSearch p{
-    font-size: 1.5em;
+    font-size: 3em;
     vertical-align: middle;
+    user-select: none;
 }
 #festivalSearch button{
     vertical-align: middle;
-    background: none;
+    background:none;
+    /*background-color: rgb(192, 228, 255);*/
     cursor: pointer;
+
+    border: 0.13em solid black;
+    border-radius: 50%;
+    
 }
 #festivalSearch img{
-    width: 1.5em;;
+    width: 1.5em;
+    margin: 0.3em;
+    /*border: 0.01em solid black;
+    border-radius: 50%;
+    padding: 0.3em;*/
 }
 select{
     -moz-appearance: none;
@@ -52,6 +63,8 @@ select{
 
     cursor: pointer;
     outline: none;
+
+    margin-top: 1em;
 }
 select::-ms-expand{ display: none; }
 select:focus{
@@ -70,6 +83,7 @@ select:focus{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    margin-bottom: 0.5em;
 }
 .col{
     width: 17em;
@@ -143,7 +157,7 @@ select:focus{
     background: rgba(236, 236, 236,0.7);
     border-radius: 0.5em;
     padding: 0.3em;
-
+    
     animation: fadeInUp 0.5s;
     
 }
@@ -197,6 +211,35 @@ select:focus{
 
 #boardList{
     margin-top: 2em;
+}
+#pageChevrons{
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    
+    cursor: pointer;
+}
+#pageChevrons button{
+    background: none;
+    user-select: none;
+}
+.chevron{
+    border-radius: 50%;
+    border: 0.05em solid black;
+    margin: 0 0.1em;
+    cursor: pointer;
+    padding: 0.08em;
+}
+.chevron img{
+    width: 1.5em;
+    vertical-align: middle;
+    align-items: center;
+}
+#pageNumbers{
+    margin: 0 0.5em;
+    font-size: 1.5em;
 }
 
 /* boardWrite */
@@ -276,8 +319,8 @@ select:focus{
     border-radius: 0.5em;
 }
 #regions tr:first-child{
-    background-color: cornflowerblue;
-    color: white;
+    background-color: rgb(192, 228, 255);
+    /*color: white;*/
 }
 
 #festivalsByRegion td{
@@ -286,6 +329,7 @@ select:focus{
     padding: 0.3em;
     cursor: pointer;
     vertical-align: middle;
+    font-weight: 600;
 }
 
 /* 맨 처음 보여지는 지역 외 div는 숨기기 */
@@ -307,12 +351,18 @@ select:focus{
     text-align: center;
     box-shadow: none;
     appearance: menulist-button;
+    padding: 0.3em;
+    margin: 0;
 }
 .date{
     display: flex;
     flex-direction: row;
     align-items: baseline;
+    padding: 0;
     
+}
+.date label{
+    margin: 0;
 }
 .date div{
     justify-content: center;
@@ -367,6 +417,7 @@ select:focus{
 
 .buttons{
     padding: 4.375em 0 4.375em;
+    
 }
 .resetButton, .submitButton{
     width: 15em;
@@ -374,9 +425,10 @@ select:focus{
     cursor: pointer;
     border-radius: 0.5em;
     margin-top: 0.5em;
+    font-weight: 800;
 }
 .submitButton{
-    background-color: lightblue;
+    background-color: rgb(192, 228, 255);
 }
 
 
@@ -386,18 +438,36 @@ select:focus{
 }
 .boardImageAndMap{
     margin-top: 2em;
-    display: flex;
+    position: relative;
+    padding: 0;
+    /*display: flex;
     flex-direction: row;
     position: relative;
-    justify-content: space-around;
+    justify-content: space-around;*/
 }
-.boardImageAndMap img{
+
+#boardImage{ /*img*/
     height: 25em;
-    /*width: 45%;*/
+    width: 100%;
     border-radius: 0.5em;
-    margin: 2.5em 0;
+    margin-top: 2.5em 0;
     object-fit: cover;
 }
+#boardMap iframe{
+    height: 25em;
+    width: 100%;
+    border-radius: 0.5em;
+}
+#boardMap{
+    display: none;
+    position: absolute;
+    animation: fadeInUp 0.5s;
+    bottom: -0.1em;
+    left: 0;
+    z-index: 50;
+    padding: 0;
+}
+
 .boardContents{
     padding: 4.375em 0 15.625em;
     text-align: left;
@@ -408,8 +478,22 @@ select:focus{
     font-size: 2em;
     /*text-align: left;*/
 }
+.writerInfo{
+    display: flex;
+    position: relative;
+    flex-flow: row;
+    margin-top: 0.8em;
+}
+.writerInfoInner{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    justify-content: space-evenly;
+    margin-left: 0.6em;
+}
 .boardInfo{
-    margin-top: 4.375em;
+    margin-top: 1em;
     padding: 1.25em 1.875em;
     border: 0.1em solid black;
     border-radius: 0.5em;
@@ -419,7 +503,8 @@ select:focus{
     align-items: center;
 }
 .boardFestivalAndPeople p{
-    color: dimgrey;
+    /*color: dimgrey;*/
+    font-weight: 800;
 }
 
 .boardFestivalAndPeople span{
@@ -430,7 +515,14 @@ select:focus{
 } 
 .boardDate{
     margin-top: 0.5em;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
 }
+.boardDate span{
+    margin-left: 0.5em;
+}
+
 .boardSubstance{
     line-height: 1.5em;
     margin-top: 1.875em;
@@ -459,7 +551,7 @@ select:focus{
 
     margin-top: 1.5em;
 }
-.comment div{
+#commentWrite{
     min-height: 3em;
     display: flex;
     position: relative;
@@ -469,6 +561,9 @@ select:focus{
     border: 0.1em solid black;
     border-radius: 0.5em;
     box-sizing: border-box;
+}
+#commentWrite button{
+    font-size: 1.1em;
 }
 .comment textarea{
     height: 2.4375em;
@@ -496,4 +591,43 @@ select:focus{
     right: 0;
     user-select: none;
     text-decoration: none;
+}
+
+#commentList{
+    margin-top: 1.5em;
+}
+.commentUserInfo{
+    display: flex;
+    position: relative;
+    flex-flow: row;
+}
+
+.commentUserInfoInner{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    justify-content: space-evenly;
+    margin-left: 0.6em;
+}
+.userComment, .recommentAndDelete{
+    margin-top: 0.7em;
+}
+.recommentAndDelete{
+    display: flex;
+    position: relative;
+    flex-flow: row;
+    font-size: 0.9em;
+    color: grey;
+}
+.recommentAndDelete button{
+    position: relative;
+    padding: 0;
+    margin: 0;
+}
+.recommentAndDelete span{
+    margin: 0 0.1em;
+}
+.recomment{
+    margin: 1em 0 0 1.5em;
 }
