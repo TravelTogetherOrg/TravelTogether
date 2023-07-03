@@ -2,157 +2,138 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이페이지</title>
-<link rel="stylesheet" type="text/css" href="./css/mypage.css">
+<title>Insert title here</title>
+<script src="./js/jquery-3.6.4.js"></script>
+
+<style>
+
+	#tabs{
+		overflow: hidden;
+		zoom: 1;
+
+	}
+	#tabs li{
+		display: block;
+		list-style: none;
+		margin: 0; padding: 0;
+		float: left;
+
+	}
+	#tabs li a{
+		display: block;
+		padding: 2px 5px;
+		border: 2px solid #ccc;
+		border-bottom: 0 none;
+		text-align: center;
+
+	}
+	.tab-section{
+		padding: 10px;
+		border: 2px solid #ccc;
+
+	}
+	#tabs li a.current{
+		background: blue;
+		color: white;
+	}
+</style>
+<script>
+
+	$(()=>{
+		$('#tabs a').bind('click', function(){
+
+			$('#tabs a.current').removeClass('current'); 
+			$('.tab-section:visible').hide();
+			$(this.hash).show();
+			
+			e.preventDefault;
+
+		}).filter(':first').click();
+	});
+
+
+</script>
 </head>
 <body>
-	<div class="wrap">
+	<h1>마이페이지</h1>
+	<br>
 	
-		<div id="MyPage">
-			<h3 style="margin-bottom: 50px;">마이페이지</h3>
-			<div id="infobox">
-			
-			<div id="profile_img">
-				
-				<img src="./image/3.jpg" style="width: 280px; height: 280px; display: inline; padding: 10px; margin-top: 10px;">
-			
-			</div>
-			
-			<div id="info">
-				<table id="info_table" style="float: left;">
-					<tr>
-						<td>
-							<h5><font color="#0AC5A8" style="font-weight: bold;">아이디 : </font>&nbsp;&nbsp;</h5>
-						</td>
-						<td></td>
+	<ul id="tabs">
+		<li><a href="#description" >계정설정</a></li>
+		<li><a href="./mypage_companion.jsp">동행신청정보</a></li>
+		<li><a href="#details">예약내역</a></li>
+		<li><a href="#review">여행후기</a></li>
 	
-					</tr>
-					<tr>
-						<td>
-							<h5><font color="#0AC5A8" style="font-weight: bold;">이름 : </font>&nbsp;&nbsp;</h5>
-						</td>
-						<td></td>
-	
-					</tr>
-					
-					<tr>
-						<td>
-							<h5><font color="#0AC5A8" style="font-weight: bold;">생년월일 : </font>&nbsp;&nbsp;</h5>
-						</td>
-						<td></td>
-	
-					</tr>
-					
-					<tr>
-						<td>
-							<h5><font color="#0AC5A8" style="font-weight: bold;">성별 : </font>&nbsp;&nbsp;</h5>
-						</td>
-						<td></td>
-	
-					</tr>
-					
-					<tr>
-						<td>
-							<h5><font color="#0AC5A8" style="font-weight: bold;">가입일 : </font>&nbsp;&nbsp;</h5>
-						</td>
-						<td></td>
-					</tr>
-					
-					<tr>
-						<td>
-							<h5><font color="#0AC5A8" style="font-weight: bold;">포인트 : </font>&nbsp;&nbsp;</h5>
-						</td>
-						<td></td>
-					</tr>
-										
-					<tr>
-	
-						<td><h5><font color="#0AC5A8" style="font-weight: bold;">소개글 : </font>&nbsp;&nbsp;</h5></td>
-						<td></td>
-					</tr>
-				</table>
-				
-				<button type="button" id="modifyBtn" class="btn btn-default" onclick="location.href='${ProfileUpdateForm}'">수정하기</button>
-		
-			</div>
-			
-</div>
-			
-		<br><br>
-		<div class="container">
-			<div class="myicon">
-				<div style="display: inline; cursor: pointer;" title="채팅방" onclick="#"> <!-- 채팅방 -->
-				<img class="my_img" src="#">
-				<br><p>채팅</p>
-				</div>
-			</div>
-			<div class="myicon">
-				<a href="#" title="내 동행 게시글">
-				<img class="my_img" src="#"></a>
-				<br><p>내 동행 게시글</p>
-			</div>
-			<div class="myicon">
-				<a href="#" title="예약내역">
-				<img class="my_img" src="#"></a>
-				<br><p>예약내역</p>
-			</div>
-			<div class="myicon">
-				<a href="#" title="키워드 설정">
-				<img class="my_img" src="#"></a>
-				<br><p>키워드 설정</p>
-			</div><br><br>
-			<div class="myicon">
-				<a href="#" title="문의하기">
-				<img class="my_img" src="#"></a>
-				<br><p>문의하기</p>
-			</div>
-			<div class="myicon">
-				<a href="#" title="여행후기">
-				<img class="my_img" src="#"></a>
-				<p>여행후기</p>
-			</div>
-			
-			<div class="myicon">
-				<a href="#" title="여행후기">
-				<img class="my_img" src="#"></a>
-				<p>여행후기</p>
-			</div>
-			
-			<div class="myicon">
-				<div style="display: inline; cursor: pointer;" title="회원탈퇴">
-				<img data-toggle="modal" data-target=".bs-example-modal-sm" class="my_img" src="#"></div>
-				<br><p>회원탈퇴</p>
-			</div>
-		</div>
-	</div>
-	
-	
+	</ul>
 
-		
-	<!-- 	
-		탈퇴 모달
-		<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-		  <div class="modal-dialog modal-sm">
-		    <div id="exModal" class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<h4 class="modal-title">회원 탈퇴</h4>
-					</div>
-					<div class="modal-body">
-						<p>정말 탈퇴하겠습니까?</p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-						<button id="exBtn" type="button" class="btn btn-primary">탈퇴하기</button>
-				</div>
-			</div>
+	<div id="description" class="tab-section" style="background: skyblue;">
+		<h2>계정설정</h2>
+		<div style="display: flex; align-items: flex-start;">
+			<table id="info_table">
+				<tr>
+					<td>
+						<h5><font style="font-weight: bold;">아이디 : </font>&nbsp;&nbsp;</h5>
+					</td>
+						
+				</tr>
+				<tr>
+					<td>
+						<h5><font style="font-weight: bold;">이름 : </font>&nbsp;&nbsp;</h5>
+					</td>
+				
+				</tr>
+				
+				<tr>
+					<td>
+						<h5><font style="font-weight: bold;">생년월일 : </font>&nbsp;&nbsp;</h5>
+					</td>
+					
+				</tr>
+				
+				<tr>
+					<td>
+						<h5><font style="font-weight: bold;">성별 : </font>&nbsp;&nbsp;</h5>
+					</td>
+					
+
+				</tr>
+				
+				<tr>
+					<td>
+						<h5><font style="font-weight: bold;">가입일 : </font>&nbsp;&nbsp;</h5>
+					</td>
+					
+				</tr>
+				
+				<tr>
+					<td>
+						<h5><font style="font-weight: bold;">포인트 : </font>&nbsp;&nbsp;</h5>
+					</td>
+					
+				</tr>
+									
+				<tr>
+
+					<td><h5><font style="font-weight: bold;">소개글 : </font>&nbsp;&nbsp;</h5></td>
+					
+				</tr>
+			</table>
+			
+			<button type="button" id="modifyBtn" class="btn btn-default" onclick="location.href='${ProfileUpdateForm}'">수정하기</button>
 		</div>
 	</div>
 	
-	 -->
 	
-</div>
+	<div id="details" class="tab-section" style="background: yellowgreen">
+		<h2>예약내역</h2>
+		<p>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
+	</div>
+	<div id="review" class="tab-section" style="background:goldenrod">
+		<h2>여행후기</h2>
+		<p>~~~~~~~~~~~~~~~~~~~~~~~~.</p>
+	</div>
+	
 </body>
 </html>
+
+
