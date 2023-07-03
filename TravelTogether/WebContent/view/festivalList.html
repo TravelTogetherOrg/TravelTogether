@@ -66,79 +66,41 @@
           font-size: 3.5rem;
         }
       }
+
+      .card-margin {
+        margin-bottom: 20px;
+      }
+
+      .card-border {
+        border-radius: 20px;
+        border: 2px solid rgb(192, 228, 255);
+      }
+
     </style>
 
     <!-- 카카오api -->
     <style>
-      .custom-infowindow {
-        background-color: #f8f9fa;
-        border: 1px solid #ced4da;
-        border-radius: 8px;
-        padding: 5px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-      }
-    
-      .custom-infowindow .title {
-        margin-right: 5px;
-        font-family: 'SUITE-Regular', sans-serif;
-      }
-    
-      .custom-infowindow:before {
-        content: '';
-        width: 0;
-        height: 0;
-        border-top: 5px solid transparent;
-        border-bottom: 5px solid transparent;
-        border-right: 5px solid #808080;
-        margin-left: 5px;
-      }
-
-      
+      .customoverlay {position:relative;bottom:85px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left; font-family: 'SUITE-Regular', sans-serif;}
+      .customoverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
+      .customoverlay a {display:block;text-decoration:none;color:#000;text-align:center;border-radius:6px;font-size:14px;font-weight:bold;overflow:hidden;background: rgb(255, 194, 0);background: rgb(255, 194, 0) url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
+      .customoverlay .title {display:block;text-align:center;background:#fff;margin-right:35px;padding:8px 15px;font-size:14px;font-weight:bold;}
+      .customoverlay:after {content:'';position:absolute;margin-left:-12px;left:50%;bottom:-12px;width:22px;height:12px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
     </style>
 
     
   </head>
   <body>
     
-<header>
-  <div class="collapse bg-dark" id="navbarHeader">
-    <div class="container">
-      <div class="row">
-
-        <div class="col-sm-8 col-md-7 py-4">
-          <h4 class="text-white">About</h4>
-          <p class="text-muted">
-            Add some information about the album below, the author, or any other 
-            background context. Make it a few sentences long so folks can pick up some informative tidbits. 
-            Then, link them off to some social networking sites or contact information.</p>
+    <header>
+      <div class="navbar navbar-skyblue bg-skyblue shadow-sm">
+        <div class="container">
+          <a href="festivalList.html" class="navbar-brand d-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="60" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            <strong>Header</strong>
+          </a>
         </div>
-
-        <div class="col-sm-4 offset-md-1 py-4">
-          <h4 class="text-white">Contact</h4>
-          <ul class="list-unstyled">
-            <li><a href="#" class="text-white">Follow on Twitter</a></li>
-            <li><a href="#" class="text-white">Like on Facebook</a></li>
-            <li><a href="#" class="text-white">Email me</a></li>
-          </ul>
-        </div>
-
       </div>
-    </div>
-  </div>
-  <div class="navbar navbar-skyblue bg-skyblue shadow-sm">
-    <div class="container">
-      <a href="#" class="navbar-brand d-flex align-items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="60" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-        <strong>Header</strong>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
-  </div>
-</header>
+    </header>
 
 
 
@@ -150,13 +112,13 @@
 
   <!-- 카카오api -->
   <div class="container">
-    <div id="map" class="mw-100" style="height: 500px; margin: 5px 0px;"></div>
+    <div id="map" class="mw-100" style="height: 500px; margin: 5px 0px; border-radius: 20px;"></div>
   </div>
 
 
 
 
-  <div class="album py-5 bg-light">
+  <div class="album py-5">
 
     <div class="container">
 
@@ -190,11 +152,10 @@
 
       <br>
 
-      
       <div id="bottom-grid" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-        <div class="col grid hvr-float">
-          <div class="card shadow-sm">
+        <div class="col grid hvr-float card-margin">
+          <div class="card shadow-sm card-border">
             <a href="festivalDetail.html">
               <img class='img-fluid w-100 fixed-image' src="https://korean.visitkorea.or.kr/kfes/upload/contents/db/300_5fed1f2a-ffe8-4e03-806f-65cbd2096f22_1.png" />
             </a>
@@ -222,8 +183,8 @@
         
         
 
-        <div class="col hvr-float">
-          <div class="card shadow-sm">
+        <div class="col grid hvr-float card-margin">
+          <div class="card shadow-sm card-border">
             <a href="festivalDetail.html">
               <img class='img-fluid w-100 fixed-image' src="https://korean.visitkorea.or.kr/kfes/upload/contents/db/300_3231f42a-7997-47b7-b520-efdb8142a5f3_1.jpg" />
             </a>
@@ -248,8 +209,8 @@
           </div>
         </div>
 
-        <div class="col grid hvr-float">
-          <div class="card shadow-sm">
+        <div class="col grid hvr-float card-margin">
+          <div class="card shadow-sm card-border">
             <a href="festivalDetail.html">
               <img class='img-fluid w-100 fixed-image' src="https://korean.visitkorea.or.kr/kfes/upload/contents/db/300_79f3d2d9-06c1-4d18-9a0e-a7d38aa0857e_1.png" />
             </a>
@@ -274,8 +235,8 @@
           </div>
         </div>
 
-        <div class="col grid hvr-float">
-          <div class="card shadow-sm">
+        <div class="col grid hvr-float card-margin">
+          <div class="card shadow-sm card-border">
             <a href="festivalDetail.html">
               <img class='img-fluid w-100 fixed-image' src="https://korean.visitkorea.or.kr/kfes/upload/contents/db/300_75a8d8fa-6550-490a-bf9c-d670a8a56aaf_1.png" />
             </a>
@@ -300,8 +261,8 @@
           </div>
         </div>
 
-        <div class="col grid hvr-float">
-          <div class="card shadow-sm">
+        <div class="col grid hvr-float card-margin">
+          <div class="card shadow-sm card-border">
             <a href="festivalDetail.html">
               <img class='img-fluid w-100 fixed-image' src="https://korean.visitkorea.or.kr/kfes/upload/contents/db/300_4f3f89d7-34c7-4f5b-8ede-d1f8ee106bad_1.jpg" />
             </a>
@@ -326,8 +287,8 @@
           </div>
         </div>
 
-        <div class="col grid hvr-float">
-          <div class="card shadow-sm">
+        <div class="col grid hvr-float card-margin">
+          <div class="card shadow-sm card-border">
             <a href="festivalDetail.html">
               <img class='img-fluid w-100 fixed-image' src="https://korean.visitkorea.or.kr/kfes/upload/contents/db/300_387cfe24-b54f-464d-a06d-c1599d7eba59_1.jpg" />
             </a>
@@ -353,8 +314,8 @@
         </div>
 
         
-        <div class="col grid hvr-float">
-          <div class="card shadow-sm">
+        <div class="col grid hvr-float card-margin">
+          <div class="card shadow-sm card-border">
             <a href="festivalDetail.html">
               <img class='img-fluid w-100 fixed-image' src="https://korean.visitkorea.or.kr/kfes/upload/contents/db/300_5fed1f2a-ffe8-4e03-806f-65cbd2096f22_1.png" />
             </a>
@@ -382,8 +343,8 @@
         
         
 
-        <div class="col grid hvr-float">
-          <div class="card shadow-sm">
+        <div class="col grid hvr-float card-margin">
+          <div class="card shadow-sm card-border">
             <a href="festivalDetail.html">
               <img class='img-fluid w-100 fixed-image' src="https://korean.visitkorea.or.kr/kfes/upload/contents/db/300_3231f42a-7997-47b7-b520-efdb8142a5f3_1.jpg" />
             </a>
@@ -408,8 +369,8 @@
           </div>
         </div>
 
-        <div class="col grid hvr-float">
-          <div class="card shadow-sm">
+        <div class="col grid hvr-float card-margin">
+          <div class="card shadow-sm card-border">
             <a href="festivalDetail.html">
               <img class='img-fluid w-100 fixed-image' src="https://korean.visitkorea.or.kr/kfes/upload/contents/db/300_79f3d2d9-06c1-4d18-9a0e-a7d38aa0857e_1.png" />
             </a>
@@ -464,63 +425,71 @@
 
 <!-- 카카오api -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=19b0de7649944cbcadc52b390c8508cf"></script>
-<script type="text/javascript">
-  var container = document.getElementById('map'); 
-  var options = { 
-    center: new kakao.maps.LatLng(37.402707, 126.922044), 
-    level: 6
+<script>
+  var mapContainer = document.getElementById("map"); // 지도를 표시할 div
+  var mapOption = {
+    center: new kakao.maps.LatLng(37.54699, 127.09598), // 지도의 중심좌표
+    level: 5, // 지도의 확대 레벨
   };
 
-  var map = new kakao.maps.Map(container, options); 
+  var map = new kakao.maps.Map(mapContainer, mapOption);
 
   var positions = [
-      {
-          title: '안양역', 
-          latlng: new kakao.maps.LatLng(37.402707, 126.922044),
-          url: 'http://127.0.0.1:5500/html/festivalDetail.html'
-      },
-      {
-          title: '안양역 주위 1', 
-          latlng: new kakao.maps.LatLng(37.400707, 126.920044),
-          url: 'http://127.0.0.1:5500/html/festivalDetail.html'
-      },
-      {
-          title: '안양역 주위 2', 
-          latlng: new kakao.maps.LatLng(37.403007, 126.925044),
-          url: 'http://127.0.0.1:5500/html/festivalDetail.html'
-      },
-      {
-          title: '안양역 주위 3',
-          latlng: new kakao.maps.LatLng(37.405707, 126.925044),
-          url: 'http://127.0.0.1:5500/html/festivalDetail.html'
-      }
+    {
+      title: "구의야구공원",
+      latlng: new kakao.maps.LatLng(37.54699, 127.09598),
+    },
+    {
+      title: "마커2",
+      latlng: new kakao.maps.LatLng(37.55001, 127.09023),
+    },
+    {
+      title: "마커3",
+      latlng: new kakao.maps.LatLng(37.54243, 127.09879),
+    },
   ];
 
-  for (var i = 0; i < positions.length; i++) {
-      var marker = new kakao.maps.Marker({
+  var markerImage = new kakao.maps.MarkerImage(
+        'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png',
+        new kakao.maps.Size(30, 40),
+        { offset: new kakao.maps.Point(15, 69) }
+      );
+
+      positions.forEach(function (pos) {
+        var marker = new kakao.maps.Marker({
           map: map,
-          position: positions[i].latlng,
-          title: positions[i].title,
+          position: pos.latlng,
+          image: markerImage
+        });
+
+        var content =
+          '<div class="customoverlay">' +
+          '  <a href="https://map.kakao.com/link/map/11394059" target="_blank">' +
+          '    <span class="title">' +
+          pos.title +
+          "</span>" +
+          "  </a>" +
+          "</div>";
+
+        var customOverlay = new kakao.maps.CustomOverlay({
+          map: map,
+          position: pos.latlng,
+          content: content,
+          yAnchor: 1,
+        });
+
+        kakao.maps.event.addListener(marker, "mouseover", function () {
+          customOverlay.setMap(map);
+        });
+
+        kakao.maps.event.addListener(marker, "mouseout", function () {
+          customOverlay.setMap(map);
+        });
       });
 
-      var infowindow = new kakao.maps.InfoWindow({
-          position: positions[i].latlng,
-          content: '<div class="custom-infowindow" onclick="goToPage(\'' + positions[i].url + '\')">' + 
-                   '<span class="title">' + positions[i].title + '</span>' +
-                   '</div>'
-      });
-
-
-      infowindow.open(map, marker);
-  }
-
-  function goToPage(url) {
-      window.location.href = url;
-  }
-
-  var zoomControl = new kakao.maps.ZoomControl();
-  map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-</script>
+      var zoomControl = new kakao.maps.ZoomControl();
+      map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+    </script>
 
   
 
