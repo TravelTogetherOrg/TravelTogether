@@ -628,3 +628,6 @@ select:focus{
 .recommentAndDelete span{
     margin: 0 0.1em;
 }
+.recomment{
+    margin: 1em 0 0 1.5em;
+}
