@@ -1,21 +1,16 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.84.0">
-    <title>Album example · Bootstrap v5.0</title>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<c:set var="context" value="${pageContext.request.contextPath}" />    
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
+<link rel="stylesheet" href="${context}/resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="${context}/resources/css/festivalHover.css">
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
-
-    
-
-    <!-- Bootstrap core CSS -->
-<link href="/WebContent/css/bootstrap.min.css" rel="stylesheet" type='text/css' >
-<link href="/WebContent/css/festivalHover.css" rel="stylesheet" type='text/css' >
-
+<title>Insert title here</title>
     <style>
 
       /* 폰트 */
@@ -87,14 +82,13 @@
       .customoverlay:after {content:'';position:absolute;margin-left:-12px;left:50%;bottom:-12px;width:22px;height:12px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
     </style>
 
-    
-  </head>
-  <body>
+</head>
+<body>
     
     <header>
       <div class="navbar navbar-skyblue bg-skyblue shadow-sm">
         <div class="container">
-          <a href="festivalList.html" class="navbar-brand d-flex align-items-center">
+          <a href="festivalList.jsp" class="navbar-brand d-flex align-items-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="60" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
             <strong>Header</strong>
           </a>
@@ -107,6 +101,13 @@
 
 
 <main>
+
+  <br>
+  <!-- 상단 축제이름 -->
+  <div class="container">
+    <h1 style="font-family: 'SUITE-Regular', sans-serif; font-size: 40px; text-align: center; font-weight: bold;">축제 리스트</h1>
+
+  </div>  
 
 
 
@@ -156,7 +157,7 @@
 
         <div class="col grid hvr-float card-margin">
           <div class="card shadow-sm card-border">
-            <a href="festivalDetail.html">
+            <a href="festivalDetail.jsp">
               <img class='img-fluid w-100 fixed-image' src="https://korean.visitkorea.or.kr/kfes/upload/contents/db/300_5fed1f2a-ffe8-4e03-806f-65cbd2096f22_1.png" />
             </a>
 
@@ -185,7 +186,7 @@
 
         <div class="col grid hvr-float card-margin">
           <div class="card shadow-sm card-border">
-            <a href="festivalDetail.html">
+            <a href="festivalDetail.jsp">
               <img class='img-fluid w-100 fixed-image' src="https://korean.visitkorea.or.kr/kfes/upload/contents/db/300_3231f42a-7997-47b7-b520-efdb8142a5f3_1.jpg" />
             </a>
 
@@ -211,7 +212,7 @@
 
         <div class="col grid hvr-float card-margin">
           <div class="card shadow-sm card-border">
-            <a href="festivalDetail.html">
+            <a href="festivalDetail.jsp">
               <img class='img-fluid w-100 fixed-image' src="https://korean.visitkorea.or.kr/kfes/upload/contents/db/300_79f3d2d9-06c1-4d18-9a0e-a7d38aa0857e_1.png" />
             </a>
 
@@ -237,7 +238,7 @@
 
         <div class="col grid hvr-float card-margin">
           <div class="card shadow-sm card-border">
-            <a href="festivalDetail.html">
+            <a href="festivalDetail.jsp">
               <img class='img-fluid w-100 fixed-image' src="https://korean.visitkorea.or.kr/kfes/upload/contents/db/300_75a8d8fa-6550-490a-bf9c-d670a8a56aaf_1.png" />
             </a>
 
@@ -263,7 +264,7 @@
 
         <div class="col grid hvr-float card-margin">
           <div class="card shadow-sm card-border">
-            <a href="festivalDetail.html">
+            <a href="festivalDetail.jsp">
               <img class='img-fluid w-100 fixed-image' src="https://korean.visitkorea.or.kr/kfes/upload/contents/db/300_4f3f89d7-34c7-4f5b-8ede-d1f8ee106bad_1.jpg" />
             </a>
 
@@ -289,7 +290,7 @@
 
         <div class="col grid hvr-float card-margin">
           <div class="card shadow-sm card-border">
-            <a href="festivalDetail.html">
+            <a href="festivalDetail.jsp">
               <img class='img-fluid w-100 fixed-image' src="https://korean.visitkorea.or.kr/kfes/upload/contents/db/300_387cfe24-b54f-464d-a06d-c1599d7eba59_1.jpg" />
             </a>
 
@@ -316,7 +317,7 @@
         
         <div class="col grid hvr-float card-margin">
           <div class="card shadow-sm card-border">
-            <a href="festivalDetail.html">
+            <a href="festivalDetail.jsp">
               <img class='img-fluid w-100 fixed-image' src="https://korean.visitkorea.or.kr/kfes/upload/contents/db/300_5fed1f2a-ffe8-4e03-806f-65cbd2096f22_1.png" />
             </a>
 
@@ -345,7 +346,7 @@
 
         <div class="col grid hvr-float card-margin">
           <div class="card shadow-sm card-border">
-            <a href="festivalDetail.html">
+            <a href="festivalDetail.jsp">
               <img class='img-fluid w-100 fixed-image' src="https://korean.visitkorea.or.kr/kfes/upload/contents/db/300_3231f42a-7997-47b7-b520-efdb8142a5f3_1.jpg" />
             </a>
 
@@ -371,7 +372,7 @@
 
         <div class="col grid hvr-float card-margin">
           <div class="card shadow-sm card-border">
-            <a href="festivalDetail.html">
+            <a href="festivalDetail.jsp">
               <img class='img-fluid w-100 fixed-image' src="https://korean.visitkorea.or.kr/kfes/upload/contents/db/300_79f3d2d9-06c1-4d18-9a0e-a7d38aa0857e_1.png" />
             </a>
 
@@ -494,8 +495,8 @@
   
 
 
-    <script src="/WebContent/js/bootstrap.bundle.min.js"></script>
+     <script src="${context}/resources/js/bootstrap.bundle.min.js"></script>
 
       
-  </body>
+</body>
 </html>
