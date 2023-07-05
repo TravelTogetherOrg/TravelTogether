@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>로그인</title>
+<link rel="stylesheet" type="text/css" href="/WebContent/css/login.css">
+</head>
+<body>
+</head>
+<body>
+<div class="main" align="center">
+	<div class="wrap">
+		<div id = "common" style="width : 1000px; padding : 80px 0px;">
+			<div class = "content_container">
+            <div class = "content_container_div2">
+                <div class="login_container">
+					<div class="login_item login_item1">
+						<div>
+							<h2>Travel Together(logo)</h2>
+						</div>
+					</div>
+					<div class="login_item login_item2">
+						<div  style="padding-top:65px; text-align : center; height:465px;">
+							<form action="LoginCtl.do" method="post">
+								<table id="table_tr">
+									<tr id="table_tr_id">
+										
+										<td colspan="2"><input type="text" name="m_id"
+											id="m_id" class="login_input" placeholder="���̵�" required ></td>
+									</tr>
+									<tr id="table_tr_middle">
+										<td colspan="3">&nbsp;</td>
+									</tr>
+									<tr id="table_tr_pw">
+										<td colspan="2"><input type="password"
+											name="m_pw" id="m_pw" class="login_input"
+											placeholder="��й�ȣ" required></td>
+									</tr>
+									<tr id="table_tr_middle">
+										<td colspan="3">&nbsp;</td>
+									</tr>
+									<tr id="table_tr_btn">
+										<td></td>
+										<td><input type="submit" value="�α���"
+											class="middle_input"></td>
+										<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>  <!-- ��� ���� -->
+										<td><input type="reset" value="���"
+											class="middle_input"></td>
+									</tr>
+									<tr>
+										<td colspan="3">&nbsp;</td>
+									</tr>
+
+									<tr id="table_tr_btn2">
+										<td></td>
+										<td><a href="join.html"><input type="button" value="ȸ������"
+												class="right_input" id="join_btn"></a></td>
+												<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>     <!-- ��� ���� -->
+										<td><a href="#"><input type="button" value="���̵� ã��"
+												class="right_input" id="search_page"></a></td>
+									</tr>
+								</table>
+							</form>
+							
+							
+							<!-- ���߿� �����α��� �غ��� -->
+							<div id="sns" style="text-align:center; padding-top : 30px;">
+								<button style="margin-left: 35px;">
+									<img src="/WebContent/image/����3.png" class="snsImg">
+								</button>
+								<button style="margin-left : 30px;">
+									<img src="/WebContent/image/���̽���.png" class="snsImg">
+								</button>
+								<button style="margin-left : 30px;">
+									<img src="/WebContent/image/�ν�Ÿ�׷�.png" class="snsImg">
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+            </div>
+		</div>
+	</div>
+</div>
+</div>
+	
+</body>
+</html>
