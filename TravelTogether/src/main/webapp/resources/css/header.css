@@ -13,18 +13,12 @@
 :root {
     --accent-color: orange;
     --text-color: black;
-    --background-color: azure;  /*메뉴바 배경색 변경*/
+    --background-color: white;  /*메뉴바 배경색 변경*/
     --icons-color: blue;
     }
-    
-body { 
-    margin: 0;
-    background-color: var(--bodybackground-color);
-    font-size: 1.8em;
-    padding-top: 80px;
-  }
 
 .navbar {
+  font-size: 1.3em;
     position: fixed;
     top: 0;
     left: 0;
@@ -33,9 +27,10 @@ body {
     justify-content: space-between;
     align-items: center;
     background-color: var(--background-color);
-    padding: 14px 12px;
+    padding: 14px 5px;
     padding-left: 100px;
     padding-right: 100px;
+    z-index: 999;
   }
   .navbar:hover{
     background-color: white;
@@ -44,6 +39,7 @@ body {
   .navbar__logo{
     font-family: 'Fira Sans', sans-serif;
     font-weight: bolder;
+    font-size: 1.6em;
   }
 
   .navbar__logo span {
@@ -59,6 +55,7 @@ body {
     display: flex;
     margin: 0;
     padding-left: 0;
+    /* padding-right: 200px; 메뉴 리스트 위치조정 */
     font-family: 'GmarketSansMedium';
   }
   .navbar__menu li {
@@ -71,13 +68,27 @@ body {
     margin: 0;
     padding-left: 0;
   }
+  .navbar__icons input[type='text']{
+
+    border: none;
+    background-color: transparent;
+    font-size: 0.9em;
+    width: 70px;
+    text-align: center;
+  }
+
+  .navbar__icons input[type='text']:focus{
+    outline: none;
+  }
+
   .navbar__icons li {
-    padding: 8px 12px;
+    padding: 8px 3px;
     margin: 0;
   }
-  .navbar__menu li:hover {
-    background-color: var(--accent-color);
-    border-radius: 3px;
+  .navbar__menu li a:hover  {
+    color: var(--accent-color);
+    text-decoration: underline;
+   
   }
   .navbar__toggleBtn {
     color: var(--text-color);
@@ -85,6 +96,7 @@ body {
     right: 15px;
     font-size: 20px;
     display: none;
+    padding-top: 2px;
   }
   /* ----------스크롤시 메뉴바 변경점------------- */
     .navbar.active{
@@ -92,44 +104,44 @@ body {
         border-bottom: 1px solid lightgray;
   }
 
-  /* --------width 700px이하 변경점--------- */
-  @media screen and (max-width: 980px) {
+  /* --------width ???px이하 변경점--------- */
+  @media screen and (max-width: 1016px) {
     
     .navbar__logo{
-        padding-left: 50%;
-        transform: translateX(-22%);
+        padding-left: 30%;
+        transform: translateX(-50%);
+    }
+    .navbar__icons {
+      position: absolute;
+      right: 130px;
+      justify-content: end;
+      width: 30%;
     }
     .navbar {
         flex-direction: column;
         align-items: flex-start;
         margin: 0;
-      }
+    }
     .navbar__menu {
     display: none;
     flex-direction: column;
     align-items: center;
     width: 100%;
-  }
-  
-  .navbar__menu li {
-    width: 100%;
-    text-align: left;
-    padding-top: 30px;
-  }
-  .navbar__icons {
-    display: none;
-    justify-content: center;
-    width: 100%;
-    padding-top: 30;
-  }
-  .navbar__toggleBtn {
-    display: block;
-  }
-  
-  .navbar__menu.active,
-  .navbar__icons.active {
-    display: flex;
-  }
+    }
+    
+    .navbar__menu li {
+      width: 100%;
+      text-align: left;
+      padding-top: 30px;
+    }
+    
+    .navbar__toggleBtn {
+      display: block;
+    }
+    
+    .navbar__menu.active {
+      display: flex;
+    }
 
   }
  
