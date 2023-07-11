@@ -21,9 +21,10 @@ public class MemberController {
 	@Autowired
 	private MemberServiceimpl memberService;
 	
-	@RequestMapping("/insertMember.do")
+	@RequestMapping(value = "/insertMember.do")
 	public String insertMember(MemberVO vo)throws IOException {
 		memberService.insertMember(vo);
+		
 		return "main.jsp";
 	}
 	
@@ -48,7 +49,7 @@ public class MemberController {
 	@RequestMapping("/getMemberList.do")
 	public String getMemberList(MemberVO vo, Model model) {
 		model.addAttribute("memberList",memberService.getMemberList(vo));
-		return "회원리스트22222";
+		return "admin_memberList.jsp";
 	}
 	
 	

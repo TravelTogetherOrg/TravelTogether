@@ -4,26 +4,28 @@
 <mapper namespace="MemberDAO">
 			<!-- vo                db table -->
 	<resultMap type="member" id="memberResult">
-		<id property="id"  column="ID"/>
-		<result property="email" column="EMAIL"/>
-		<result property="name" column="NAME"/>
-		<result property="password1" column="PASSWORD1"/>
-		<result property="password2" column="PASSWORD2"/>
-		<result property="pnum1" column="PNUM1"/>
-		<result property="pnum2" column="PNUM2"/>
-		<result property="pnum3" column="PNUM3"/>
+		<id property="member_id"  column="MEMBER_ID"/>
+		<result property="member_password" column="MEMBER_PASSWORD"/>
+		<result property="member_name" column="MEMBER_NAME"/>
+		<result property="member_nickname" column="MEMBER_NICKNAME"/>
+		<result property="member_gender" column="MEMBER_GENDER"/>
+		<result property="member_birthday" column="MEMBER_BIRTHDAY"/>
+		<result property="member_create_date" column="MEMBER_CREATE_DATE"/>
+		<result property="member_profile_image" column="MEMBER_PROFILE_IMAGE"/>
 	</resultMap>
 	
 	<insert id="insertMember" parameterType="member">
-		INSERT INTO MEMBER VALUES(#{id},#{email},#{name},#{password1},#{password2},#{pnum1},#{pnum2},#{pnum3})
+		INSERT INTO MEMBER(MEMBER_ID, MEMBER_PASSWORD, MEMBER_NAME, MEMBER_NICKNAME, MEMBER_GENDER, MEMBER_BIRTHDAY, MEMBER_CREATE_DATE, MEMBER_PROFILE_IMAGE)
+			VALUES(#{member_id}, #{member_password}, #{member_name}, #{member_nickname}, #{member_gender}, #{member_birthday}, now(), null);
 	</insert>
 	
 	<update id="updateMember">
-		UPDATE MEMBER SET EMAIL=#{email}, NAME=#{name}, PASSWORD1=#{password1}, PASSWORD2=#{password2}, PNUM1=#{pnum1}, PNUM2=#{pnum2}, PNUM3=#{pnum3} WHERE ID=#{id}
+		UPDATE MEMBER SET MEMBER_PASSWORD=#{member_password}, MEMBER_NAME=#{member_name}, MEMBER_NICKNAME=#{member_nickname}, MEMBER_PROFILE_IMAGE=#{member_profile_image} 
+			WHERE MEMBER_ID=#{member_id}
 	</update>
 	
 	<delete id="deleteMember">
-		DELETE FROM MEMBER WHERE ID=#{id}
+		DELETE FROM MEMBER WHERE MEMBER_ID=#{member_id}
 	</delete>
 	
 	<!-- 전체검색 -->
@@ -33,7 +35,7 @@
 	
 	<!-- 상세검색 -->
 	<select id="getMember" resultType="member" >		
-		SELECT ID, EMAIL, NAME, PASSWORD1, PASSWORD2, PNUM1, PNUM2, PNUM3 FROM MEMBER WHERE ID=#{id}		
+		SELECT * FROM MEMBER WHERE MEMBER_ID = #{member_id}		
 	</select>
 	
 </mapper>
