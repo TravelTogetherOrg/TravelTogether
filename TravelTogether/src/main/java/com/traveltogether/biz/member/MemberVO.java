@@ -1,32 +1,21 @@
 package com.traveltogether.biz.member;
 
 
+
 import java.sql.Timestamp;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
-@Table(name="MEMBER")
-@Entity
+
 public class MemberVO {
 	
-	@Id
-	//@GeneratedValue
+
 	private String member_id;
 	private String member_password;
 	private String member_name;
 	private String member_nickname;
 	private String member_gender;
-	
-	@Temporal(TemporalType.DATE)
 	private Date member_birthday;
-	
-	@Temporal(TemporalType.TIMESTAMP)
 	private Timestamp member_create_date;
 	private String member_profile_image;
 	

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MemberDAO">
+			<!-- vo                db table -->
+	<resultMap type="member" id="memberResult">
+		<id property="id"  column="ID"/>
+		<result property="email" column="EMAIL"/>
+		<result property="name" column="NAME"/>
+		<result property="password1" column="PASSWORD1"/>
+		<result property="password2" column="PASSWORD2"/>
+		<result property="pnum1" column="PNUM1"/>
+		<result property="pnum2" column="PNUM2"/>
+		<result property="pnum3" column="PNUM3"/>
+	</resultMap>
+	
+	<insert id="insertMember" parameterType="member">
+		INSERT INTO MEMBER VALUES(#{id},#{email},#{name},#{password1},#{password2},#{pnum1},#{pnum2},#{pnum3})
+	</insert>
+	
+	<update id="updateMember">
+		UPDATE MEMBER SET EMAIL=#{email}, NAME=#{name}, PASSWORD1=#{password1}, PASSWORD2=#{password2}, PNUM1=#{pnum1}, PNUM2=#{pnum2}, PNUM3=#{pnum3} WHERE ID=#{id}
+	</update>
+	
+	<delete id="deleteMember">
+		DELETE FROM MEMBER WHERE ID=#{id}
+	</delete>
+	
+	<!-- 전체검색 -->
+	<select id="getMemberList" resultMap="memberResult">
+		SELECT * FROM MEMBER
+	</select>
+	
+	<!-- 상세검색 -->
+	<select id="getMember" resultType="member" >		
+		SELECT ID, EMAIL, NAME, PASSWORD1, PASSWORD2, PNUM1, PNUM2, PNUM3 FROM MEMBER WHERE ID=#{id}		
+	</select>
+	
+</mapper>

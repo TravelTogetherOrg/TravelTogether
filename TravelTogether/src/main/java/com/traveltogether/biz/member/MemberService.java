@@ -4,6 +4,10 @@ import java.util.List;
 
 public interface MemberService {
 	
+	//로그인
+	
+	//로그아웃
+	
 	//회원등록
 	void insertMember(MemberVO vo);
 	

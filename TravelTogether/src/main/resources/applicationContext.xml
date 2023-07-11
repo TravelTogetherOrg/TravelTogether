@@ -15,9 +15,7 @@
       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
    <context:component-scan base-package="com.traveltogeher.biz" />
-   <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
-
-
+<!--    <aop:aspectj-autoproxy></aop:aspectj-autoproxy> -->
 
 
    <!-- DataSource 설정 -->
@@ -30,6 +28,16 @@
       <property name="password" value="${jdbc.password}" />
    </bean>
    
+  <bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:sql-map-config.xml"/>
+	</bean>
+	
+	<bean class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSession"></constructor-arg>
+	</bean>
+   
+   
    
    <!-- Spring과 JPA 연동 설정 -->
    <!-- 
@@ -37,25 +45,6 @@
       . LocalContainerEntityManagerFactoryBean : EntityManager객체를 가져오는 클래스
                               - 여기에  japVendorAdapter를 의존주입하면 된다.    
     -->
-   <bean id="jpaVendorAdapter"
-      class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"></bean>
-   <bean id="entityManagerFactory"
-      class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-      <property name="dataSource" ref="dataSource"></property>
-      <property name="jpaVendorAdapter" ref="jpaVendorAdapter"></property>
-      <property name="packagesToScan" value="com.traveltogether.biz.member"></property>
-      <property name="jpaProperties">
-         <props>
-            <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-            <prop key="hibernate.show_sql">true</prop>
-            <prop key="hibernate.format_sql">true</prop>
-            <prop key="hibernate.use_sql_comments">true</prop>
-            <prop key="hibernate.id.new_generator_mappings">true</prop>
-            <prop key="hibernate.hbm2ddl.auto">update</prop>    <!-- 중요: create/update등...  -->
-         </props>
-      </property>
-   </bean>
-
-   
+  
    
 </beans>
