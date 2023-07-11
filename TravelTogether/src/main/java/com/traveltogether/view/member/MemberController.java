@@ -45,7 +45,7 @@ public class MemberController {
 	@RequestMapping("/getMemberList.do")
 	public String getMemberList(MemberVO vo, Model model) {
 		model.addAttribute("memberList",memberService.getMemberList(vo));
-		return "회원리스트11111";
+		return "회원리스트22222";
 	}
 	
 	
