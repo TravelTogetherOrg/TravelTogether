@@ -15,7 +15,7 @@
 	<footer>
         <div class="footer__info">
             <div class="footer__logo">
-                <a href="">🚆<span>T</span>ravel <span>T</span>ogether</a>
+                <a href="main.jsp">🚆<span>T</span>ravel <span>T</span>ogether</a>
             </div>
             <p class="companyinfo">
                 주식회사 트래블투게더 | 서울 마포구 신촌로 176 | info@TravelTogether.com<br>

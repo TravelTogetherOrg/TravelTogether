@@ -19,7 +19,7 @@
   <body>
     <div id="container">
       
-      	<%@ include file="./views/header.jsp" %>
+      	<%@ include file="header.jsp" %>
       
       <div class="chat-icon">
         <ul class="chat-icon-inner">
@@ -175,7 +175,7 @@
             </div>
           </div>
         </div>
-      	<%@ include file="./views/footer.jsp" %>
+      	<%@ include file="footer.jsp" %>
       </div>
       
  

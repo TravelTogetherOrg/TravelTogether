@@ -38,4 +38,8 @@ public class MemberServiceimpl {
 	public List<MemberVO> getMemberList(MemberVO vo) {
 		return memberDAO.getMemberList(vo);
 	}
+	
+	public MemberVO loginMember(MemberVO vo) {
+		return memberDAO.loginMember(vo);
+	}
 }

@@ -37,5 +37,9 @@ public class MemberDAO_mybatis {
 	public List<MemberVO> getMemberList(MemberVO vo){
 		return mybatis.selectList("MemberDAO.getMemberList",vo);
 	}
+	//로그인
+	public MemberVO loginMember(MemberVO vo) {
+		return mybatis.selectOne("MemberDAO.loginMember",vo);
+	}
 	
 }

@@ -16,7 +16,7 @@
 	
 	<insert id="insertMember" parameterType="member">
 		INSERT INTO MEMBER(MEMBER_ID, MEMBER_PASSWORD, MEMBER_NAME, MEMBER_NICKNAME, MEMBER_GENDER, MEMBER_BIRTHDAY, MEMBER_CREATE_DATE, MEMBER_PROFILE_IMAGE)
-			VALUES(#{member_id}, #{member_password}, #{member_name}, #{member_nickname}, #{member_gender}, #{member_birthday,jdbcType=DATE}, #{member_create_date,jdbcType=TIMESTAMP}, #{member_profile_image,jdbcType=VARCHAR});
+			VALUES(#{member_id}, #{member_password}, #{member_name}, #{member_nickname}, #{member_gender}, #{member_birthday,jdbcType=DATE}, now(), #{member_profile_image,jdbcType=VARCHAR});
 	</insert>
 	
 	<update id="updateMember">
@@ -28,7 +28,7 @@
 		DELETE FROM MEMBER WHERE MEMBER_ID=#{member_id}
 	</delete>
 	
-	<!-- 전체검색 -->
+	<!-- 전체리스트 -->
 	<select id="getMemberList" resultMap="memberResult">
 		SELECT * FROM MEMBER
 	</select>
@@ -38,4 +38,8 @@
 		SELECT * FROM MEMBER WHERE MEMBER_ID = #{member_id}		
 	</select>
 	
+	<!-- 회원정보 -->
+	<select id="loginMember" resultType="member">
+		SELECT * FROM MEMBER WHERE MEMBER_ID = #{member_id} AND MEMBER_PASSWORD = #{member_password}
+	</select>
 </mapper>

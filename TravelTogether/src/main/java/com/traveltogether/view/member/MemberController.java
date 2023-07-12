@@ -2,11 +2,15 @@ package com.traveltogether.view.member;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 
@@ -25,7 +29,7 @@ public class MemberController {
 	public String insertMember(MemberVO vo)throws IOException {
 		memberService.insertMember(vo);
 		
-		return "main.jsp";
+		return "/views/main.jsp";
 	}
 	
 	@RequestMapping("/updateMember.do")
@@ -50,6 +54,38 @@ public class MemberController {
 	public String getMemberList(MemberVO vo, Model model) {
 		model.addAttribute("memberList",memberService.getMemberList(vo));
 		return "admin_memberList.jsp";
+	}
+	
+	@RequestMapping(value="/views/login.do", method=RequestMethod.GET)
+	public String loginMember(MemberVO vo) {
+		vo.setMember_id("admin@test.com");
+		vo.setMember_password("1234");
+		
+		return "/views/login.jsp";
+	}
+	
+	@RequestMapping(value="/views/login.do", method=RequestMethod.POST)
+	public String loginMember(MemberVO vo, HttpSession session)throws IllegalAccessException {
+		
+		if(vo.getMember_id()==null || vo.getMember_id()=="") {
+			throw new IllegalAccessException("아이디는 반드시입력해야합니다.");
+		}
+		if(memberService.loginMember(vo) != null) {
+			session.setAttribute("userNickname", memberService.loginMember(vo).getMember_nickname());
+			session.setAttribute("userId", memberService.loginMember(vo).getMember_id());
+			return "/views/main.jsp";
+		} else {
+			return "/views/login.jsp";
+		}
+		
+	}
+	
+	@RequestMapping("/views/logout.do")
+	public String logoutMember(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.invalidate();
+		
+		return "/views/main.jsp";
 	}
 	
 	

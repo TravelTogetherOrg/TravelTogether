@@ -57,7 +57,7 @@
 					</div>
 					<div class="login_item login_item2">
 						<div  style="padding-top:65px; text-align : center; height:465px;">
-							<form action="LoginCtl.do" method="post">
+							<form action="login.do" method="post">
 								<table id="table_tr">
 									<tr id="table_tr_id">
 										
@@ -90,7 +90,7 @@
 										<td>
    											 <input type="submit" value="회원가입" class="middle_input" 
    											 		style="color:#0AC5A8; background-color:white; border: 2px solid #0AC5A8;" 
-   											 		onclick="window.location.href='./memberAgreement.html'">
+   											 		onclick="window.location.href='join.jsp'">
 										</td>									
 									</tr>
 								</table>

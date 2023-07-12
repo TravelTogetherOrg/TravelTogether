@@ -17,17 +17,23 @@
 <body>
  <nav class="navbar">
        <div class="navbar__logo">
-         <a href="${path}/main.jsp" ondragstart='return false'>🚆<span>T</span>ravel <span>T</span>ogether</a>
+         <a href="main.jsp" ondragstart='return false'>🚆<span>T</span>ravel <span>T</span>ogether</a>
        </div>
        <ul class="navbar__menu">
-         <li><a href="${path}/main.jsp">홈</a></li>
+         <li><a href="main.jsp">홈</a></li>
          <li><a href="${path}/views/festivalList.jsp">축제소개</a></li>
          <li><a href="${path}/views/boardList.jsp">동행게시판</a></li>
        </ul>
        <ul class="navbar__icons">
            <!-- <li><a href="#"><i class="fa-regular fa-bell fa-xl"></i></a></li>  로그인시 노출-->
-           <li><a href="#"><i class="fa-regular fa-circle-user fa-xl"></i></a></li>
-           <li><a href="#"><input type="text" name="user" value="user" readonly>님</a></li>
+           <c:if test="${empty sessionScope.member and empty sessionScope.userId }">
+           		<li><a href="login.jsp"><i class="fa-regular fa-circle-user fa-xl"></i></a></li>
+           </c:if>
+           <c:if test="${!empty sessionScope.userId}"> <!-- and !empty sessionScope.member -->
+           		<li><a href="#"><i class="fa-regular fa-circle-user fa-xl"></i></a></li>
+           		<li><a href="#"><input type="text" name="user" value="${sessionScope.userNickname}" readonly>님</a></li>
+           		<li><a href="${path}/views/logout.do"><i class="fa-solid fa-right-from-bracket fa-xl"></i></a></li>
+           </c:if>
        </ul>
        <a href="#" class="navbar__toggleBtn">
            <i class="fa-solid fa-bars fa-2xl"></i>
