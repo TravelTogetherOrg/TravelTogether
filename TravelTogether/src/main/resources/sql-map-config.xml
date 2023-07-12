@@ -2,9 +2,14 @@
 <!DOCTYPE configuration   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-
+	
 	<properties resource="db.properties"/>
 	
+	<settings>
+    	<setting name="cacheEnabled" value="false" /> 
+        <setting name="jdbcTypeForNull" value="NULL" /> 
+    </settings>
+     
 	<typeAliases>
 		<typeAlias alias="member" type="com.traveltogether.biz.member.MemberVO"/>
 	</typeAliases>

@@ -3,7 +3,7 @@ package com.traveltogether.biz.member;
 
 
 import java.sql.Timestamp;
-import java.util.Date;
+import java.sql.Date;
 
 
 
@@ -49,6 +49,7 @@ public class MemberVO {
 	public void setMember_gender(String member_gender) {
 		this.member_gender = member_gender;
 	}
+	
 	public Date getMember_birthday() {
 		return member_birthday;
 	}

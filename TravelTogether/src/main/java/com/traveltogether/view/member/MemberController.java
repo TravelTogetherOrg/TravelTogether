@@ -21,7 +21,7 @@ public class MemberController {
 	@Autowired
 	private MemberServiceimpl memberService;
 	
-	@RequestMapping(value = "/insertMember.do")
+	@RequestMapping(value = "/views/insertMember.do")
 	public String insertMember(MemberVO vo)throws IOException {
 		memberService.insertMember(vo);
 		

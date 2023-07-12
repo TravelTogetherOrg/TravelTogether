@@ -12,7 +12,7 @@
 <body>
 	<div class="member">
         <!-- 1. 로고 넣을자리 -->
-        
+         
         <img class="logo" src="#">
         <h2 align="center" style="font-size:40px">회원가입</h2><br><br>
         <h4>입력사항 <span style="color:#0AC5A8;">(필수)</span></h4>

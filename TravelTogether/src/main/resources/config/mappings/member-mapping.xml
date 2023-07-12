@@ -4,19 +4,19 @@
 <mapper namespace="MemberDAO">
 			<!-- vo                db table -->
 	<resultMap type="member" id="memberResult">
-		<id property="member_id"  column="MEMBER_ID"/>
+		<id property="member_id"  column="MEMBER_ID"/>  <!-- primary key매핑 -->
 		<result property="member_password" column="MEMBER_PASSWORD"/>
 		<result property="member_name" column="MEMBER_NAME"/>
 		<result property="member_nickname" column="MEMBER_NICKNAME"/>
 		<result property="member_gender" column="MEMBER_GENDER"/>
-		<result property="member_birthday" column="MEMBER_BIRTHDAY"/>
-		<result property="member_create_date" column="MEMBER_CREATE_DATE"/>
+		<result property="member_birthday" jdbcType="DATE" javaType="java.sql.Date" column="MEMBER_BIRTHDAY"/>
+		<result property="member_create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" column="MEMBER_CREATE_DATE"/>
 		<result property="member_profile_image" column="MEMBER_PROFILE_IMAGE"/>
 	</resultMap>
 	
 	<insert id="insertMember" parameterType="member">
 		INSERT INTO MEMBER(MEMBER_ID, MEMBER_PASSWORD, MEMBER_NAME, MEMBER_NICKNAME, MEMBER_GENDER, MEMBER_BIRTHDAY, MEMBER_CREATE_DATE, MEMBER_PROFILE_IMAGE)
-			VALUES(#{member_id}, #{member_password}, #{member_name}, #{member_nickname}, #{member_gender}, #{member_birthday}, now(), null);
+			VALUES(#{member_id}, #{member_password}, #{member_name}, #{member_nickname}, #{member_gender}, #{member_birthday,jdbcType=DATE}, #{member_create_date,jdbcType=TIMESTAMP}, #{member_profile_image,jdbcType=VARCHAR});
 	</insert>
 	
 	<update id="updateMember">
