@@ -1,6 +1,3 @@
-- 깃허브 없어질꺼 대비 저장해두기
-
-
 ![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=header&text=Travle%20Together&fontSize=90)
 
 # Team Project : Travler Together
