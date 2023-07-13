@@ -32,24 +32,24 @@ public class MemberController {
 		return "/main.jsp";
 	}
 	
-	@RequestMapping("/updateMember.do")
+	@RequestMapping("/views/updateMember.do")
 	public String updateMember(@ModelAttribute("member") MemberVO vo) {
 		memberService.updateMember(vo);
-		return "getMemberList.do";
+		return "/views/mypage_main.jsp";
 	}
 	
 	@RequestMapping("/getMember.do")
 	public String getMember(MemberVO vo, Model model) {
 		model.addAttribute("member",memberService.getMember(vo));
-		return "마이페이지";
+		return "/views/mypage_main.jsp";
 	}
 	
 	@RequestMapping("/deleteMember.do")
 	public String deleteMember(MemberVO vo) {
 		memberService.deleteMember(vo);
-		return "main.jsp";
+		return "/main.jsp";
 	}
-	
+	//관리자용
 	@RequestMapping("/getMemberList.do")
 	public String getMemberList(MemberVO vo, Model model) {
 		model.addAttribute("memberList",memberService.getMemberList(vo));
@@ -65,7 +65,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/views/login.do", method=RequestMethod.POST)
-	public String loginMember(MemberVO vo, HttpSession session)throws IllegalAccessException {
+	public String loginMember(MemberVO vo, HttpSession session, Model model)throws IllegalAccessException {
 		
 		if(vo.getMember_id()==null || vo.getMember_id()=="") {
 			throw new IllegalAccessException("아이디는 반드시입력해야합니다.");
@@ -73,6 +73,7 @@ public class MemberController {
 		if(memberService.loginMember(vo) != null) {
 			session.setAttribute("userNickname", memberService.loginMember(vo).getMember_nickname());
 			session.setAttribute("userId", memberService.loginMember(vo).getMember_id());
+			model.addAttribute("member",memberService.loginMember(vo));
 			return "/main.jsp";
 		} else {
 			return "/views/login.jsp";

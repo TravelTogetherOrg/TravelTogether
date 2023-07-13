@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -195,6 +196,7 @@ a{
 			</div>
 		</div>
 		<div class="content">
+		<form action="updateMember.do" method="post">
 			<div id="description" class="tab-section">
 				<h2>계정설정</h2>
 				<hr style="border-color: black;">
@@ -222,37 +224,32 @@ a{
 				
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">아이디 : </font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">아이디 : <input type='text' name='member_id' value='${member.member_id}'size="24" readonly="readonly"></font>&nbsp;&nbsp;</h5>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">이름 : </font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">이름 : <input type='text' name='member_name' value='${member.member_name}'size="24"></font>&nbsp;&nbsp;</h5>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">생년월일 : </font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">생년월일 : <input type='text' name='member_birthday' value='${member.member_birthday}'size="24" readonly="readonly"></font>&nbsp;&nbsp;</h5>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">성별 : </font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">성별 : <input type='text' name='member_gender' value='${member.member_gender}'size="24" readonly="readonly"></font>&nbsp;&nbsp;</h5>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">가입일 : </font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">가입일 :<input type='text' name='member_create_date' value='${member.member_create_date}'size="24" readonly="readonly"></font>&nbsp;&nbsp;</h5>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">포인트 : </font>&nbsp;&nbsp;</h5>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<h5><font style="font-weight: bold;">소개글 : </font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">별명 :<input type='text' name='member_nickname' value='${member.member_nickname}'size="24"> </font>&nbsp;&nbsp;</h5>
 							</td>
 						</tr>
 					</table>
@@ -260,6 +257,7 @@ a{
 					<button type="button" id="modifyBtn" class="btn btn-default" onclick="location.href='profile_update.jsp'">수정하기</button>
 				</div>
 			</div>
+		</form>
 			<!-- 동행신청정보 탭 -->
 	<div id="companioninfo" class="tab-section">
 			

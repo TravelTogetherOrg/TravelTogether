@@ -30,7 +30,7 @@
            		<li><a href="${path}/views/login.jsp"><i class="fa-regular fa-circle-user fa-xl"></i></a></li>
            </c:if>
            <c:if test="${!empty sessionScope.userId}"> <!-- and !empty sessionScope.member -->
-           		<li><a href="#"><i class="fa-regular fa-circle-user fa-xl"></i></a></li>
+           		<li><a href="getMember.do?id=${sessionScope.userId}"><i class="fa-regular fa-circle-user fa-xl"></i></a></li>
            		<li><a href="#"><input type="text" name="user" value="${sessionScope.userNickname}" readonly>님</a></li>
            		<li><a href="${path}/views/logout.do"><i class="fa-solid fa-right-from-bracket fa-xl"></i></a></li>
            </c:if>
