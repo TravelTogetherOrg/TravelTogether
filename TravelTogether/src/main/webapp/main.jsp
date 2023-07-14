@@ -96,7 +96,7 @@
         </div>  
       </div>
     
-        <iframe src="login.jsp" id="chat_iframe">대체 내용</iframe>  
+
 
 <!-- ---------------------------middle section-------------------------------- -->
 

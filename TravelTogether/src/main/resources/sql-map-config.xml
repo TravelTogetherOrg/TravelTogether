@@ -3,7 +3,7 @@
 
 <configuration>
 	
-	<properties resource="db.properties"/>
+	<properties resource="/config/database.properties"/>
 	
 	<settings>
     	<setting name="cacheEnabled" value="false" /> 
