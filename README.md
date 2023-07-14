@@ -5,7 +5,7 @@
 ## 💻 참여자
 👩🏻‍💻[Hoony](https://github.com/Hoonyyyy) 
 👨🏻‍💻[PJK](https://github.com/jongkwon5) 
-👨🏻‍💻[KBJ](https://github.com/Kim-Byungju) 
+👨🏻‍💻[KBJ](https://github.com/Jun048) 
 👨🏻‍💻[KCY](https://github.com/kimchoyool)
 👨🏻‍💻[JJH](https://github.com/RaspberryIcecream)
 
@@ -38,10 +38,3 @@
 ## 💡 branch 사용 방법
 - 각자 branch 사용
 - 본인 폴더로 이용
-
-
-
-
-
-
-
