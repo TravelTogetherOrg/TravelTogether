@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+*{margin: 0; padding: 0; border: 0; font-size: 100%;
+	vertical-align: baseline; box-sizing: border-box;}
+
+body{
+	font-family: 'SUITE-Regular';
+
+}
+ul,ol{
+	list-style: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+a{
+	text-decoration-line: none;
+	color: #000;
+}
+p{
+	margin: 0;
+}
+@font-face {
+	font-family: 'HSSaemaul-Regular';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/HSSaemaul-Regular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'SUITE-Regular';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Dovemayo_gothic';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.1/Dovemayo_gothic.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
