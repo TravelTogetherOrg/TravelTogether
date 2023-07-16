@@ -1,0 +1,52 @@
+@charset "UTF-8";
+* {
+	padding: 0;
+	margin: 0;
+	border-collapse:collapsed;
+	box-sizing:border-box;
+	text-decoration:none;
+}
+#profileform{
+	margin: 0 auto;
+	width: 1000px;
+	text-align: center;
+	margin-bottom: 50px;
+}
+#btnSubmit, #btnback, #adressBtn, #imgUpBtn, #imgDeleteBtn{
+	background: #2C3C5B;
+	color: white;
+}
+#profiletable{
+	margin: 0 auto;
+}
+.up button{
+	border: 0;
+}
+input[type=text], input[type=date], input[type=password], input[type=email] {
+	width: 220px;
+	height: 25px;
+}
+input[type=email]{
+	border: 0;
+}
+textarea {
+	width: 220px;
+	height:50px;
+}
+#m_image{
+	border: 0;
+}
+#pwchkmsg {
+	color: orange;
+	font-size: 8pt;
+}
+
+#pwchkmsg1 {
+	color: red;
+	font-size: 8pt;
+}
+
+#pwchkmsg2 {
+	color: green;
+	font-size: 8pt;
+}
