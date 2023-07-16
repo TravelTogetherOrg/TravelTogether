@@ -16,13 +16,13 @@
 <body>
 <jsp:include page="header.jsp"/>
     <main class="container-md boardMain">
-        <section> <!--배경으로 이미지-->
-            <div class="container boardImageAndMap">
-                <!--<div id="boardImage">-->
-                    <img id="boardImage" alt="이미지" src="${context}/resources/image/board/IMG_2359.JPG">
-                <!--</div>-->
-                <div id="boardMap" class="container">
-                    <iframe id="boardMapIframe"></iframe>
+        <section> <!--배경으로 이미지container-->
+            <div class="boardImageAndMap">
+                <!--<div id="boardImage">class="container"-->
+                    <img  id="boardImage" alt="이미지" src="${context}/resources/image/board/boardImage/${boardImage.board_image_file_path}/${boardImage.board_image_file}">
+                <!--</div> class="container" class="container"-->
+                <div id="boardMap">
+                    <iframe id="boardMapIframe" ></iframe>
                 </div>
             </div>
             
@@ -45,7 +45,7 @@
                     <div class="boardFestivalAndPeople">
                         <div class="boardFestival">
                             <p>축제</p>
-                            <span>창덕궁 달빛기행</span>
+                            <span>${board.festival_name}</span>
                         </div>
                         <div class="boardPeople"> 
                             <p>모집인원</p>
@@ -66,7 +66,7 @@
             </div>
             <div class="boardSub"><!--날짜/조회수/댓글-->
                 <div>
-                    <p>2023.06.26 17:02 · 조회수 10 </p>
+                    <p>${board.board_write_date} · 조회수 ${board.board_view_count} </p>
                     <button>신고하기</button>
                 </div>
                 <div class="comment">

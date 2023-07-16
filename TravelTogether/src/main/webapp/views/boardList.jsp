@@ -197,32 +197,21 @@
             </c:forEach>
             </div>
         </section>
-        <section>  <!-- 페이 넘기기 아님 전체 다 보이기 id="pageChevrons" -->
+        <section>  <!-- 페이지 넘기기 아님 전체 다 보이기 id="pageChevrons" -->
             <div >
             <form action="boardList.do" name="pageForm" id="pageChevrons" method="post">
                 <button class="chevron" id="firstPage" type="button"><img src="${context}/resources/image/board/chevron-double-left.svg"></button>
-                <c:if test="${pageCreate.prev}">
                 <button class="chevron" id="prevPage" type="button" value="${pageCreate.beginPage-1}"><img src="${context}/resources/image/board/chevron-left.svg"></button>
-                </c:if>
                 <div id="pageNumbers">
                 	<c:forEach var="page" begin="${pageCreate.beginPage}" end="${pageCreate.endPage}">
                 		<button type="button" class="${pageCreate.criteria.pageNumber == page ? 'pageItemActive' : 'pageItem'}">${page}</button>
                 	
                 	</c:forEach>
-                	<!-- 
-                    <button type="button">1</button>
-                    <button type="button">2</button>
-                    <button type="button">3</button>
-                    <button type="button">4</button>
-                    <button type="button">5</button>
-                     -->
                      <input type="hidden" name="pageNumber" value="${pageCreate.criteria.pageNumber}">
                      <input type="hidden" name="amount" value="${pageCreate.criteria.amount}">
                      <input type="hidden" name="endPage" value="${pageCreate.endPage}">
                 </div>
-                <c:if test="${pageCreate.next}">
-                <button class="chevron" id="nextPage" value="${pageCreate.endPage+1}"><img src="${context}/resources/image/board/chevron-right.svg"></button>
-                </c:if>
+                <button class="chevron" id="nextPage" type="button" value="${pageCreate.endPage+1}"><img src="${context}/resources/image/board/chevron-right.svg"></button>
                 <button class="chevron" id="lastPage"><img src="${context}/resources/image/board/chevron-double-right.svg"></button>
             </form>
             </div>

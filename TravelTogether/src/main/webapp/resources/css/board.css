@@ -282,7 +282,7 @@ body{
 .intro{
     width: unset;
     text-align: center;
-    margin-top: 3em;
+    margin-top: 80px;
 }
 .intro div{
     height: 21.3125em;
@@ -322,7 +322,7 @@ body{
     padding: 1.5em;
 }
 
-.selectFestival{
+#selectFestivalByRegion{
     margin-top: 2em;
     display: flex;
     flex-direction: row;
@@ -333,7 +333,7 @@ body{
     border: 0.1em solid black;
     border-radius: 0.5em;
 }
-.selectFestival div:first-child{
+#selectFestivalByRegion div:first-child{
     padding-right: 0.5em;
     border-right: 0.1em solid black;
 }
@@ -420,6 +420,7 @@ body{
     justify-content: center;
     user-select: none;
     border-radius: 0.5em;
+    background-size: cover;
 
     border: 0.1em solid black;
 }
@@ -467,7 +468,7 @@ body{
     margin-top: 5em;
 }
 .boardImageAndMap{
-    margin-top: 1em;
+    margin-top: 80px;/* 1em */
     position: relative;
     padding: 0;
     /*display: flex;
@@ -491,8 +492,10 @@ body{
 #boardMap{
     display: none;
     position: absolute;
+    height: 25em;
+    width: 100%;
     animation: fadeInUp 0.5s;
-    bottom: -0.1em;
+   bottom: 0em;
     left: 0;
     z-index: 50;
     padding: 0;

@@ -2,7 +2,7 @@
 <!DOCTYPE configuration   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-	
+	<!-- classpath:config/database.properties db.properties-->
 	<properties resource="/config/database.properties"/>
 	
 	<settings>
@@ -16,6 +16,7 @@
 		
 		<typeAlias alias="board" type="com.traveltogether.biz.board.BoardVO"/>
 		<typeAlias alias="boardLimit" type="com.traveltogether.biz.board.BoardLimitVO"/>
+		<typeAlias alias="boardImage" type="com.traveltogether.biz.board.BoardImageVO"/>
 		
 	</typeAliases>
 	

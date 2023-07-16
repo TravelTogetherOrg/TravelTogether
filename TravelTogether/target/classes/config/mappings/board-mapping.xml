@@ -25,8 +25,14 @@
 		<result property="board_limit_count" column="board_limit_count"/>
 	</resultMap>
 	
+	<resultMap type="boardImage" id="boardImageResult">
+		<id property="board_number" column="board_number"/>
+		<result property="board_image_file" column="board_image_file"/>
+		<result property="board_image_file_path" column="board_image_file_path"/>
+	</resultMap>
+	
 	<!-- board -->
-	<insert id="insertBoard" parameterType="board">
+	<insert id="insertBoard" useGeneratedKeys="true" keyProperty="board_number" parameterType="board">
 		insert into board (festival_name, member_id, board_total_people, board_start_date, board_title, board_content)
 			values(#{festival_name},#{member_id},${board_total_people},#{board_start_date},#{board_title},#{board_content});
 	</insert>
@@ -84,6 +90,20 @@
 		select * from board_limit 
 		where festival_name = #{festival_name}
 			and member_id = #{member_id}
+	</select>
+	<select id="boardLimitCheck" parameterType="String" resultType="int">
+		select board_limit_count from board_limit
+		where festival_name = #{festival_name}
+			and member_id = #{member_id}
+	</select>
+	
+	<!-- board_image -->
+	<insert id="insertBoardImage">
+		insert into board_image values(${board_number},#{board_image_file},#{board_image_file_path})
+	</insert>
+	<select id="getOneboardIamge" resultType="boardImage">
+		select * from board_image
+		where board_number = ${board_number}
 	</select>
 
 </mapper>

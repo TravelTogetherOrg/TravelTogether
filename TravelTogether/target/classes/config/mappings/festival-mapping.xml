@@ -48,4 +48,9 @@
 			where f1.festival_name = #{festival_name}
 	</select>
 	
+	<!-- 지역별 축제명 검색  -->
+	<select id="getRegionFestivals" parameterType="String" resultMap="festivalResult">
+		select festival_name,festival_startdate,festival_enddate,festival_address from festival where festival_address like CONCAT('%', #{value}, '%');
+	</select>
+	
 </mapper>
