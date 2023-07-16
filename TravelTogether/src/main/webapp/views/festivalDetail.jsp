@@ -45,6 +45,12 @@
 
 
 
+	/* 좋아요 구현관한 사항 */
+	.btn-like {
+	  background-color: rgb(192, 228, 255);
+	  color: white;
+	}
+
 
 /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
 /* 슬라이더 관한 사항 */
@@ -153,6 +159,7 @@
 
     </style>
   
+  <!-- 카카오 api에 관한것 -->
   <style>
     .overlay_info {border-radius: 6px; margin-bottom: 12px; float:left;position: relative; border: 1px solid #ccc; border-bottom: 2px solid #ddd;background-color:#fff;}
     .overlay_info:nth-of-type(n) {border:0; box-shadow: 0px 1px 2px #888;}
@@ -178,8 +185,10 @@
     <br>
     <div class="container text-center my-3">
       <p class="text-start">
-        <button type="button" class="btn btn-outline-primary" style="font-family: 'SUITE-Regular', sans-serif;">
-          <i class="bi bi-heart-fill text-primary" ></i> 좋아요 <b>100</b>
+        <button type="button" class="btn btn-outline-primary" style="font-family: 'SUITE-Regular', sans-serif;"
+			onclick="location.href='festivalLike.do?festival_name=${festival.festival_name}&member_id=${sessionScope.userId }'"
+        id="likeButton">
+          <i class="bi bi-heart-fill text-primary" ></i> 좋아요 : <span id="likeCount">${festivalCount}</span>
         </button>
         &nbsp;&nbsp;
 <!--         <button type="button" class="btn btn-outline-primary" style="font-family: 'SUITE-Regular', sans-serif;">
@@ -187,7 +196,7 @@
         </button> -->
         <button type="button" class="btn btn-lg btn-outline-primary"  
                 style="font-family: 'SUITE-Regular', sans-serif;"
-                onclick="location.href='views/boardList.jsp'">
+                onclick="location.href='boardList.do'">
           <i class="bi bi-chat-right-dots text-primary"></i> 동행자구하기
         </button>
       </p>
@@ -428,6 +437,16 @@
 </main>
 	<%@ include file="footer.jsp" %>
 
+
+
+
+
+<!-- 좋아요 눌렀을때 해당 세션 있으면 색 변하기 -->
+
+
+
+
+<!-- 좋아요 갯수 -->
 
 
 

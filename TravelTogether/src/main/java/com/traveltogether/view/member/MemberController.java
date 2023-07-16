@@ -41,7 +41,7 @@ public class MemberController {
 	@RequestMapping("/getMember.do")
 	public String getMember(MemberVO vo, Model model) {
 		model.addAttribute("member",memberService.getMember(vo));
-		return "마이페이지";
+		return "留덉씠�럹�씠吏�";
 	}
 	
 	@RequestMapping("/deleteMember.do")
@@ -68,11 +68,13 @@ public class MemberController {
 	public String loginMember(MemberVO vo, HttpSession session)throws IllegalAccessException {
 		
 		if(vo.getMember_id()==null || vo.getMember_id()=="") {
-			throw new IllegalAccessException("아이디는 반드시입력해야합니다.");
+			throw new IllegalAccessException("�븘�씠�뵒�뒗 諛섎뱶�떆�엯�젰�빐�빞�빀�땲�떎.");
 		}
 		if(memberService.loginMember(vo) != null) {
 			session.setAttribute("userNickname", memberService.loginMember(vo).getMember_nickname());
 			session.setAttribute("userId", memberService.loginMember(vo).getMember_id());
+		
+			
 			return "/main.jsp";
 		} else {
 			return "/views/login.jsp";

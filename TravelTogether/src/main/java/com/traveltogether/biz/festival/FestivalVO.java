@@ -19,13 +19,16 @@ public class FestivalVO {
 	private String festival_instagram_address;
 	private String festival_homepage_address;
 	
+	private int like_no;
+	private String member_id;
+	
 	private String festival_file_1;
 	private String festival_file_2;
 	private String festival_file_3;
 	private String festival_file_4;
 	private String festival_file_5;
 	private String festival_file_6;
-	
+
 	public String getFestival_name() {
 		return festival_name;
 	}
@@ -104,6 +107,21 @@ public class FestivalVO {
 	public void setFestival_homepage_address(String festival_homepage_address) {
 		this.festival_homepage_address = festival_homepage_address;
 	}
+	public int getLike_no() {
+		return like_no;
+	}
+	public void setLike_no(int like_no) {
+		this.like_no = like_no;
+	}
+	
+	public String getMember_id() {
+		return member_id;
+	}
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
+	}
+	
+	
 	public String getFestival_file_1() {
 		return festival_file_1;
 	}
