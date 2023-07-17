@@ -55,11 +55,9 @@ public class FestivalDAO_mybatis {
 	}
 	
 	// 좋아요 했는지 안했는지 확인
-	public boolean isFestival_Liked(FestivalVO vo) {
-	    Integer count = mybatis.selectOne("FestivalDAO.isFestival_Liked", vo);
-	    
-	    
-	    return count != null && count > 0;
+	public FestivalVO isFestival_Liked(FestivalVO vo) {
+		return mybatis.selectOne("FestivalDAO.isFestival_Liked", vo);
+		
 	}
 	
     // 특정 페스티벌의 좋아요 수 가져오기

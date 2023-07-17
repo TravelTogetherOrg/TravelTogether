@@ -76,7 +76,7 @@
 	
 	<!-- 페스티벌 게시물이 좋아요 눌려있는지 안눌려있는지 -->
 	<select id="isFestival_Liked" resultType="festival">
-		select count(*)
+		select *
 			from festival_like a
 				where a.festival_name = #{festival_name} and a.member_id = #{member_id}
 	</select>

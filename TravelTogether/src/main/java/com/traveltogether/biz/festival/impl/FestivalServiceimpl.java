@@ -31,12 +31,9 @@ public class FestivalServiceimpl {
 		festivalDAO.festival_Delete_Like(vo);
 	}
 	
-	public boolean isFestivalLiked(String userId, String festivalName) {
-	    FestivalVO vo = new FestivalVO();
-	    vo.setMember_id(userId);
-	    vo.setFestival_name(festivalName);
-	    boolean isLiked = festivalDAO.isFestival_Liked(vo);
-	    return isLiked;
+	public boolean isFestivalLiked(FestivalVO vo) {
+	    FestivalVO result = festivalDAO.isFestival_Liked(vo);
+	    return result != null;
 	}
 	
 	
