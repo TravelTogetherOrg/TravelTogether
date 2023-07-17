@@ -46,6 +46,11 @@
     color: var(--accent-color);
     padding-left: 0;
   }
+  
+  i {
+  margin-top: 13px;
+  }
+  
   a{
     text-decoration: none;
     color: var(--text-color);
@@ -69,13 +74,16 @@
     padding-left: 0;
   }
   .navbar__icons input[type='text']{
-
     border: none;
     background-color: transparent;
-    font-size: 0.9em;
-    width: 70px;
+    font-size: 0.8em;
+    width: 80px;
     text-align: center;
   }
+   .navbar__icons span{
+   font-size: 0.9em;
+	font-family: 'GmarketSansMedium';
+  } 
 
   .navbar__icons input[type='text']:focus{
     outline: none;

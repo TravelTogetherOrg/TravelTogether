@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+
 *{
     padding: 0;
 	margin: 0;
@@ -29,30 +30,25 @@ a{
     color: #222;
 }
 
-#container{
-	
-	
-}
-
-
 /*member sign in*/
 .member{
     width: 400px;
     /* border: 1px solid #000; */
     margin: auto; /*중앙 정렬*/
     padding: 0 20px;
-    margin-bottom: 20px;
-    
+    margin-bottom: 20px;    
 }
-
-
 
 .member .logo{
     /*로고는 이미지라 인라인 블록이니까 마진 오토 안됨 블록요소만 됨 */
     display: block;
     margin :50px auto;
 }
-
+.join{
+	margin-top: 50px;
+	margin-bottom: 50px;
+	font-size: 2.0em;
+}
 .member .field{
     margin :5px 0; /*상하로 좀 띄워주기*/
     
@@ -163,7 +159,4 @@ color:#fff
 
 .member-footer div a:last-child:after{
     display: none;
-}
-
-
 }

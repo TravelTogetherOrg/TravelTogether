@@ -8,8 +8,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class FileUtills {
 
-	private static final String FILE_UPLOAD_PATH = "/Users/kimbyeongju/Desktop/prejectTT/TravelTogether/src/main/webapp";
-	private static final String FILE_STATIC_PATH = "/resources/upload";
+//	private static final String FILE_UPLOAD_PATH = "/Users/kimbyeongju/Desktop/prejectTT/TravelTogether/src/main/webapp"; 내 컴에서
+//	private static final String FILE_STATIC_PATH = "/resources/upload";
+	private static final String FILE_UPLOAD_PATH = "C:\\Users\\admin\\Desktop\\KBJ\\TravelTogether\\TravelTogether\\src\\main\\webapp";
+	private static final String FILE_STATIC_PATH = "\\resources\\upload";
 	
     public static String serverUploadFile(MultipartFile multipartFile) throws IOException {
         if (multipartFile.isEmpty()) {

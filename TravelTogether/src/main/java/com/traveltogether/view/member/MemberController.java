@@ -41,7 +41,7 @@ public class MemberController {
 		vo.setMember_profile_url(path);
 		memberService.updateMember(vo);
 		
-		System.out.println(vo.getMember_profile_url());
+		System.out.println(vo.getMember_profile_url()); //파일경로 확인
 		return "/views/mypage_main.jsp";
 	}
 	

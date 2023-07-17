@@ -12,149 +12,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/main.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/mypage.css?Dd">
 <script src="//code.jquery.com/jquery.min.js"></script>
-<style>
-	html, body {
-	    height: 100%
-	}
-	.container {   						/* footer 고정 */
-			 min-height: 100%;
-	   		 position: relative;
-	   		 display: flex;
-		}
-	
-	#companioninfo {
-		padding: 0;
-		margin: 0;
-		border: 0;
-		border-collapse:collapse;
-		box-sizing:border-box;
-		text-decoration:none;
-	}
-	
-	.companioninfo{
-		min-height:100%;
-		position : relative;
-		padding-bottom : 200px;
-	}
-	table{
-	    text-align: center;
-	}
-	.title{
-		margin-top: 100px;
-		padding-bottom:10px;
-	}
-	#input_img{                  /* 프로필 이미지 추가 버튼 */
-		border:1px solid #ccc; 
-		border-radius: 5px; 
-		padding:5px;
-		text-align:center;
-	}
-	
-	
-	.rounded-image {            /* 사진파일 동그랗게 편집 */
-	    border-radius: 50%;
-	    overflow: hidden;
-	    border:1px solid black; 
-	  }
-	
-	#writedlist{                  /* 동행신청정보 탭 */
-		border: 1px solid #ccc;
-		flex: 1;
-		padding: 10px;
-		
-	}
-	.btn-default2{
-		width: 49%;
-	}
-	#cominfoBtn_G{
-		background: #2C3C5B;
-		color: white;
-	}
-	#companioninfo_t, #msg2{
-		display: none;
-	}
-	#endBtn{
-		padding: 1px 3px 1px 3px;
-	}
-	a{
-		text-decoration: none;
-	}
-	.textDiv{
-		margin-top: 30px;
-	}
-	
-	.wrapper {
-		display: flex; /* Add flex display to the wrapper */
-	}
-
-	#tabs {
-		width: 200px; /* Adjust the width as per your preference */
-		list-style: none;
-		margin: 0;
-		padding: 0;
-	
-	}
-	
-	#tabs li {
-		margin: 0;
-		padding: 0;
-	}
-	
-	#tabs li a {
-		display: block;
-		padding: 10px;
-		border-bottom: 2px solid #fff;
-		text-align: center;
-		color: #000;
-		text-decoration: none;
-		
-		
-	}
-	
-	#tabs li a.current {
-		background: orange;
-		color: white;
-		
-	}
-	
-	.tab-section {
-		flex: 1;
-		padding: 10px;
-		border: 1px solid #ccc;
-		margin-bottom: 50px; 
-		background:rgb(192, 228, 255);
-	}
-	
-	.sidebar {
-		width: 220px;
-		height: auto;            /* 사이드바 세로 박스 크기 */
-		margin-bottom: 50px;            /* 하단 간격 */
-		padding: 10px;
-		border: 1px solid #ccc;
-		border-radius: 10px;
-				
-						
-	}
-	
-	.content {
-		flex: 1;
-		padding: 10px;
-		height: 100%; 
-		overflow-y: auto; 
-		position: relative; 
-	}
-	
-	#modifyBtn {
-		position: absolute;
-		bottom: 80px;
-		right: 10%;
-	}
- 	#companioninfo_g td {
-        padding: 5px; /* 셀의 내부 여백 조정 */
-    }
-</style>
-<script>                 //사이드바 메뉴 선택된것만 보여주기
+<script> 
+/* 사이드바 */
 	$(() => {
 		$('#tabs a').bind('click', function(e) {
 			$('#tabs a.current').removeClass('current');
@@ -169,13 +30,11 @@
 </head>
 <body>
 
-
 <jsp:include page="header.jsp"/>
 	
-		<div class="title">
-		<h2 align="center">마이페이지</h2>
-		</div>
-	
+	<div class="title">
+		<h2/>
+	</div> 
 	<div class="container">
 		<div class="sidebar">
 			<div class="sidebar-inner">
@@ -191,7 +50,7 @@
 		<form action="updateMember.do" method="post" enctype="multipart/form-data">
 			<div id="description" class="tab-section">
 				<h2>계정설정</h2>
-				<hr style="border-color: black;">
+				<hr style="border-color: #ccc;">
 					
 				<div style="display: flex; flex-direction: column; align-items: center; ">
 					<c:if test="${ empty member.member_profile_url}">
@@ -201,13 +60,14 @@
 					</c:if>
 					<c:if test="${not empty member.member_profile_url}">
 						<div class="rounded-image">
-							<img id="img" src="${path}${member.member_profile_url}" height="250" width="250">
+							<img id="img" src="${path}${member.member_profile_url}" height="150" width="150">
 						</div>
 					</c:if>
 						<input id="input_img" type="file" name="member_profile_image">
 				</div>
 									
-				<script>                  // 업로드 된 사진으로 바꿈
+				<script>                  
+				// 업로드 된 사진으로 바꿈
 					$(document).on('change', '#input_img', function(e){
 						var reader = new FileReader();
 						    reader.onload = function (e) {
@@ -217,43 +77,43 @@
 					});
 				</script>
 				
-			<div style="display: flex; align-items: flex-start;">
+				<div class="info">
 					<table id="info_table">
-				
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">아이디 : <input type='text' name='member_id' value='${member.member_id}'size="24" readonly="readonly"></font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">아이디<br><input type='text' name='member_id' value='${member.member_id}'size="30" readonly="readonly"></font>&nbsp;&nbsp;</h5>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">이름 : <input type='text' name='member_name' value='${member.member_name}'size="24"></font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">이름<br><input type='text' name='member_name' value='${member.member_name}'size="30"></font>&nbsp;&nbsp;</h5>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">생년월일 : <input type='text' name='member_birthday' value='${member.member_birthday}'size="24" readonly="readonly"></font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">별명<br><input type='text' name='member_nickname' value='${member.member_nickname}'size="30"> </font>&nbsp;&nbsp;</h5>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">성별 : <input type='text' name='member_gender' value='${member.member_gender}'size="24" readonly="readonly"></font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">생년월일<br><input type='text' name='member_birthday' value='${member.member_birthday}'size="30" readonly="readonly"></font>&nbsp;&nbsp;</h5>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">가입일 :<input type='text' name='member_create_date' value='${member.member_create_date}'size="24" readonly="readonly"></font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">성별 <br><input type='text' name='member_gender' value='${member.member_gender}'size="30" readonly="readonly"></font>&nbsp;&nbsp;</h5>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">별명 :<input type='text' name='member_nickname' value='${member.member_nickname}'size="24"> </font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">가입일<br><input type='text' name='member_create_date' value='${member.member_create_date}'size="30" readonly="readonly"></font>&nbsp;&nbsp;</h5>
 							</td>
 						</tr>
 					</table>
-					
-					<input type="submit" id="modifyBtn" value="수정하기" class="btn btn-default">
-					<a href="${path}/deleteMember.do?member_id=${member.member_id}">탈퇴</a>
+				</div>
+				<div id="btn">
+					<input type="submit" id="modifyBtn" value="수정하기" class="btn btn-default">&nbsp;&nbsp;
+					<a href="${path}/deleteMember.do?member_id=${member.member_id}" id="modifyBtn" class="btn btn-default">탈퇴하기</a>
 				</div>
 			</div>
 		</form>
@@ -265,9 +125,7 @@
 			<hr style="border-color: black;">
 			<button id="cominfoBtn_G" class="btn btn-default btn-default2">보낸 동행신청 내역</button>
 			<button id="cominfoBtn_T" class="btn btn-default btn-default2">받은 동행신청 내역</button><br><br>
-			
-			
-			
+
 			<!-- 보낸 동행 신청 -->
 			<c:if test="">
 			<table id="companioninfo_g" class="table">
@@ -336,10 +194,7 @@
 			</c:if>
 			</div>
 		</div>
-
 	</div>
-	
-
 
 <script>
 $(function() {
@@ -416,21 +271,19 @@ $('.ChattingBtn').on('click',function(e){
 		return false;
 	}
 });
-</script>
-			
-			<div id="details" class="tab-section">
-				<h2>예약내역</h2>
-				<hr style="border-color: black;">
-				<p>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
-			</div>
-			<div id="review" class="tab-section">
-				<h2>여행후기</h2>
-				<hr style="border-color: black;">
-				<p>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
-			</div>
+</script>	
+		<div id="details" class="tab-section">
+			<h2>예약내역</h2>
+			<hr style="border-color: black;">
+			<p>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
+		</div>
+		<div id="review" class="tab-section">
+			<h2>여행후기</h2>
+			<hr style="border-color: black;">
+			<p>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
 		</div>
 	</div>
-	
+</div>
 	
 <jsp:include page="footer.jsp"/>
 	

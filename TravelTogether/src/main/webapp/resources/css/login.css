@@ -132,7 +132,6 @@ input {
 	font-weight: bolder;
 	border : 1px solid lightgray;
 	background-color : #F6F6F6;
-	
 	padding :35px;
 }
 
@@ -141,7 +140,7 @@ input {
 	display: flex;
     justify-content: center;
     align-items: center; 
-   	
+
 }
 
 /* 회원가입,아이디찾기 */
@@ -149,10 +148,4 @@ input {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	
 }
-#sns{
-	padding-right: 27px;
-}
-
-
