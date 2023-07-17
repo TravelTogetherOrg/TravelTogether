@@ -15,6 +15,7 @@
 		<typeAlias alias="festival" type="com.traveltogether.biz.festival.FestivalVO"/>
 		
 		<typeAlias alias="board" type="com.traveltogether.biz.board.BoardVO"/>
+		<typeAlias alias="boardList" type="com.traveltogether.biz.board.BoardListVO"/>
 		<typeAlias alias="boardLimit" type="com.traveltogether.biz.board.BoardLimitVO"/>
 		<typeAlias alias="boardImage" type="com.traveltogether.biz.board.BoardImageVO"/>
 		

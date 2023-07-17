@@ -4,11 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="board_image")
+//@Entity
+//@Table(name="board_image")
 public class BoardImageVO {
 	
-	@Id
+	//@Id
 	private int board_number;
 	private String board_image_file;
 	private String board_image_file_path;

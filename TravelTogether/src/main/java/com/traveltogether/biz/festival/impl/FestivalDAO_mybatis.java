@@ -17,13 +17,13 @@ public class FestivalDAO_mybatis {
 	private SqlSessionTemplate mybatis;
 	
 	/*
-	 * //µî·Ï public void insertFestival(FestivalVO vo) {
-	 * mybatis.insert("FestivalDAO.insertBoard",vo); } //¼öÁ¤ public void
+	 * //ï¿½ï¿½ï¿½ public void insertFestival(FestivalVO vo) {
+	 * mybatis.insert("FestivalDAO.insertBoard",vo); } //ï¿½ï¿½ï¿½ï¿½ public void
 	 * updateFestival(FestivalVO vo) { mybatis.update("FestivalDAO.updateBoard",vo);
-	 * } //»èÁ¦ public void deleteFestival(FestivalVO vo) {
+	 * } //ï¿½ï¿½ï¿½ï¿½ public void deleteFestival(FestivalVO vo) {
 	 * mybatis.delete("FestivalDAO.deleteBoard",vo); }
 	 * 
-	 * //»ó¼¼Á¤º¸ public FestivalVO getFestival(FestivalVO vo) { return
+	 * //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ public FestivalVO getFestival(FestivalVO vo) { return
 	 * mybatis.selectOne("FestivalDAO.getBoard",vo); }
 	 */
 	
@@ -31,9 +31,13 @@ public class FestivalDAO_mybatis {
 		return mybatis.selectOne("FestivalDAO.getFestival",vo); 
 	}
 	
-	//7¿ù´Þ ¸®½ºÆ® Á¶È¸
+	//7ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½È¸
 	public List<FestivalVO> getFestivalList_Month(FestivalVO vo){
 		return mybatis.selectList("FestivalDAO.getFestivalList_Month",vo);
+	}
+	
+	public List<FestivalVO> getRegionFestivals(String region){
+		return mybatis.selectList("FestivalDAO.getRegionFestivals", region);
 	}
 
 }

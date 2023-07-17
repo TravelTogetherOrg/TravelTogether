@@ -6,7 +6,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.traveltogether.biz.board.BoardImageVO;
 import com.traveltogether.biz.board.BoardLimitVO;
+import com.traveltogether.biz.board.BoardListVO;
 import com.traveltogether.biz.board.BoardService;
 import com.traveltogether.biz.board.BoardVO;
 import com.traveltogether.biz.board.Criteria;
@@ -43,7 +45,7 @@ public class BoardDAO implements BoardService {
 	}
 
 	@Override
-	public BoardVO getOneBoard(int boardNumber) {
+	public BoardListVO getOneBoard(int boardNumber) {
 		
 		//return boardRepository.findById(boardNumber).get();
 		return mybatis.selectOne("BoardDAO.getOneBoard", boardNumber);
@@ -90,6 +92,24 @@ public class BoardDAO implements BoardService {
 	public int getTotalBoardCount() {
 		
 		return mybatis.selectOne("BoardDAO.getTotalBoardCount");
+	}
+
+	@Override
+	public int boardLimitCheck(BoardLimitVO boardLimit) {
+		
+		return mybatis.selectOne("BoardDAO.boardLimitCheck",boardLimit);
+	}
+
+	@Override
+	public void insertBoardImage(BoardImageVO boardImage) {
+		mybatis.insert("BoardDAO.insertBoardImage",boardImage);
+		
+	}
+
+	@Override
+	public BoardImageVO getOneBoardImage(BoardImageVO boardImage) {
+		
+		return mybatis.selectOne("BoardDAO.getOneboardIamge", boardImage);
 	}
 	
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.traveltogether.biz.board.BoardImageVO;
 import com.traveltogether.biz.board.BoardLimitVO;
+import com.traveltogether.biz.board.BoardListVO;
 import com.traveltogether.biz.board.BoardService;
 import com.traveltogether.biz.board.BoardVO;
 import com.traveltogether.biz.board.Criteria;
@@ -38,7 +39,7 @@ public class BoardServiceimpl implements BoardService {
 	}
 
 	@Override
-	public BoardVO getOneBoard(int boardNumber) {
+	public BoardListVO getOneBoard(int boardNumber) {
 		
 		return boardDAO.getOneBoard(boardNumber);
 	}
@@ -79,6 +80,24 @@ public class BoardServiceimpl implements BoardService {
 	public int getTotalBoardCount() {
 		
 		return boardDAO.getTotalBoardCount();
+	}
+
+	@Override
+	public int boardLimitCheck(BoardLimitVO boardLimit) {
+		
+		return boardDAO.boardLimitCheck(boardLimit);
+	}
+
+	@Override
+	public void insertBoardImage(BoardImageVO boardImage) {
+		boardDAO.insertBoardImage(boardImage);
+		
+	}
+
+	@Override
+	public BoardImageVO getOneBoardImage(BoardImageVO boardImage) {
+		
+		return boardDAO.getOneBoardImage(boardImage);
 	}
 	
 

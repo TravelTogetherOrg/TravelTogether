@@ -31,5 +31,9 @@ public class FestivalServiceimpl {
 		return festivalDAO.getFestivalList_Month(vo);
 	}
 	
+	public List<FestivalVO> getRegionFestivals(String region){
+		return festivalDAO.getRegionFestivals(region);
+	}
+	
 
 }

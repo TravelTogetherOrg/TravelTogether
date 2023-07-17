@@ -67,7 +67,9 @@
             <div class="boardSub"><!--날짜/조회수/댓글-->
                 <div>
                     <p>${board.board_write_date} · 조회수 ${board.board_view_count} </p>
-                    <button>신고하기</button>
+                    <button>신고하기</button> &nbsp;
+                    <p><a href="${context}/updateBoard.do?no=${board.board_number}">수정</a></p>&nbsp;
+                    <p><a href="${context}/deleteBoard.do?no=${board.board_number}">삭제</a></p>
                 </div>
                 <div class="comment">
                     <form>

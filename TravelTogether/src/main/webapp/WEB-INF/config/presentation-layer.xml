@@ -11,11 +11,11 @@
 			 <context:component-scan base-package="com.traveltogether.biz.chat"/>
 
 
-	<!-- 파일 업로드 처리 
+	<!-- 파일 업로드 처리 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="-1"></property>
 	</bean>
-	-->
+	
 	<!-- 예외처리 -->
 	<mvc:annotation-driven/>
 

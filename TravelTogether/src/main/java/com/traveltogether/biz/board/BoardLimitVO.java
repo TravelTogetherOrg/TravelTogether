@@ -4,11 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="board_limit")
+//@Entity
+//@Table(name="board_limit")
 public class BoardLimitVO {
 	
-	@Id
+	//@Id
 	private int board_limit_number;
 	private String festival_name;
 	private String member_id;

@@ -9,7 +9,7 @@ public interface BoardService {
 	public void insertBoard(BoardVO board);
 	public void updateBoard(BoardVO board);
 	public void deleteBoard(int boardNumber);
-	public BoardVO getOneBoard(int boardNumber);
+	public BoardListVO getOneBoard(int boardNumber);
 	//public List<BoardVO> getBoardList();
 	public List<BoardVO> getUserBoardList(String id);
 	//페이징
@@ -17,7 +17,12 @@ public interface BoardService {
 	public int getTotalBoardCount ();
 	
 	//board_limit 테이블
+	public int boardLimitCheck(BoardLimitVO boardLimit);
 	public void insertBoardLimit(BoardLimitVO boardLimit);
 	public void updateBoardLimit(BoardLimitVO boardLimit);
 	public BoardLimitVO getOneBoardLimit(BoardLimitVO boardLimit);
+	
+	//board_image 테이블
+	public void insertBoardImage(BoardImageVO boardImage);
+	public BoardImageVO getOneBoardImage(BoardImageVO boardImage);
 }

@@ -45,19 +45,22 @@
 	            <div class="col" onclick="location.href='board.do?no=${board.board_number}'">
 	                <div class="top">
 	                    <img class="profileImage" src="${context}/resources/image/board/vector_profile_willy.svg">
-	                    <div class="topInfo">
-	                        <p>닉네임</p>
+	                    <div class="topInfo memberInfo">
+	                        <p>${board.member_nickname}</p>
 	                        <div class="ageandgender">
-	                            <p>20대</p>
+	                            <p>${board.member_age}0대</p>
 	                            <div>·</div>
-	                            <p>여성</p>
+	                            <p>${board.member_gender}성</p>
 	                        </div> 
 	                    </div>
 	                    <div class="line">|</div>
-	                    <div class="topInfo">${board.festival_name}<br>${board.board_start_date}</div>
+	                    <div class="topInfo festivalName">
+	                    	<p>${board.festival_name}</p>
+	                    	<p>${board.board_start_date}</p>
+	                    </div>
 	                </div>
 	                <div class="middle">
-	                    <img class="thumnail" src="${context}/resources/image/board/IMG_2359.JPG">
+	                    <img class="thumnail" src="${context}/resources/image/board/boardImage/${board.board_image_file_path}/${board.board_image_file}">
 	                    <div class="middleHover">
 	                        <div class="state">모집중</div>
 	                        <div class="viewandchat">

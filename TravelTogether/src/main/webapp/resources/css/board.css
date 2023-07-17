@@ -141,7 +141,30 @@ select:focus{
 }
 .topInfo p{
     margin: 0;
+    display: -webkit-box;
+    overflow: hidden;
+	text-overflow: ellipsis;
+    overflow-wrap: break-word;
+    
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    
 }
+.memberInfo{
+	width: 74.72px
+}
+.festivalName{
+	width: 95.09px
+}
+/* .festivalName p{
+	display: -webkit-box;
+    overflow: hidden;
+	text-overflow: ellipsis;
+    overflow-wrap: break-word;
+    
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+} */
 .ageandgender{
     display: flex;
 }
