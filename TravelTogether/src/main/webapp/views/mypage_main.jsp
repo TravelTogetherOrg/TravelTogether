@@ -12,7 +12,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/main.css">
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/mypage.css?Dd">
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/mypage.css">
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script> 
 /* 사이드바 */

@@ -103,11 +103,6 @@ color:#fff
     flex:1;
 }
 
-.field.gender div{
-    border: 1px solid #dadada;
-    padding: 15px 5px;
-    background-color: #fff;
-}
 
 .placehold-text{
     display: block; /*span 으로 감싸서 크기영역을 블록요소로 만들어ㅜ저야한다*/
@@ -160,3 +155,15 @@ color:#fff
 .member-footer div a:last-child:after{
     display: none;
 }
+
+/* ---유효성관련-- */
+.field .error input {
+	border-color: red;
+}
+
+.field .error{
+	color: red;
+	font-size: 9px;
+	height: 13px;
+}
+

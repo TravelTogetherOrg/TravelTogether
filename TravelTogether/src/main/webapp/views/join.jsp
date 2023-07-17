@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/join.css?">
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/join.css?dd">
 <style type="text/css">
 	@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@1,900&display=swap');
 	
@@ -17,8 +17,6 @@
     font-weight: normal;
     font-style: normal;
 }
-	
-	
   .navbar__logo{
 	margin-top : 50px;
     font-family: 'Fira Sans', sans-serif;
@@ -52,6 +50,7 @@
   }
 </style>
 </head>
+<script type="text/javascript" src="${path}/resources/js/valid_chk.js"></script>
 <body>
 	<div class="member">
         <div class="navbar__logo" align="center">
@@ -60,49 +59,33 @@
 		<div class="join" align="center">
        	 	<h4 style="font-family:'GmarketSansMedium'">회원가입</h4>
 		</div>
-		
         <h4>입력사항 <span style="color:orange;">(필수)</span></h4>
-
-        <!-- 2. 필드 -->
-        <form action="insertMember.do" method="post">
+        <form id="form" action="insertMember.do" method="post">
 	      <div id="container">
 	        <div class="field">
-	            <span class="placehold-text">
-	           		<input type="text" placeholder="이메일 주소" name="member_id" required>
-	            </span>
-	        </div>
-	                
-	        <div class="field">
-	            <input class="userpw" type="password" name="member_password" placeholder="비밀번호(8~12자, 영문+숫자+특수문자 사용)" required>
+	            <span class="placehold-text"><input id="id" type="email" placeholder="이메일 주소" name="member_id" required></span>
 	        </div>
 	        <div class="field">
-	            
-	            <input class="userpw-confirm" type="password" placeholder="비밀번호 재확인" required>
+	            <input id="password" class="userpw" type="password" name="member_password" placeholder="비밀번호(8~12자, 영문+숫자+특수문자 사용)" required>
 	        </div>
-	        
 	        <div class="field">
-	            <input type="text" placeholder="이름" name="member_name" required>
+	            <input id="password2" class="userpw-confirm" type="password" placeholder="비밀번호 재확인" required>
 	        </div>
-	
-	        <!-- 3. 필드(생년월일) -->
+	        <div class="field">
+	            <input id="name" type="text" placeholder="이름" name="member_name" required>
+	        </div>
 	        <div class="field birth">
-	            <input type="date" name="member_birthday"> 
+	            <input id="birth" type="date" name="member_birthday"> 
 	        </div>
-	
-	        <!-- 4. 필드(성별) -->
 	        <div class="field gender">
-	         
-	             <select name="member_gender" required="required">
+	             <select id="gender" name="member_gender" required="required">
 	             	<option value="" disabled selected>성별</option>
 	     			<option value="남">남</option>
 	       			<option value="여">여</option>
 	   			 </select>
-	   			  <!-- <input type="text" name="member_gender">  -->
 	        </div>
-	        
-	        <!-- 닉네임 설정 -->
 	        <div class="field">
-	            <span class="placehold-text"><input type="text" name="member_nickname" placeholder="닉네임" required></span>
+	            <span class="placehold-text"><input id="nickname" type="text" name="member_nickname" placeholder="닉네임" required></span>
 	        </div>
 	         <input type="submit" value="가입하기" style="font-size:20px;">
 	 	 </div>
