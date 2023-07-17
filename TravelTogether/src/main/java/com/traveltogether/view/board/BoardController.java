@@ -30,6 +30,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.traveltogether.biz.board.BoardImageVO;
 import com.traveltogether.biz.board.BoardLimitVO;
+import com.traveltogether.biz.board.BoardListVO;
 import com.traveltogether.biz.board.BoardPageCreate;
 import com.traveltogether.biz.board.BoardService;
 import com.traveltogether.biz.board.BoardVO;
@@ -45,8 +46,6 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	//private BoardService boardService;
-	@Autowired
-	private FestivalServiceimpl festivalService;
 	
 	//@Transactional
 	@RequestMapping(value="/insertBoard.do", method = RequestMethod.GET)
@@ -150,12 +149,35 @@ public class BoardController {
 	@RequestMapping(value = "/updateBoard.do", method = RequestMethod.GET)
 	public String updateBoardGet(BoardVO board, BoardImageVO boardImage, FestivalVO festival, Model model, HttpServletRequest request) {
 		
-		model.addAttribute("board",boardService.getOneBoard(Integer.parseInt(request.getParameter("no"))));
+		model.addAttribute("board",boardService.getOneBoardForUpdate(Integer.parseInt(request.getParameter("no"))));
 		return "views/boardUpdate.jsp";
 	}
 	@RequestMapping(value = "/updateBoard.do", method = RequestMethod.POST)
-	public String updateBoardPost(Model model, HttpServletRequest request) {
+	public String updateBoardPost(BoardListVO boardList, BoardVO board, BoardImageVO image, HttpServletRequest request) throws IOException {
+		System.out.println("oldImage: "+boardList.getBoard_image_file_old());
+		System.out.println("newImage: "+boardList.getBoard_image_file());
+		//파일업로드
+		MultipartFile uploadFile = board.getUploadFile();
+		if( !uploadFile.isEmpty() ) { //새로 업로드한 파일의 존재여부
+			//기존에 있던 board_image 해당 데이터 지우고 수정하기(파일 위치는 그대로하고 파일만 바꿔도 될것같다)
+			System.out.println("uploadFile"+uploadFile);
+			String uuid = UUID.randomUUID().toString();
+			Path targetPath = FileUtils.saveFile(uploadFile,uuid);
+			System.out.println("targetPath: "+targetPath);
+			System.out.println(uuid);
+			System.out.println("uploadFile: "+uploadFile.getOriginalFilename());
+			image.setBoard_image_file(
+					uuid+"_"+
+					uploadFile.getOriginalFilename());
+			
+			
+			
+		}
+		else { //사진은 수정 안했을 경우
+			boardList.setBoard_image_file(boardList.getBoard_image_file_old());
+		}
 		
-		return "";
+		//boardService.updateBoard(boardList);
+		return "redirect:boardList.do";
 	}
 }

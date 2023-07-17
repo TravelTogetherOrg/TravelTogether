@@ -703,3 +703,11 @@ body{
 .footer__github ul{
 	margin: 16px 0;
 }
+/* boardUpdate */
+#festivalByRegion{
+	font-size: 20px;
+}
+#festivalByRegion p:first-child {
+	margin-right: 5px;
+	font-weight:700;
+}

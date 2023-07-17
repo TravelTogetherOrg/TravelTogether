@@ -13,6 +13,7 @@ public class BoardListVO {
 	private Long board_number;
 	private String festival_name;
 	private String member_id;
+	private int board_total_people;
 	private String board_start_date;
 	private String board_end_date;
 	private String board_title;
@@ -41,10 +42,11 @@ public class BoardListVO {
 		if (localDate.plusYears(member_age).isAfter(now)) { 
 			member_age = member_age -1;
 		}
-		// 00대로 출력해야해서 /10
+		// n0대로 출력해야해서 /10
 		this.member_age = member_age/10;
 	}
 	
+	private String board_image_file_old;
 	private String board_image_file;
 	private String board_image_file_path;
 	
@@ -65,6 +67,12 @@ public class BoardListVO {
 	}
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
+	}
+	public int getBoard_total_people() {
+		return board_total_people;
+	}
+	public void setBoard_total_people(int board_total_people) {
+		this.board_total_people = board_total_people;
 	}
 	public String getBoard_start_date() {
 		return board_start_date;
@@ -115,6 +123,12 @@ public class BoardListVO {
 	public void setMember_profile_image(String member_profile_image) {
 		this.member_profile_image = member_profile_image;
 	}
+	public String getBoard_image_file_old() {
+		return board_image_file_old;
+	}
+	public void setBoard_image_file_old(String board_image_file_old) {
+		this.board_image_file_old = board_image_file_old;
+	}
 	public String getBoard_image_file() {
 		return board_image_file;
 	}
@@ -159,6 +173,7 @@ public class BoardListVO {
 				+ ", member_age=" + member_age + ", board_image_file=" + board_image_file + ", board_image_file_path="
 				+ board_image_file_path + "]";
 	}
+	
 	
 	
 }

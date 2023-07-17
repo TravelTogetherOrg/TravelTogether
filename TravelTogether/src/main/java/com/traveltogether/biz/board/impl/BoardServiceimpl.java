@@ -27,7 +27,7 @@ public class BoardServiceimpl implements BoardService {
 	}
 
 	@Override
-	public void updateBoard(BoardVO board) {
+	public void updateBoard(BoardListVO board) {
 		boardDAO.updateBoard(board);
 		
 	}
@@ -39,9 +39,15 @@ public class BoardServiceimpl implements BoardService {
 	}
 
 	@Override
-	public BoardListVO getOneBoard(int boardNumber) {
+	public BoardVO getOneBoard(int boardNumber) {
 		
 		return boardDAO.getOneBoard(boardNumber);
+	}
+	
+	@Override
+	public BoardListVO getOneBoardForUpdate(int boardNumber) {
+		
+		return boardDAO.getOneBoardForUpdate(boardNumber);
 	}
 
 	@Override
@@ -99,6 +105,7 @@ public class BoardServiceimpl implements BoardService {
 		
 		return boardDAO.getOneBoardImage(boardImage);
 	}
+
 	
 
 	

@@ -59,7 +59,8 @@
 	<update id="updateBoard">
 		update board 
 		inner join board_image on board.board_number = board_image.board_number
-		set board.board_start_date = #{board_start_date},
+		set board.board_total_people = #{board_total_people},
+			board.board_start_date = #{board_start_date},
 			board.board_end_date = #{board_end_date},
 			board.board_title=#{board_title},
 			board.board_content=#{board_content},
@@ -72,10 +73,10 @@
 		delete from board where board_number = ${board_number}
 	</delete>
 	
-	<!-- <select id="getOneBoard" resultType="board">
+	<select id="getOneBoard" resultType="board">
 		select * from board where board_number = #{board_number}
-	</select> -->
-	<select id="getOneBoard" resultType="boardList">
+	</select>
+	<select id="getOneBoardForUpdate" resultType="boardList">
 		select board.board_number, board.member_id, board.festival_name, board.board_start_date, board.board_end_date, board.board_title, board.board_content,
 		festival.festival_startdate, festival.festival_enddate, 
 		board_image.board_image_file_path, board_image.board_image_file

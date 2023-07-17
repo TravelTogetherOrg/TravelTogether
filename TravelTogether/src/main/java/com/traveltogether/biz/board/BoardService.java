@@ -7,10 +7,10 @@ public interface BoardService {
 	//public void saveBoard(BoardVO board); //등록, 수정
 	//board 테이블
 	public void insertBoard(BoardVO board);
-	public void updateBoard(BoardVO board);
+	public void updateBoard(BoardListVO board);
 	public void deleteBoard(int boardNumber);
-	public BoardListVO getOneBoard(int boardNumber);
-	//public List<BoardVO> getBoardList();
+	public BoardVO getOneBoard(int boardNumber);
+	public BoardListVO getOneBoardForUpdate(int boardNumber);
 	public List<BoardVO> getUserBoardList(String id);
 	//페이징
 	public List<BoardVO> getBoardListwithPaging(Criteria criteria);

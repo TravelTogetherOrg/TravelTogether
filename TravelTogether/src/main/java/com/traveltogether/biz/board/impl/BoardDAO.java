@@ -33,7 +33,7 @@ public class BoardDAO implements BoardService {
 	}
 
 	@Override
-	public void updateBoard(BoardVO board) {
+	public void updateBoard(BoardListVO board) {
 		
 		mybatis.update("BoardDAO.updateBoard", board);
 	}
@@ -45,12 +45,17 @@ public class BoardDAO implements BoardService {
 	}
 
 	@Override
-	public BoardListVO getOneBoard(int boardNumber) {
+	public BoardVO getOneBoard(int boardNumber) {
 		
 		//return boardRepository.findById(boardNumber).get();
 		return mybatis.selectOne("BoardDAO.getOneBoard", boardNumber);
 	}
 
+	@Override
+	public BoardListVO getOneBoardForUpdate(int boardNumber) {
+		
+		return mybatis.selectOne("BoardDAO.getOneBoardForUpdate",boardNumber);
+	}
 
 	@Override
 	public List<BoardVO> getUserBoardList(String id) {
@@ -111,5 +116,6 @@ public class BoardDAO implements BoardService {
 		
 		return mybatis.selectOne("BoardDAO.getOneboardIamge", boardImage);
 	}
+
 	
 }
