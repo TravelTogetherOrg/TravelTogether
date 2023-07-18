@@ -36,6 +36,7 @@ public class FestivalDAO_mybatis {
 		return mybatis.selectList("FestivalDAO.getFestivalList_Month",vo);
 	}
 	
+	/* 김초율 추가 */
 	public List<FestivalVO> getRegionFestivals(String region){
 		return mybatis.selectList("FestivalDAO.getRegionFestivals", region);
 	}

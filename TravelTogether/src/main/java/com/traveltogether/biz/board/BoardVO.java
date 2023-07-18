@@ -26,7 +26,7 @@ public class BoardVO {
 	private String board_title;
 	private String board_content;
 	private int board_view_count;
-	private Date board_update_date;
+	private String board_update_date;
 	
 	//파일업로드
 	//@Transient
@@ -99,10 +99,10 @@ public class BoardVO {
 	public void setBoard_view_count(int board_view_count) {
 		this.board_view_count = board_view_count;
 	}
-	public Date getBoard_update_date() {
+	public String getBoard_update_date() {
 		return board_update_date;
 	}
-	public void setBoard_update_date(Date board_update_date) {
+	public void setBoard_update_date(String board_update_date) {
 		this.board_update_date = board_update_date;
 	}
 	@Override

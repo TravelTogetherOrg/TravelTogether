@@ -42,28 +42,33 @@
                                 <option value=3>3명</option>
                                 <option value=4>4명</option>
                             </select>
-                         	
                         </div>
                         <div class="date">
                             <div>
-                                <c:if test="${not empty board.board_end_date}">
-                                <label for="moreDays">
-                                <input type="checkbox" id="moreDays" checked="checked">
-                                1박 이상</label>
-                                </c:if>
-                                
-                                <label for="moreDays">
-                                <input type="checkbox" id="moreDays">
-                                1박 이상</label>
+                                <c:choose>
+                                	<c:when test="${not empty board.board_end_date}">
+                                		<label for="moreDays">
+		                                <input type="checkbox" id="moreDays" checked="checked">
+		                                1박 이상</label>
+                                	</c:when>
+                                	<c:otherwise>
+                                		<label for="moreDays">
+		                                <input type="checkbox" id="moreDays">
+		                                1박 이상</label>
+                                	</c:otherwise>
+                                </c:choose>
                             </div>
                             <input type="date" name="board_start_date" id="start_date" value="${board.board_start_date}" min="${board.festival_startdate}" max="${board.festival_enddate}" required>
                             <div id="lastDay">
                                 <span>~</span>
-                                <c:if test="${not empty board.board_end_date}">
-                                <input type="date" name="board_end_date" id="end_date" value="${board.board_end_date}" min="${board.festival_startdate}" max="${board.festival_enddate}">
-                                </c:if>
-                                
-                                <input type="date" name="board_end_date" id="end_date" min="${board.festival_startdate}" max="${board.festival_enddate}">
+                                <c:choose>
+                                	<c:when test="${not empty board.board_end_date}">
+                                		<input type="date" name="board_end_date" id="end_date" value="${board.board_end_date}" min="${board.festival_startdate}" max="${board.festival_enddate}">
+                                	</c:when>
+                                	<c:otherwise>
+                                		<input type="date" name="board_end_date" id="end_date" min="${board.festival_startdate}" max="${board.festival_enddate}">
+                                	</c:otherwise>
+                                </c:choose>
                             </div>
                         </div>
                     </div>

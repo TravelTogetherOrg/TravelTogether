@@ -10,6 +10,7 @@ import com.traveltogether.biz.board.BoardLimitVO;
 import com.traveltogether.biz.board.BoardListVO;
 import com.traveltogether.biz.board.BoardService;
 import com.traveltogether.biz.board.BoardVO;
+import com.traveltogether.biz.board.CommentVO;
 import com.traveltogether.biz.board.Criteria;
 @Service("boardService")
 public class BoardServiceimpl implements BoardService {
@@ -39,7 +40,7 @@ public class BoardServiceimpl implements BoardService {
 	}
 
 	@Override
-	public BoardVO getOneBoard(int boardNumber) {
+	public BoardListVO getOneBoard(int boardNumber) {
 		
 		return boardDAO.getOneBoard(boardNumber);
 	}
@@ -56,6 +57,11 @@ public class BoardServiceimpl implements BoardService {
 		return boardDAO.getUserBoardList(id);
 	}
 
+	@Override
+	public void viewCount(int boardNumber) {
+		boardDAO.viewCount(boardNumber);
+		
+	}
 	
 	//board_limit
 	@Override
@@ -70,6 +76,12 @@ public class BoardServiceimpl implements BoardService {
 		
 	}
 
+	@Override
+	public void minusBoardLimit(BoardLimitVO boardLimit) {
+		boardDAO.minusBoardLimit(boardLimit);
+		
+	}
+	
 	@Override
 	public BoardLimitVO getOneBoardLimit(BoardLimitVO boardLimit) {
 		
@@ -106,8 +118,46 @@ public class BoardServiceimpl implements BoardService {
 		return boardDAO.getOneBoardImage(boardImage);
 	}
 
-	
+	@Override
+	public void deleteBoardImage(int boardNumber) {
+		boardDAO.deleteBoardImage(boardNumber);
+		
+	}
 
-	
+	@Override
+	public List<BoardVO> getFestivalBoardListwithPaging(Criteria criteria) {
+		
+		return boardDAO.getFestivalBoardListwithPaging(criteria);
+	}
+
+	@Override
+	public void insertComment(CommentVO comment) {
+		boardDAO.insertComment(comment);
+		
+	}
+
+	@Override
+	public void deleteComment(CommentVO comment) {
+		boardDAO.deleteComment(comment);
+		
+	}
+
+	@Override
+	public void updateComment(CommentVO comment) {
+		boardDAO.updateComment(comment);
+		
+	}
+
+	@Override
+	public List<CommentVO> getCommnetList(int boardNumber) {
+		
+		return boardDAO.getCommnetList(boardNumber);
+	}
+
+	@Override
+	public int getCommentTotal(int boardNumber) {
+		
+		return boardDAO.getCommentTotal(boardNumber);
+	}
 
 }

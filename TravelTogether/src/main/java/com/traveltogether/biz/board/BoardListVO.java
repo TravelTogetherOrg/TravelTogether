@@ -1,5 +1,8 @@
 package com.traveltogether.biz.board;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -16,6 +19,8 @@ public class BoardListVO {
 	private int board_total_people;
 	private String board_start_date;
 	private String board_end_date;
+	private String board_write_date;
+	private String board_update_date;
 	private String board_title;
 	private String board_content;
 	private int board_view_count;
@@ -26,7 +31,7 @@ public class BoardListVO {
 	private String member_nickname;
 	private String member_gender;
 	private Date member_birthday;
-	private String member_profile_image;
+	private String member_profile_url;
 	
 	private int member_age;
 	public int getMember_age() {
@@ -117,11 +122,11 @@ public class BoardListVO {
 		setMember_age(member_birthday);
 		this.member_birthday = member_birthday;
 	}
-	public String getMember_profile_image() {
-		return member_profile_image;
+	public String getMember_profile_url() {
+		return member_profile_url;
 	}
 	public void setMember_profile_image(String member_profile_image) {
-		this.member_profile_image = member_profile_image;
+		this.member_profile_url = member_profile_image;
 	}
 	public String getBoard_image_file_old() {
 		return board_image_file_old;
@@ -132,7 +137,8 @@ public class BoardListVO {
 	public String getBoard_image_file() {
 		return board_image_file;
 	}
-	public void setBoard_image_file(String board_image_file) {
+	public void setBoard_image_file(String board_image_file) throws IOException {
+		 //URLEncoder.encode(board_image_file,"UTF-8")
 		this.board_image_file = board_image_file;
 	}
 	public String getBoard_image_file_path() {
@@ -162,6 +168,18 @@ public class BoardListVO {
 		this.festival_enddate = festival_enddate.substring(0,4)+"-"+festival_enddate.substring(4,6)+"-"+festival_enddate.substring(6);;
 	}
 	
+	public String getBoard_write_date() {
+		return board_write_date;
+	}
+	public void setBoard_write_date(String board_write_date) {
+		this.board_write_date = board_write_date;
+	}
+	public String getBoard_update_date() {
+		return board_update_date;
+	}
+	public void setBoard_update_date(String board_update_date) {
+		this.board_update_date = board_update_date;
+	}
 	@Override
 	public String toString() {
 		return "BoardListVO [board_number=" + board_number + ", festival_name=" + festival_name + ", member_id="
@@ -169,7 +187,7 @@ public class BoardListVO {
 				+ ", board_title=" + board_title + ", board_content=" + board_content + ", board_view_count="
 				+ board_view_count + ", festival_startdate=" + festival_startdate + ", festival_enddate="
 				+ festival_enddate + ", member_nickname=" + member_nickname + ", member_gender=" + member_gender
-				+ ", member_birthday=" + member_birthday + ", member_profile_image=" + member_profile_image
+				+ ", member_birthday=" + member_birthday + ", member_profile_url=" + member_profile_url
 				+ ", member_age=" + member_age + ", board_image_file=" + board_image_file + ", board_image_file_path="
 				+ board_image_file_path + "]";
 	}

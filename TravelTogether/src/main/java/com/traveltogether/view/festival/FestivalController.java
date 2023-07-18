@@ -37,6 +37,7 @@ public class FestivalController {
 		return "views/festivalList.jsp";
 	}
 	
+	/* 김초율 추가 */
 	@RequestMapping("/getRegionFestivals.do")
 	@ResponseBody
 	public Map<Object,Object> getRegionFestivals(@RequestBody String region) {

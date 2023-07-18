@@ -17,12 +17,10 @@
 <jsp:include page="header.jsp"/>
     <main class="container-md boardMain">
         <section> <!--배경으로 이미지container-->
-            <div class="boardImageAndMap">
-                <!--<div id="boardImage">class="container"-->
-                    <img  id="boardImage" alt="이미지" src="${context}/resources/image/board/boardImage/${boardImage.board_image_file_path}/${boardImage.board_image_file}">
-                <!--</div> class="container" class="container"-->
+            <div class="boardImageAndMap"><!--  -->
+                <img id="boardImage" alt="이미지" src="${context}/resources/image/board/boardImage/${board.board_image_file_path}/${board.board_image_file}">
                 <div id="boardMap">
-                    <iframe id="boardMapIframe" ></iframe>
+                    <iframe id="boardMapIframe"></iframe>
                 </div>
             </div>
             
@@ -37,8 +35,8 @@
                         <img src="${context}/resources/image/board/vector_profile_willy.svg">
                     </div>
                     <div class="writerInfoInner">
-                        <span>닉네임</span>
-                        <span><%-- 20대 * 남성 --%></span>
+                        <span>${board.member_nickname}</span>
+                        <span>${board.member_age}0대 · ${board.member_gender}성</span>
                     </div>
                 </div>
                 <div class="boardInfo">
@@ -66,18 +64,29 @@
             </div>
             <div class="boardSub"><!--날짜/조회수/댓글-->
                 <div>
-                    <p>${board.board_write_date} · 조회수 ${board.board_view_count} </p>
+                    <p>
+	                <c:choose>
+	                	<c:when test="${not empty board.board_update_date}">
+	                		수정일: ${board.board_update_date}
+	                	</c:when>
+	                	<c:otherwise>
+		                    ${board.board_write_date}
+	                	</c:otherwise>
+	                </c:choose>
+	                · 조회수 ${board.board_view_count} </p>
                     <button>신고하기</button> &nbsp;
                     <p><a href="${context}/updateBoard.do?no=${board.board_number}">수정</a></p>&nbsp;
                     <p><a href="${context}/deleteBoard.do?no=${board.board_number}">삭제</a></p>
                 </div>
                 <div class="comment">
-                    <form>
                         <div id="commentWrite">
-                            <textarea placeholder="댓글을 입력해주세요." required></textarea>
-                            <button type="submit">게시</button>
+                        <div style="display: none;">
+                        	<input type="hidden" id="board_number" value="${board.board_number}">
+                        	<input type="hidden" id="member_id" value="xbj3812@gmail.com">
                         </div>
-                    </form>
+                            <textarea placeholder="댓글을 입력해주세요." id="comment_content"></textarea>
+                            <button type="button" id="writeComment">게시</button>
+                        </div>
                     <div id="commentList"> <!--댓글 리스트-->
                         <div id="eachComment">
                         	<div class="userCommentDiv">

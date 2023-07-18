@@ -11,20 +11,14 @@ import com.traveltogether.biz.board.BoardLimitVO;
 import com.traveltogether.biz.board.BoardListVO;
 import com.traveltogether.biz.board.BoardService;
 import com.traveltogether.biz.board.BoardVO;
+import com.traveltogether.biz.board.CommentVO;
 import com.traveltogether.biz.board.Criteria;
 @Repository("boardDAO")
 public class BoardDAO implements BoardService {
 
 	@Autowired
 	private SqlSessionTemplate mybatis;
-	/*private BoardRepository boardRepository;
-	
-	@Override
-	public void saveBoard(BoardVO board) {
-		boardRepository.save(board);
-		
-	}
-	*/
+	/*private BoardRepository boardRepository;*/
 	
 	@Override
 	public void insertBoard(BoardVO board) {
@@ -45,7 +39,7 @@ public class BoardDAO implements BoardService {
 	}
 
 	@Override
-	public BoardVO getOneBoard(int boardNumber) {
+	public BoardListVO getOneBoard(int boardNumber) {
 		
 		//return boardRepository.findById(boardNumber).get();
 		return mybatis.selectOne("BoardDAO.getOneBoard", boardNumber);
@@ -65,6 +59,11 @@ public class BoardDAO implements BoardService {
 		
 	}
 	
+	@Override
+	public void viewCount(int boardNumber) {
+		mybatis.update("BoardDAO.countBoard", boardNumber);
+		
+	}
 	
 	//board_limit
 	@Override
@@ -78,6 +77,12 @@ public class BoardDAO implements BoardService {
 	public void updateBoardLimit(BoardLimitVO boardLimit) {
 		
 		mybatis.update("BoardDAO.updateBoardLimit", boardLimit);
+		
+	}
+	
+	@Override
+	public void minusBoardLimit(BoardLimitVO boardLimit) {
+		mybatis.update("BoardDAO.minusBoardLimit",boardLimit);
 		
 	}
 
@@ -115,6 +120,48 @@ public class BoardDAO implements BoardService {
 	public BoardImageVO getOneBoardImage(BoardImageVO boardImage) {
 		
 		return mybatis.selectOne("BoardDAO.getOneboardIamge", boardImage);
+	}
+
+	@Override
+	public void deleteBoardImage(int boardNumber) {
+		mybatis.delete("BoardDAO.deleteBoardImage", boardNumber);
+		
+	}
+
+	@Override
+	public List<BoardVO> getFestivalBoardListwithPaging(Criteria criteria) {
+		
+		return mybatis.selectList("BoardDAO.getFestivalBoardListwithPaging", criteria);
+	}
+
+	@Override
+	public void insertComment(CommentVO comment) {
+		mybatis.insert("BoardDAO.insertComment", comment);
+		
+	}
+
+	@Override
+	public void deleteComment(CommentVO comment) {
+		mybatis.delete("BoardDAO.deleteComment",comment);
+		
+	}
+
+	@Override
+	public void updateComment(CommentVO comment) {
+		mybatis.update("BoardDAO.updateComment",comment);
+		
+	}
+
+	@Override
+	public List<CommentVO> getCommnetList(int boardNumber) {
+		
+		return mybatis.selectList("BoardDAO.getCommentList", boardNumber);
+	}
+
+	@Override
+	public int getCommentTotal(int boardNumber) {
+		
+		return mybatis.selectOne("BoardDAO.getTotalCommentCount");
 	}
 
 	

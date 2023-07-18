@@ -9,6 +9,70 @@ function loadJQuery() {
 loadJQuery();
 
 /* boardList */
+/* 지역 클릭하면 해당 축제 list select에 뜨게하기 */
+let findRegion = document.getElementById('findRegion');
+if(findRegion != null){
+    findRegion.addEventListener('change', function(event){
+        console.log(findRegion.value);
+        let region = findRegion.value;
+        $.ajax({
+            async: true,
+            type: 'POST',
+            data: region,
+            url: "getRegionFestivals.do",
+            dataType: "json", 
+            contentType: "application/json; charset=UTF-8",
+            success: function(data){
+                console.log(data);
+                console.log(data.festivals[0].festival_name);
+                let findFestival = document.getElementsByClassName('findFestival');
+                if(findFestival!=null){
+                    for(let i=0;i<findFestival.length;i++){
+                        findFestival[i].remove();
+                    }
+                }
+                let findFestivals = document.getElementById('findFestivals');
+                for(let i=0; i<Object.keys(data.festivals).length;i++){
+                    let option = document.createElement('option');
+                    if(data.festivals[i] != 'undefined' && data.festivals[i] != null){
+                        option.value = data.festivals[i].festival_name;
+                        option.className = 'findFestival';
+                        findFestivals.append(option);
+                    }
+                }
+                //let findFestival = document.getElementsByClassName('findFestival');
+                for(let i=0; i<findFestival.length;i++){
+                    if(data.festivals[i] != 'undefined' && data.festivals[i] != null){
+                        findFestival[i].append('\u00a0\u00a0\u00a0\u00a0\u00a0'+data.festivals[i].festival_name);
+                    }
+                }
+                
+                findFestivals.addEventListener('change', function(event){
+                    console.log(findFestivals.value);
+                });
+                
+            },
+            error: function(request,status,error){
+                console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+            }
+        });
+    });
+
+    function nullcheck(){
+        console.log(findRegion.value);
+        let findFestivals = document.getElementById('findFestivals');
+        console.log(findFestivals.value);
+        if(findRegion.value=='     어떤 지역을 찾으시나요?'){
+            let hostIndex = location.href.indexOf(location.host) + location.host.length;
+            let contextPath = location.href.substring(hostIndex,location.href.indexOf('/', hostIndex+1));
+            location.href = contextPath+'/boardList.do';
+        }else{
+            document.findForm.submit();
+        }
+    }
+}
+
+
 let col = document.getElementsByClassName('col');
 let middleHover = document.getElementsByClassName('middleHover');
 let thumnail = document.getElementsByClassName('thumnail');
@@ -243,18 +307,35 @@ for(let i=0; i<boardSelectRegion.length; i++){
 let moreDaysCheckbox = document.getElementById('moreDays');
 let lastDayInput = document.getElementById('lastDay');
 if(moreDaysCheckbox != null){
+	console.log(moreDaysCheckbox.checked);
+	//수정시 end_date가 있으면 보이게 설정
+	    if(moreDaysCheckbox.checked){
+	        lastDayInput.style.display='block';
+	        end_date.setAttribute('required',true);
+	    }
+
     moreDaysCheckbox.addEventListener('click', function(event){
         let end_date = document.getElementById('end_date');
-        console.log(end_date.required);
+        
         if(moreDaysCheckbox.checked){
             lastDayInput.style.display='block';
             end_date.setAttribute('required',true);
         }
         else{
+        	//console.log(end_date.value);
+        	//end_date.value = '2023-07-18';
+        	//console.log(end_date.value);
+        	end_date.value = ''
             lastDayInput.style.display='none';
             end_date.setAttribute('required',false);
+            
+            
         }
+        console.log(end_date.required); // 수정시 1박이상을 해제해도 계속 required 상태,,왜?
     });
+   
+    
+
 }
 
 //이미지
@@ -310,7 +391,6 @@ function limitCheck(){
             }
         },
         error: function(request,status,error){
-            /*alert('error: '+error);*/
             console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
         }
 		
@@ -361,14 +441,47 @@ if(boardImage != null && boardMap != null){
 	});
 }
 
+let writeComment = document.getElementById('writeComment');
+if(writeComment != null){
+    writeComment.addEventListener('click', function(event){
+        let board_number = document.getElementById('board_number').value;
+        let member_id = document.getElementById('member_id').value;
+        let comment_content = document.getElementById('comment_content').value;
+        console.log(board_number);
+        console.log(member_id);
+        console.log(comment_content);
+        $.ajax({
+            async: true,
+            type: 'POST',
+            data: JSON.stringify({
+                    board_number,
+                    member_id,
+                    comment_content
+                    }),
+            url: "insertComment.do",
+            dataType: "json", 
+            contentType: "application/json; charset=UTF-8",
+            success: function(data){
+            console.log(data);
+                
+            },
+            error: function(request,status,error){
+                console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+            }
+            
+        });
+    })
+}
+
 /* 답글달기 누르면 댓글 작성창에 @아이디뜨게 */
 let commentWrite = document.querySelector('#commentWrite textarea');
 let commentusers = document.getElementsByClassName('commentUserName');
 let recommentbuttons = document.getElementsByClassName('recommentWrite');
-if(commentWrite != null && commentusers!=null && recommentbuttons&&null){
+if(commentWrite != null && commentusers != null && recommentbuttons != null){
 	for(let i=0; i<recommentbuttons.length; i++){
 	    recommentbuttons[i].addEventListener('click', function(event){
 	        commentWrite.innerText= '@'+commentusers[i].innerText+" ";
+            commentWrite.focus();
 	    });
 	}
 }
