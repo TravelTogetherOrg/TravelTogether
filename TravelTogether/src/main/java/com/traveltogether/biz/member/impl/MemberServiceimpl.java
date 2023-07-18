@@ -42,4 +42,8 @@ public class MemberServiceimpl {
 	public MemberVO loginMember(MemberVO vo) {
 		return memberDAO.loginMember(vo);
 	}
-}
+	
+	public List<MemberVO> memberBoardList(MemberVO vo) {
+		return memberDAO.memberBoardList(vo);
+	}
+}	

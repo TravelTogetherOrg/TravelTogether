@@ -23,6 +23,7 @@ public interface MemberService {
 	List<MemberVO> getMemberList(MemberVO vo);
 	
 	//회원 게시글 조회
+	List<MemberVO> memberBoardList(MemberVO vo);
 	
 	//회원 댓글 조회
 }

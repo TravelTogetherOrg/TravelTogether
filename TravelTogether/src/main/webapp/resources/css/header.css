@@ -113,7 +113,7 @@
   }
 
   /* --------width ???px이하 변경점--------- */
-  @media screen and (max-width: 1016px) {
+  @media screen and (max-width: 1025px) {
     
     .navbar__logo{
         padding-left: 30%;

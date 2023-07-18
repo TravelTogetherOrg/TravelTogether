@@ -12,6 +12,12 @@
 		<result property="member_birthday" jdbcType="DATE" javaType="java.sql.Date" column="MEMBER_BIRTHDAY"/>
 		<result property="member_create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" column="MEMBER_CREATE_DATE"/>
 		<result property="member_profile_url" column="MEMBER_PROFILE_URL"/>
+		<result property="festival_name" column="FESTIVAL_NAME"/>
+		<result property="board_title" column="BOARD_TITLE"/>
+		<result property="board_start_date" column="BOARD_START_DATE"/>
+		<result property="board_end_date" column="BOARD_END_DATE"/>
+		<result property="board_total_people" column="BOARD_TOTAL-PEOPLE"/>
+		<result property="board_write_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" column="BOARD_WRITE_DATE"/>
 	</resultMap>
 	
 	<insert id="insertMember" parameterType="member">
@@ -56,4 +62,21 @@
 	<select id="loginMember" resultType="member">
 		SELECT * FROM MEMBER WHERE MEMBER_ID = #{member_id} AND MEMBER_PASSWORD = #{member_password}
 	</select>
+	
+	<!--회원작성 게시글조회 -->
+	<select id="memberBoardList" resultMap="memberResult">
+		SELECT 
+			b.MEMBER_ID, 
+			a.FESTIVAL_NAME, 
+			a.BOARD_TITLE, 
+			a.BOARD_START_DATE, 
+			a.BOARD_END_DATE, 
+			a.BOARD_TOTAL_PEOPLE, 
+			a.BOARD_WRITE_DATE  
+		FROM 
+			BOARD AS a INNER JOIN MEMBER AS b
+		ON 
+			a.MEMBER_ID = b.MEMBER_ID	
+	</select>
+	
 </mapper>

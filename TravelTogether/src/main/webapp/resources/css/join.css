@@ -49,7 +49,7 @@ a{
 	margin-bottom: 50px;
 	font-size: 2.0em;
 }
-.member .field{
+.member .input_control{
     margin :5px 0; /*상하로 좀 띄워주기*/
     
 }
@@ -78,30 +78,30 @@ color:#fff
     border: 1px solid rgb(192, 228, 255);
 }
 
-.field input:focus {
+.input_control input:focus {
   border-color: rgb(192, 228, 255); 
 }
 
-.field.birth div{ /*field 이면서 birth*/
+.input_control.birth div{ /*field 이면서 birth*/
     display: flex;
     gap:10px; /*간격 벌려줄때 공식처럼 사용핟나 */
 }
 
-/* .field.birth div > * {  gap 사용한거랑 같은 효과를 줌 
+/* .input_control.birth div > * {  gap 사용한거랑 같은 효과를 줌 
     flex:1;
 } */
 
-.field.tel-number div {
+/* .input_control.tel-number div {
     display: flex;
 }
 
-.field.tel-number div input:nth-child(1){
+.input_control.tel-number div input:nth-child(1){
     flex:2;
 }
 
-.field.tel-number div input:nth-child(2){
+.input_control.tel-number div input:nth-child(2){
     flex:1;
-}
+} */
 
 
 .placehold-text{
@@ -156,14 +156,6 @@ color:#fff
     display: none;
 }
 
-/* ---유효성관련-- */
-.field .error input {
-	border-color: red;
-}
 
-.field .error{
-	color: red;
-	font-size: 9px;
-	height: 13px;
-}
+
 

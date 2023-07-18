@@ -74,7 +74,7 @@ body{
 	margin-bottom: 10px;
 }
 #modifyBtn{
-	background: orange;
+	background: rgb(192, 228, 255);
 	color: white;
 }
 #btn{
@@ -189,7 +189,7 @@ a{
 }
 
 #tabs li a.current {
-	background: orange;
+	background: rgb(192, 228, 255);
 	color: white;
 	
 }
@@ -199,7 +199,7 @@ a{
 	padding: 10px;
 	border: 2px solid #ccc;
 	margin-bottom: 50px; 
-	background:rgb(192, 228, 255);
+	background:white;
 	align: center;
 }
 
@@ -239,7 +239,14 @@ a{
   margin-top:5px;
   text-align: center; 
   margin-bottom: 10px;
-  border: 1px solid black;
+  border: 1px solid #ccc;
+  height: 25px;
+}
+.info input[type="password"] {
+  margin-top:5px;
+  text-align: center; 
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
   height: 25px;
 }
 

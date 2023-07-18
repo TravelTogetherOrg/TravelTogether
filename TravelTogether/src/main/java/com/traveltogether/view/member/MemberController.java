@@ -68,6 +68,15 @@ public class MemberController {
 		model.addAttribute("memberList",memberService.getMemberList(vo));
 		return "admin_memberList.jsp";
 	}
+	//회원게시물 조회
+	@RequestMapping("/memberBoardList.do")
+	public String memberBoardList(MemberVO vo, Model model) {
+		model.addAttribute("memberBoardList",memberService.memberBoardList(vo));
+		System.out.println("멤버보드리스트");
+		System.out.println(vo.getMember_id());
+		
+		return "/views/test.jsp";
+	}
 	
 	@RequestMapping(value="/views/login.do", method=RequestMethod.GET)
 	public String loginMember(MemberVO vo) {

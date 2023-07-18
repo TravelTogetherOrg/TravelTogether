@@ -12,7 +12,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/main.css">
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/mypage.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/mypage.css?ddd">
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script> 
 /* 사이드바 */
@@ -25,7 +25,42 @@
 			e.preventDefault();
 		}).filter(':first').click();
 	});
+	
+/* --------유효성--------- */
+  window.onload = function() {
+    var passwordInput = document.getElementById('password');
+    var passwordConfirmInput = document.getElementById('password2');
+    var form = document.getElementById('form');
 
+
+    function validatePassword() {
+      var password = passwordInput.value;
+      var passwordConfirm = passwordConfirmInput.value;
+
+ 
+      var passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,12}$/;
+
+      if (!passwordPattern.test(password)) {
+        alert('비밀번호는 8~12자의 영문, 숫자, 특수문자(@$!%*#?&)를 포함해야 합니다.');
+        /* passwordInput.value = '';
+        passwordConfirmInput.value = ''; */
+        return false;
+        
+      } else if (password !== passwordConfirm) {
+        alert('비밀번호가 일치하지 않습니다.');
+        /* passwordInput.value = '';
+        passwordConfirmInput.value = ''; */
+        return false;
+      }
+
+      return true;
+    }
+    form.onsubmit = function() {
+      if (!validatePassword()) {
+        return false; 
+      }
+    };
+  };
 </script>
 </head>
 <body>
@@ -41,13 +76,13 @@
 				<ul id="tabs">
 					<li><a href="#description">계정설정</a></li>
 					<li><a href="#companioninfo">동행신청정보</a></li>
-					<li><a href="#details">예약내역</a></li>
+					<li><a href="${path}/memberBoardList.do">작성 게시물 보기</a></li>
 					<li><a href="#review">여행후기</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="content">
-		<form action="updateMember.do" method="post" enctype="multipart/form-data">
+		<form id="form" action="updateMember.do" method="post" enctype="multipart/form-data">
 			<div id="description" class="tab-section">
 				<h2>계정설정</h2>
 				<hr style="border-color: #ccc;">
@@ -55,7 +90,7 @@
 				<div style="display: flex; flex-direction: column; align-items: center; ">
 					<c:if test="${ empty member.member_profile_url}">
 						<div class="rounded-image">
-							<img id="img" src="${path}/resources/image/member/member.png" height="250" width="250">
+							<img id="img" src="${path}/resources/image/member/member.png" height="150" width="150">
 						</div>
 					</c:if>
 					<c:if test="${not empty member.member_profile_url}">
@@ -63,11 +98,11 @@
 							<img id="img" src="${path}${member.member_profile_url}" height="150" width="150">
 						</div>
 					</c:if>
-						<input id="input_img" type="file" name="member_profile_image">
+						<input id="input_img" type="file" name="member_profile_image" >
 				</div>
 									
 				<script>                  
-				// 업로드 된 사진으로 바꿈
+				// 사진업로드 처리
 					$(document).on('change', '#input_img', function(e){
 						var reader = new FileReader();
 						    reader.onload = function (e) {
@@ -81,32 +116,42 @@
 					<table id="info_table">
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">아이디<br><input type='text' name='member_id' value='${member.member_id}'size="30" readonly="readonly"></font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">아이디<br><input type='text' name='member_id' value='${member.member_id}'size="40" readonly="readonly"></font>&nbsp;&nbsp;</h5>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">이름<br><input type='text' name='member_name' value='${member.member_name}'size="30"></font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">이름<br><input type='text' name='member_name' value='${member.member_name}'size="40" readonly="readonly"></font>&nbsp;&nbsp;</h5>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">별명<br><input type='text' name='member_nickname' value='${member.member_nickname}'size="30"> </font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">별명<br><input type='text' name='member_nickname' value='${member.member_nickname}'size="40"> </font>&nbsp;&nbsp;</h5>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">생년월일<br><input type='text' name='member_birthday' value='${member.member_birthday}'size="30" readonly="readonly"></font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">비밀번호<br><input type='password' id="password" name='member_password' value='${member.member_password}'size="40" required="required"> </font>&nbsp;&nbsp;</h5>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">성별 <br><input type='text' name='member_gender' value='${member.member_gender}'size="30" readonly="readonly"></font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">비밀번호 확인<br><input type='password' id="password2" value='${member.member_password}'size="40" required="required"> </font>&nbsp;&nbsp;</h5>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">가입일<br><input type='text' name='member_create_date' value='${member.member_create_date}'size="30" readonly="readonly"></font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">생년월일<br><input type='text' name='member_birthday' value='${member.member_birthday}'size="40" readonly="readonly"></font>&nbsp;&nbsp;</h5>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h5><font style="font-weight: bold;">성별 <br><input type='text' name='member_gender' value='${member.member_gender}'size="40" readonly="readonly"></font>&nbsp;&nbsp;</h5>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h5><font style="font-weight: bold;">가입일<br><input type='text' name='member_create_date' value='${member.member_create_date}'size="40" readonly="readonly"></font>&nbsp;&nbsp;</h5>
 							</td>
 						</tr>
 					</table>
@@ -273,14 +318,14 @@ $('.ChattingBtn').on('click',function(e){
 });
 </script>	
 		<div id="details" class="tab-section">
-			<h2>예약내역</h2>
+			<h2>${memberBoardList.member_id} 님의 작성 게시물 입니다.</h2>
 			<hr style="border-color: black;">
 			<p>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
 		</div>
 		<div id="review" class="tab-section">
 			<h2>여행후기</h2>
 			<hr style="border-color: black;">
-			<p>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
+			<p>응. 없어~~</p>
 		</div>
 	</div>
 </div>
