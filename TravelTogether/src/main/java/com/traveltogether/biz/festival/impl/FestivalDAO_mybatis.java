@@ -43,6 +43,17 @@ public class FestivalDAO_mybatis {
 		return mybatis.selectList("FestivalDAO.getFestivalList_Month",vo);
 	}
 	
+    // 메인에 보여질 좋아요 수에 따른 축제들
+    public List<FestivalVO> getFestivalLikeList(FestivalVO vo){
+    	
+    	return mybatis.selectList("FestivalDAO.mainFestivalLikeCount",vo);
+    }
+    
+    //
+    public List<FestivalVO> getFestivalRandomList(FestivalVO vo){
+    	return mybatis.selectList("FestivalDAO.getFestivalRandomList", vo);
+    }
+	
 	// 7월달 해당지역 리스트만 조회
 	
 	// 좋아요 구현
@@ -64,5 +75,7 @@ public class FestivalDAO_mybatis {
     public int getFestivalLikeCount(FestivalVO vo) {
         return mybatis.selectOne("FestivalDAO.getFestivalLikeCount", vo);
     }
+    
+
 
 }

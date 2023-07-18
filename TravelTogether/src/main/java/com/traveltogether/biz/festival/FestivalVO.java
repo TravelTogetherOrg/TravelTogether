@@ -21,6 +21,7 @@ public class FestivalVO {
 	
 	private int like_no;
 	private String member_id;
+	private int festival_like_count;
 	
 	private String festival_file_1;
 	private String festival_file_2;
@@ -120,6 +121,15 @@ public class FestivalVO {
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
+		
+	
+	public int getFestival_like_count() {
+		return festival_like_count;
+	}
+	public void setFestival_like_count(int festival_like_count) {
+		this.festival_like_count = festival_like_count;
+	}
+	
 	
 	
 	public String getFestival_file_1() {

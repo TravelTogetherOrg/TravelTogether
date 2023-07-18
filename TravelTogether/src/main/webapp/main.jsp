@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" session="true"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+   	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
    <c:set var="context" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -70,7 +71,7 @@
               <div class="swiper-slide">
                 <div class="swiper-slide-container">
                   <em>노을 명소</em>
-                  <p> 저녁에 즐기는 <br />  알록달록 인천 명소🌆 </p>
+                  <p> 저녁에 즐기는 <br />  알록달록 영덕 명소🌆 </p>
                   <a href="getFestival.do?festival_name=영덕문화재%20야행">자세히 보기</a>
                 </div>
               </div>
@@ -140,58 +141,24 @@
       <!-- ---------------------------main-bottom-grid-------------------------------- -->
       <div class="main-bottom-section">
       
-        <div id="bottom-grid" class="bottom-grid1">
+<%--         <div id="bottom-grid" class="bottom-grid1">  
           <div class="grid">
            <c:set var="imagePath" value="${context}/resources/image/festival/구팔일 올데이 페스티벌/구팔일 올데이 페스티벌_1_공공3유형" />      
-            <div class="grid-img" onclick="rcd1()" style="background-image:url('${imagePath}.png" onerror="this.onerror=null; this.src='${imagePath}.jpg'');"></div>
+            <div class="grid-img" onclick="location.href='getFestival.do?festival_name=구팔일 올데이 페스티벌'" style="background-image:url('${imagePath}.png'), url('${imagePath}.jpg');"></div>
               <p class="grid-text-p">구팔일 올데이 페스티벌</p>
               <span class="grid-text-span">제주도 제주시</span>
-            </div>
-            
-          <div class="grid">
-          	<c:set var="imagePath" value="${context}/resources/image/festival/광주비엔날레/광주비엔날레_1_공공3유형" />
-            <div class="grid-img" onclick="rcd2()"  style="background-image:url('${imagePath}.png" onerror="this.onerror=null; this.src='${imagePath}.jpg'');" background-position: 50%;"></div>
-              <p class="grid-text-p">광주비엔날레</p>
-              <span class="grid-text-span">광주광역시 북구</span>
-            </div>
-          <div class="grid">
-          	<c:set var="imagePath" value="${context}/resources/image/festival/둥실둥실해양페스타/둥실둥실해양페스타_1_공공3유형" />
-            <div class="grid-img"  onclick="rcd3()" style="background-image:url('${imagePath}.png" onerror="this.onerror=null; this.src='${imagePath}.jpg'');"></div>
-              <p class="grid-text-p">둥실둥실해양페스타</p>
-              <span class="grid-text-span">인천광역시 연수구</span>
-            </div>
-          <div class="grid">
-          	<c:set var="imagePath" value="${context}/resources/image/festival/무안연꽃축제/무안연꽃축제_1_공공3유형" />
-            <div class="grid-img"  onclick="rcd4()" style="background-image:url('${imagePath}.png" onerror="this.onerror=null; this.src='${imagePath}.jpg'');" background-position: 50%;"></div>
-              <p class="grid-text-p">무안연꽃축제</p>
-              <span class="grid-text-span">전라남도 무안군</span>
-            </div>
-          <div class="grid">
-          	<c:set var="imagePath" value="${context}/resources/image/festival/시흥거북섬해양축제/시흥거북섬해양축제_1_공공3유형" />
-            <div class="grid-img"  onclick="rcd5()" style="background-image:url('${imagePath}.png" onerror="this.onerror=null; this.src='${imagePath}.jpg'');" background-position: 20%;"></div>
-              <p class="grid-text-p">시흥거북섬해양축제</p>
-              <span class="grid-text-span">경기도 시흥시</span>
-            </div>
-          <div class="grid">
-          	<c:set var="imagePath" value="${context}/resources/image/festival/이월드 퍼플 아일랜드/이월드 퍼플 아일랜드_1_공공3유형" />
-            <div class="grid-img"  onclick="rcd6()" style="background-image:url('${imagePath}.jpg" onerror="this.onerror=null; this.src='${imagePath}.jpg'');"></div>
-              <p class="grid-text-p">이월드 퍼플 아일랜드</p>
-              <span class="grid-text-span">대구 달서구</span>
-            </div>
-          <div class="grid">
-          	<c:set var="imagePath" value="${context}/resources/image/festival/양평물빛축제/양평물빛축제_1_공공3유형" />
-            <div class="grid-img" onclick="rcd7()" style="background-image:url('${imagePath}.png" onerror="this.onerror=null; this.src='${imagePath}.jpg'');"></div>
-              <p class="grid-text-p">양평물빛축제</p>
-              <span class="grid-text-span">경기도 양평군</span>
-            </div>
-          <div class="grid">
-          	<c:set var="imagePath" value="${context}/resources/image/festival/평창더위사냥축제/평창더위사냥축제_1_공공3유형" />
-            <div class="grid-img" onclick="rcd8()" style="background-image:url('${imagePath}.png" onerror="this.onerror=null; this.src='${imagePath}.jpg'');"></div>
-              <p class="grid-text-p">평창더위사냥축제</p>
-              <span class="grid-text-span">강원특별자치도 평창군</span>
-            </div>
-          </div>
-        </div>
+         </div> --%>
+         <div id="bottom-grid" class="bottom-grid1" >
+	         <c:forEach items="${festivalRandomList}" var="festivalrandom">   
+	          <div class="grid">
+	          	<c:set var="imagePath" value="${context}/resources/image/festival/${festivalrandom.festival_name}/${festivalrandom.festival_name}_1_공공3유형" />
+	            <div class="grid-img" onclick="location.href='getFestival.do?festival_name=${festivalrandom.festival_name}'" style="background-image:url('${imagePath}.png'), url('${imagePath}.jpg');"></div>
+	              <p class="grid-text-p">${festivalrandom.festival_name}</p>
+	              	<c:set var="raomdomfestival" value="${fn:split(festivalrandom.festival_address, ' ')}" />
+			          <span class="grid-text-span">${raomdomfestival[0]} ${raomdomfestival[1]}</span>
+	            </div>
+			</c:forEach>
+		</div>
         
         
         
@@ -199,58 +166,18 @@
         
         
         <!-- TT 추천 -->
-        <div id="bottom-grid" class="bottom-grid2" style="display: none;">
-          <div class="grid">
-           <c:set var="imagePath" value="${context}/resources/image/festival/허브아일랜드 라벤더축제/허브아일랜드 라벤더축제_1_공공3유형" />
-            <div class="grid-img" onclick="rcd3()" style="background-image:url('${imagePath}.png'), url('${imagePath}.jpg');"></div>
-              <p class="grid-text-p">허브아일랜드 라벤더축제</p>
-              <span class="grid-text-span">제주도 제주시</span>
-            </div>
-            
-          <div class="grid">
-          	<c:set var="imagePath" value="${context}/resources/image/festival/서울프린지페스티벌/서울프린지페스티벌_1_공공3유형" />
-            <div class="grid-img" onclick="rcd2()"  style="background-image:url('${imagePath}.png'), url('${imagePath}.jpg');" background-position: 50%;"></div>
-              <p class="grid-text-p">광주비엔날레</p>
-              <span class="grid-text-span">광주광역시 북구</span>
-            </div>
-          <div class="grid">
-          	<c:set var="imagePath" value="${context}/resources/image/festival/물총축제/물총축제_1_공공3유형" />
-            <div class="grid-img"  onclick="rcd3()" style="background-image:url('${imagePath}.png'), url('${imagePath}.jpg');"></div>
-              <p class="grid-text-p">둥실둥실해양페스타</p>
-              <span class="grid-text-span">인천광역시 연수구</span>
-            </div>
-          <div class="grid">
-          	<c:set var="imagePath" value="${context}/resources/image/festival/대전 0시 축제/대전 0시 축제_1_공공3유형" />
-            <div class="grid-img"  onclick="rcd4()" style="background-image:url('${imagePath}.png'), url('${imagePath}.jpg');" background-position: 50%;"></div>
-              <p class="grid-text-p">무안연꽃축제</p>
-              <span class="grid-text-span">전라남도 무안군</span>
-            </div>
-          <div class="grid">
-          	<c:set var="imagePath" value="${context}/resources/image/festival/시흥거북섬해양축제/시흥거북섬해양축제_1_공공3유형" />
-            <div class="grid-img"  onclick="rcd5()" style="background-image:url('${imagePath}.png'), url('${imagePath}.jpg');" background-position: 20%;"></div>
-              <p class="grid-text-p">시흥거북섬해양축제</p>
-              <span class="grid-text-span">경기도 시흥시</span>
-            </div>
-          <div class="grid">
-          	<c:set var="imagePath" value="${context}/resources/image/festival/양평메기수염축제/양평메기수염축제_1_공공3유형" />
-            <div class="grid-img"  onclick="rcd6()" style="background-image:url('${imagePath}.png'), url('${imagePath}.jpg');"></div>
-              <p class="grid-text-p">이월드 퍼플 아일랜드</p>
-              <span class="grid-text-span">대구 달서구</span>
-            </div>
-          <div class="grid">
-          	<c:set var="imagePath" value="${context}/resources/image/festival/좀비런 부산/좀비런 부산_1_공공3유형" />
-            <div class="grid-img" onclick="rcd7()" style="background-image:url('${imagePath}.png'), url('${imagePath}.jpg');"></div>
-              <p class="grid-text-p">양평물빛축제</p>
-              <span class="grid-text-span">경기도 양평군</span>
-            </div>
-          <div class="grid">
-          	<c:set var="imagePath" value="${context}/resources/image/festival/휴애리 유럽 수국축제/휴애리 유럽 수국축제_1_공공3유형" />
-            <div class="grid-img" onclick="rcd8()" style="background-image:url('${imagePath}.png'), url('${imagePath}.jpg');"></div>
-              <p class="grid-text-p">평창더위사냥축제</p>
-              <span class="grid-text-span">강원특별자치도 평창군</span>
-            </div>
-          </div>
-        </div>
+        
+	        <div id="bottom-grid" class="bottom-grid2" style="display: none;">
+	          <c:forEach items="${festivalLikeList}" var="festivallike">
+		          <div class="grid">
+		           <c:set var="imagePath" value="${context}/resources/image/festival/${festivallike.festival_name}/${festivallike.festival_name}_1_공공3유형" />
+		            <div class="grid-img" onclick="location.href='getFestival.do?festival_name=${festivallike.festival_name}'" style="background-image:url('${imagePath}.png'), url('${imagePath}.jpg');"></div>
+		              <p class="grid-text-p">${festivallike.festival_name}</p>
+		              	<c:set var="addressArray" value="${fn:split(festivallike.festival_address, ' ')}" />
+		              <span class="grid-text-span">${addressArray[0]} ${addressArray[1]}</span>
+		          </div>
+	          </c:forEach> 
+	        </div>
         
         
         
@@ -466,62 +393,6 @@ function changeContent(images, texts, spans) {
  
   
 </script>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <!-- TT 추천여행지를 제가 임의로 넣었습니다. -->
-<script>
-    function rcd1() {
-        var festivalName = encodeURIComponent("구팔일 올데이 페스티벌");
-        var url = "getFestival.do?festival_name=" + festivalName;
-        window.location.href = url;
-    }
-    function rcd2() {
-        var festivalName = encodeURIComponent("광주비엔날레");
-        var url = "getFestival.do?festival_name=" + festivalName;
-        window.location.href = url;
-    }
-    function rcd3() {
-        var festivalName = encodeURIComponent("둥실둥실해양페스타");
-        var url = "getFestival.do?festival_name=" + festivalName;
-        window.location.href = url;
-    }
-    function rcd4() {
-        var festivalName = encodeURIComponent("무안연꽃축제");
-        var url = "getFestival.do?festival_name=" + festivalName;
-        window.location.href = url;
-    }
-    function rcd5() {
-        var festivalName = encodeURIComponent("시흥거북섬해양축제");
-        var url = "getFestival.do?festival_name=" + festivalName;
-        window.location.href = url;
-    }
-    function rcd6() {
-        var festivalName = encodeURIComponent("이월드 퍼플 아일랜드");
-        var url = "getFestival.do?festival_name=" + festivalName;
-        window.location.href = url;
-    }
-    function rcd7() {
-        var festivalName = encodeURIComponent("양평물빛축제");
-        var url = "getFestival.do?festival_name=" + festivalName;
-        window.location.href = url;
-    }
-    function rcd8() {
-        var festivalName = encodeURIComponent("평창더위사냥축제");
-        var url = "getFestival.do?festival_name=" + festivalName;
-        window.location.href = url;
-    }
-</script>  
-  
   
   
   

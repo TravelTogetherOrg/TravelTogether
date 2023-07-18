@@ -54,6 +54,14 @@ public class FestivalServiceimpl {
 		return festivalDAO.getFestivalList_Month(vo);
 	}
 	
+	public List<FestivalVO> getFestivalLikeList(FestivalVO vo){
+		return festivalDAO.getFestivalLikeList(vo);
+	}
+	
+	public List<FestivalVO> getFestivalRandomList(FestivalVO vo){
+		return festivalDAO.getFestivalRandomList(vo);
+	}
+	
 	
 	
 	

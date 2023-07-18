@@ -20,6 +20,7 @@
 		
 		<result property="like_no" column="LIKE_NO"/>
 		<result property="member_id" column="MEMBER_ID"/>
+		<result property="festival_like_count" column="FESTIVAL_LIKE_COUNT" />
 		
 		<result property="festival_file_1" column="FESTIVAL_FILE_1"/>
 		<result property="festival_file_2" column="FESTIVAL_FILE_2"/>
@@ -48,6 +49,36 @@
 	    AND f1.festival_address LIKE CONCAT('%', #{festival_address}, '%');
 	</select>
 	
+	
+		<!-- 메인에 보여질 좋아요 갯수에 따라 보여지는 축제들 -->
+	<!-- 간략하게 코드 설명하면, 좋아요가 눌러져 있는 행을 많은 순서대로 가져오는데 만약 좋아요가 눌린 행이 8개가 안될경우 전체 이름중에서 나머지를 가져온다. -->
+	<!-- 전체 행이 8개가 들어와야 메인에 8개가 들어가니 8개가 안되면 위에 말한대로 넣어주고 8개가 무조건 넘으니 limit으로 8개 제한한다. -->
+	<select id="mainFestivalLikeCount" resultMap="festivalResult">
+		SELECT f.festival_name, f.festival_address, COUNT(fl.festival_name) AS festival_like_count
+		FROM festival f
+		JOIN festival_like fl ON f.festival_name = fl.festival_name
+		GROUP BY f.festival_name, f.festival_address
+		HAVING COUNT(fl.festival_name) > 0
+		UNION
+		SELECT f.festival_name, f.festival_address, 0 AS festival_like_count
+		FROM festival f
+		WHERE NOT EXISTS (
+		    SELECT 1
+		    FROM festival_like fl
+		    WHERE fl.festival_name = f.festival_name
+		)
+		ORDER BY festival_like_count DESC
+		limit 8
+	</select>
+	
+	<!-- 메인에 TT추천 리스트 랜덤으로 보이게 하기 -->
+	<select id="getFestivalRandomList" resultMap="festivalResult">
+		select a.festival_name, a.FESTIVAL_ADDRESS
+		from festival a
+		WHERE MONTH(CURDATE()) BETWEEN MONTH(festival_startdate) AND MONTH(festival_enddate)
+		order by rand()
+		limit 8
+	</select>
 
 	
 	<!-- 상세검색 -->
@@ -85,10 +116,10 @@
 	<select id="getFestivalLikeCount" resultType="java.lang.Integer">
     	SELECT COUNT(*) FROM festival_like WHERE festival_name = #{festival_name}
 	</select>
+	
+	
 
-<!--  	<select id="isFestivalLiked" parameterType="java.util.Map" resultType="java.lang.Integer">
-    SELECT COUNT(*) FROM festival_like WHERE member_id = #{memberId} AND festival_name = #{festivalName}
-	</select> -->
+
 	
 	
 </mapper>
