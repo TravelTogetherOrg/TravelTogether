@@ -8,15 +8,16 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div>
 	<table border="1" cellpadding="0" cellspacing="0" width="700">
-			<tr>
-				<th bgcolor="orange" width="100">${memberBoardList.member_id}</th>
-				<th bgcolor="orange" width="200">${memberBoardList.festival_name}</th>
-				<th bgcolor="orange" width="150">${memberBoardList.board_start_date}</th>
-				<th bgcolor="orange" width="150">${memberBoardList.board_end_date}</th>
-				<th bgcolor="orange" width="150">${memberBoardList.board_total_people}</th>
-				<th bgcolor="orange" width="100">${memberBoardList.board_write_date}</th>
-			</tr>
+			<%-- <tr>
+				<th width="100">${memberBoardList.member_id}</th> 
+				<th width="200">${memberBoardList.festival_name}</th>
+				<th width="150">${memberBoardList.board_start_date}</th>
+				<th width="150">${memberBoardList.board_end_date}</th>
+				<th width="150">${memberBoardList.board_total_people}</th>
+				<th width="100">${memberBoardList.board_write_date}</th>
+			</tr> --%>
 			<c:forEach items="${memberBoardList}" var="board">
 				<tr>
 					<td>${board.member_id}</td>
@@ -28,6 +29,6 @@
 				</tr>			
 			</c:forEach>
 		</table>
-
+	</div>
 </body>
 </html>

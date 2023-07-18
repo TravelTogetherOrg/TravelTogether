@@ -72,8 +72,6 @@ public class MemberController {
 	@RequestMapping("/memberBoardList.do")
 	public String memberBoardList(MemberVO vo, Model model) {
 		model.addAttribute("memberBoardList",memberService.memberBoardList(vo));
-		System.out.println("멤버보드리스트");
-		System.out.println(vo.getMember_id());
 		
 		return "/views/test.jsp";
 	}
