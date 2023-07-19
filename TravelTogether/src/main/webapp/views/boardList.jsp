@@ -20,7 +20,7 @@
                 <p>축제 동행 찾기</p><br> &nbsp;&nbsp;
                 <form action="findFestivalBoard.do" method="post" name="findForm">
                 <select id="findRegion">
-                    <option disabled selected>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;어떤 지역을 찾으시나요?</option>
+                    <option disabled selected>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;지역 검색</option>
                     <option value="서울">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;서울</option>
                     <option value="경기도">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;경기도</option>
                     <option value="인천">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;인천</option>
@@ -85,7 +85,7 @@
 	                    </div>
 	                </div>
 	                <div class="bottom">
-	                    <p class="listTitle">${board.board_image_file} ${board.board_title} </p>
+	                    <p class="listTitle">${board.board_title}</p>
 	                    <p class="listContent">${board.board_content}</p>
 	                </div>
 	            </div>

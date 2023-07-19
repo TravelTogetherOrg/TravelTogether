@@ -56,7 +56,7 @@ select{
     -webkit-appearance: none;
     appearance: none;
 
-    width: 15.5em;
+    /* width: 15.5em; */
     padding: 0.5em;
 
     border: 0.15em solid rgb(192, 228, 255);
@@ -75,6 +75,13 @@ select{
 select::-ms-expand{ display: none; }
 select:focus{
     border-color: rgb(192, 228, 255);
+}
+
+#findRegion{
+	width: 7.5em;
+}
+#findFestivals{
+	width: 17em;
 }
 
 #boardWriteButton button{

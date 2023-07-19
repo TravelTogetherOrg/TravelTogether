@@ -18,7 +18,7 @@
     <main class="container-md boardMain">
         <section> <!--배경으로 이미지container-->
             <div class="boardImageAndMap"><!--  -->
-                <img id="boardImage" alt="이미지" src="${context}/resources/image/board/boardImage/${board.board_image_file_path}/${board.board_image_file}">
+                <img id="boardImage" alt="이미지" src="${context}/resources/image/${board.board_image_file_path}/${board.board_image_file}">
                 <div id="boardMap">
                     <iframe id="boardMapIframe"></iframe>
                 </div>

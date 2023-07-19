@@ -25,10 +25,10 @@ if(findRegion != null){
             success: function(data){
                 console.log(data);
                 console.log(data.festivals[0].festival_name);
-                let findFestival = document.getElementsByClassName('findFestival');
-                if(findFestival!=null){
-                    for(let i=0;i<findFestival.length;i++){
-                        findFestival[i].remove();
+                let findFestivalOption = document.querySelectorAll('.findFestival')
+                if(findFestivalOption!=null){
+                    for(let i=0;i<findFestivalOption.length;i++){
+                        findFestivalOption[i].remove();
                     }
                 }
                 let findFestivals = document.getElementById('findFestivals');
@@ -40,7 +40,7 @@ if(findRegion != null){
                         findFestivals.append(option);
                     }
                 }
-                //let findFestival = document.getElementsByClassName('findFestival');
+                let findFestival = document.getElementsByClassName('findFestival');
                 for(let i=0; i<findFestival.length;i++){
                     if(data.festivals[i] != 'undefined' && data.festivals[i] != null){
                         findFestival[i].append('\u00a0\u00a0\u00a0\u00a0\u00a0'+data.festivals[i].festival_name);
@@ -59,10 +59,8 @@ if(findRegion != null){
     });
 
     function nullcheck(){
-        console.log(findRegion.value);
         let findFestivals = document.getElementById('findFestivals');
-        console.log(findFestivals.value);
-        if(findRegion.value=='     어떤 지역을 찾으시나요?'){
+        if(findRegion.value=='     지역 검색' || findFestivals.value == '     어떤 축제를 찾으시나요?'){
             let hostIndex = location.href.indexOf(location.host) + location.host.length;
             let contextPath = location.href.substring(hostIndex,location.href.indexOf('/', hostIndex+1));
             location.href = contextPath+'/boardList.do';
@@ -441,6 +439,21 @@ if(boardImage != null && boardMap != null){
 	});
 }
 
+/* 답글달기 누르면 댓글 작성창에 @아이디뜨게 */
+let commentWrite = document.querySelector('#commentWrite textarea');
+let commentusers = document.getElementsByClassName('commentUserName');
+let recommentbuttons = document.getElementsByClassName('recommentWrite');
+let commentuserNickname = '';
+if(commentWrite != null && commentusers != null && recommentbuttons != null){
+    for(let i=0; i<recommentbuttons.length; i++){
+        recommentbuttons[i].addEventListener('click', function(event){
+            commentWrite.innerText= '@'+commentusers[i].innerText+' ';
+            commentWrite.focus();
+            commentuserNickname = '@'+commentusers[i].innerText+' ';
+        });
+    }
+}
+/* 댓글 */
 let writeComment = document.getElementById('writeComment');
 if(writeComment != null){
     writeComment.addEventListener('click', function(event){
@@ -450,41 +463,36 @@ if(writeComment != null){
         console.log(board_number);
         console.log(member_id);
         console.log(comment_content);
-        $.ajax({
-            async: true,
-            type: 'POST',
-            data: JSON.stringify({
-                    board_number,
-                    member_id,
-                    comment_content
-                    }),
-            url: "insertComment.do",
-            dataType: "json", 
-            contentType: "application/json; charset=UTF-8",
-            success: function(data){
-            console.log(data);
+        if(comment_content=='' || comment_content==commentuserNickname){ 
+        alert('댓글을 입력해주세요');
+        }
+        else{
+            $.ajax({
+                async: true,
+                type: 'POST',
+                data: JSON.stringify({
+                        board_number,
+                        member_id,
+                        comment_content
+                        }),
+                url: "insertComment.do",
+                dataType: "json", 
+                contentType: "application/json; charset=UTF-8",
+                success: function(data){
+                console.log(data);
+                    
+                },
+                error: function(request,status,error){
+                    console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                }
                 
-            },
-            error: function(request,status,error){
-                console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-            }
-            
-        });
+            });
+        }
+        
+        
     })
 }
 
-/* 답글달기 누르면 댓글 작성창에 @아이디뜨게 */
-let commentWrite = document.querySelector('#commentWrite textarea');
-let commentusers = document.getElementsByClassName('commentUserName');
-let recommentbuttons = document.getElementsByClassName('recommentWrite');
-if(commentWrite != null && commentusers != null && recommentbuttons != null){
-	for(let i=0; i<recommentbuttons.length; i++){
-	    recommentbuttons[i].addEventListener('click', function(event){
-	        commentWrite.innerText= '@'+commentusers[i].innerText+" ";
-            commentWrite.focus();
-	    });
-	}
-}
 
 
 

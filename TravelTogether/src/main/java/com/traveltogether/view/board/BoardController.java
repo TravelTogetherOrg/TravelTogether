@@ -69,7 +69,7 @@ public class BoardController {
 			String pathToday = FileUtils.getPathToday().toString().replace("\\", "/");
 			//2023\07\16
 			System.out.println("일지만 나오는지 확인: "+pathToday.substring(pathToday.length()-10,pathToday.length()));
-			image.setBoard_image_file_path("board/boardimage/"+pathToday.substring(pathToday.length()-10,pathToday.length()));
+			image.setBoard_image_file_path("board/boardImage/"+pathToday.substring(pathToday.length()-10,pathToday.length()));
 			
 		}else {
 			//이미지 없으면 선택한 축제의 기본 이미지 가져오기
@@ -214,6 +214,7 @@ public class BoardController {
 	public Map<Object,Object> insertComment(@RequestBody CommentVO comment) {
 		Map<Object,Object> map = new HashMap<Object, Object>();
 		//댓글이 db등록에 성공하면 등록된 댓글 번호(pk)랑 success 반환
+		System.out.println(comment.toString());
 		
 		return map;
 	}
