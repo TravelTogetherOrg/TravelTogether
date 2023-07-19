@@ -8,7 +8,10 @@ import org.springframework.stereotype.Repository;
 
 
 import com.traveltogether.biz.festival.FestivalVO;
+<<<<<<< HEAD
+=======
 import com.traveltogether.biz.member.MemberVO;
+>>>>>>> KHS
 
 
 @Repository
@@ -33,6 +36,11 @@ public class FestivalDAO_mybatis {
 	}
 	
 	//7월달 리스트 조회
+<<<<<<< HEAD
+	public List<FestivalVO> getFestivalList_Month(FestivalVO vo){
+		return mybatis.selectList("FestivalDAO.getFestivalList_Month",vo);
+	}
+=======
 	public List<FestivalVO> getFestivalList_Month_All(FestivalVO vo) {	
 		return mybatis.selectList("FestivalDAO.getFestivalList_Month_All",vo);
 	}
@@ -77,5 +85,6 @@ public class FestivalDAO_mybatis {
     }
     
 
+>>>>>>> KHS
 
 }

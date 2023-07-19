@@ -17,10 +17,17 @@
 <body>
  <nav class="navbar">
        <div class="navbar__logo">
+<<<<<<< HEAD
+         <a href="${path}/main.jsp" ondragstart='return false'>🚆<span>T</span>ravel <span>T</span>ogether</a>
+       </div>
+       <ul class="navbar__menu">
+         <li><a href="${path}/main.jsp">홈</a></li>
+=======
          <a href="${path}/main.do" ondragstart='return false'>🚆<span>T</span>ravel <span>T</span>ogether</a>
        </div>
        <ul class="navbar__menu">
          <li><a href="${path}/main.do">홈</a></li>
+>>>>>>> KHS
          <li><a href="${path}/getFestivalList_Month.do">축제소개</a></li>
          <li><a href="${path}/boardList.do">동행게시판</a></li>
        </ul>
