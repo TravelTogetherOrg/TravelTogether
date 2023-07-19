@@ -190,7 +190,24 @@
  
  
  
- 
+ <script >
+ $(document).ready(function(){
+		// 퀵배너 스크롤
+		function updateChatIcon() {
+			var quickPos = $('.chat-icon').offset().top;
+			var winPos = $(window).scrollTop();
+			if( winPos > quickPos ) $('.chat-icon .chat-icon-inner').addClass('fixed');
+			else $('.chat-icon .chat-icon-inner').removeClass('fixed');
+		}
+
+		// 초기 로드 시 아이콘 상태 업데이트
+		updateChatIcon();
+
+		// 스크롤 이벤트 핸들러 등록
+		$(window).scroll(function(){
+			updateChatIcon();
+		});
+	});</script>
  
   <!-- ---------------------------script-------------------------------- -->
 <!--   <script>
@@ -276,6 +293,7 @@ function changeContent(images, texts, spans) {
   
   
   <!-- ---------------------------swiper js-------------------------------- -->
+<!--  
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script>
   function handleClick() {
@@ -337,7 +355,7 @@ function changeContent(images, texts, spans) {
     galleryThumbs.controller.control = galleryTop;
   </script>
   
-  
+  -->
   
   
   

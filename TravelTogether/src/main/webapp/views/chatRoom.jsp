@@ -82,7 +82,7 @@ String userNickName = (String)session.getAttribute("userNickname");
 	};
     
     function openSocket() {	
-		var url = "ws://172.30.1.79:8080/echo.do/"
+		var url = "ws://172.30.1.46:8080/echo.do/"
 		url += '<%=userNickName%>';
 		ws = new WebSocket(url);
 		ws.onmessage = onMessage;

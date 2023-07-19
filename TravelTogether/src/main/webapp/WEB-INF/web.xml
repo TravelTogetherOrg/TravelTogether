@@ -42,7 +42,7 @@
 	</servlet-mapping>
 	
 	<welcome-file-list>
-  		<welcome-file>main.jsp</welcome-file>
+  		<welcome-file>start.jsp</welcome-file>
   	</welcome-file-list>
 	
 
