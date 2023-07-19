@@ -1,5 +1,12 @@
 @charset "UTF-8";
 
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
 	padding: 0;
 	margin: 0;
@@ -8,11 +15,13 @@
 	box-sizing:border-box;
 	text-decoration:none;
 }
+
 html{ 
 	height : 100%;
 }
 body{
 	height : 100%;
+	text-decoration:none;
 }
 
 .wrap{
@@ -27,9 +36,7 @@ body{
     text-align: center;
     border-radius: 15px;
 }
-.sidebar:hover{
-	background: #fdf8e0;
-}
+
 .sidebar img{
 	width: 70px;
 	height: 70px;
@@ -56,7 +63,6 @@ body{
 	width: 50%;
 	height: 300px;
 	padding: 30px 0px 30px 60px;
-	
 }
 #hr{
 	border-top-color: #0AC5A8;
@@ -69,9 +75,12 @@ body{
 	margin-bottom: 10px;
 }
 #modifyBtn{
-	background: #2C3C5B;
+	background: rgb(192, 228, 255);
 	color: white;
-	float: right;
+}
+#btn{
+	display: flex;
+	justify-content: center;
 }
 
 #infobox{
@@ -80,14 +89,173 @@ body{
     height: 300px;
     margin: 0 auto;
     border-radius: 25px;
-    box-shadow: 5px 5px 5px lightgrey;
-      
-   
+    box-shadow: 5px 5px 5px lightgrey;  
 }
-#modifyBtn{
-	margin-top: 220px;
-}
+
 td h5{
 	margin-top: 7px;
     margin-bottom: 7px;
+}
+html, body {
+   	height: 100%
+}
+.container {   	/* footer 고정 */
+	 font-family: 'GmarketSansMedium';
+	 min-height: 100%;
+	 position: relative;
+	 display: flex;
+}
+
+#companioninfo {
+	padding: 0;
+	margin: 0;
+	border: 0;
+	border-collapse:collapse;
+	box-sizing:border-box;
+	text-decoration:none;
+}
+
+.companioninfo{
+	min-height:100%;
+	position : relative;
+	padding-bottom : 200px;
+}
+.title{
+	margin-top: 100px;
+	padding-bottom:10px;
+}
+#input_img{                  /* 프로필 이미지 추가 버튼 */
+	border:1px solid #ccc; 
+	border-radius: 5px; 
+	padding:5px;
+	text-align:center;
+}
+
+
+.rounded-image {            /* 사진파일 동그랗게 편집 */
+    border-radius: 50%;
+    overflow: hidden;
+    border:1px solid black; 
+  }
+
+#writedlist{                  /* 동행신청정보 탭 */
+	border: 1px solid #ccc;
+	flex: 1;
+	padding: 10px;
+	
+}
+.btn-default2{
+	width: 49%;
+}
+#cominfoBtn_G{
+	background: #2C3C5B;
+	color: white;
+}
+#companioninfo_t, #msg2{
+	display: none;
+}
+#endBtn{
+	padding: 1px 3px 1px 3px;
+}
+a{
+	text-decoration: none;
+}
+.textDiv{
+	margin-top: 30px;
+}
+
+.wrapper {
+	display: flex; /* Add flex display to the wrapper */
+}
+
+#tabs {
+	width: 200px; /* Adjust the width as per your preference */
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#tabs li {
+	margin: 0;
+	padding: 0;
+}
+
+#tabs li a {
+	display: block;
+	padding: 10px;
+	border-bottom: 2px solid #fff;
+	text-align: center;
+	color: #000;
+	text-decoration: none;
+	z-index: 999;
+}
+
+#tabs li a.current {
+	background: rgb(192, 228, 255);
+	color: white;
+	
+}
+
+.tab-section {
+	flex: 1;
+	padding: 10px;
+	border: 2px solid #ccc;
+	margin-bottom: 50px; 
+	background:white;
+	align: center;
+}
+
+.sidebar {
+	width: 220px;
+	height: auto;            /* 사이드바 세로 박스 크기 */
+	margin-bottom: 50px;            /* 하단 간격 */
+	padding: 10px;
+	border: 2px solid #ccc;
+	border-radius: 10px;			
+}
+
+.content {
+	flex: 1;
+	padding: 10px;
+	height: 100%; 
+	overflow-y: auto; 
+	position: relative; 
+}
+	#companioninfo_g td {
+       padding: 5px; /* 셀의 내부 여백 조정 */
+   }
+   
+   /* --- */
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+}
+
+.info table {
+  margin: 0 auto;
+}
+
+.info input[type="text"] {
+  margin-top:5px;
+  text-align: center; 
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  height: 25px;
+}
+.info input[type="password"] {
+  margin-top:5px;
+  text-align: center; 
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  height: 25px;
+}
+
+#btn {
+  text-align: center;
+  margin-top: 20px;
+}
+input[type="file"]{
+	margin-bottom: 15px;
 }

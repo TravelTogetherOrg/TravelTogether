@@ -2,10 +2,8 @@ package com.traveltogether.biz.member;
 
 
 
-import java.sql.Timestamp;
 import java.sql.Date;
-
-
+import java.sql.Timestamp;
 
 public class MemberVO {
 	
@@ -17,7 +15,15 @@ public class MemberVO {
 	private String member_gender;
 	private Date member_birthday;
 	private Timestamp member_create_date;
-	private String member_profile_image;
+	private String member_profile_url;
+	
+	private String festival_name;
+	private String board_title;
+	private String board_start_date;
+	private String board_end_date;
+	private int board_total_people;
+	private Timestamp board_write_date;
+
 	
 	public String getMember_id() {
 		return member_id;
@@ -49,7 +55,6 @@ public class MemberVO {
 	public void setMember_gender(String member_gender) {
 		this.member_gender = member_gender;
 	}
-	
 	public Date getMember_birthday() {
 		return member_birthday;
 	}
@@ -62,10 +67,50 @@ public class MemberVO {
 	public void setMember_create_date(Timestamp member_create_date) {
 		this.member_create_date = member_create_date;
 	}
-	public String getMember_profile_image() {
-		return member_profile_image;
+	public String getMember_profile_url() {
+		return member_profile_url;
 	}
-	public void setMember_profile_image(String member_profile_image) {
-		this.member_profile_image = member_profile_image;
+	public void setMember_profile_url(String member_profile_url) {
+		this.member_profile_url = member_profile_url;
 	}
+	
+	
+
+	public String getFestival_name() {
+		return festival_name;
+	}
+	public void setFestival_name(String festival_name) {
+		this.festival_name = festival_name;
+	}
+	public String getBoard_title() {
+		return board_title;
+	}
+	public void setBoard_title(String board_title) {
+		this.board_title = board_title;
+	}
+	public String getBoard_start_date() {
+		return board_start_date;
+	}
+	public void setBoard_start_date(String board_start_date) {
+		this.board_start_date = board_start_date;
+	}
+	public String getBoard_end_date() {
+		return board_end_date;
+	}
+	public void setBoard_end_date(String board_end_date) {
+		this.board_end_date = board_end_date;
+	}
+	public int getBoard_total_people() {
+		return board_total_people;
+	}
+	public void setBoard_total_people(int board_total_people) {
+		this.board_total_people = board_total_people;
+	}
+	public Timestamp getBoard_write_date() {
+		return board_write_date;
+	}
+	public void setBoard_write_date(Timestamp board_write_date) {
+		this.board_write_date = board_write_date;
+	}
+	
 }

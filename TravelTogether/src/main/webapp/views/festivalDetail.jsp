@@ -45,6 +45,12 @@
 
 
 
+	/* 좋아요 구현관한 사항 */
+	.btn-like {
+	  background-color: rgb(192, 228, 255);
+	  color: white;
+	}
+
 
 /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
 /* 슬라이더 관한 사항 */
@@ -153,6 +159,7 @@
 
     </style>
   
+  <!-- 카카오 api에 관한것 -->
   <style>
     .overlay_info {border-radius: 6px; margin-bottom: 12px; float:left;position: relative; border: 1px solid #ccc; border-bottom: 2px solid #ddd;background-color:#fff;}
     .overlay_info:nth-of-type(n) {border:0; box-shadow: 0px 1px 2px #888;}
@@ -177,17 +184,23 @@
 
     <br>
     <div class="container text-center my-3">
-      <p class="text-start">
-        <button type="button" class="btn btn-outline-primary" style="font-family: 'SUITE-Regular', sans-serif;">
-          <i class="bi bi-heart-fill text-primary" ></i> 좋아요 <b>100</b>
-        </button>
+      <p class="text-start">  
+		<button type="button" class="btn btn-outline-primary"
+		    style="font-family: 'SUITE-Regular', sans-serif;
+		    <c:if test="${isLiked}">
+		        background-color: rgb(192, 228, 255);
+		    </c:if>"
+		    onclick="checkSessionAndLike(event)"
+		    id="likeButton">
+		    <i class="bi bi-heart-fill text-primary"></i> 좋아요 : <span id="likeCount">${festivalCount}</span>
+		</button>
         &nbsp;&nbsp;
 <!--         <button type="button" class="btn btn-outline-primary" style="font-family: 'SUITE-Regular', sans-serif;">
           <i class="bi bi-bookmark-plus text-primary"></i> 찜하기 <b>200</b>
         </button> -->
         <button type="button" class="btn btn-lg btn-outline-primary"  
                 style="font-family: 'SUITE-Regular', sans-serif;"
-                onclick="location.href='views/boardList.jsp'">
+                onclick="location.href='boardList.do'">
           <i class="bi bi-chat-right-dots text-primary"></i> 동행자구하기
         </button>
       </p>
@@ -395,39 +408,31 @@
     
 
 
-
-
-    <!-- 댓글 목록 -->
-    <!-- 댓글 입력 폼 -->
-    <!-- <div class="container py-4" style="text-align: start;">
-      <h1>댓글</h1>
-
-      
-
-
-      <div id="commentList"></div>
-
-
-      
-      <form id="commentForm" class="mb-4" action="">
-        <div class="mb-3">
-          <label for="name" class="form-label">이름</label>
-          <input type="text" class="form-control" id="name" required>
-        </div>
-        <div class="mb-3">
-          <label for="comment" class="form-label">댓글</label>
-          <textarea class="form-control" id="comment" rows="4" placeholder="댓글을 작성해 주세요." required></textarea>
-        </div>
-        <button type="submit" class="btn btn-outline-primary">댓글 작성</button>
-      </form>
-  
-      
-    </div>
-     -->
-
 </main>
 	<%@ include file="footer.jsp" %>
 
+
+
+
+
+<!-- 좋아요 눌렀을때 세션값이 있는경우랑 없는경우-->
+<script>
+    var sessionUserId = "${sessionScope.userId}";
+
+    function checkSessionAndLike(event) {
+        if (sessionUserId) {
+            location.href='festivalLike.do?festival_name=${festival.festival_name}&member_id=' + sessionUserId;
+        } else {
+            alert("로그인 후 이용해주세요.");
+        }
+        event.stopPropagation();
+    }
+</script>
+
+
+
+
+<!-- 좋아요 갯수 -->
 
 
 

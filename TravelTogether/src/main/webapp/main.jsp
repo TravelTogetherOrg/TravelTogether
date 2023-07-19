@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" session="true"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+   	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
    <c:set var="context" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -22,9 +23,12 @@
       	<%@ include file="./views/header.jsp" %>
       
       <div class="chat-icon">
+      <a href="/ChatRoomList.do">
         <ul class="chat-icon-inner">
           <li><i class="fa-solid fa-comment-dots"></i></li>
         </ul>
+       </a>
+       </div>
         <!-- <div class="chat-box-container">
           <div>
             에오오
@@ -56,29 +60,29 @@
               <div class="swiper-slide">
                 <div class="swiper-slide-container">
                   <em>오감만족</em>
-                  <p> 보기만 해도 시원한<br /> 여수 여행 🏄 </p>
-                  <a>자세히 보기</a>
+                  <p> 보기만 해도 시원한<br /> 목포 여행 🏄 </p>
+                  <a href="getFestival.do?festival_name=2023%20목포해상W쇼">자세히 보기</a>
                 </div>
               </div>
               <div class="swiper-slide">
                 <div class="swiper-slide-container">
                   <em>여름 꽃 여행</em>
                   <p>몽글몽글 피어난 <br />전국 수국 명소 💐</p>
-                  <a>자세히 보기</a>
+                  <a href="getFestival.do?festival_name=휴애리%20여름%20수국축제">자세히 보기</a>
                 </div>
               </div>
               <div class="swiper-slide">
                 <div class="swiper-slide-container">
                   <em>노을 명소</em>
-                  <p> 저녁에 즐기는 <br />  알록달록 인천 명소🌆 </p>
-                  <a>자세히 보기</a>
+                  <p> 저녁에 즐기는 <br />  알록달록 영덕 명소🌆 </p>
+                  <a href="getFestival.do?festival_name=영덕문화재%20야행">자세히 보기</a>
                 </div>
               </div>
               <div class="swiper-slide">
                 <div class="swiper-slide-container">
                   <em>가족여행</em>
-                  <p> 낭만이 있는 그곳,<br /> 남원으로 떠나요🌈</p>
-                  <a>자세히 보기</a>
+                  <p> 낭만이 있는 그곳,<br /> 강릉으로 떠나요🌈</p>
+                  <a href="getFestival.do?festival_name=강릉문화재야행">자세히 보기</a>
                 </div>
               </div>
             </div>
@@ -132,57 +136,64 @@
           </ul>
         </div>
       </div>
+      
+      
+      
+      
       <!-- ---------------------------main-bottom-grid-------------------------------- -->
       <div class="main-bottom-section">
-        <div id="bottom-grid">
+      
+<%--         <div id="bottom-grid" class="bottom-grid1">  
           <div class="grid">
-            <div class="grid-img" style="background-image:url('${context}/resources/image/main/grid_info_1.png');"></div>
+           <c:set var="imagePath" value="${context}/resources/image/festival/구팔일 올데이 페스티벌/구팔일 올데이 페스티벌_1_공공3유형" />      
+            <div class="grid-img" onclick="location.href='getFestival.do?festival_name=구팔일 올데이 페스티벌'" style="background-image:url('${imagePath}.png'), url('${imagePath}.jpg');"></div>
               <p class="grid-text-p">구팔일 올데이 페스티벌</p>
               <span class="grid-text-span">제주도 제주시</span>
-            </div>
-          <div class="grid">
-            <div class="grid-img" style="background-image:url('${context}/resources/image/main/grid_info_2.png');" background-position: 50%;"></div>
-              <p class="grid-text-p">대한민국 독서대전</p>
-              <span class="grid-text-span">경기도 고양시</span>
-            </div>
-          <div class="grid">
-            <div class="grid-img" style="background-image:url('${context}/resources/image/main/grid_info_3.jpg');"></div>
-              <p class="grid-text-p">부천국제 만화축제</p>
-              <span class="grid-text-span">경기도 부천시</span>
-            </div>
-          <div class="grid">
-            <div class="grid-img" style="background-image:url('${context}/resources/image/main/grid_info_4.jpg');" background-position: 50%;"></div>
-              <p class="grid-text-p">서울 프린지 페스티벌</p>
-              <span class="grid-text-span">서울 마포구</span>
-            </div>
-          <div class="grid">
-            <div class="grid-img" style="background-image:url('${context}/resources/image/main/grid_info_5.png');" background-position: 20%;"></div>
-              <p class="grid-text-p">시흥 거북섬 해양축제</p>
-              <span class="grid-text-span">경기도 시흥시</span>
-            </div>
-          <div class="grid">
-            <div class="grid-img" style="background-image:url('${context}/resources/image/main/grid_info_6.jpg');"></div>
-              <p class="grid-text-p">이월드 퍼플 아일랜드</p>
-              <span class="grid-text-span">대구 달서구</span>
-            </div>
-          <div class="grid">
-            <div class="grid-img" style="background-image:url('${context}/resources/image/main/grid_info_7.jpg');"></div>
-              <p class="grid-text-p">광주 추억의 충장축제</p>
-              <span class="grid-text-span">광주 동구</span>
-            </div>
-          <div class="grid">
-            <div class="grid-img" style="background-image:url('resources/image/main/grid_info_1.png');"></div>
-              <p class="grid-text-p">인천개항장 문화재야행</p>
-              <span class="grid-text-span">인천 중구</span>
-            </div>
-          </div>
-        </div>
+         </div> --%>
+         <div id="bottom-grid" class="bottom-grid1" >
+	         <c:forEach items="${festivalRandomList}" var="festivalrandom">   
+	          <div class="grid">
+	          	<c:set var="imagePath" value="${context}/resources/image/festival/${festivalrandom.festival_name}/${festivalrandom.festival_name}_1_공공3유형" />
+	            <div class="grid-img" onclick="location.href='getFestival.do?festival_name=${festivalrandom.festival_name}'" style="background-image:url('${imagePath}.png'), url('${imagePath}.jpg');"></div>
+	              <p class="grid-text-p">${festivalrandom.festival_name}</p>
+	              	<c:set var="raomdomfestival" value="${fn:split(festivalrandom.festival_address, ' ')}" />
+			          <span class="grid-text-span">${raomdomfestival[0]} ${raomdomfestival[1]}</span>
+	            </div>
+			</c:forEach>
+		</div>
+        
+        
+        
+        
+        
+        
+        <!-- TT 추천 -->
+        
+	        <div id="bottom-grid" class="bottom-grid2" style="display: none;">
+	          <c:forEach items="${festivalLikeList}" var="festivallike">
+		          <div class="grid">
+		           <c:set var="imagePath" value="${context}/resources/image/festival/${festivallike.festival_name}/${festivallike.festival_name}_1_공공3유형" />
+		            <div class="grid-img" onclick="location.href='getFestival.do?festival_name=${festivallike.festival_name}'" style="background-image:url('${imagePath}.png'), url('${imagePath}.jpg');"></div>
+		              <p class="grid-text-p">${festivallike.festival_name}</p>
+		              	<c:set var="addressArray" value="${fn:split(festivallike.festival_address, ' ')}" />
+		              <span class="grid-text-span">${addressArray[0]} ${addressArray[1]}</span>
+		          </div>
+	          </c:forEach> 
+	        </div>
+        
+        
+        
+        
       	<%@ include file="./views/footer.jsp" %>
       </div>
       
  
+ 
+ 
+ 
+ 
   <!-- ---------------------------script-------------------------------- -->
-  <script>
+<!--   <script>
 
 $(document).ready(function(){
 	// 퀵배너 스크롤
@@ -225,7 +236,8 @@ changeContent(images_2, p_2, span_2);
 });
 function changeContent(images, texts, spans) {
   for (var i = 0; i < gridImages.length; i++) {
-	     gridImages[i].style.backgroundImage = `url(${images[i]})`;
+	  gridImages[i].style.backgroundImage = `url(${context}${images[i]})`;
+	    /*  gridImages[i].style.backgroundImage = `url(${images[i]})`; */
   /*   gridImages[i].style.backgroundImage = `url(context+`${images[i]})`; */
   /*   gridImages[i].style.backgroundImage = `url("${context}"+"${images[i]}")`; */
     gridP[i].textContent = texts[i];
@@ -258,7 +270,11 @@ function changeContent(images, texts, spans) {
         var iElement = liElement.querySelector('i');
         iElement.style.animation = '';});
     });
-  </script>
+  </script> -->
+  
+  
+  
+  
   <!-- ---------------------------swiper js-------------------------------- -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script>
@@ -320,5 +336,67 @@ function changeContent(images, texts, spans) {
     galleryTop.controller.control = galleryThumbs;
     galleryThumbs.controller.control = galleryTop;
   </script>
+  
+  
+  
+  
+  
+  
+
+
+
+  
+  
+  <!-- 따로 만든것!!! 여기는 제가 편집했습니다. -->
+  <!-- button_1,2 관한것 -->
+<script>
+  const button1 = document.getElementById('button_1');
+  const button2 = document.getElementById('button_2');
+  const bottomGrid1 = document.querySelector('.bottom-grid1');
+  const bottomGrid2 = document.querySelector('.bottom-grid2');
+
+  button1.addEventListener('click', function () {
+    bottomGrid1.style.display = 'grid';
+    bottomGrid2.style.display = 'none';
+  });
+
+  button2.addEventListener('click', function () {
+    bottomGrid1.style.display = 'none';
+    bottomGrid2.style.display = 'grid';
+  });
+  
+  var firstButton = document.getElementsByClassName('banner-inner-button')[0];
+  var secondButton = document.getElementsByClassName('banner-inner-button')[1];
+  secondButton.addEventListener('click', function() {   // 배경색 변경
+    firstButton.style.backgroundColor = 'white';
+    firstButton.style.color ='#767676';
+    firstButton.style.fontweight='800';
+    secondButton.style.backgroundColor = '#567ff2';
+    secondButton.style.color ='white';});
+  firstButton.addEventListener('click', function() {  // 배경색 원래대로 되돌리기
+    firstButton.style.backgroundColor = '#567ff2';
+    firstButton.style.color ='white';
+    secondButton.style.backgroundColor = 'white';
+    secondButton.style.color ='#767676';
+  });
+
+  var liElements = document.querySelectorAll('#banner-bottom-inner .banner-inner-button');
+  liElements.forEach(function(liElement) {
+    liElement.addEventListener('mouseenter', function() { // 마우스 호버 시 i 요소에 스타일 추가
+      var iElement = liElement.querySelector('i');
+      iElement.style.animation = 'fa-beat-fade 1s infinite';});
+    liElement.addEventListener('mouseleave', function() {  // 마우스 이탈 시 i 요소의 스타일 제거
+      var iElement = liElement.querySelector('i');
+      iElement.style.animation = '';});
+  });
+  
+  
+  
+ 
+  
+</script>
+  
+  
+  
   </body>
 </html>

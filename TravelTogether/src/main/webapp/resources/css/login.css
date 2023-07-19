@@ -76,7 +76,7 @@ input {
 	height: 50px;
 	background-color: white;
 	font-weight: bolder;
-	border: 3px solid #0AC5A8;
+	border: 3px solid rgb(192, 228, 255);
 	border-radius: 22px;
 	box-sizing: border-box;
 	text-align: center;
@@ -88,18 +88,18 @@ input {
 	width: 150px;
 	height: 35px;
 	color: white;
-	background-color: #0AC5A8;
+	background-color: rgb(192, 228, 255);
 	border-radius: 25px;
 	box-sizing: border-box;
 	text-align: center;
 }
 
 .login_container .middle_input:active{
-	background-color: #0AC5A8B2;
+	background-color: rgb(192, 228, 255);
 }
 
 .login_container .middle_input:hover{
-	background-color: #0AC5A8B2;
+	background-color: rgb(192, 228, 255);
 }
 
 /* 회원가입,아이디찾기 버튼 */
@@ -107,18 +107,18 @@ input {
 	width: 150px;
 	height: 35px;
 	color: white;
-	background-color: #0AC5A8;
+	background-color: rgb(192, 228, 255);
 	border-radius: 25px;
 	box-sizing: border-box;
 	text-align: center;
 }
 
 .login_container .right_input:active{
-	background-color: #0AC5A8B2;
+	background-color: rgb(192, 228, 255);
 }
 
 .login_container .right_input:hover{
-	background-color: #0AC5A8B2;
+	background-color: rgb(192, 228, 255);
 }
 
 /* 아이디 비밀번호 , 4버튼 테이블 */
@@ -132,7 +132,6 @@ input {
 	font-weight: bolder;
 	border : 1px solid lightgray;
 	background-color : #F6F6F6;
-	
 	padding :35px;
 }
 
@@ -141,7 +140,7 @@ input {
 	display: flex;
     justify-content: center;
     align-items: center; 
-   	
+
 }
 
 /* 회원가입,아이디찾기 */
@@ -149,10 +148,4 @@ input {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	
 }
-#sns{
-	padding-right: 27px;
-}
-
-

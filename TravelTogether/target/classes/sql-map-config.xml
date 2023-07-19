@@ -19,12 +19,14 @@
 		<typeAlias alias="boardLimit" type="com.traveltogether.biz.board.BoardLimitVO"/>
 		<typeAlias alias="boardImage" type="com.traveltogether.biz.board.BoardImageVO"/>
 		<typeAlias alias="comment" type="com.traveltogether.biz.board.CommentVO"/>
+		<typeAlias alias="chatList" type="com.traveltogether.biz.chat.ChatListDTO"/>
 	</typeAliases>
 	
 	 <mappers>
 	 	<mapper resource="config/mappings/member-mapping.xml"/>
 	    <mapper resource="config/mappings/festival-mapping.xml"/><!--  xml붙여야하나? -->	
 	    <mapper resource="config/mappings/board-mapping.xml"/>
+		<mapper resource="config/mappings/chatList-mapping.xml"/> 
 	 </mappers>
 	 
 </configuration>

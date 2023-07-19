@@ -1,13 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="./css/memberAgreement.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/memberAgreement.css">
 <title>약관</title>
 <style>
 @charset "UTF-8";
+	@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 * {
   box-sizing: border-box;
@@ -21,7 +29,7 @@ body {
 body {
   display: flex;
   margin: 0;
-  background-color: #f5f6f7;
+  background-color:rgb(192, 228, 255);
 
 }
 
@@ -82,7 +90,7 @@ label.required::after {
   font-size: 13px;
   font-weight: 400;
   line-height: 24px;
-  color: #0086ff;
+  color: orange;
   content: "(필수)";
 }
 
@@ -133,7 +141,7 @@ label.required::after {
 </head>
 <body>
  <div class="wrap">
-      <div class="logo"><h1>약관동의</h1></div>
+      <div class="logo"><h1 style="font-family:'GmarketSansMedium'">약관동의</h1></div>
       <div class="contents">
         <form action="/" method="POST" id="form__wrap">
           <div class="terms__check__all">
@@ -202,7 +210,7 @@ label.required::after {
                   id="allowPromotions"
                   value="allowPromotions"
                 />
-                <label for="allowPromotions">프로모션 정보 수신 동의(선택)</label>
+                <label for="allowPromotions">프로모션 정보 수신 동의 (선택)</label>
               </div>
               <div class="terms__content">
                 Travel Together에서 제공하는 이벤트/혜택 등 다양한 정보를 휴대전화(Travel Together앱
