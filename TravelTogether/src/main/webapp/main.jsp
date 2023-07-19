@@ -22,18 +22,15 @@
       
       	<%@ include file="./views/header.jsp" %>
       
-      <div class="chat-icon">
-      <a href="/ChatRoomList.do">
+      <div class="chat-icon" onclick="location.href='ChatRoomList.do'">
         <ul class="chat-icon-inner">
           <li><i class="fa-solid fa-comment-dots"></i></li>
         </ul>
-       </a>
-       </div>
         <!-- <div class="chat-box-container">
           <div>
-            에오오
-        </div>
-      </div> -->
+            에오오 
+        </div>-->
+      </div> 
       <!-- ---------------------------image swiper----------------------------- -->
       <div id="main-top-section" style="background-color: rgb(192, 228, 255)">
         <img src="${context}/resources/image/main/main_top_symbol.png" id="main-top-img" />
@@ -100,6 +97,7 @@
         </div>  
       </div>
     
+
 
 <!-- ---------------------------middle section-------------------------------- -->
 
@@ -187,11 +185,15 @@
       	<%@ include file="./views/footer.jsp" %>
       </div>
       
+ </div>
  
  
  
- <script >
- $(document).ready(function(){
+ 
+  <!-- ---------------------------script-------------------------------- -->
+   <script>
+  
+  $(document).ready(function(){
 		// 퀵배너 스크롤
 		function updateChatIcon() {
 			var quickPos = $('.chat-icon').offset().top;
@@ -207,28 +209,13 @@
 		$(window).scroll(function(){
 			updateChatIcon();
 		});
-	});</script>
- 
-  <!-- ---------------------------script-------------------------------- -->
+	});
+  </script>
+  
+  
 <!--   <script>
 
-$(document).ready(function(){
-	// 퀵배너 스크롤
-	function updateChatIcon() {
-		var quickPos = $('.chat-icon').offset().top;
-		var winPos = $(window).scrollTop();
-		if( winPos > quickPos ) $('.chat-icon .chat-icon-inner').addClass('fixed');
-		else $('.chat-icon .chat-icon-inner').removeClass('fixed');
-	}
 
-	// 초기 로드 시 아이콘 상태 업데이트
-	updateChatIcon();
-
-	// 스크롤 이벤트 핸들러 등록
-	$(window).scroll(function(){
-		updateChatIcon();
-	});
-});
 var context = "${context}";
 
 var gridImages = document.querySelectorAll('.grid-img');
@@ -293,8 +280,7 @@ function changeContent(images, texts, spans) {
   
   
   <!-- ---------------------------swiper js-------------------------------- -->
-<!--  
-  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script>
   function handleClick() {
       document.querySelector('#chat_iframe').style.display = 'block';
@@ -353,9 +339,9 @@ function changeContent(images, texts, spans) {
     galleryTop.controller.control = galleryThumbs;
     galleryTop.controller.control = galleryThumbs;
     galleryThumbs.controller.control = galleryTop;
-  </script>
+  </script> 
   
-  -->
+  
   
   
   
