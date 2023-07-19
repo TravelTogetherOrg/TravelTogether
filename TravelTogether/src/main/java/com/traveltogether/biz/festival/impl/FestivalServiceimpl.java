@@ -23,13 +23,56 @@ public class FestivalServiceimpl {
 	 * 
 	 */
 	
+<<<<<<< HEAD
+=======
+	public void festival_Like(FestivalVO vo) {
+		festivalDAO.festival_Like(vo);
+	}
+	
+	public void festival_Delete_Like(FestivalVO vo) {
+		festivalDAO.festival_Delete_Like(vo);
+	}
+	
+	public boolean isFestivalLiked(FestivalVO vo) {
+	    FestivalVO result = festivalDAO.isFestival_Liked(vo);
+	    return result != null;
+	}
+	
+	
+	public int getLikeCount(FestivalVO vo) {
+		return festivalDAO.getFestivalLikeCount(vo);
+	}
+	
+	
+>>>>>>> KHS
 	public FestivalVO getFestival(FestivalVO vo) { 
 		return festivalDAO.getFestival(vo); 
 		}
 	
 	public List<FestivalVO> getFestivalList_Month(FestivalVO vo){
+<<<<<<< HEAD
 		return festivalDAO.getFestivalList_Month(vo);
 	}
 	
+=======
+		if (vo.getFestival_address() == null || vo.getFestival_address().isEmpty()) {
+			return festivalDAO.getFestivalList_Month_All(vo);
+		}
+		
+		return festivalDAO.getFestivalList_Month(vo);
+	}
+	
+	public List<FestivalVO> getFestivalLikeList(FestivalVO vo){
+		return festivalDAO.getFestivalLikeList(vo);
+	}
+	
+	public List<FestivalVO> getFestivalRandomList(FestivalVO vo){
+		return festivalDAO.getFestivalRandomList(vo);
+	}
+	
+	
+	
+	
+>>>>>>> KHS
 
 }

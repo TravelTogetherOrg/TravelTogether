@@ -18,6 +18,12 @@
 	-->
 	<!-- 예외처리 -->
 	<mvc:annotation-driven/>
+<<<<<<< HEAD
 
  	 
+=======
+	
+	
+		 
+>>>>>>> KHS
 </beans>

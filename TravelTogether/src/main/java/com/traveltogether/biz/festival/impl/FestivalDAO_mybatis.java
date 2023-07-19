@@ -8,6 +8,10 @@ import org.springframework.stereotype.Repository;
 
 
 import com.traveltogether.biz.festival.FestivalVO;
+<<<<<<< HEAD
+=======
+import com.traveltogether.biz.member.MemberVO;
+>>>>>>> KHS
 
 
 @Repository
@@ -32,8 +36,55 @@ public class FestivalDAO_mybatis {
 	}
 	
 	//7월달 리스트 조회
+<<<<<<< HEAD
 	public List<FestivalVO> getFestivalList_Month(FestivalVO vo){
 		return mybatis.selectList("FestivalDAO.getFestivalList_Month",vo);
 	}
+=======
+	public List<FestivalVO> getFestivalList_Month_All(FestivalVO vo) {	
+		return mybatis.selectList("FestivalDAO.getFestivalList_Month_All",vo);
+	}
+	
+	// 7월달 상세주소 조회
+	public List<FestivalVO> getFestivalList_Month(FestivalVO vo){
+		
+		return mybatis.selectList("FestivalDAO.getFestivalList_Month",vo);
+	}
+	
+    // 메인에 보여질 좋아요 수에 따른 축제들
+    public List<FestivalVO> getFestivalLikeList(FestivalVO vo){
+    	
+    	return mybatis.selectList("FestivalDAO.mainFestivalLikeCount",vo);
+    }
+    
+    //
+    public List<FestivalVO> getFestivalRandomList(FestivalVO vo){
+    	return mybatis.selectList("FestivalDAO.getFestivalRandomList", vo);
+    }
+	
+	// 7월달 해당지역 리스트만 조회
+	
+	// 좋아요 구현
+	public void festival_Like(FestivalVO vo) {
+		mybatis.insert("FestivalDAO.festival_Like", vo);
+	}
+	
+	public void festival_Delete_Like(FestivalVO vo) {
+		mybatis.delete("FestivalDAO.festival_Delete_Like", vo);
+	}
+	
+	// 좋아요 했는지 안했는지 확인
+	public FestivalVO isFestival_Liked(FestivalVO vo) {
+		return mybatis.selectOne("FestivalDAO.isFestival_Liked", vo);
+		
+	}
+	
+    // 특정 페스티벌의 좋아요 수 가져오기
+    public int getFestivalLikeCount(FestivalVO vo) {
+        return mybatis.selectOne("FestivalDAO.getFestivalLikeCount", vo);
+    }
+    
+
+>>>>>>> KHS
 
 }

@@ -45,6 +45,15 @@
 
 
 
+<<<<<<< HEAD
+=======
+	/* 좋아요 구현관한 사항 */
+	.btn-like {
+	  background-color: rgb(192, 228, 255);
+	  color: white;
+	}
+
+>>>>>>> KHS
 
 /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
 /* 슬라이더 관한 사항 */
@@ -153,6 +162,10 @@
 
     </style>
   
+<<<<<<< HEAD
+=======
+  <!-- 카카오 api에 관한것 -->
+>>>>>>> KHS
   <style>
     .overlay_info {border-radius: 6px; margin-bottom: 12px; float:left;position: relative; border: 1px solid #ccc; border-bottom: 2px solid #ddd;background-color:#fff;}
     .overlay_info:nth-of-type(n) {border:0; box-shadow: 0px 1px 2px #888;}
@@ -177,17 +190,34 @@
 
     <br>
     <div class="container text-center my-3">
+<<<<<<< HEAD
       <p class="text-start">
         <button type="button" class="btn btn-outline-primary" style="font-family: 'SUITE-Regular', sans-serif;">
           <i class="bi bi-heart-fill text-primary" ></i> 좋아요 <b>100</b>
         </button>
+=======
+      <p class="text-start">  
+		<button type="button" class="btn btn-outline-primary"
+		    style="font-family: 'SUITE-Regular', sans-serif;
+		    <c:if test="${isLiked}">
+		        background-color: rgb(192, 228, 255);
+		    </c:if>"
+		    onclick="checkSessionAndLike(event)"
+		    id="likeButton">
+		    <i class="bi bi-heart-fill text-primary"></i> 좋아요 : <span id="likeCount">${festivalCount}</span>
+		</button>
+>>>>>>> KHS
         &nbsp;&nbsp;
 <!--         <button type="button" class="btn btn-outline-primary" style="font-family: 'SUITE-Regular', sans-serif;">
           <i class="bi bi-bookmark-plus text-primary"></i> 찜하기 <b>200</b>
         </button> -->
         <button type="button" class="btn btn-lg btn-outline-primary"  
                 style="font-family: 'SUITE-Regular', sans-serif;"
+<<<<<<< HEAD
                 onclick="location.href='views/boardList.jsp'">
+=======
+                onclick="location.href='boardList.do'">
+>>>>>>> KHS
           <i class="bi bi-chat-right-dots text-primary"></i> 동행자구하기
         </button>
       </p>
@@ -395,6 +425,7 @@
     
 
 
+<<<<<<< HEAD
 
 
     <!-- 댓글 목록 -->
@@ -425,6 +456,8 @@
     </div>
      -->
 
+=======
+>>>>>>> KHS
 </main>
 	<%@ include file="footer.jsp" %>
 
@@ -432,6 +465,31 @@
 
 
 
+<<<<<<< HEAD
+=======
+<!-- 좋아요 눌렀을때 세션값이 있는경우랑 없는경우-->
+<script>
+    var sessionUserId = "${sessionScope.userId}";
+
+    function checkSessionAndLike(event) {
+        if (sessionUserId) {
+            location.href='festivalLike.do?festival_name=${festival.festival_name}&member_id=' + sessionUserId;
+        } else {
+            alert("로그인 후 이용해주세요.");
+        }
+        event.stopPropagation();
+    }
+</script>
+
+
+
+
+<!-- 좋아요 갯수 -->
+
+
+
+
+>>>>>>> KHS
 <!-- 지역 선택 스크립트 -->
 <script>
   function changeRegion(region) {
