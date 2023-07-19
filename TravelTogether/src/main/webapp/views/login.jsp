@@ -75,7 +75,7 @@
 		               <div class="login_container">
 						<div class="login_item login_item1">
 							<div class="navbar__logo">
-					        	 <a href="${path}/main.jsp" ondragstart='return false'>🚆<span>T</span>ravel <span>T</span>ogether</a>
+					        	 <a href="${path}/main.do" ondragstart='return false'>🚆<span>T</span>ravel <span>T</span>ogether</a>
 					       </div>
 						</div>
 						<div class="login_item login_item2">
@@ -112,7 +112,7 @@
 												<input type="submit" value="로그인" class="middle_input">
 											</td>
 											<td>
-												<input value="회원가입" class="middle_input" style="color:rgb(192, 228, 255); background-color:white; border: 2px solid rgb(192, 228, 255);" onclick="window.location.href='memberAgreement.jsp'">
+												<input value="회원가입" class="middle_input" style="color:rgb(192, 228, 255); background-color:white; border: 2px solid rgb(192, 228, 255);" onclick="window.location.href='memberAgreement.do'">
 											</td>									
 										</tr>
 									</table>

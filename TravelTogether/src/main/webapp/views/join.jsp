@@ -110,7 +110,7 @@
 <body>
 	<div class="member">
         <div class="navbar__logo" align="center">
-       	 	<a href="${path}/main.jsp" ondragstart='return false'>🚆<span>T</span>ravel <span>T</span>ogether</a>
+       	 	<a href="${path}/main.do" ondragstart='return false'>🚆<span>T</span>ravel <span>T</span>ogether</a>
 		</div>
 		<div class="join" align="center">
        	 	<h4 style="font-family:'GmarketSansMedium'">회원가입</h4>

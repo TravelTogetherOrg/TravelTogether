@@ -31,17 +31,17 @@
        </ul>
         <ul class="navbar__icons">
            <c:if test="${empty sessionScope.userId and empty sessionScope.userNickname }"> 
-           		<li><a href="${path}/views/login.jsp"><i class="fa-solid fa-circle-user fa-xl"></i></a></li>
+           		<li><a href="${path}/login.do"><i class="fa-solid fa-circle-user fa-xl"></i></a></li>
            </c:if>
            <c:if test="${!empty sessionScope.userId and !empty sessionScope.userNickname and empty member.member_profile_url }"> 
            		<li><a href="${path}/getMember.do?member_id=${member.member_id}"><i class="fa-regular fa-circle-user fa-xl"></i></a></li>
            		<li><a href="#"><input type="text" name="user" value="${member.member_nickname}" readonly><span> 님</span></a></li>
-           		&nbsp;<li><a href="${path}/views/logout.do"><i class="fa-solid fa-right-from-bracket fa-lg"></i></a></li>
+           		&nbsp;<li><a href="${path}/logout.do"><i class="fa-solid fa-right-from-bracket fa-lg"></i></a></li>
            </c:if>
            <c:if test="${!empty sessionScope.userId and !empty sessionScope.userNickname and !empty member.member_profile_url}"> <!-- 로그인 시 --> 
            		<li><a href="${path}/getMember.do?member_id=${member.member_id}" ><img id="img" src="${path}${member.member_profile_url}" class="rounded-image" height="35" width="35"></a></li>
            		<li><a href="#"><input type="text" name="user" value="${member.member_nickname}" readonly><span> 님</span></a></li>
-           		&nbsp;<li><a href="${path}/views/logout.do"><i class="fa-solid fa-right-from-bracket fa-lg"></i></a></li>
+           		&nbsp;<li><a href="${path}/logout.do"><i class="fa-solid fa-right-from-bracket fa-lg"></i></a></li>
            </c:if>
        </ul>
        <a href="#" class="navbar__toggleBtn">
