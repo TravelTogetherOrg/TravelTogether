@@ -94,12 +94,9 @@
 
 <main>
 
-<<<<<<< HEAD
-=======
 
 	<!-- 올릴테니 잘 올라가는지 확인해보기 -->
 
->>>>>>> KHS
   <br>
   <!-- 상단 축제이름 -->
   <div class="container">
@@ -128,29 +125,6 @@
 
 
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-<<<<<<< HEAD
-          <li><a class="dropdown-item" href="#" onclick="changeRegion('전체')">전체</a></li>
-          <li><a class="dropdown-item" href="#" onclick="changeRegion('서울')">서울</a></li>
-          <li><a class="dropdown-item" href="#" onclick="changeRegion('경기도')">경기도</a></li>
-          <li><a class="dropdown-item" href="#" onclick="changeRegion('인천광역시')">인천광역시</a></li>
-          <li><a class="dropdown-item" href="#" onclick="changeRegion('강원도')">강원도</a></li>
-          <li><a class="dropdown-item" href="#" onclick="changeRegion('대전광역시')">대전광역시</a></li>
-          <li><a class="dropdown-item" href="#" onclick="changeRegion('충청북도')">충청북도</a></li>
-          <li><a class="dropdown-item" href="#" onclick="changeRegion('충청남도')">충청남도</a></li>
-          <li><a class="dropdown-item" href="#" onclick="changeRegion('세종특별시')">세종특별시</a></li>
-          <li><a class="dropdown-item" href="#" onclick="changeRegion('부산광역시')">부산광역시</a></li>
-          <li><a class="dropdown-item" href="#" onclick="changeRegion('울산광역시')">울산광역시</a></li>
-          <li><a class="dropdown-item" href="#" onclick="changeRegion('대구광역시')">경상북도</a></li>
-          <li><a class="dropdown-item" href="#" onclick="changeRegion('경상남도')">경상남도</a></li>
-          <li><a class="dropdown-item" href="#" onclick="changeRegion('전라북도')">전라북도</a></li>
-          <li><a class="dropdown-item" href="#" onclick="changeRegion('전라남도')">전라남도</a></li>
-          <li><a class="dropdown-item" href="#" onclick="changeRegion('광주광역시')">광주광역시</a></li>
-          <li><a class="dropdown-item" href="#" onclick="changeRegion('제주도')">제주도</a></li>
-          <!-- 나머지 항목들 -->
-        </ul>
-      </div>
-
-=======
           <li><a class="dropdown-item" href="getFestivalList_Month.do?#" onclick="changeRegion('전체')">전체</a></li>
           <li><a class="dropdown-item" href="getFestivalList_Month.do?festival_address=서울" onclick="changeRegion('서울')">서울</a></li>
           <li><a class="dropdown-item" href="getFestivalList_Month.do?festival_address=경기도" onclick="changeRegion('경기도')">경기도</a></li>
@@ -173,7 +147,6 @@
       </div>
 		<!-- 추가 -->
 		<input type="hidden" id="selectedRegion" name="selectedRegion" value="전체">
->>>>>>> KHS
 
       <br>
 
@@ -238,8 +211,6 @@
 
 <!-- 지역 선택 스크립트 -->
 <script>
-<<<<<<< HEAD
-=======
   // 페이지 로드 시 URL 파라미터를 기반으로 selectedRegion 값을 설정
   window.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -249,7 +220,6 @@
     }
   });
 
->>>>>>> KHS
   function changeRegion(region) {
     document.getElementById('selectedRegion').textContent = region;
   }
