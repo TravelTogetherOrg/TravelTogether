@@ -116,70 +116,45 @@
 					<table id="info_table">
 						<tr>
 							<td>
-<<<<<<< HEAD
-								<h5><font style="font-weight: bold;">아이디 : </font>&nbsp;&nbsp;</h5>
-=======
 								<h5><font style="font-weight: bold;">아이디<br><input type='text' name='member_id' value='${member.member_id}'size="40" readonly="readonly"></font>&nbsp;&nbsp;</h5>
->>>>>>> e689987211fd001db76f141ba8c138be3e35a4c4
 							</td>
 						</tr>
 						<tr>
 							<td>
-<<<<<<< HEAD
-								<h5><font style="font-weight: bold;">이름 : </font>&nbsp;&nbsp;</h5>
-=======
 								<h5><font style="font-weight: bold;">이름<br><input type='text' name='member_name' value='${member.member_name}'size="40" readonly="readonly"></font>&nbsp;&nbsp;</h5>
->>>>>>> e689987211fd001db76f141ba8c138be3e35a4c4
+
 							</td>
 						</tr>
 						<tr>
 							<td>
-<<<<<<< HEAD
-								<h5><font style="font-weight: bold;">생년월일 : </font>&nbsp;&nbsp;</h5>
-=======
 								<h5><font style="font-weight: bold;">별명<br><input type='text' name='member_nickname' value='${member.member_nickname}'size="40"> </font>&nbsp;&nbsp;</h5>
->>>>>>> e689987211fd001db76f141ba8c138be3e35a4c4
 							</td>
 						</tr>
 						<tr>
 							<td>
-<<<<<<< HEAD
-								<h5><font style="font-weight: bold;">성별 : </font>&nbsp;&nbsp;</h5>
-=======
 								<h5><font style="font-weight: bold;">비밀번호<br><input type='password' id="password" name='member_password' value='${member.member_password}'size="40" required="required"> </font>&nbsp;&nbsp;</h5>
->>>>>>> e689987211fd001db76f141ba8c138be3e35a4c4
 							</td>
 						</tr>
 						<tr>
 							<td>
-<<<<<<< HEAD
-								<h5><font style="font-weight: bold;">가입일 : </font>&nbsp;&nbsp;</h5>
-=======
 								<h5><font style="font-weight: bold;">비밀번호 확인<br><input type='password' id="password2" value='${member.member_password}'size="40" required="required"> </font>&nbsp;&nbsp;</h5>
->>>>>>> e689987211fd001db76f141ba8c138be3e35a4c4
+
 							</td>
 						</tr>
 						<tr>
 							<td>
-<<<<<<< HEAD
-								<h5><font style="font-weight: bold;">포인트 : </font>&nbsp;&nbsp;</h5>
-=======
 								<h5><font style="font-weight: bold;">생년월일<br><input type='text' name='member_birthday' value='${member.member_birthday}'size="40" readonly="readonly"></font>&nbsp;&nbsp;</h5>
->>>>>>> e689987211fd001db76f141ba8c138be3e35a4c4
 							</td>
 						</tr>
 						<tr>
 							<td>
-<<<<<<< HEAD
-								<h5><font style="font-weight: bold;">소개글 : </font>&nbsp;&nbsp;</h5>
-=======
 								<h5><font style="font-weight: bold;">성별 <br><input type='text' name='member_gender' value='${member.member_gender}'size="40" readonly="readonly"></font>&nbsp;&nbsp;</h5>
 							</td>
 						</tr>
 						<tr>
 							<td>
 								<h5><font style="font-weight: bold;">가입일<br><input type='text' name='member_create_date' value='${member.member_create_date}'size="40" readonly="readonly"></font>&nbsp;&nbsp;</h5>
->>>>>>> e689987211fd001db76f141ba8c138be3e35a4c4
+
 							</td>
 						</tr>
 					</table>
