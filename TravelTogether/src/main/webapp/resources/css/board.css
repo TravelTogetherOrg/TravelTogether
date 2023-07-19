@@ -56,7 +56,7 @@ select{
     -webkit-appearance: none;
     appearance: none;
 
-    width: 15.5em;
+    /* width: 15.5em; */
     padding: 0.5em;
 
     border: 0.15em solid rgb(192, 228, 255);
@@ -75,6 +75,13 @@ select{
 select::-ms-expand{ display: none; }
 select:focus{
     border-color: rgb(192, 228, 255);
+}
+
+#findRegion{
+	width: 7.5em;
+}
+#findFestivals{
+	width: 17em;
 }
 
 #boardWriteButton button{
@@ -141,7 +148,30 @@ select:focus{
 }
 .topInfo p{
     margin: 0;
+    display: -webkit-box;
+    overflow: hidden;
+	text-overflow: ellipsis;
+    overflow-wrap: break-word;
+    
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    
 }
+.memberInfo{
+	width: 74.72px
+}
+.festivalName{
+	width: 95.09px
+}
+/* .festivalName p{
+	display: -webkit-box;
+    overflow: hidden;
+	text-overflow: ellipsis;
+    overflow-wrap: break-word;
+    
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+} */
 .ageandgender{
     display: flex;
 }
@@ -282,7 +312,7 @@ body{
 .intro{
     width: unset;
     text-align: center;
-    margin-top: 3em;
+    margin-top: 80px;
 }
 .intro div{
     height: 21.3125em;
@@ -322,7 +352,7 @@ body{
     padding: 1.5em;
 }
 
-.selectFestival{
+#selectFestivalByRegion{
     margin-top: 2em;
     display: flex;
     flex-direction: row;
@@ -333,7 +363,7 @@ body{
     border: 0.1em solid black;
     border-radius: 0.5em;
 }
-.selectFestival div:first-child{
+#selectFestivalByRegion div:first-child{
     padding-right: 0.5em;
     border-right: 0.1em solid black;
 }
@@ -420,6 +450,7 @@ body{
     justify-content: center;
     user-select: none;
     border-radius: 0.5em;
+    background-size: cover;
 
     border: 0.1em solid black;
 }
@@ -467,7 +498,7 @@ body{
     margin-top: 5em;
 }
 .boardImageAndMap{
-    margin-top: 1em;
+    margin-top: 80px;/* 1em */
     position: relative;
     padding: 0;
     /*display: flex;
@@ -491,8 +522,10 @@ body{
 #boardMap{
     display: none;
     position: absolute;
+    height: 25em;
+    width: 100%;
     animation: fadeInUp 0.5s;
-    bottom: -0.1em;
+   bottom: 0em;
     left: 0;
     z-index: 50;
     padding: 0;
@@ -676,4 +709,12 @@ body{
 }
 .footer__github ul{
 	margin: 16px 0;
+}
+/* boardUpdate */
+#festivalByRegion{
+	font-size: 20px;
+}
+#festivalByRegion p:first-child {
+	margin-right: 5px;
+	font-weight:700;
 }

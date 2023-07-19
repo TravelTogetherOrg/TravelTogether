@@ -8,9 +8,10 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	<context:component-scan base-package="com.traveltogether.view"/>
-			 <context:component-scan base-package="com.traveltogether.biz.chat"/>
+	<context:component-scan base-package="com.traveltogether.biz.chat"/>
 
 
+	<!-- 파일 업로드 처리 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="1000000000"/>
 		<property name="maxInMemorySize" value="1000000000"></property>

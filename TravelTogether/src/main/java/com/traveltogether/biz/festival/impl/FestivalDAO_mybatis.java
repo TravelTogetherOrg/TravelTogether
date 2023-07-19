@@ -18,6 +18,7 @@ public class FestivalDAO_mybatis {
 	private SqlSessionTemplate mybatis;
 	
 	/*
+
 	 * //등록 public void insertFestival(FestivalVO vo) {
 	 * mybatis.insert("FestivalDAO.insertBoard",vo); } //수정 public void
 	 * updateFestival(FestivalVO vo) { mybatis.update("FestivalDAO.updateBoard",vo);
@@ -77,5 +78,9 @@ public class FestivalDAO_mybatis {
     }
     
 
+	/* 김초율 추가 */
+	public List<FestivalVO> getRegionFestivals(String region){
+		return mybatis.selectList("FestivalDAO.getRegionFestivals", region);
+	}
 
 }

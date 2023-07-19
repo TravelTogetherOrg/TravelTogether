@@ -53,7 +53,7 @@ public class FestivalServiceimpl {
 		
 		return festivalDAO.getFestivalList_Month(vo);
 	}
-	
+
 	public List<FestivalVO> getFestivalLikeList(FestivalVO vo){
 		return festivalDAO.getFestivalLikeList(vo);
 	}
@@ -62,8 +62,10 @@ public class FestivalServiceimpl {
 		return festivalDAO.getFestivalRandomList(vo);
 	}
 	
-	
-	
-	
+	/* 김초율 추가 */
+	public List<FestivalVO> getRegionFestivals(String region){
+		return festivalDAO.getRegionFestivals(region);
+	}
+
 
 }

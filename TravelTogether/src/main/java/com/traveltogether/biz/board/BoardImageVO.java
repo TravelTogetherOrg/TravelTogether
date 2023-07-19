@@ -1,14 +1,18 @@
 package com.traveltogether.biz.board;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="board_image")
+//@Entity
+//@Table(name="board_image")
 public class BoardImageVO {
 	
-	@Id
+	//@Id
 	private int board_number;
 	private String board_image_file;
 	private String board_image_file_path;
@@ -22,7 +26,8 @@ public class BoardImageVO {
 	public String getBoard_image_file() {
 		return board_image_file;
 	}
-	public void setBoard_image_file(String board_image_file) {
+	public void setBoard_image_file(String board_image_file) throws IOException {
+		//URLEncoder.encode(board_image_file,"utf-8")
 		this.board_image_file = board_image_file;
 	}
 	public String getBoard_image_file_path() {

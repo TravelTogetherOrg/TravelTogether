@@ -3,12 +3,15 @@ package com.traveltogether.view.festival;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -72,7 +75,7 @@ public class FestivalController {
 		model.addAttribute("festivalList", festivalService.getFestivalList_Month(vo));
 		return "views/festivalList.jsp";
 	}
-	
+
 	@RequestMapping("main.do")
 	public String main(FestivalVO vo, Model model){
 	
@@ -82,5 +85,14 @@ public class FestivalController {
 		return "main.jsp";
 	}
 	
+	/* 김초율 추가 */
+	@RequestMapping("/getRegionFestivals.do")
+	@ResponseBody
+	public Map<Object,Object> getRegionFestivals(@RequestBody String region) {
+		Map<Object,Object> map = new HashMap<Object, Object>();
+		map.put("festivals", festivalService.getRegionFestivals(region));
+		
+		return map;
+	}
 	
 }

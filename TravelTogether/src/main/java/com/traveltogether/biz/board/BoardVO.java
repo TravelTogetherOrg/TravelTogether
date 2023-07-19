@@ -9,11 +9,13 @@ import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
 
-@Entity //jpa어노테이션은 Not a managed type 오류떠서 추가함
-@Table(name = "board")
+import com.traveltogether.biz.member.MemberVO;
+
+//@Entity //jpa어노테이션은 Not a managed type 오류떠서 추가함
+//@Table(name = "board")
 public class BoardVO {
 	
-	@Id
+	//@Id
 	private int board_number;
 	private String festival_name;
 	private String member_id;
@@ -24,10 +26,10 @@ public class BoardVO {
 	private String board_title;
 	private String board_content;
 	private int board_view_count;
-	private Date board_update_date;
+	private String board_update_date;
 	
 	//파일업로드
-	@Transient
+	//@Transient
 	private MultipartFile uploadFile;
 	
 	public MultipartFile getUploadFile() {
@@ -97,13 +99,12 @@ public class BoardVO {
 	public void setBoard_view_count(int board_view_count) {
 		this.board_view_count = board_view_count;
 	}
-	public Date getBoard_update_date() {
+	public String getBoard_update_date() {
 		return board_update_date;
 	}
-	public void setBoard_update_date(Date board_update_date) {
+	public void setBoard_update_date(String board_update_date) {
 		this.board_update_date = board_update_date;
 	}
-	
 	@Override
 	public String toString() {
 		return "BoardVO [board_number=" + board_number + ", festival_name=" + festival_name + ", member_id=" + member_id
@@ -112,6 +113,8 @@ public class BoardVO {
 				+ board_title + ", board_content=" + board_content + ", board_view_count=" + board_view_count
 				+ ", board_update_date=" + board_update_date + ", uploadFile=" + uploadFile + "]";
 	}
+	
+	
 	
 	
 	
