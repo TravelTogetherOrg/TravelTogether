@@ -15,11 +15,7 @@
 	    #login-form > div {
 	        margin: 15px 0;
 	    }
-<<<<<<< HEAD
-	/* dksjdskjdskds */
-=======
 	
->>>>>>> KHS
 	</style>
 	<title>Home</title>
 </head>
