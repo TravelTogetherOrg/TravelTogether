@@ -84,9 +84,9 @@
 	<select id="getFestivalRandomList" resultMap="festivalResult">
 		select a.festival_name, a.FESTIVAL_ADDRESS
 		from festival a
-		WHERE MONTH(CURDATE()) BETWEEN MONTH(festival_startdate) AND MONTH(festival_enddate)
+		WHERE CURDATE() BETWEEN festival_startdate AND festival_enddate
 		order by rand()
-		limit 8
+		limit 8;
 	</select>
 
 	
