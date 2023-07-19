@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ChatListDAO">
+
+	<resultMap type="chatList" id="ChattingList">
+		<id property="member_id"  column="MEMBER_ID"/>  <!-- primary key매핑 -->
+		<result property="chatList_num" column="ChattingList_Number"/>
+		<result property="chatList_title" column="ChattingList_TITLE"/>
+		<result property="chatList_create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" column="ChattingList_Create_Date"/>
+	</resultMap>
+	
+	<select id="getChatList" resultMap="ChattingList">
+		select * from chatList order by chatList_num desc
+	</select>
+	
+	
+	<insert id="insertChat" parameterType="chatList">
+		insert into chatList (MEMBER_ID, ChattingList_Number, ChattingList_TITLE, ChattingList_Create_Date)
+			values(#{member_id},#{chatList_num},${chatList_title},#{chatList_create_date});
+	</insert>
+	
+	<delete id="deleteChat">
+		delete from chatList where MEMBER_ID = ${member_id}
+	</delete>
+	
+
+</mapper>
