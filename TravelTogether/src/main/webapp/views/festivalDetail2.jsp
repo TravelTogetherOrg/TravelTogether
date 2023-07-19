@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <c:set var="context" value="${pageContext.request.contextPath}" />    
 <!DOCTYPE html>
 <html>
@@ -38,22 +37,10 @@
         justify-content: flex-start;
       }
 
-      .text-start .btn:nth-child(2) {
+      .text-start .btn:nth-child(3) {
         order: 1;
         margin-left: auto;
       }
-
-
-
-	/* 좋아요 구현관한 사항 */
-	.btn-like {
-	  background-color: rgb(192, 228, 255);
-	  color: white;
-	}
-
-
-/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
-/* 슬라이더 관한 사항 */
 
 
       .bd-placeholder-img {
@@ -122,20 +109,11 @@
 
 
 
-
-/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
-
-
-
-
-
-/* 5개 그림이랑 있는 글씨 .lead */
   .lead {
     text-align: left;
   }
 
 
-/* comment 댓글 */
   .comment {
       border: 1px solid #ddd;
       padding: 10px;
@@ -159,7 +137,6 @@
 
     </style>
   
-  <!-- 카카오 api에 관한것 -->
   <style>
     .overlay_info {border-radius: 6px; margin-bottom: 12px; float:left;position: relative; border: 1px solid #ccc; border-bottom: 2px solid #ddd;background-color:#fff;}
     .overlay_info:nth-of-type(n) {border:0; box-shadow: 0px 1px 2px #888;}
@@ -180,53 +157,39 @@
 
 <main>
 
-       
+
 
     <br>
     <div class="container text-center my-3">
-      <p class="text-start">  
-		<button type="button" class="btn btn-outline-primary"
-		    style="font-family: 'SUITE-Regular', sans-serif;
-		    <c:if test="${isLiked}">
-		        background-color: rgb(192, 228, 255);
-		    </c:if>"
-		    onclick="checkSessionAndLike(event)"
-		    id="likeButton">
-		    <i class="bi bi-heart-fill text-primary"></i> 좋아요 : <span id="likeCount">${festivalCount}</span>
-		</button>
+      <p class="text-start">
+        <button type="button" class="btn btn-outline-primary" style="font-family: 'SUITE-Regular', sans-serif;">
+          <i class="bi bi-heart-fill text-primary" ></i> 좋아요 <b>100</b>
+        </button>
         &nbsp;&nbsp;
-<!--         <button type="button" class="btn btn-outline-primary" style="font-family: 'SUITE-Regular', sans-serif;">
+        <button type="button" class="btn btn-outline-primary" style="font-family: 'SUITE-Regular', sans-serif;">
           <i class="bi bi-bookmark-plus text-primary"></i> 찜하기 <b>200</b>
-        </button> -->
+        </button>
         <button type="button" class="btn btn-lg btn-outline-primary"  
                 style="font-family: 'SUITE-Regular', sans-serif;"
-                onclick="location.href='boardList.do'">
+                onclick="location.href='festivalList.jsp'">
           <i class="bi bi-chat-right-dots text-primary"></i> 동행자구하기
         </button>
       </p>
         
- 
-        
         <div class="row py-lg-3">
           <div class="col-lg-6 col-md-8 mx-auto">
-          
-            <h1 class="fw-bold fs-1" style="font-family: 'Dovemayo_gothic', sans-serif; ">${festival.festival_name }</h1>
-	<h5 id="festivalStatus" class="d-inline-flex p-2 bd-highlight" style="font-family: 'SUITE-Regular', sans-serif; color: white">
-	축제 상태
-	</h5>
+            <h1 class="fw-bold fs-1" style="font-family: 'Dovemayo_gothic', sans-serif; ">휴애리 봄 수국축제</h1>
+            <h5 class="d-inline-flex p-2 bd-highlight" 
+                style="background-color: #f7d4ed; font-family: 'SUITE-Regular', sans-serif; border-radius: 10px; color: white; ">
+                축제 진행중
+            </h5>
 
                 <!-- <h4 class="card-body fw-bold text-danger" style="font-family: 'SUITE-Regular', sans-serif;">축제진행중</h4> -->
-            <h4 class="fw-bold" style="font-family: 'SUITE-Regular', sans-serif;">
-            		<c:set var="startDate" value="${festival.festival_startdate}" />
-					<c:set var="formattedStartDate" value="${startDate.substring(0, 4)}.${startDate.substring(4, 6)}.${startDate.substring(6)}" />
-					
-					<c:set var="endDate" value="${festival.festival_enddate}" />
-					<c:set var="formattedEndDate" value="${endDate.substring(0, 4)}.${endDate.substring(4, 6)}.${endDate.substring(6)}" />
-										  ${formattedStartDate} - ${formattedEndDate}
-            </h4>
+            <h4 class="fw-bold" style="font-family: 'SUITE-Regular', sans-serif;">2023.06.22 - 2023.07.01</h4>
           </div>
         </div>
     </div>
+
 
     <!-- slider -->
     <div class="container text-center my-3">
@@ -238,8 +201,7 @@
               <div class="col-md-3">
                 <div class="card">
                   <div class="card-img">
-		    	<c:set var="imagePath" value="${context}/resources/image/festival/${festival.festival_name}/${festival.festival_name}_2_공공3유형" />
-				<img class="img-fluid w-100 fixed-image" src="${imagePath}.png" onerror="this.onerror=null; this.src='${imagePath}.jpg'" />
+                    <img src="https://korean.visitkorea.or.kr/kfes/upload/contents/db/400_2e07f10a-0837-42f5-abd8-f18a2af0fb73_8.jpg" class="img-fluid">
                   </div>
                   <!-- <div class="card-img-overlay">글씨 넣으려면 넣기</div> -->
                 </div>
@@ -250,8 +212,7 @@
               <div class="col-md-3">
                 <div class="card">
                   <div class="card-img">
-					<c:set var="imagePath" value="${context}/resources/image/festival/${festival.festival_name}/${festival.festival_name}_3_공공3유형" />
-					<img class="img-fluid w-100 fixed-image" src="${imagePath}.png" onerror="this.onerror=null; this.src='${imagePath}.jpg'.toLowerCase()" />
+                    <img src="https://korean.visitkorea.or.kr/kfes/upload/contents/db/400_2e07f10a-0837-42f5-abd8-f18a2af0fb73_6.jpg" class="img-fluid">
                   </div>
                 </div>
               </div>
@@ -261,9 +222,8 @@
               <div class="col-md-3">
                 <div class="card">
                   <div class="card-img">
-					<c:set var="imagePath" value="${context}/resources/image/festival/${festival.festival_name}/${festival.festival_name}_4_공공3유형" />
-					<img class="img-fluid w-100 fixed-image" src="${imagePath}.png" onerror="this.onerror=null; this.src='${imagePath}.jpg'.toLowerCase()" />
-				   </div>
+                    <img src="https://korean.visitkorea.or.kr/kfes/upload/contents/db/400_2e07f10a-0837-42f5-abd8-f18a2af0fb73_7.jpg" class="img-fluid">
+                  </div>
                 </div>
               </div>
             </div>
@@ -272,9 +232,8 @@
               <div class="col-md-3">
                 <div class="card">
                   <div class="card-img">
-					<c:set var="imagePath" value="${context}/resources/image/festival/${festival.festival_name}/${festival.festival_name}_5_공공3유형" />
-					<img class="img-fluid w-100 fixed-image" src="${imagePath}.png" onerror="this.onerror=null; this.src='${imagePath}.jpg'.toLowerCase()" />
-                 </div>
+                    <img src="https://korean.visitkorea.or.kr/kfes/upload/contents/db/400_2e07f10a-0837-42f5-abd8-f18a2af0fb73_9.jpg" class="img-fluid">
+                  </div>
                 </div>
               </div>
             </div>
@@ -283,8 +242,17 @@
               <div class="col-md-3">
                 <div class="card">
                   <div class="card-img">
-					<c:set var="imagePath" value="${context}/resources/image/festival/${festival.festival_name}/${festival.festival_name}_6_공공3유형" />
-					<img class="img-fluid w-100 fixed-image" src="${imagePath}.png" onerror="this.onerror=null; this.src='${imagePath}.jpg'.toLowerCase()" />
+                    <img src="https://korean.visitkorea.or.kr/kfes/upload/contents/db/400_2e07f10a-0837-42f5-abd8-f18a2af0fb73_10.jpg" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="col-md-3">
+                <div class="card">
+                  <div class="card-img">
+                    <img src="https://korean.visitkorea.or.kr/kfes/upload/contents/db/400_2e07f10a-0837-42f5-abd8-f18a2af0fb73_11.jpg" class="img-fluid">
                   </div>
                 </div>
               </div>
@@ -304,7 +272,18 @@
     <br>
     <div class="container my-3">
       <p class="text-start" style="font-family: 'SUITE-Regular', sans-serif; font-size: 18px; line-height: 2.5em;">
-      ${festival.festival_detail_information }
+        서귀포시 남원읍 신례리에 위치한 휴애리 자연생활공원은 제주도민과 제주를 찾는 관광객에게 보다 나은 볼거리를 제공하고 또 힐링의 공간이 되고자 오는 4월 7일부터 “휴애리 봄 수국축제”를 개최한다고 밝혔다.<br>
+        이번 2023 휴애리 봄 수국축제는 정성스럽게 키운 다양한 수국을 온실, 수국정원, 등 공원 곳곳에서 감상할 수 있어 제주도민과 상춘객에게 인기가 좋은 제주 대표 봄 축제가 될 것으로 전망된다. 특별히 온실에서 다양한 수국을 올 봄 가장 많게 만나 볼 수 있으며 여름수국 과 유럽수국까지 준비하여 늦여름까지 진행할 예정이다.<br>
+        전년도 보다 더 풍성하게 준비될 이번 휴애리 봄 수국축제는 신혼여행, 웨딩스냅, 우정스냅 등 인생사진 찍기 좋은 장소로 인정받은 제주여행의 필수 코스이고 가족, 연인, 친구와 함께 다양한 수국포토존 에서 아름다운 추억을 만들 수 있을 것이다.<br>
+        휴애리는 여러 해 전부터 지역사회 환원 차원에서 제주도내 장애인단체, 보육원, 양로원 등은 축제 때마다 무료입장(사전예약 필수)을 진행하고 있으며 도민과 관광객 가운데 3자녀이상(소인, 청소년) 입장료 50%할인행사를 별도로 진행하고 있다.<br>
+                
+        <br>
+        <div class="text-center" style="font-family: 'SUITE-Regular', sans-serif; font-size: 18px; line-height: 2.5em;">
+        [행사내용]<br>
+        ■ 상철체험프로그램<br>
+        동물먹이주기체험(산토끼, 염소, 말, 흑돼지등)<br>
+        자연 학습체험, 전통놀이체험(돌탑쌓기, 투호던지기, 굴렁쇠 체험, 제기차기, 널뛰기 등)
+      </div>
       </p>
 
       <hr>
@@ -319,15 +298,7 @@
               <img src="https://korean.visitkorea.or.kr/kfes/resources/img/valentine_day.png" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="40" height="40">
             </img>
           </td>
-            <td id="fest">
-            		<c:set var="startDate" value="${festival.festival_startdate}" />
-					<c:set var="formattedStartDate" value="${startDate.substring(0, 4)}.${startDate.substring(4, 6)}.${startDate.substring(6)}" />
-					
-					<c:set var="endDate" value="${festival.festival_enddate}" />
-					<c:set var="formattedEndDate" value="${endDate.substring(0, 4)}.${endDate.substring(4, 6)}.${endDate.substring(6)}" />
-										  ${formattedStartDate} - ${formattedEndDate}
-            
-            <br></td>
+            <td id="fest">2023.04.07 ~ 2023.05.31<br></td>
           </tr>
 
           <tr>
@@ -339,8 +310,7 @@
             </img>
           </td>
             <td id="fest">
-            ${festival.festival_address }
-              <br>
+              제주특별자치도 서귀포시 신례동로 256 휴애리<br>
             </td>
           </tr>
 
@@ -352,7 +322,14 @@
             <td><img src="https://korean.visitkorea.or.kr/kfes/resources/img/coin_ico.png" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="40" height="40">
             </img></td>
             <td id="fest">
-            ${festival.festival_fee }
+          성 인 : 13,000원/단체:9,000원/도민:8,000원<br>
+          청소년 : 11,000원/단체:8,000원/도민:7,000원<br>
+          어린이 : 10,000원/단체:7,000원/도민:6,000원<br>
+          경로/장애인/국가유공자/군인/경찰/소방관 단체요금 적용<br>
+          단체요금 20명 부터 적용<br>
+          35개월까지는 무료입장<br>
+          세자녀 50%할인(자녀만 할인혜택, 고등학생까지)<br>
+          제주특별자치도민,장애인,유공자,군인,경찰,소방관은 반드시 신분증 및 증명서를 제시해야 합니다.<br>
           
             </td>
           </tr>
@@ -364,7 +341,7 @@
           <tr>
             <td> <img src="https://korean.visitkorea.or.kr/kfes/resources/img/megaphone_ico.png" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="40" height="40">
             </img></td>
-            <td id="fest">${festival.festival_showaddress }</td>
+            <td id="fest">휴애리 자연생활공원</td>
           </tr>
 
           <tr>
@@ -374,27 +351,25 @@
           <tr>
             <td><img src="https://korean.visitkorea.or.kr/kfes/resources/img/call_ico.png" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="40" height="40">
             </img></td>
-            <td id="fest">${festival.festival_number }</td>
+            <td id="fest">064-732-2144</td>
           </tr>
 
           <tr>
             <td><img src="https://korean.visitkorea.or.kr/kfes/resources/img/instagram_ico.png" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="40" height="40">
             </img></td>
-            <td id="fest"><a style="text-decoration:  none;" href="${festival.festival_instagram_address }" class="link-info">${festival.festival_instagram_name }</a></td>
+            <td id="fest"><a style="text-decoration:  none;" href="https://www.instagram.com/jeju_hueree/" class="link-info">jeju_hueree</a></td>
           </tr>
         </table>
         <br>
-        <a class="btn btn-primary text-white d-block text-center" href="${festival.festival_homepage_address }" role="button">공식홈페이지</a>
+        <a class="btn btn-primary text-white d-block text-center" href="http://hueree.com/index.php" role="button">공식홈페이지</a>
 
         
         <br>
       </div>
-
-
-    
+      
       <div class="col-md-5 order-md-1">
-		<c:set var="imagePath" value="${context}/resources/image/festival/${festival.festival_name}/${festival.festival_name}_1_공공3유형" />
-		<img class="img-fluid w-100 fixed-image" src="${imagePath}.png" onerror="this.onerror=null; this.src='${imagePath}.jpg'.toLowerCase()" />
+        <img src="https://korean.visitkorea.or.kr/kfes/upload/contents/db/400_2e07f10a-0837-42f5-abd8-f18a2af0fb73_3.jpg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500">
+      </img>
 
       </div>
     </div>    
@@ -402,37 +377,51 @@
 
     <!-- 지도 -->
     <div class="container">
-      <div id="map" class="container text-center my-3" style="width:1300px;height:500px; border-radius: 10px; border-radius: 20px; margin-left: -15px"></div>
+      <div id="map" class="container text-center my-3" style="width:1300px;height:500px; border-radius: 10px; border-radius: 20px;"></div>
       <!-- <div id="roadview" class="container text-center my-3" style="width:1300px;height:400px"></div> -->
     </div>
     
 
 
+
+
+    <!-- 댓글 목록 -->
+    <!-- 댓글 입력 폼 -->
+    <!-- <div class="container py-4" style="text-align: start;">
+      <h1>댓글</h1>
+
+      
+
+
+      <div id="commentList"></div>
+
+
+      
+      <form id="commentForm" class="mb-4" action="">
+        <div class="mb-3">
+          <label for="name" class="form-label">이름</label>
+          <input type="text" class="form-control" id="name" required>
+        </div>
+        <div class="mb-3">
+          <label for="comment" class="form-label">댓글</label>
+          <textarea class="form-control" id="comment" rows="4" placeholder="댓글을 작성해 주세요." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-outline-primary">댓글 작성</button>
+      </form>
+  
+      
+    </div>
+     -->
+
 </main>
+
+
+
+
+
+
 	<%@ include file="footer.jsp" %>
 
-
-
-
-
-<!-- 좋아요 눌렀을때 세션값이 있는경우랑 없는경우-->
-<script>
-    var sessionUserId = "${sessionScope.userId}";
-
-    function checkSessionAndLike(event) {
-        if (sessionUserId) {
-            location.href='festivalLike.do?festival_name=${festival.festival_name}&member_id=' + sessionUserId;
-        } else {
-            alert("로그인 후 이용해주세요.");
-        }
-        event.stopPropagation();
-    }
-</script>
-
-
-
-
-<!-- 좋아요 갯수 -->
 
 
 
@@ -465,49 +454,11 @@
   })
 </script>
 
-
-<!-- 축제 진행 기간 -->
-<script>
-  var startDateStr = "${festival.festival_startdate}"; // 축제 시작 날짜
-  var endDateStr = "${festival.festival_enddate}"; // 축제 종료 날짜
-
-//축제 시작일과 현재 날짜 비교
-  var status;
-  var startDate = new Date(startDateStr.slice(0, 4), startDateStr.slice(4, 6) - 1, startDateStr.slice(6));
-  var endDate = new Date(endDateStr.slice(0, 4), endDateStr.slice(4, 6) - 1, endDateStr.slice(6));
-  var currentDate = new Date();
-
-  if (currentDate >= startDate) {
-  // 축제가 시작한 경우
-  if (currentDate <= endDate) {
-  // 축제가 종료되지 않은 경우
-  status = "<span style='background-color:#f7d4ed; border-radius: 10px; padding : 13px'>축제 진행 중</span>";
-  
-  
-  } else {
-  // 축제가 종료된 경우
-  status = "<span style='background-color:red; border-radius: 10px; padding : 13px'>축제가 종료되었습니다.</span>";
-  }
-  } else {
-  // 축제 시작일이 현재 날짜보다 미래인 경우 #6eb5db
-  // D-day 계산
-  var diffInMillies = startDate - currentDate;
-  var diffInDays = Math.floor(diffInMillies / (1000 * 60 * 60 * 24)+(1));
-  status = "<span style='background-color:#69b3db; border-radius: 10px; padding : 13px'>축제 예정 D-" + diffInDays + " 일</span>";
-  }
-  
-  // 상태 텍스트 업데이트
-  /* var festivalStatus = document.getElementById("festivalStatus");
-  festivalStatus.textContent = status */;
-  document.getElementById("festivalStatus").innerHTML = status;
-  
-</script>
-
 <!-- 카카오api -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=19b0de7649944cbcadc52b390c8508cf"></script>
 <script>
   var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-      mapCenter = new kakao.maps.LatLng(${festival.festival_latitude} , ${festival.festival_longitude}), // 지도의 중심좌표
+      mapCenter = new kakao.maps.LatLng(33.30938385474628 , 126.63540771521112), // 지도의 중심좌표
       mapOption = {
           center: mapCenter, // 지도의 중심좌표
           level: 3 // 지도의 확대 레벨
@@ -518,14 +469,14 @@
   // 커스텀 오버레이에 표시할 내용입니다
   // HTML 문자열 또는 Dom Element 입니다
   var content = '<div class="overlay_info">';
-  content += '    <a href="https://map.kakao.com/?itemId=11394059" target="_blank"><strong>${festival.festival_name}</strong></a>';
+  content += '    <a href="https://place.map.kakao.com/27581976" target="_blank"><strong>휴애리자연생활공원</strong></a>';
   content += '    <div class="desc">';
-  content += '        <span class="address" style="font-family: \'SUITE-Regular\', sans-serif;">${festival.festival_address}</span>';
+  content += '        <span class="address" style="font-family: \'SUITE-Regular\', sans-serif;">제주특별자치도 서귀포시 신례동로 256 휴애리</span>';
   content += '    </div>';
   content += '</div>';
   
   // 커스텀 오버레이가 표시될 위치입니다 
-  var position = new kakao.maps.LatLng(${festival.festival_latitude}, ${festival.festival_longitude});
+  var position = new kakao.maps.LatLng(33.30938385474628, 126.63540771521112);
   
   // 커스텀 오버레이를 생성합니다
   var mapCustomOverlay = new kakao.maps.CustomOverlay({
@@ -578,7 +529,7 @@
 
 
 <!-- 댓글 -->
-<!-- <script>
+<script>
   document.getElementById('commentForm').addEventListener('submit', function(event) {
     event.preventDefault(); // 폼 제출 기본 동작 막기
 
@@ -605,10 +556,10 @@
     nameInput.value = '';
     commentInput.value = '';
   });
-</script> -->
+</script>
 
     <script src="${context}/resources/js/bootstrap.bundle.min.js"></script>
 
       
 </body>
-</html>
+</html> --%>

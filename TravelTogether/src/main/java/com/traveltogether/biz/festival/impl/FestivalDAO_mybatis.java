@@ -18,13 +18,13 @@ public class FestivalDAO_mybatis {
 	private SqlSessionTemplate mybatis;
 	
 	/*
-	 * //µî·Ï public void insertFestival(FestivalVO vo) {
-	 * mybatis.insert("FestivalDAO.insertBoard",vo); } //¼öÁ¤ public void
+	 * //ë“±ë¡ public void insertFestival(FestivalVO vo) {
+	 * mybatis.insert("FestivalDAO.insertBoard",vo); } //ìˆ˜ì • public void
 	 * updateFestival(FestivalVO vo) { mybatis.update("FestivalDAO.updateBoard",vo);
-	 * } //»èÁ¦ public void deleteFestival(FestivalVO vo) {
+	 * } //ì‚­ì œ public void deleteFestival(FestivalVO vo) {
 	 * mybatis.delete("FestivalDAO.deleteBoard",vo); }
 	 * 
-	 * //»ó¼¼Á¤º¸ public FestivalVO getFestival(FestivalVO vo) { return
+	 * //ìƒì„¸ì •ë³´ public FestivalVO getFestival(FestivalVO vo) { return
 	 * mybatis.selectOne("FestivalDAO.getBoard",vo); }
 	 */
 	
@@ -32,18 +32,18 @@ public class FestivalDAO_mybatis {
 		return mybatis.selectOne("FestivalDAO.getFestival",vo); 
 	}
 	
-	//7¿ù´Ş ¸®½ºÆ® Á¶È¸
+	//7ì›”ë‹¬ ë¦¬ìŠ¤íŠ¸ ì¡°íšŒ
 	public List<FestivalVO> getFestivalList_Month_All(FestivalVO vo) {	
 		return mybatis.selectList("FestivalDAO.getFestivalList_Month_All",vo);
 	}
 	
-	// 7¿ù´Ş »ó¼¼ÁÖ¼Ò Á¶È¸
+	// 7ì›”ë‹¬ ìƒì„¸ì£¼ì†Œ ì¡°íšŒ
 	public List<FestivalVO> getFestivalList_Month(FestivalVO vo){
 		
 		return mybatis.selectList("FestivalDAO.getFestivalList_Month",vo);
 	}
 	
-    // ¸ŞÀÎ¿¡ º¸¿©Áú ÁÁ¾Æ¿ä ¼ö¿¡ µû¸¥ ÃàÁ¦µé
+    // ë©”ì¸ì— ë³´ì—¬ì§ˆ ì¢‹ì•„ìš” ìˆ˜ì— ë”°ë¥¸ ì¶•ì œë“¤
     public List<FestivalVO> getFestivalLikeList(FestivalVO vo){
     	
     	return mybatis.selectList("FestivalDAO.mainFestivalLikeCount",vo);
@@ -54,9 +54,9 @@ public class FestivalDAO_mybatis {
     	return mybatis.selectList("FestivalDAO.getFestivalRandomList", vo);
     }
 	
-	// 7¿ù´Ş ÇØ´çÁö¿ª ¸®½ºÆ®¸¸ Á¶È¸
+	// 7ì›”ë‹¬ í•´ë‹¹ì§€ì—­ ë¦¬ìŠ¤íŠ¸ë§Œ ì¡°íšŒ
 	
-	// ÁÁ¾Æ¿ä ±¸Çö
+	// ì¢‹ì•„ìš” êµ¬í˜„
 	public void festival_Like(FestivalVO vo) {
 		mybatis.insert("FestivalDAO.festival_Like", vo);
 	}
@@ -65,13 +65,13 @@ public class FestivalDAO_mybatis {
 		mybatis.delete("FestivalDAO.festival_Delete_Like", vo);
 	}
 	
-	// ÁÁ¾Æ¿ä Çß´ÂÁö ¾ÈÇß´ÂÁö È®ÀÎ
+	// ì¢‹ì•„ìš” í–ˆëŠ”ì§€ ì•ˆí–ˆëŠ”ì§€ í™•ì¸
 	public FestivalVO isFestival_Liked(FestivalVO vo) {
 		return mybatis.selectOne("FestivalDAO.isFestival_Liked", vo);
 		
 	}
 	
-    // Æ¯Á¤ Æä½ºÆ¼¹úÀÇ ÁÁ¾Æ¿ä ¼ö °¡Á®¿À±â
+    // íŠ¹ì • í˜ìŠ¤í‹°ë²Œì˜ ì¢‹ì•„ìš” ìˆ˜ ê°€ì ¸ì˜¤ê¸°
     public int getFestivalLikeCount(FestivalVO vo) {
         return mybatis.selectOne("FestivalDAO.getFestivalLikeCount", vo);
     }
