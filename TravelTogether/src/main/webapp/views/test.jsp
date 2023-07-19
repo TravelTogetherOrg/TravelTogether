@@ -21,7 +21,8 @@
 			<c:forEach items="${memberBoardList}" var="board">
 				<tr>
 					<td>${board.member_id}</td>
-					<td>${board.festival_name}</td>
+					<td>${board.festival_name}</td>				
+					<td>${board.board_title}</td>
 					<td>${board.board_start_date}</td>
 					<td>${board.board_end_date}</td>
 					<td>${board.board_total_people}</td>
