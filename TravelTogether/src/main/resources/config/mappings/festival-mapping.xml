@@ -17,14 +17,11 @@
 		<result property="festival_instagram_name" column="FESTIVAL_INSTAGRAM_NAME"/>
 		<result property="festival_instagram_address" column="FESTIVAL_INSTAGRAM_ADDRESS"/>
 		<result property="festival_homepage_address" column="FESTIVAL_HOMEPAGE_ADDRESS"/>
-<<<<<<< HEAD
-=======
 		
 		<result property="like_no" column="LIKE_NO"/>
 		<result property="member_id" column="MEMBER_ID"/>
 		<result property="festival_like_count" column="FESTIVAL_LIKE_COUNT" />
 		
->>>>>>> KHS
 		<result property="festival_file_1" column="FESTIVAL_FILE_1"/>
 		<result property="festival_file_2" column="FESTIVAL_FILE_2"/>
 		<result property="festival_file_3" column="FESTIVAL_FILE_3"/>
@@ -35,11 +32,7 @@
 	
 	
 	<!-- 전체검색 -->
-<<<<<<< HEAD
-	<select id="getFestivalList_Month" resultMap="festivalResult">
-=======
 	<select id="getFestivalList_Month_All" resultMap="festivalResult">
->>>>>>> KHS
 		SELECT *
 		FROM festival as f1
 		join festival_address as f2
@@ -47,8 +40,6 @@
 		WHERE MONTH(CURDATE()) BETWEEN MONTH(festival_startdate) AND MONTH(festival_enddate);
 	</select>
 	
-<<<<<<< HEAD
-=======
 	<!-- 지역별로 보기 -->
 	<select id="getFestivalList_Month" resultMap="festivalResult">
 	  SELECT *
@@ -90,7 +81,6 @@
 	</select>
 
 	
->>>>>>> KHS
 	<!-- 상세검색 -->
 	<select id="getFestival" resultType="festival">
 		select *
@@ -104,8 +94,6 @@
 			where f1.festival_name = #{festival_name}
 	</select>
 	
-<<<<<<< HEAD
-=======
 	
 	<!-- 페스티벌 게시물 좋아요 구현 -->
 	<insert id="festival_Like" parameterType="festival">
@@ -134,5 +122,4 @@
 
 	
 	
->>>>>>> KHS
 </mapper>
