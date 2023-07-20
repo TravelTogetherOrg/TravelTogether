@@ -475,7 +475,7 @@ i:hover {
   text-decoration: underline;
   text-underline-position : under;
   font-style: italic;
-  font-size: 2.2vh;
+  font-size: 1.9vh;
   margin-top: 10px;
   margin-bottom: 5px;
   margin-left: 5px;
@@ -483,6 +483,7 @@ i:hover {
 .grid-text-span{
   margin-bottom: 5px;
   margin-left: 5px;
+   font-size: 1.5vh;
 }
 .grid :nth-child(3){
   margin-bottom: 7px;
@@ -512,8 +513,8 @@ i:hover {
   top:50%;
   right: 0;
 } */
-/* ---------------------------media query(1400)--------------------------------  */
-@media (max-width: 1500px) {
+/* ---------------------------media query(1600)--------------------------------  */
+@media (max-width: 1600px) {
   #banner-top-box{
     margin-top: 50px;
   }
@@ -552,8 +553,8 @@ i:hover {
     position: relative;
   }
   #bottom-grid {
-    width: 90%;
-    height: 0vh;
+    width: 100%;
+    height: 150vh;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     padding: 70px 140px 90px 140px;
@@ -570,13 +571,25 @@ i:hover {
   }
 
   .grid-text-p{
+    font-size: 2.7vh;
+  }
+   .grid-text-span{
     font-size: 2.1vh;
   }
+ 
+}
+
+
+/* ---------------------------media query(1400)--------------------------------  */
+@media (max-width: 1400px) {
+
   .grid-text-p{
     font-size: 2.1vh;
   }
-}
-
+   .grid-text-span{
+    font-size: 1.7vh;
+  }
+ 
 
 /* ---------------------------media query(1024)--------------------------------  */
 @media (max-width: 1024px) {

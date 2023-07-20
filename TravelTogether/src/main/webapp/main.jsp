@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 
-  <link rel='stylesheet' type='text/css' media='all' href='${context}/resources/css/main.css?hhh'>
+  <link rel='stylesheet' type='text/css' media='all' href='${context}/resources/css/main.css?hhhdd'>
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />

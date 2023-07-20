@@ -84,7 +84,7 @@
     </style>
 
 </head>
-<body style="padding-top: 70px; line-height: -1.5px;">
+<body style="padding-top: 70px; line-height: 1.4;">
     
 	<%@ include file="header.jsp" %>
 
