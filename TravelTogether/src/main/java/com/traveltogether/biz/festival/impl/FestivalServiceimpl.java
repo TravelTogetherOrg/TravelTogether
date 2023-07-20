@@ -13,16 +13,6 @@ public class FestivalServiceimpl {
 	@Autowired
 	private FestivalDAO_mybatis festivalDAO;
 	
-	/*
-	 * public void insertFestival(FestivalVO vo) { festivalDAO.insertFestival(vo); }
-	 * 
-	 * public void updateFestival(FestivalVO vo) { festivalDAO.updateFestival(vo); }
-	 * 
-	 * public void deleteFestival(FestivalVO vo) { festivalDAO.deleteFestival(vo); }
-	 * 
-	 * 
-	 */
-	
 	public void festival_Like(FestivalVO vo) {
 		festivalDAO.festival_Like(vo);
 	}

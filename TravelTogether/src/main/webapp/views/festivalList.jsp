@@ -119,7 +119,7 @@
     <div class="container">
 
       <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        <button style="background-color: rgb(129, 189, 235); border: none;" class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
           <span id="selectedRegion">지역 선택</span>
         </button>
 

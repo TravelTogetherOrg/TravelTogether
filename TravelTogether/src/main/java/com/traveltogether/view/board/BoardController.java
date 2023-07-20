@@ -47,6 +47,7 @@ public class BoardController {
 		return"views/boardWrite.jsp";
 	}
 	
+	
 	@RequestMapping(value="/insertBoard.do", method = RequestMethod.POST) //@ModelAttribute("boardVO")
 	public String insertBoardPost(BoardVO board, HttpServletRequest request) throws Exception {
 		
@@ -72,10 +73,19 @@ public class BoardController {
 			image.setBoard_image_file_path("board/boardImage/"+pathToday.substring(pathToday.length()-10,pathToday.length()));
 			
 		}else {
-			//이미지 없으면 선택한 축제의 기본 이미지 가져오기
-			image.setBoard_image_file(board.getFestival_name()+"_1_공공3유형.jpg");
-			image.setBoard_image_file_path("festival/"+board.getFestival_name());
-		}
+	         //이미지 없으면 선택한 축제의 기본 이미지 가져오기
+	         //jpg인지 png인지 확인해서 맞는 걸로 연결하기
+	         File file = new File("C:\\Users\\1\\Desktop\\KHSTT\\TravelTogether\\TravelTogether\\src\\main\\webapp\\resources\\image\\festival\\"
+	               +board.getFestival_name()+"\\"+board.getFestival_name()+"_1_공공3유형.jpg");
+	         if(file.exists()) {
+	            image.setBoard_image_file(board.getFestival_name()+"_1_공공3유형.jpg");
+	         }else {
+	            image.setBoard_image_file(board.getFestival_name()+"_1_공공3유형.png");
+	         }
+	          
+	         image.setBoard_image_file_path("festival/"+board.getFestival_name());
+	      }
+
 		
 		
 		//제한수 체크 테이블에 값이 있는지 확인하고 있으면 update 없으면 insert

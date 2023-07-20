@@ -20,6 +20,11 @@
 	<!-- 예외처리 -->
 	<mvc:annotation-driven/>
 	
+	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="defaultErrorView" value="common/error.jsp"></property>
+	
+	</bean>
+	
 	
 		 
 </beans>
