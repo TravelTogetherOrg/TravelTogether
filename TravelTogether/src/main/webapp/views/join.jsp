@@ -136,7 +136,9 @@
   };
   
  /*  --- */
- function checkId(){
+
+ function checkId(id){
+	
         var id = $('#id').val(); //id값이 "id"인 입력란의 값을 저장
         $.ajax({
             url:"<c:url value='/checkId.do'/>", //Controller에서 요청 받을 주소
@@ -149,8 +151,7 @@
                 } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
                     $('.user_id_already').css("display","inline-block");
                     $('.user_id_ok').css("display", "none");
-                    // alert("아이디를 다시 입력해주세요"); 
-                    // $('#id').val(''); 중복이면 input창 아이디 clean  
+                    alert("아이디가 중복되었습니다.");
                 }
             },
             error:function(){
@@ -173,8 +174,7 @@
                     } else { // cnt가 1일 경우 -> 이미 존재하는 별명
                         $('.user_nickname_already').css("display","inline-block");
                         $('.user_nickname_ok').css("display", "none");
-                        alert("별명을 다시 입력해주세요"); 
-                        $('#nickname').val('');
+                        alert("별명이 중복되었습니다.");
                   
                     }
                 },

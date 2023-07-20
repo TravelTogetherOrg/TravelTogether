@@ -12,7 +12,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/main.css">
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/mypage.css?ddd">
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/mypage.css?dddd">
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script> 
 /* 사이드바 */
@@ -113,9 +113,9 @@ function checkNickname(){
 			<div class="sidebar-inner">
 				<ul id="tabs">
 					<li><a href="#description">계정설정</a></li>
-					<li><a href="#companioninfo">동행신청정보</a></li>
-					<li><a id="memberBoardLink" href="${path}/memberBoardList.do">작성 게시물 보기</a></li>
-					<li><a href="#review">여행후기</a></li>
+					<!-- <li><a href="#companioninfo">동행신청정보</a></li> -->
+					<li><a id="memberBoardLink" href="${path}/memberBoardList.do">내가 작성한 동행 게시글</a></li>
+					<li><a href="#review">내가 작성한 댓글</a></li>
 				</ul>
 			</div>
 		</div>
@@ -206,7 +206,7 @@ function checkNickname(){
 			</div>
 		</form>
 			<!-- 동행신청정보 탭 -->
-	<div id="companioninfo" class="tab-section">
+<%-- 	<div id="companioninfo" class="tab-section">
 			
 		<div id="writedlist">
 			<h2>동행 신청 내역</h2>
@@ -282,7 +282,7 @@ function checkNickname(){
 			</c:if>
 			</div>
 		</div>
-	</div>
+	</div> --%>
 <script>
 $(function() {
 	if("${listView}"=="t"){
@@ -306,7 +306,7 @@ $(function() {
 			</c:forEach>
 		</div>
 		<div id="review" class="tab-section">
-			<h2>여행후기</h2>
+			<h2>내가 작성한 댓글</h2>
 			<hr style="border-color: black;">
 			<p>응. 없어~~</p>
 		</div>
