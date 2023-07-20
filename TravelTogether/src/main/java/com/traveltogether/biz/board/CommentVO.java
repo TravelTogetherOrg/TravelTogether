@@ -1,14 +1,25 @@
 package com.traveltogether.biz.board;
 
+
 public class CommentVO {
 
 	private int comment_number;
 	private int board_number;
-	private String member_id;
+	//private String member_id;
 	private String comment_content;
-	private int comment_class;
+	private int comment_group;
+	private int comment_depth;
 	private String comment_write_date;
 	private String comment_update_date;
+	
+	private String member_nickname;
+	
+	public String getMember_nickname() {
+		return member_nickname;
+	}
+	public void setMember_nickname(String member_nickname) {
+		this.member_nickname = member_nickname;
+	}
 	
 	public int getComment_number() {
 		return comment_number;
@@ -22,32 +33,40 @@ public class CommentVO {
 	public void setBoard_number(int board_number) {
 		this.board_number = board_number;
 	}
+	/*
 	public String getMember_id() {
 		return member_id;
 	}
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
+	*/
 	public String getComment_content() {
 		return comment_content;
 	}
 	public void setComment_content(String comment_content) {
 		this.comment_content = comment_content;
 	}
-	public int getComment_class() {
-		return comment_class;
+	public int getComment_group() {
+		return comment_group;
 	}
-	public void setComment_class(int comment_class) {
-		this.comment_class = comment_class;
+	public void setComment_group(int comment_group) {
+		this.comment_group = comment_group;
+	}
+	public int getComment_depth() {
+		return comment_depth;
+	}
+	public void setComment_depth(int comment_depth) {
+		this.comment_depth = comment_depth;
 	}
 	public String getComment_write_date() {
-		return comment_write_date;
+		return comment_write_date.substring(0, 19);
 	}
 	public void setComment_write_date(String comment_write_date) {
 		this.comment_write_date = comment_write_date;
 	}
 	public String getComment_update_date() {
-		return comment_update_date;
+		return comment_update_date.substring(0, 19);
 	}
 	public void setComment_update_date(String comment_update_date) {
 		this.comment_update_date = comment_update_date;
@@ -55,9 +74,10 @@ public class CommentVO {
 	
 	@Override
 	public String toString() {
-		return "CommentVO [comment_number=" + comment_number + ", board_number=" + board_number + ", member_id="
-				+ member_id + ", comment_content=" + comment_content + ", comment_class=" + comment_class
-				+ ", comment_write_date=" + comment_write_date + ", comment_update_date=" + comment_update_date + "]";
+		return "CommentVO [comment_number=" + comment_number + ", board_number=" + board_number + ", comment_content="
+				+ comment_content + ", comment_group=" + comment_group + ", comment_depth=" + comment_depth
+				+ ", comment_write_date=" + comment_write_date + ", comment_update_date=" + comment_update_date
+				+ ", member_nickname=" + member_nickname + "]";
 	}
 	
 }

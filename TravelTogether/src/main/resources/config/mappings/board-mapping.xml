@@ -53,11 +53,13 @@
   <resultMap type="comment" id="commentResult">
   	<id property="comment_number" column="comment_number"/>
   	<result property="board_number" column="board_number"/>
-  	<result property="member_id" column="member_id"/>
+  	<result property="member_nickname" column="member_nickname"/>
   	<result property="comment_content" column="comment_content"/>
-  	<result property="comment_class" column="comment_class"/>
+  	<result property="comment_group" column="comment_group"/>
+  	<result property="comment_depth" column="comment_depth"/>
   	<result property="comment_write_date" column="comment_write_date"/>
   	<result property="comment_update_date" column="comment_update_date"/>
+  	
   </resultMap>
 	
 	<!-- board -->
@@ -211,9 +213,9 @@
 	</select>
 	
 	<!-- comment -->
-	<insert id="insertComment">
-		insert into comment (board_number, member_id, comment_content, comment_class)
-		values(${board_number},#{member_id},#{comment_content},${comment_class});
+	<insert id="insertComment" useGeneratedKeys="true" keyProperty="comment_number"  parameterType="comment">
+		insert into comment (board_number, member_nickname, comment_content, comment_group, comment_depth)
+		values(${board_number}, #{member_nickname}, #{comment_content}, ${comment_group}, ${comment_depth});
 	</insert>
 	<delete id="deleteComment">
 		delete from comment where comment_number = ${comment_number}
@@ -223,10 +225,21 @@
 		set comment_content = #{comment_content}
 		where comment_number = ${comment_number}
 	</update>
-	<select id="getCommentList" resultMap="commentResult">
-		select * from comment
+	<!--  -->
+	<select id="getOneComment" resultType="comment" parameterType="int">
+		select member_nickname, comment_number, comment_content, comment_write_date, comment_update_date
+		from comment
+		where comment_number = ${value}
 	</select>
-	<select id="getTotalCommentCount" resultType="int">
-		select count(*) from comment;
+	<!-- and comment_depth = 0 board에서 출력할때 조건넣을 수 있을듯 resultMap="commentResult"-->
+	<select id="getCommentList" resultType="comment" parameterType="int">
+		select comment_number, member_nickname, comment_content, comment_group, comment_depth, comment_write_date, comment_update_date
+		from comment
+		where board_number = ${value}
+		ORDER BY comment_number ASC
+	</select>
+	<select id="getTotalCommentCount" resultType="int" parameterType="int">
+		select count(*) from comment
+		where board_number = ${value}
 	</select>
 </mapper>

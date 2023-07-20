@@ -160,4 +160,10 @@ public class BoardServiceimpl implements BoardService {
 		return boardDAO.getCommentTotal(boardNumber);
 	}
 
+	@Override
+	public CommentVO getOneComment(int commentNumber) {
+		return boardDAO.getOneComment(commentNumber);
+		
+	}
+
 }

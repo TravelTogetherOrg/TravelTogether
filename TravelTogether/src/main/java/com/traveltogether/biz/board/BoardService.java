@@ -34,6 +34,7 @@ public interface BoardService {
 	public void insertComment(CommentVO comment);
 	public void deleteComment(CommentVO comment);
 	public void updateComment(CommentVO comment);
+	public CommentVO getOneComment(int commentNumber);
 	public List<CommentVO> getCommnetList(int boardNumber);
 	public int getCommentTotal(int boardNumber);
 }

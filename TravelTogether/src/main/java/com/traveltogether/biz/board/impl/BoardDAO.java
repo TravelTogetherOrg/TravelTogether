@@ -161,7 +161,13 @@ public class BoardDAO implements BoardService {
 	@Override
 	public int getCommentTotal(int boardNumber) {
 		
-		return mybatis.selectOne("BoardDAO.getTotalCommentCount");
+		return mybatis.selectOne("BoardDAO.getTotalCommentCount",boardNumber);
+	}
+
+	@Override
+	public CommentVO getOneComment(int commentNumber) {
+		
+		return mybatis.selectOne("BoardDAO.getOneComment", commentNumber);
 	}
 
 	

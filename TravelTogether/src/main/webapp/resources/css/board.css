@@ -660,6 +660,10 @@ body{
     margin-top: 1.5em;
 }
 
+.eachComment{
+	margin-bottom: 0.5em;
+}
+
 .userCommentDiv{
 	padding-bottom: 1em;
 	border-bottom: 0.08em solid #DCDCDC;

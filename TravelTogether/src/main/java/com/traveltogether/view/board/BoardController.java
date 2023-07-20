@@ -47,13 +47,10 @@ public class BoardController {
 		return"views/boardWrite.jsp";
 	}
 	
-	@RequestMapping(value="/insertBoard.do", method = RequestMethod.POST) //@ModelAttribute("boardVO")
-	public String insertBoardPost(BoardVO board, HttpServletRequest request) throws Exception {
+	@RequestMapping(value="/insertBoard.do", method = RequestMethod.POST)
+	public String insertBoardPost(BoardVO board, HttpSession session) throws Exception {
 		
-		HttpSession session = request.getSession();
-		String ID = (String)session.getAttribute("ID");
-		
-		board.setMember_id("xbj3812@gmail.com"); //로그인 기능 구현시 ID로 변경"xbj3812@gmail.com"
+		board.setMember_id((String)session.getAttribute("userId"));
 		BoardImageVO image = new BoardImageVO();
 		//파일업로드
 		MultipartFile uploadFile = board.getUploadFile();
@@ -73,7 +70,15 @@ public class BoardController {
 			
 		}else {
 			//이미지 없으면 선택한 축제의 기본 이미지 가져오기
-			image.setBoard_image_file(board.getFestival_name()+"_1_공공3유형.jpg");
+			//jpg인지 png인지 확인해서 맞는 걸로 연결하기
+			File file = new File("C:\\Users\\user\\Desktop\\KCY\\spring\\SpringSRC\\TT\\TravelTogether\\src\\main\\webapp\\resources\\image\\festival\\"
+					+board.getFestival_name()+"\\"+board.getFestival_name()+"_1_공공3유형.jpg");
+			if(file.exists()) {
+				image.setBoard_image_file(board.getFestival_name()+"_1_공공3유형.jpg");
+			}else {
+				image.setBoard_image_file(board.getFestival_name()+"_1_공공3유형.png");
+			}
+			 
 			image.setBoard_image_file_path("festival/"+board.getFestival_name());
 		}
 		
@@ -81,7 +86,7 @@ public class BoardController {
 		//제한수 체크 테이블에 값이 있는지 확인하고 있으면 update 없으면 insert
 		BoardLimitVO limit = new BoardLimitVO();
 		limit.setFestival_name(board.getFestival_name());
-		limit.setMember_id("xbj3812@gmail.com");
+		limit.setMember_id((String)session.getAttribute("userId"));
 		if(boardService.getOneBoardLimit(limit)!=null) {
 				boardService.updateBoardLimit(limit);
 		}else {
@@ -114,10 +119,9 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/boardList.do")
-	public String getBoardList(Criteria criteria, ModelMap model, HttpServletResponse response, HttpServletRequest request) throws IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=UTF-8");
-		
+	public String getBoardList(Criteria criteria, ModelMap model, HttpSession session) throws IOException {
+		//request.setCharacterEncoding("UTF-8");
+		System.out.println(session.getAttribute("userId"));
 		BoardPageCreate pageCreate = new BoardPageCreate();
 		pageCreate.setCriteria(criteria);
 		pageCreate.setTotalCount(boardService.getTotalBoardCount());
@@ -134,6 +138,8 @@ public class BoardController {
 		
 		boardService.viewCount(Integer.parseInt(request.getParameter("no")));
 		model.addAttribute("board", boardService.getOneBoard(Integer.parseInt(request.getParameter("no"))));
+		model.addAttribute("commentList", boardService.getCommnetList(Integer.parseInt(request.getParameter("no"))));
+		model.addAttribute("commentCount", boardService.getCommentTotal(Integer.parseInt(request.getParameter("no"))));
 		return "views/board.jsp";
 	}
 	
@@ -181,12 +187,12 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/deleteBoard.do")
-	public String deleteBoard (HttpServletRequest request) {
+	public String deleteBoard (HttpServletRequest request, HttpSession session) {
 		//limit count-1하기
 		BoardListVO boardList = boardService.getOneBoard(Integer.parseInt(request.getParameter("no")));
 		BoardLimitVO limit = new BoardLimitVO();
 		limit.setFestival_name(boardList.getFestival_name());
-		limit.setMember_id("xbj3812@gmail.com"); //boardList.getMember_id()
+		limit.setMember_id((String)session.getAttribute("userId"));
 		boardService.minusBoardLimit(limit);
 		//이미지값 삭제후 게시글 삭제
 		boardService.deleteBoardImage(Integer.parseInt(request.getParameter("no")));
@@ -215,6 +221,18 @@ public class BoardController {
 		Map<Object,Object> map = new HashMap<Object, Object>();
 		//댓글이 db등록에 성공하면 등록된 댓글 번호(pk)랑 success 반환
 		System.out.println(comment.toString());
+		boardService.insertComment(comment);
+		map.put("success", "success");
+		System.out.println("comment_number: "+comment.getComment_number());
+		map.put("comment", boardService.getOneComment(comment.getComment_number()));
+		
+		return map;
+	}
+	//답글
+	@RequestMapping(value = "/insertReComment.do")
+	@ResponseBody
+	public Map<Object, Object> insertreComment(@RequestBody CommentVO comment){
+		Map<Object,Object> map = new HashMap<Object, Object>();
 		
 		return map;
 	}

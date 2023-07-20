@@ -80,7 +80,7 @@ public class BoardListVO {
 		this.board_total_people = board_total_people;
 	}
 	public String getBoard_start_date() {
-		return board_start_date;
+		return board_start_date.substring(0, 10);
 	}
 	public void setBoard_start_date(String board_start_date) {
 		this.board_start_date = board_start_date;
@@ -169,13 +169,13 @@ public class BoardListVO {
 	}
 	
 	public String getBoard_write_date() {
-		return board_write_date;
+		return board_write_date.substring(0, 19);
 	}
 	public void setBoard_write_date(String board_write_date) {
 		this.board_write_date = board_write_date;
 	}
 	public String getBoard_update_date() {
-		return board_update_date;
+		return board_update_date.substring(0, 19);
 	}
 	public void setBoard_update_date(String board_update_date) {
 		this.board_update_date = board_update_date;

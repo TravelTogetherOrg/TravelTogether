@@ -99,7 +99,7 @@
 	                    <div class="topInfo memberInfo">
 	                        <p>${board.member_nickname}</p>
 	                        <div class="ageandgender">
-	                            <p>${board.member_age}0대</p>
+	                            <p>${board.member_age}0대 </p>
 	                            <div>·</div>
 	                            <p>${board.member_gender}성</p>
 	                        </div> 
@@ -141,7 +141,7 @@
 	                    <div class="topInfo memberInfo">
 	                        <p>${board.member_nickname}</p>
 	                        <div class="ageandgender">
-	                            <p>${board.member_age}0대</p>
+	                            <p>${board.member_age}0대 </p>
 	                            <div>·</div>
 	                            <p>${board.member_gender}성</p>
 	                        </div> 
@@ -183,7 +183,7 @@
 	                    <div class="topInfo memberInfo">
 	                        <p>${board.member_nickname}</p>
 	                        <div class="ageandgender">
-	                            <p>${board.member_age}0대</p>
+	                            <p>${board.member_age}0대 </p>
 	                            <div>·</div>
 	                            <p>${board.member_gender}성</p>
 	                        </div> 

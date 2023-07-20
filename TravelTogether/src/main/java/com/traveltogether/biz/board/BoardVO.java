@@ -76,7 +76,7 @@ public class BoardVO {
 		this.board_end_date = board_end_date;
 	}
 	public String getBoard_write_date() {
-		return board_write_date;
+		return board_write_date.substring(0, 19);
 	}
 	public void setBoard_write_date(String board_write_date) {
 		this.board_write_date = board_write_date;
@@ -100,7 +100,7 @@ public class BoardVO {
 		this.board_view_count = board_view_count;
 	}
 	public String getBoard_update_date() {
-		return board_update_date;
+		return board_update_date.substring(0, 19);
 	}
 	public void setBoard_update_date(String board_update_date) {
 		this.board_update_date = board_update_date;
