@@ -86,5 +86,9 @@
 		select count(MEMBER_NICKNAME) from MEMBER where MEMBER_NICKNAME = #{member_nickname}
 	</select>
 	
+	<!--비밀번호 로그인 유효성 -->
+	<select id="checkPassword" resultType="int">
+		select count(MEMBER_PASSWORD) from MEMBER where MEMBER_PASSWORD = #{member_password}
+	</select>
 	
 </mapper>

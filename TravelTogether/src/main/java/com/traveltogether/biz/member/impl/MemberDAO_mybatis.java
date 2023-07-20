@@ -59,5 +59,10 @@ public class MemberDAO_mybatis {
 		return mybatis.selectOne("MemberDAO.checkNickname",vo);
 	}
 	
+	//비밀번호 로그인 유효성
+	public int checkPassword(MemberVO vo) {
+		return mybatis.selectOne("MemberDAO.checkPassword",vo);
+	}
+	
 	
 }

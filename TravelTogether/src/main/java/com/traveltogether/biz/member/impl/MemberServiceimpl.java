@@ -54,4 +54,8 @@ public class MemberServiceimpl {
 	public int checkNickname(MemberVO vo) {
 		return memberDAO.checkNickname(vo);
 	}
+	
+	public int checkPassword(MemberVO vo) {
+		return memberDAO.checkPassword(vo);
+	}
 }	

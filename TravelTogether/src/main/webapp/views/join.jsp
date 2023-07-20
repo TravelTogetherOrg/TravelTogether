@@ -48,6 +48,29 @@
   font-weight:bolder;
   color: orange;
   }
+  
+  /* 유효성 스타일 */
+  .user_id_ok{
+  font-weight : bolder;
+  color: blue;
+  display: none;
+  }
+  .user_id_already{
+  font-weight : bolder;
+  color: orange;
+  display: none;
+  }
+  .user_nickname_ok{
+  font-weight : bolder;
+  color: blue;
+  display: none;
+  }
+  .user_nickname_already{
+  font-weight : bolder;
+  color: orange;
+  display: none;
+  }
+ 
 </style>
 </head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" 
@@ -113,8 +136,54 @@
   };
   
  /*  --- */
- 
- 
+ function checkId(){
+        var id = $('#id').val(); //id값이 "id"인 입력란의 값을 저장
+        $.ajax({
+            url:"<c:url value='/checkId.do'/>", //Controller에서 요청 받을 주소
+            type:'post', //POST 방식으로 전달
+            data:{'member_id':id},
+            success:function(cnt){ //컨트롤러에서 넘어온 cnt값을 받는다 
+                if(cnt == 0){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
+                    $('.user_id_ok').css("display","inline-block");
+               		$('.user_id_already').css("display", "none");
+                } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
+                    $('.user_id_already').css("display","inline-block");
+                    $('.user_id_ok').css("display", "none");
+                    // alert("아이디를 다시 입력해주세요"); 
+                    // $('#id').val(''); 중복이면 input창 아이디 clean  
+                }
+            },
+            error:function(){
+                alert("에러입니다");
+            }
+        });
+        };
+        
+        function checkNickname(){
+            var nickname = $('#nickname').val(); 
+            $.ajax({
+                url:"<c:url value='/checkNickname.do'/>", //Controller에서 요청 받을 주소
+                type:'post', //POST 방식으로 전달
+                data:{'member_nickname':nickname},
+                success:function(cnt){ //컨트롤러에서 넘어온 cnt값을 받는다 
+                    if(cnt == 0){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 닉네임
+                        $('.user_nickname_ok').css("display","inline-block"); 
+                        $('.user_nickname_already').css("display", "none");
+                   
+                    } else { // cnt가 1일 경우 -> 이미 존재하는 별명
+                        $('.user_nickname_already').css("display","inline-block");
+                        $('.user_nickname_ok').css("display", "none");
+                        alert("별명을 다시 입력해주세요"); 
+                        $('#nickname').val('');
+                  
+                    }
+                },
+                error:function(){
+                    alert("에러입니다");
+                }
+            });
+            };
+
 </script>
 <body>
 	<div class="member">
@@ -129,7 +198,8 @@
 	      <div id="container">
 	        <div class="input_control">
 	            <span class="placehold-text"><input id="id" type="email" placeholder="이메일 주소" name="member_id" oninput="checkId()" required></span>
-	            <div class="user_id"></div>
+	            <span class="user_id_ok">사용 가능한 아이디 입니다.</span>
+	            <span class="user_id_already">중복된 아이디 입니다.</span>
 	        </div>
 	        <div class="input_control">
 	            <input id="password" class="userpw" type="password" name="member_password" placeholder="비밀번호(8~12자, 영문+숫자+특수문자 사용)" required>
@@ -156,8 +226,9 @@
 	   			 <div class="user_gender"></div>
 	        </div>
 	        <div class="input_control">
-	            <span class="placehold-text"><input id="nickname" type="text" name="member_nickname" placeholder="닉네임" required></span>
-	            <div class="user_nickname"></div>
+	            <span class="placehold-text"><input id="nickname" type="text" name="member_nickname" placeholder="닉네임" oninput="checkNickname()" required></span>
+	            <span class="user_nickname_ok">사용 가능한 별명 입니다.</span>
+	            <span class="user_nickname_already">중복된 별명 입니다.</span>
 	        </div>
 	         <input type="submit" value="가입하기" style="font-size:20px;">
 	 	 </div>

@@ -32,4 +32,7 @@ public interface MemberService {
 	
 	//닉네임 중복체크 
 	int checkNickname(MemberVO vo);
+	
+	//비밀번호 유효성
+	int checkPassword(MemberVO vo);
 }

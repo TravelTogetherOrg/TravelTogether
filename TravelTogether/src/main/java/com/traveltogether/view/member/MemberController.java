@@ -27,8 +27,18 @@ public class MemberController {
 	@Autowired
 	private MemberServiceimpl memberService;
 	
-	@RequestMapping(value = "/views/insertMember.do")
-	public String insertMember(MemberVO vo)throws IOException {
+	@RequestMapping(value = "/memberAgreement.do")
+	public String memberAgreement(MemberVO vo)throws IOException {
+		return "/views/memberAgreement.jsp";
+	}
+	
+	@RequestMapping(value = "/insertMember.do", method = RequestMethod.GET)
+	public String insertMember1(MemberVO vo) {
+		return "/views/join.jsp";
+	}
+	
+	@RequestMapping(value = "/insertMember.do", method = RequestMethod.POST)
+	public String insertMember2(MemberVO vo)throws IOException {
 		memberService.insertMember(vo);
 		
 		return "/main.do";
@@ -77,7 +87,7 @@ public class MemberController {
 		return "/views/test.jsp";
 	}
 	
-	@RequestMapping(value="/views/login.do", method=RequestMethod.GET)
+	@RequestMapping(value="/login.do", method=RequestMethod.GET)
 	public String loginMember(MemberVO vo) {
 		vo.setMember_id("admin@test.com");
 		vo.setMember_password("1234");
@@ -85,7 +95,7 @@ public class MemberController {
 		return "/views/login.jsp";
 	}
 	
-	@RequestMapping(value="/views/login.do", method=RequestMethod.POST)
+	@RequestMapping(value="/login.do", method=RequestMethod.POST)
 	public String loginMember(MemberVO vo, HttpSession session, Model model)throws IllegalAccessException {
 		if(vo.getMember_id() == null || vo.getMember_id() == "") {
 			throw new IllegalAccessException("아이디는 반드시 입력해야합니다.");
@@ -98,34 +108,48 @@ public class MemberController {
 			
 			model.addAttribute("member",memberService.getMember(vo));
 			
-			return "/main.do";
+			return "main.do";
 		} else {
 			return "/views/login.jsp";
 		}
 	}
 	
-	@RequestMapping("/views/logout.do")
+	@RequestMapping("/logout.do")
 	public String logoutMember(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		
-		return "/main.do";
+		return "main.do";
 	}
+
+	/*--유효성---*/
 	
 	//아이디 중복체크
-	@RequestMapping("/checkId")
+	@RequestMapping("/checkId.do")
 	@ResponseBody
 	public int checkId(MemberVO vo) {
 		
 		int cnt = memberService.checkId(vo);
+		System.out.println("아이디 중복검사 : "+cnt);
 		return cnt;
 	}
 	//닉네임 중복체크 
-	@RequestMapping("/checkNickname")
+	@RequestMapping("/checkNickname.do")
 	@ResponseBody
 	public int checkNickname(MemberVO vo) {
 		
 		int cnt = memberService.checkNickname(vo);
+		System.out.println("별명 중복검사 : "+cnt);
+		return cnt;
+	}
+	
+	//비밀번호 로그인 체크
+	@RequestMapping("/checkPassword.do")
+	@ResponseBody
+	public int checkPassword(MemberVO vo) {
+		
+		int cnt = memberService.checkPassword(vo);
+		System.out.println("비밀번호 검사 : "+cnt);
 		return cnt;
 	}
 	

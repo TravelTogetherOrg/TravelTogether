@@ -61,7 +61,45 @@
       }
     };
   };
+  
+  /* --별병 중복체크-- */
+function checkNickname(){
+           var nickname = $('#nickname').val(); 
+           $.ajax({
+               url:"<c:url value='/checkNickname.do'/>", 
+               type:'post', 
+               data:{'member_nickname':nickname},
+               success:function(cnt){ 
+                   if(cnt == 0){
+                       $('.user_nickname_ok').css("display","inline-block"); 
+                       $('.user_nickname_already').css("display", "none");
+                   } else { 
+                       $('.user_nickname_already').css("display","inline-block");
+                       $('.user_nickname_ok').css("display", "none");
+                       alert("별명을 다시 입력해주세요");
+                       $('#nickname').val('');
+                       return false;
+                   }
+               },
+               error:function(){
+                   alert("에러입니다");
+               }
+           });
+           };
 </script>
+<style type="text/css">
+  .user_nickname_ok{
+  font-weight : bolder;
+  color: blue;
+  display: none;
+  }
+  .user_nickname_already{
+  font-weight : bolder;
+  color: orange;
+  display: none;
+  }
+
+</style>
 </head>
 <body>
 
@@ -127,7 +165,9 @@
 						</tr>
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">별명<br><input type='text' name='member_nickname' value='${member.member_nickname}'size="40"> </font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">별명<br><input type='text' name='member_nickname' id="nickname" oninput="checkNickname()" value='${member.member_nickname}'size="40" required="required"> </font>&nbsp;&nbsp;</h5>
+								<span class="user_nickname_ok">사용 가능한 별명 입니다.</span>
+	            				<span class="user_nickname_already">중복된 별명 입니다.</span>
 							</td>
 						</tr>
 						<tr>
@@ -160,7 +200,7 @@
 					</table>
 				</div>
 				<div id="btn">
-					<input type="submit" id="modifyBtn" value="수정하기" class="btn btn-default">&nbsp;&nbsp;
+					<input type="submit" id="modifyBtn" value="수정하기" onclick="checkNickname()" class="btn btn-default">&nbsp;&nbsp;
 					<a href="${path}/deleteMember.do?member_id=${member.member_id}" id="modifyBtn" class="btn btn-default">탈퇴하기</a>
 				</div>
 			</div>

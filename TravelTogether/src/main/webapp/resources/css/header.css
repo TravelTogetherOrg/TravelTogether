@@ -73,6 +73,13 @@
     margin: 0;
     padding-left: 0;
   }
+  .navbar__icons .icon{
+   display: none;
+  }
+  .navbar__icons li a:hover {
+   color: orange;
+   text-decoration: underline;
+  }
   .navbar__icons input[type='text']{
     border: none;
     background-color: transparent;
@@ -104,7 +111,7 @@
     right: 15px;
     font-size: 20px;
     display: none;
-    padding-top: 2px;
+    padding-top: 6px;
   }
   /* ----------스크롤시 메뉴바 변경점------------- */
     .navbar.active{
@@ -125,6 +132,12 @@
       justify-content: end;
       width: 30%;
     }
+    .navbar__icons .icon{
+   display: inline-block;
+  }
+   .navbar__icons .text{
+   display: none;
+  }
     .navbar {
         flex-direction: column;
         align-items: flex-start;
