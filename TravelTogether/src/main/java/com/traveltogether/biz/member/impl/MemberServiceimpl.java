@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.traveltogether.biz.member.MemberService;
 import com.traveltogether.biz.member.MemberVO;
 
 @Service
@@ -46,4 +45,26 @@ public class MemberServiceimpl {
 	public List<MemberVO> memberBoardList(MemberVO vo) {
 		return memberDAO.memberBoardList(vo);
 	}
+	
+	public List<MemberVO> memberCommentList(MemberVO vo) {
+		return memberDAO.memberCommentList(vo);
+	}
+	
+	public int checkId(MemberVO vo) {
+		return memberDAO.checkId(vo);
+	}
+	
+	public int checkNickname(MemberVO vo) {
+		return memberDAO.checkNickname(vo);
+	}
+	
+	public int checkPassword(MemberVO vo) {
+		return memberDAO.checkPassword(vo);
+	}
+	
+	//  KHS 추가 멤버별 like 리스트
+	  public List<MemberVO> memberLikeList(MemberVO vo){
+	     return memberDAO.memberLikeList(vo);
+	  }
+	
 }	

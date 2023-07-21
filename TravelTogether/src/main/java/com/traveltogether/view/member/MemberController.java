@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,9 +26,6 @@ public class MemberController {
 	
 	@Autowired
 	private MemberServiceimpl memberService;
-	
-	
-	
 	
 	@RequestMapping(value = "/memberAgreement.do")
 	public String memberAgreement(MemberVO vo)throws IOException {
@@ -63,7 +61,9 @@ public class MemberController {
 //		HttpSession session = request.getSession();
 //		vo.setMember_id(session.getAttribute("userId").toString());  // 세션으로 넘길떄 
 		model.addAttribute("member", memberService.getMember(vo));
-		
+		model.addAttribute("memberBoardList",memberService.memberBoardList(vo));
+		model.addAttribute("memberCommentList",memberService.memberCommentList(vo));
+		model.addAttribute("memberLikeList", memberService.memberLikeList(vo));
 		return "/views/mypage_main.jsp";
 	}
 	
@@ -86,7 +86,14 @@ public class MemberController {
 	public String memberBoardList(MemberVO vo, Model model) {
 		model.addAttribute("memberBoardList",memberService.memberBoardList(vo));
 		
-		return "/views/test.jsp";
+		return "/views/mypage_main.jsp"; //테스트용
+	}
+	//회원댓글 조회
+	@RequestMapping("/memberCommentList.do")
+	public String memberCommentList(MemberVO vo, Model model) {
+		model.addAttribute("memberCommentList",memberService.memberCommentList(vo));
+		
+		return "/views/mypage_main.jsp"; //테스트용
 	}
 	
 	@RequestMapping(value="/login.do", method=RequestMethod.GET)
@@ -122,6 +129,37 @@ public class MemberController {
 		session.invalidate();
 		
 		return "main.do";
+	}
+
+	/*--유효성---*/
+	
+	//아이디 중복체크
+	@RequestMapping("/checkId.do")
+	@ResponseBody
+	public int checkId(MemberVO vo) {
+		
+		int cnt = memberService.checkId(vo);
+		System.out.println("아이디 중복검사 : "+cnt);
+		return cnt;
+	}
+	//닉네임 중복체크 
+	@RequestMapping("/checkNickname.do")
+	@ResponseBody
+	public int checkNickname(MemberVO vo) {
+		
+		int cnt = memberService.checkNickname(vo);
+		System.out.println("별명 중복검사 : "+cnt);
+		return cnt;
+	}
+	
+	//비밀번호 로그인 체크
+	@RequestMapping("/checkPassword.do")
+	@ResponseBody
+	public int checkPassword(MemberVO vo) {
+		
+		int cnt = memberService.checkPassword(vo);
+		System.out.println("비밀번호 검사 : "+cnt);
+		return cnt;
 	}
 	
 	

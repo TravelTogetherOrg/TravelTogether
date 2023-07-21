@@ -227,7 +227,6 @@
 
 <!-- 카카오api -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=19b0de7649944cbcadc52b390c8508cf"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=19b0de7649944cbcadc52b390c8508cf"></script>
 <script>
   var mapContainer = document.getElementById("map"); // 지도를 표시할 div
   var mapOption = {

@@ -73,6 +73,13 @@
     margin: 0;
     padding-left: 0;
   }
+  .navbar__icons .icon{
+   display: none;
+  }
+  .navbar__icons li .login_text:hover {
+   color: orange;
+   text-decoration: underline;
+  }
   .navbar__icons input[type='text']{
     border: none;
     background-color: transparent;
@@ -81,7 +88,7 @@
     text-align: center;
   }
    .navbar__icons span{
-   font-size: 0.9em;
+    font-size: 0.9em;
 	font-family: 'GmarketSansMedium';
   } 
 
@@ -92,6 +99,14 @@
   .navbar__icons li {
     padding: 8px 3px;
     margin: 0;
+  }
+  .navbar__icons .user_info{
+  	margin-left:-10px;
+    margin-top: 7px;
+  }
+  .navbar__icons .logout_icon{
+  	margin-left:7px;
+    margin-top: 4px;
   }
   .navbar__menu li a:hover  {
     color: var(--accent-color);
@@ -104,7 +119,7 @@
     right: 15px;
     font-size: 20px;
     display: none;
-    padding-top: 2px;
+    padding-top: 6px;
   }
   /* ----------스크롤시 메뉴바 변경점------------- */
     .navbar.active{
@@ -125,6 +140,12 @@
       justify-content: end;
       width: 30%;
     }
+    .navbar__icons .icon{
+   display: inline-block;
+  }
+   .navbar__icons .text{
+   display: none;
+  }
     .navbar {
         flex-direction: column;
         align-items: flex-start;
@@ -144,6 +165,7 @@
     }
     
     .navbar__toggleBtn {
+      margin-top: 4px;
       display: block;
     }
     

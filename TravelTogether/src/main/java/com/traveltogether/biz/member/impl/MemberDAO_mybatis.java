@@ -46,4 +46,29 @@ public class MemberDAO_mybatis {
 		return mybatis.selectList("MemberDAO.memberBoardList",vo);
 	}
 	
+	//회원 댓글
+	public List<MemberVO> memberCommentList(MemberVO vo){
+		return mybatis.selectList("MemberDAO.memberCommentList",vo);
+	}
+	
+	//아이디 중복체크
+	public int checkId(MemberVO vo) {
+		return mybatis.selectOne("MemberDAO.checkId",vo);
+	}
+	
+	//닉네임 중복체크
+	public int checkNickname(MemberVO vo) {
+		return mybatis.selectOne("MemberDAO.checkNickname",vo);
+	}
+	
+	//비밀번호 로그인 유효성
+	public int checkPassword(MemberVO vo) {
+		return mybatis.selectOne("MemberDAO.checkPassword",vo);
+	}
+   // KHS 추가 회원별 좋아요 리스트
+   public List<MemberVO> memberLikeList(MemberVO vo) {
+      return mybatis.selectList("MemberDAO.memberLikeList",vo);
+   }
+   
+
 }

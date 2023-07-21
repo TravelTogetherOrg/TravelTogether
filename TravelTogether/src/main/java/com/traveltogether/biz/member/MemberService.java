@@ -26,4 +26,17 @@ public interface MemberService {
 	List<MemberVO> memberBoardList(MemberVO vo);
 	
 	//회원 댓글 조회
+	List<MemberVO> memberCommentList(MemberVO vo);
+	
+	   // KHS 추가
+	   List<MemberVO> memberLikeList(MemberVO vo);
+	
+	//아이디 중복체크
+	int checkId(MemberVO vo);
+	
+	//닉네임 중복체크 
+	int checkNickname(MemberVO vo);
+	
+	//비밀번호 유효성
+	int checkPassword(MemberVO vo);
 }

@@ -78,6 +78,9 @@ body{
 	background: rgb(192, 228, 255);
 	color: white;
 }
+#modifyBtn:hover{
+	color: orange;
+}
 #btn{
 	display: flex;
 	justify-content: center;
@@ -193,7 +196,7 @@ a{
 #tabs li a.current {
 	background: rgb(192, 228, 255);
 	color: white;
-	
+	border-radius: 10xp;
 }
 
 .tab-section {
@@ -203,12 +206,14 @@ a{
 	margin-bottom: 50px; 
 	background:white;
 	align: center;
+	border-radius:10px; 
 }
 
 .sidebar {
 	width: 220px;
-	height: auto;            /* 사이드바 세로 박스 크기 */
-	margin-bottom: 50px;            /* 하단 간격 */
+	height: 265px;    
+	margin-top:10px;       /* 사이드바 세로 박스 크기 */
+	margin-bottom: 40px;            /* 하단 간격 */
 	padding: 10px;
 	border: 2px solid #ccc;
 	border-radius: 10px;			
@@ -259,3 +264,25 @@ a{
 input[type="file"]{
 	margin-bottom: 15px;
 }
+
+/* -유효성-- */
+  .user_nickname_ok{
+  font-weight : bolder;
+  color: blue;
+  display: none;
+  }
+  .user_nickname_already{
+  font-weight : bolder;
+  color: orange;
+  display: none;
+  }
+  
+  /* ---테이블 디자인--- */
+  
+    #likeList {
+    transition: transform 0.3s ease;
+  }
+  #likeList:hover {
+    transform: translateY(-10px);
+  }
+  

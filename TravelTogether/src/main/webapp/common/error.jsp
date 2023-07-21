@@ -84,8 +84,8 @@
 		    	일시적으로 사용이 중단되었습니다.
 		    	<br>
 		    	<br>
-		    	<button type="button" class="btn btn-outline-secondary" onclick="window.location.href='${path}/main.do'">메인페이지</button> &nbsp;&nbsp;
-		    	<button type="button" class="btn btn-outline-secondary" onclick="window.location.href='${path}/boardList.do'">이전페이지</button>
+		    	<button class="btn btn-outline-secondary" onclick="window.location.href='${path}/main.do'">메인페이지</button> &nbsp;&nbsp;
+		    	<button class="btn btn-outline-secondary" onclick="goBack()">이전페이지</button>
 		    <br>
 		    <br>
 		    </div>
@@ -109,6 +109,15 @@
 			</div>
 			 
 		</div>
+
+
+<!-- 이전페이지 구현 -->
+<script>
+	function goBack(){
+		location.reload();
+		history.go(-2);
+	}
+</script>
 
 
 <!-- 관리자 오류메시지 뜨게하기 -->

@@ -54,7 +54,7 @@ public class BoardController {
 		HttpSession session = request.getSession();
 		String ID = (String)session.getAttribute("ID");
 		
-		board.setMember_id("xbj3812@gmail.com"); //로그인 기능 구현시 ID로 변경"xbj3812@gmail.com"
+		board.setMember_id((String)session.getAttribute("userId")); //로그인 기능 구현시 ID로 변경"xbj3812@gmail.com"
 		BoardImageVO image = new BoardImageVO();
 		//파일업로드
 		MultipartFile uploadFile = board.getUploadFile();
@@ -91,7 +91,7 @@ public class BoardController {
 		//제한수 체크 테이블에 값이 있는지 확인하고 있으면 update 없으면 insert
 		BoardLimitVO limit = new BoardLimitVO();
 		limit.setFestival_name(board.getFestival_name());
-		limit.setMember_id("xbj3812@gmail.com");
+		limit.setMember_id((String)session.getAttribute("userId"));
 		if(boardService.getOneBoardLimit(limit)!=null) {
 				boardService.updateBoardLimit(limit);
 		}else {
@@ -191,12 +191,12 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/deleteBoard.do")
-	public String deleteBoard (HttpServletRequest request) {
+	public String deleteBoard (HttpServletRequest request, HttpSession session) {
 		//limit count-1하기
 		BoardListVO boardList = boardService.getOneBoard(Integer.parseInt(request.getParameter("no")));
 		BoardLimitVO limit = new BoardLimitVO();
 		limit.setFestival_name(boardList.getFestival_name());
-		limit.setMember_id("xbj3812@gmail.com"); //boardList.getMember_id()
+		limit.setMember_id((String)session.getAttribute("userId")); //boardList.getMember_id()
 		boardService.minusBoardLimit(limit);
 		//이미지값 삭제후 게시글 삭제
 		boardService.deleteBoardImage(Integer.parseInt(request.getParameter("no")));
