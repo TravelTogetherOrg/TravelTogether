@@ -12,7 +12,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/main.css">
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/mypage.css?dddd">
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/mypage.css?ddd">
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script> 
 /* 사이드바 */
@@ -25,7 +25,6 @@
 			e.preventDefault();
 		}).filter(':first').click();
 	});
-	
 /* --------유효성--------- */
   window.onload = function() {
     var passwordInput = document.getElementById('password');
@@ -87,22 +86,8 @@ function checkNickname(){
            });
            };
 </script>
-<style type="text/css">
-  .user_nickname_ok{
-  font-weight : bolder;
-  color: blue;
-  display: none;
-  }
-  .user_nickname_already{
-  font-weight : bolder;
-  color: orange;
-  display: none;
-  }
-
-</style>
 </head>
 <body>
-
 <jsp:include page="header.jsp"/>
 	
 	<div class="title">
@@ -113,8 +98,8 @@ function checkNickname(){
 			<div class="sidebar-inner">
 				<ul id="tabs">
 					<li><a href="#description">계정설정</a></li>
-					<!-- <li><a href="#companioninfo">동행신청정보</a></li> -->
-					<li><a id="memberBoardLink" href="${path}/memberBoardList.do">내가 작성한 동행 게시글</a></li>
+					<li><a href="#memberLike">좋아요</a></li>
+					<li><a id="memberBoardLink" href="#details">내가 작성한 동행 게시글</a></li>
 					<li><a href="#review">내가 작성한 댓글</a></li>
 				</ul>
 			</div>
@@ -206,96 +191,34 @@ function checkNickname(){
 			</div>
 		</form>
 			<!-- 동행신청정보 탭 -->
-<%-- 	<div id="companioninfo" class="tab-section">
-			
+	<div id="companioninfo" class="tab-section">
 		<div id="writedlist">
-			<h2>동행 신청 내역</h2>
-			<hr style="border-color: black;">
-			<button id="cominfoBtn_G" class="btn btn-default btn-default2">보낸 동행신청 내역</button>
-			<button id="cominfoBtn_T" class="btn btn-default btn-default2">받은 동행신청 내역</button><br><br>
-
-			<!-- 보낸 동행 신청 -->
-			<c:if test="">
-			<table id="companioninfo_g" class="table">
-				<tr style="background: #dfd9f7;">
-					<td>글번호</td>
-					<td>동행글 제목</td>
-					<td>작성자</td>
-					<td>수락여부</td>
-				</tr>
-				<c:forEach items="" var="companioninfo_g">
-				<tr>
-					<td>1</td>
-					<td>동행구해요~</td>
-					<td>홍길동</td>
-					<td>수락여부</td>
-				</tr>
-				</c:forEach>
-			</table> 
-			</c:if>
-			<div id="msg1">
-				<c:if test="">
-				<div class="textDiv">동행 신청내역이 없습니다.<br><a style="text-decoration: none;" href="동행게시판">동행신청 하러가기</a>
-				</div>
-				</c:if>
-			</div>
-			<!-- 받은 동행 신청 -->
-			<c:if test="">
-			<table id="companioninfo_t" class="table">
-				<tr style="background: #dfd9f7;">
-					<td style="width:10%">글번호</td>
-					<td style="width:35%">동행글 제목</td>
-					<td style="width:20%">신청자</td>
-					<td style="width:20%">수락여부</td>
-					<td style="width:15%">채팅</td>
-				</tr>
-				<c:forEach items="" var="companioninfo_t">
-				<tr>
-					<td>1</td>
-					<td>동행구합니다~</td>
-					<td>김철수</td>
-					<td>
-					<c:if test="">
-						<button class="OkBtn btn btn-default">수락하기</button>
-					</c:if>
-					<c:if test="">
-					&nbsp;&nbsp;&nbsp;
-					</c:if>
-					</td>
-					<td id="inviteBtnTd">
-					<c:if test="">
-						<font style="color:blue;" color="blue">초대완료</font>
-					</c:if>
-					<c:if test="">
-						<button class="ChattingBtn btn btn-default">채팅초대하기</button>
-					</c:if>
-					</td>
-				</tr>
-				</c:forEach>
-			</table> 
-			</c:if>
-			<div id="msg2">
-			<c:if test="">
-			<div class="textDiv">
-				받은 동행 신청내역이 없습니다.
-			</div>
-			</c:if>
-			</div>
-		</div>
-	</div> --%>
-<script>
+				<h2>좋아요</h2>
+				<hr style="border-color: black;">
+				<p>??</p>
+		</div>	
+	</div> 
+<!-- <script>
 $(function() {
 	if("${listView}"=="t"){
 		cominfoBtn_T.click();
 	}
 }); 
-</script>
-		<div id="details" class="tab-section">
-			<h2>${memberBoardList.member_id} 님의 작성 게시물 입니다.</h2>
-			<hr style="border-color: black;">
-			<c:forEach items="${memberBoardList}" var="board">
+</script> -->
+		<div id="details" class="tab-section" text-aligin="center">
+		<h2>내가 작성한 동행 게시글</h2>
+		<hr style="border-color: black;">
+			<table border="1" cellpadding="0" cellspacing="0" width="850">
 				<tr>
-					<td>${board.member_id}</td>
+					<th width="142">축제 이름</th>
+					<th width="142">게시글 제목</th>
+					<th width="142">동행시작일</th>
+					<th width="142">동행종료일</th>
+					<th width="142">동행인원</th>
+					<th width="142">작성일자</th>
+				</tr>
+				<c:forEach items="${memberBoardList}" var="board">
+				<tr>
 					<td>${board.festival_name}</td>				
 					<td>${board.board_title}</td>
 					<td>${board.board_start_date}</td>
@@ -303,13 +226,61 @@ $(function() {
 					<td>${board.board_total_people}</td>
 					<td>${board.board_write_date}</td>
 				</tr>			
-			</c:forEach>
+				</c:forEach>
+			</table>
 		</div>
 		<div id="review" class="tab-section">
 			<h2>내가 작성한 댓글</h2>
 			<hr style="border-color: black;">
-			<p>응. 없어~~</p>
+			<table border="1" cellpadding="0" cellspacing="0" width="850">
+				<tr>
+					<th width="142">댓글 번호</th>
+					<th width="142">게시판 번호</th>
+					<th width="142">댓글내용</th>
+					<th width="142">댓글 구분</th>
+					<th width="142">댓글 작성일</th>
+					<th width="142">댓글 수정일</th>
+				</tr>
+				<c:forEach items="${memberCommentList}" var="comment">
+				<tr>
+					<td>${comment.comment_number}</td>
+					<td>${comment.board_number}</td>				
+					<td>${comment.comment_content}</td>
+					<td>${comment.comment_class}</td>
+					<td>${comment.comment_write_date}</td>
+					<td>${comment.comment_update_date}</td>
+				</tr>			
+				</c:forEach>
+			</table>
 		</div>
+		
+		      <!-- 내가 추가 -->
+      <div id="memberLike" class="tab-section">
+         <h2>${member.member_nickname}의 좋아요 목록</h2>
+         <hr style="border-color: black;">
+            <div class="row">
+               <c:forEach items="${memberLikeList}" var="memberLike">
+                  <div id="likeList" class="col-md-4 col-sm-6 col-12 mb-3" style="margin-top: 30px;">
+                     <div style="height: 280px; border: 3px solid rgb(192, 228, 255); border-radius: 15px; overflow: hidden">
+                        <div style="height: 230px; border-top-left-radius: 15px; border-top-right-radius: 15px; position: relative;">
+                           <a href="${path}/getFestival.do?festival_name=${memberLike.festival_name}">
+                           <c:set var="imagePath" value="${path}/resources/image/festival/${memberLike.festival_name}/${memberLike.festival_name}_1_공공3유형" />
+                              <img style="position: absolute; width: 100%; height: 100%; object-fit: cover;" 
+                                 src="${imagePath}.png" onerror="this.onerror=null; this.src='${imagePath}.jpg'" />
+                           </a>
+                        </div>
+                        <div>
+                           <h4 style="font-weight: bolder;">&nbsp;${memberLike.festival_name}</h4>
+                        </div>
+                     
+                     </div>
+                  </div>
+               </c:forEach>
+            </div>      
+      </div>
+		
+		
+		
 	</div>
 </div>
 <jsp:include page="footer.jsp"/>

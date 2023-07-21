@@ -61,7 +61,9 @@ public class MemberController {
 //		HttpSession session = request.getSession();
 //		vo.setMember_id(session.getAttribute("userId").toString());  // 세션으로 넘길떄 
 		model.addAttribute("member", memberService.getMember(vo));
-		
+		model.addAttribute("memberBoardList",memberService.memberBoardList(vo));
+		model.addAttribute("memberCommentList",memberService.memberCommentList(vo));
+		model.addAttribute("memberLikeList", memberService.memberLikeList(vo));
 		return "/views/mypage_main.jsp";
 	}
 	
@@ -84,7 +86,14 @@ public class MemberController {
 	public String memberBoardList(MemberVO vo, Model model) {
 		model.addAttribute("memberBoardList",memberService.memberBoardList(vo));
 		
-		return "/views/test.jsp";
+		return "/views/mypage_main.jsp"; //테스트용
+	}
+	//회원댓글 조회
+	@RequestMapping("/memberCommentList.do")
+	public String memberCommentList(MemberVO vo, Model model) {
+		model.addAttribute("memberCommentList",memberService.memberCommentList(vo));
+		
+		return "/views/mypage_main.jsp"; //테스트용
 	}
 	
 	@RequestMapping(value="/login.do", method=RequestMethod.GET)

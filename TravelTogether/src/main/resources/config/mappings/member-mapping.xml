@@ -12,12 +12,20 @@
 		<result property="member_birthday" jdbcType="DATE" javaType="java.sql.Date" column="MEMBER_BIRTHDAY"/>
 		<result property="member_create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" column="MEMBER_CREATE_DATE"/>
 		<result property="member_profile_url" column="MEMBER_PROFILE_URL"/>
+		
 		<result property="festival_name" column="FESTIVAL_NAME"/>
 		<result property="board_title" column="BOARD_TITLE"/>
 		<result property="board_start_date" column="BOARD_START_DATE"/>
 		<result property="board_end_date" column="BOARD_END_DATE"/>
 		<result property="board_total_people" column="BOARD_TOTAL_PEOPLE"/>
 		<result property="board_write_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" column="BOARD_WRITE_DATE"/>
+		
+		<result property="comment_number" column="COMMENT_NUMBER"/>
+		<result property="board_number" column="BOARD_NUMBER"/>
+		<result property="comment_content" column="COMMENT_CONTENT"/>
+		<result property="comment_class" column="COMMENT_CLASS"/>
+		<result property="comment_write_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" column="COMMENT_WRITE_DATE"/>
+		<result property="comment_update_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" column="COMMENT_UPDATE_DATE"/>
 	</resultMap>
 	
 	<insert id="insertMember" parameterType="member">
@@ -63,8 +71,8 @@
 		SELECT * FROM MEMBER WHERE MEMBER_ID = #{member_id} AND MEMBER_PASSWORD = #{member_password}
 	</select>
 	
-	<!--회원작성 게시글조회 -->
-	<select id="memberBoardList" resultMap="memberResult">
+	<!--회원작성 게시글 조회 -->
+	<select id="memberBoardList" resultType="member">
 		SELECT 
 			b.MEMBER_ID, 
 			a.FESTIVAL_NAME, 
@@ -73,7 +81,27 @@
 			a.BOARD_END_DATE, 
 			a.BOARD_TOTAL_PEOPLE, 
 			a.BOARD_WRITE_DATE  
-		FROM BOARD AS a INNER JOIN MEMBER AS b ON a.MEMBER_ID = b.MEMBER_ID	
+		FROM BOARD AS a 
+		INNER JOIN MEMBER AS b 
+		ON a.MEMBER_ID = b.MEMBER_ID	
+		WHERE b.MEMBER_ID = #{member_id}
+	</select>
+	
+	<!--회원작성 댓글 조회 -->
+	<select id="memberCommentList" resultType="member">
+	  SELECT
+		 b.MEMBER_ID,
+		 a.COMMENT_NUMBER,
+		 a.BOARD_NUMBER,
+		 a.COMMENT_CONTENT,
+		 a.COMMENT_CLASS,
+		 a.COMMENT_WRITE_DATE,
+		 a.COMMENT_UPDATE_DATE  
+		FROM
+		COMMENT AS a 
+		INNER JOIN MEMBER AS b 
+		ON a.MEMBER_ID = b.MEMBER_ID
+		WHERE b.MEMBER_ID = #{member_id}
 	</select>
 	
 	<!-- 아이디중복체크 --> 
@@ -90,5 +118,12 @@
 	<select id="checkPassword" resultType="int">
 		select count(MEMBER_PASSWORD) from MEMBER where MEMBER_PASSWORD = #{member_password}
 	</select>
+	
+	   <!-- KHS 추가 멤버별 좋아요리스트 -->
+   <select id="memberLikeList" resultMap="memberResult">
+       SELECT *
+       FROM festival_like
+       WHERE member_id = #{member_id}
+   </select>
 	
 </mapper>

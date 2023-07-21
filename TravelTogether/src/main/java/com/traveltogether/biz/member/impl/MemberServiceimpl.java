@@ -46,6 +46,9 @@ public class MemberServiceimpl {
 		return memberDAO.memberBoardList(vo);
 	}
 	
+	public List<MemberVO> memberCommentList(MemberVO vo) {
+		return memberDAO.memberCommentList(vo);
+	}
 	
 	public int checkId(MemberVO vo) {
 		return memberDAO.checkId(vo);
@@ -58,4 +61,10 @@ public class MemberServiceimpl {
 	public int checkPassword(MemberVO vo) {
 		return memberDAO.checkPassword(vo);
 	}
+	
+	//  KHS 추가 멤버별 like 리스트
+	  public List<MemberVO> memberLikeList(MemberVO vo){
+	     return memberDAO.memberLikeList(vo);
+	  }
+	
 }	

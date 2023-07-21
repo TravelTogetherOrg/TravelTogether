@@ -47,7 +47,9 @@ public class MemberDAO_mybatis {
 	}
 	
 	//회원 댓글
-	
+	public List<MemberVO> memberCommentList(MemberVO vo){
+		return mybatis.selectList("MemberDAO.memberCommentList",vo);
+	}
 	
 	//아이디 중복체크
 	public int checkId(MemberVO vo) {
@@ -63,6 +65,10 @@ public class MemberDAO_mybatis {
 	public int checkPassword(MemberVO vo) {
 		return mybatis.selectOne("MemberDAO.checkPassword",vo);
 	}
-	
-	
+   // KHS 추가 회원별 좋아요 리스트
+   public List<MemberVO> memberLikeList(MemberVO vo) {
+      return mybatis.selectList("MemberDAO.memberLikeList",vo);
+   }
+   
+
 }

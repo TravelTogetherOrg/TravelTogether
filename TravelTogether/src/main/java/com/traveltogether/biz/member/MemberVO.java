@@ -23,8 +23,14 @@ public class MemberVO {
 	private String board_end_date;
 	private int board_total_people;
 	private Timestamp board_write_date;
-
 	
+	private int comment_number;
+	private int board_number;
+	private String comment_content;
+	private int comment_class;
+	private Timestamp comment_write_date;
+	private Timestamp comment_update_date;
+
 	public String getMember_id() {
 		return member_id;
 	}
@@ -113,4 +119,43 @@ public class MemberVO {
 		this.board_write_date = board_write_date;
 	}
 	
+	
+	
+	public int getComment_number() {
+		return comment_number;
+	}
+	public void setComment_number(int comment_number) {
+		this.comment_number = comment_number;
+	}
+	public int getBoard_number() {
+		return board_number;
+	}
+	public void setBoard_number(int board_number) {
+		this.board_number = board_number;
+	}
+	public String getComment_content() {
+		return comment_content;
+	}
+	public void setComment_content(String comment_content) {
+		this.comment_content = comment_content;
+	}
+	public int getComment_class() {
+		return comment_class;
+	}
+	public void setComment_class(int comment_class) {
+		this.comment_class = comment_class;
+	}
+	public Timestamp getComment_write_date() {
+		return comment_write_date;
+	}
+	public void setComment_write_date(Timestamp comment_write_date) {
+		this.comment_write_date = comment_write_date;
+	}
+	public Timestamp getComment_update_date() {
+		return comment_update_date;
+	}
+	public void setComment_update_date(Timestamp comment_update_date) {
+		this.comment_update_date = comment_update_date;
+	}
+
 }

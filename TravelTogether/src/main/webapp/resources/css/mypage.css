@@ -211,7 +211,7 @@ a{
 
 .sidebar {
 	width: 220px;
-	height: 145px;    
+	height: 190px;    
 	margin-top:10px;       /* 사이드바 세로 박스 크기 */
 	margin-bottom: 40px;            /* 하단 간격 */
 	padding: 10px;
@@ -264,3 +264,26 @@ a{
 input[type="file"]{
 	margin-bottom: 15px;
 }
+
+/* -유효성-- */
+  .user_nickname_ok{
+  font-weight : bolder;
+  color: blue;
+  display: none;
+  }
+  .user_nickname_already{
+  font-weight : bolder;
+  color: orange;
+  display: none;
+  }
+  
+  /* ---테이블 디자인--- */
+  
+    #likeList {
+    transition: transform 0.3s ease;
+  }
+  #likeList:hover {
+    transform: translateY(-10px);
+  }
+  
+
