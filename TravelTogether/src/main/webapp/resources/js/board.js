@@ -440,147 +440,208 @@ if(boardImage != null && boardMap != null){
 
 /* 답글달기 누르면 댓글 작성창에 @아이디뜨게 */
 let commentWrite = document.querySelector('#commentWrite textarea');
-let commentusers = document.getElementsByClassName('commentUserName');
-let recommentbuttons = document.getElementsByClassName('recommentWrite');
-let comment_numberInput = document.getElementsByClassName('comment_number');
+let commentusers;
+let recommentbuttons;
+let comment_numberInput;
 let commentuserNickname = '';
-if(commentWrite != null && commentusers != null && recommentbuttons != null){
-    //이미 @~가 있으면 지우고 새로 뜨게 하기
-    for(let i=0; i<recommentbuttons.length; i++){
-        recommentbuttons[i].addEventListener('click', function(event){
-            commentWrite.innerText= '@'+commentusers[i].innerText+' ';
-            let tmp = document.all.comment_content.value;
-            document.all.comment_content.value = '';
-            document.all.comment_content.value = tmp;
-            document.all.comment_content.focus();
-            commentuserNickname = '@'+commentusers[i].innerText+' ';
+let comment_number = ''; //ajax 전송(답글)
+let member_nickname = document.getElementById('member_nickname').value; //ajax 전송(댓글 작성자 로그인한 사람의 닉네임)
+let recomments;
 
-            console.log(comment_numberInput[i].value);
-        });
+if(commentWrite != null){
+    //댓글 textarea change 이벤트
+    commentWrite.addEventListener('change', function(event){
+        //@닉네임이 같은게 없으면 comment_nickname 초기화
+        for(let i=0; i<commentusers.length; i++){
+	        if(!commentWrite.value.startsWith('@'+commentusers[i].innerText)){
+                commentuserNickname = ''; //작성된 댓글 작성자의 닉네임
+            }else if(commentWrite.value.startsWith('@'+commentusers[i].innerText)){
+                commentuserNickname = '@'+commentusers[i].innerText+' '; //작성된 댓글 작성자의 닉네임
+                break;
+            }
+        }
+    });
+
+    //답글달기 onClick
+    function reComment(commentNumber){
+        commentWrite = document.querySelector('#commentWrite textarea');
+        commentusers = document.getElementsByClassName('commentUserName');
+        recommentbuttons = document.getElementsByClassName('recommentWrite');
+        comment_numberInput = document.getElementsByClassName('comment_number');
+        commentuserNickname = '';
+        comment_number = ''; //ajax 전송(답글)
+        member_nickname = document.getElementById('member_nickname').value; //ajax 전송(댓글 작성자 로그인한 사람의 닉네임)
+        recomments = document.getElementsByClassName('recomment');
+
+        console.log('댓글개수 확인'+commentusers.length);
+        console.log('댓글개수 확인'+recommentbuttons.length);
+        console.log('댓글개수 확인'+comment_numberInput.length);
+        console.log('댓글개수 확인'+recomments.length);
+
+        for(let i=0; i<commentusers.length; i++){
+            if(commentNumber == comment_numberInput[i].value){
+                commentWrite.value = '';
+        commentWrite.value = '@'+commentusers[i].innerText+' ';
+        let tmp = document.all.comment_content.value;
+        document.all.comment_content.value = '';
+        document.all.comment_content.value = tmp;
+        document.all.comment_content.focus();
+        
+        commentuserNickname = '@'+commentusers[i].innerText+' ';
+        comment_number = comment_numberInput[i].value;//댓글 번호(PK)
+            }
+        
+        }
+
     }
 }
+
 /* 댓글, 답글 */
 let writeComment = document.getElementById('writeComment');
 if(writeComment != null){
     writeComment.addEventListener('click', function(event){
-        let board_number = document.getElementById('board_number').value;
+        let board_number = document.getElementById('board_number').value; //ajax 전송
         let member_id = document.getElementById('member_id'); //.value;
-        let comment_content = document.getElementById('comment_content').value;
+        let comment_content = document.getElementById('comment_content').value; //ajax 전송
         let context = document.getElementById('context').value;
-        //console.log(board_number);
-        //console.log(member_id);
-        //console.log(comment_content);
         if(member_id==null){
             alert('로그인이 필요한 서비스 입니다.');
         }else if(comment_content=='' || comment_content==commentuserNickname){
             alert('댓글을 입력해주세요');
         }
-        /*
-        else if(comment_content!=commentuserNickname){
-            console.log('답글 내용있음');
-            console.log(comment_content);
-            member_id = member_id.value;
-            let member_nickname;
-            for(let i=0; i<commentusers.length; i++){
-                if(comment_content.startsWith('@'+commentusers[i])){
-                    member_nickname = commentusers[i];
-                }
-            }
-            $.ajax({
-                async: true,
-                type: 'POST',
-                data: JSON.stringify({
-                        member_nickname,
-                        board_number,
-                        member_id,
-                        comment_content
-                        }),
-                url: "insertReComment.do",
-                dataType: "json", 
-                contentType: "application/json; charset=UTF-8",
-                success: function(data){
-
-                },
-                error: function(request,status,error){
-                    console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-                }
-                
-            });
-
-        }*/
         else{
-            let member_nickname = document.getElementById('member_nickname').value;
             //commentuserNickname 댓글 내용에 있는지 없는지 확인
-            // 있으면 답댓 없으면 댓글로 처리하기
-            //답댓 위에 주석 처리해둔거 참고
+            //있으면 답댓 없으면 댓글로 처리하기
             if(commentuserNickname != '' && comment_content.startsWith('@')){
                 console.log('답글');
-                for(let i=0; i<commentusers.length; i++){
-                    if(comment_content.startsWith('@'+commentusers[i])){
-                        member_nickname = commentusers[i];
-                    }
-                }
+                    $.ajax({
+                        async: true,
+                        type: 'POST',
+                        data: JSON.stringify({
+                                comment_number,
+                                member_nickname,
+                                board_number,
+                                comment_content
+                                }),
+                        url: "insertReComment.do",
+                        dataType: "json", 
+                        contentType: "application/json; charset=UTF-8",
+                        success: function(data){
+                            console.log(data);
+                            if(data.success=='success'){
+                                commentWrite.value = '';
+                                let eachComments = document.getElementsByClassName('eachComment');
+                                let comment_numberInput = document.getElementsByClassName('comment_number');
+                                
+                                for(let i=0; i<comment_numberInput.length; i++){
+                                    if(data.comment.comment_group == comment_numberInput[i].value){ 
+                                        let div = document.createElement('div');
+                                        let comment_depth = document.getElementsByClassName('comment_depth');
+                                        div.className = 'recomment';
+                                        let addComment = 
+                                        "<div class='commentUserInfo'>"+
+                                            "<div style='display: none;'>"+
+                                                "<input type='hidden' class='comment_number' value='"+data.comment.comment_number+"'>"+
+                                                "<input type='hidden' class='comment_depth' value='"+data.comment.comment_depth+"'>"+
+                                            "</div>"+
+                                            "<div>"+
+                                                "<img style='height: 50px; width: 50px;' src='"+context+"/resources/image/member/member.png'>"+
+                                            "</div>"+
+                                            "<div class='commentUserInfoInner'>"+
+                                                "<span class='commentUserName'>"+data.comment.member_nickname+"</span>"+
+                                                "<span>"+data.comment.comment_write_date+"</span>"+
+                                            "</div>"+
+                                        "</div>"+
+                                        "<div class='userComment'>"+
+                                            "<span>"+data.comment.comment_content+"</span>"+
+                                        "</div>"+
+                                        "<div class='recommentAndDelete'>"+
+                                            "<button class='recommentWrite' onclick='reComment("+data.comment.comment_number+")'>답글달기</button>"+
+                                            "<span>|</span>"+
+                                            "<button class='commentDelete' onclick='deleteComment("+data.comment.comment_number+">삭제하기</button>"+
+                                        "</div>";
+                                        div.innerHTML = addComment;
+                                        if(comment_depth[i].value == 1){ //부모댓글이 답글이라면
+                                            let recomment_number = document.querySelectorAll('.recomment .comment_number');
+                                            for(let i=0; i< recomment_number.length; i++){
+                                                if(recomment_number[i].value == data.comment.comment_group){
+                                                    recomments[i].after(div);
+                                                }
+                                            }
+                                        }else{//부모댓글이 일반 댓글이라면
+                                            eachComments[i].append(div);
+                                        }
+                                    }
+                                }
+                            }
+                            else{
+                                alert('댓글이 등록되지 않았습니다.\n다시한번 시도하여 주십시오');
+                            }
+                        },
+                        error: function(request,status,error){
+                            console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                        }
+                        
+                    });
             }else{
                 console.log('댓글');
+                $.ajax({
+                    async: true,
+                    type: 'POST',
+                    data: JSON.stringify({
+                            board_number,
+                            member_nickname,
+                            comment_content
+                            }),
+                    url: "insertComment.do",
+                    dataType: "json", 
+                    contentType: "application/json; charset=UTF-8",
+                    success: function(data){
+                        console.log(data);
+                        if(data.success=='success'){
+                            commentWrite.value = '';
+                            let commentList = document.getElementById('commentList');
+                            let div = document.createElement('div');
+                            div.className = 'eachComment';
+                            let addComment = 
+                                "<div class='userCommentDiv'>"+
+                                    "<div style='display: none;'>"+
+                                        "<input type='hidden' class='comment_number' value='"+data.comment.comment_number+"'>"+
+                                        "<input type='hidden' class='comment_depth' value='"+data.comment.comment_depth+"'>"+
+                                    "</div>"+
+                                        "<div class='commentUserInfo'>"+
+                                            "<div>"+
+                                            "<img style='height: 50px; width: 50px;' src='"+context+"/resources/image/member/member.png'>"+
+                                            "</div>"+
+                                            "<div class='commentUserInfoInner'>"+
+                                            "<span class='commentUserName'>"+data.comment.member_nickname+"</span>"+
+                                            "<span>"+data.comment.comment_write_date+"</span>"+
+                                            "</div>"+
+                                        "</div>"+
+                                        "<div class='userComment'>"+
+                                            "<span>"+data.comment.comment_content+"</span>"+
+                                        "</div>"+
+                                        "<div class='recommentAndDelete'>"+
+                                            "<button class='recommentWrite' onclick='reComment("+data.comment.comment_number+")'>답글달기</button>"+
+                                            "<span>|</span>"+
+                                            "<button class='commentDelete' onclick='deleteComment("+data.comment.comment_number+">삭제하기</button>"+
+                                        "</div>"+
+                                    "</div>"+
+                                "</div>";
+                            div.innerHTML = addComment
+                            commentList.append(div);
+                        }else{
+                            alert('댓글이 등록되지 않았습니다.\n다시한번 시도하여 주십시오');
+                        }
+                    },
+                    error: function(request,status,error){
+                        console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                    }
+                    
+                });
             }
-            /* 댓글 답글 구분 되는지 확인하려고 잠깐 지워둠
-            $.ajax({
-                async: true,
-                type: 'POST',
-                data: JSON.stringify({
-                        board_number,
-                        member_nickname,
-                        comment_content
-                        }),
-                url: "insertComment.do",
-                dataType: "json", 
-                contentType: "application/json; charset=UTF-8",
-                success: function(data){
-                console.log(data);
-                let commentList = document.getElementById('commentList');
-                let div = document.createElement('div');
-                if(data.success=='success'){
-                    let commentList = document.getElementById('commentList');
-                    let div = document.createElement('div');
-                    div.className = 'eachComment';
-                    let addComment = 
-                        "<div class='userCommentDiv'>"+
-                                "<div class='commentUserInfo'>"+
-                                    "<div>"+
-                                    "<img style='height: 50px; width: 50px;' src='"+context+"/resources/image/member/member.png'>"+
-                                    "</div>"+
-                                    "<div class='commentUserInfoInner'>"+
-                                    "<span class='commentUserName'>"+data.comment.member_nickname+"</span>"+
-                                    "<span>"+data.comment.comment_write_date+"</span>"+
-                                    "</div>"+
-                                "</div>"+
-                                "<div class='userComment'>"+
-                                    "<span>"+data.comment.comment_content+"</span>"+
-                                "</div>"+
-                                "<div class='recommentAndDelete'>"+
-                                    "<button class='recommentWrite' onclick=\"location.href='~.do?no="+data.comment.comment_number+"'\">답글달기</button>"+
-                                    "<span>|</span>"+
-                                    "<button class='commentDelete'>삭제하기</button>"+
-                                "</div>"+
-                            "</div>"+
-                        "</div>";
-                    div.innerHTML = addComment
-                    commentList.append(div);
-                }else{
-                    alert('댓글이 등록되지 않았습니다.\n다시한번 시도하여 주십시오');
-                }
-                },
-                error: function(request,status,error){
-                    console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-                }
-                
-            });*/
+            
         } 
     })
 }
-
-
-
-
-
 

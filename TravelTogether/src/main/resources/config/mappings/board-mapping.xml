@@ -227,7 +227,7 @@
 	</update>
 	<!--  -->
 	<select id="getOneComment" resultType="comment" parameterType="int">
-		select member_nickname, comment_number, comment_content, comment_write_date, comment_update_date
+		select member_nickname, comment_number, comment_content, comment_group, comment_depth, comment_write_date, comment_update_date
 		from comment
 		where comment_number = ${value}
 	</select>

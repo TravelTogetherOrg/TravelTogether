@@ -128,7 +128,7 @@ public class BoardController {
 		
 		model.addAttribute("boardList", boardService.getBoardListwithPaging(criteria));
 		model.addAttribute("pageCreate", pageCreate);
-		System.out.println(boardService.getBoardListwithPaging(criteria).toString());
+		//System.out.println(boardService.getBoardListwithPaging(criteria).toString());
 		
 		return "views/boardList.jsp";
 	}
@@ -139,7 +139,9 @@ public class BoardController {
 		boardService.viewCount(Integer.parseInt(request.getParameter("no")));
 		model.addAttribute("board", boardService.getOneBoard(Integer.parseInt(request.getParameter("no"))));
 		model.addAttribute("commentList", boardService.getCommnetList(Integer.parseInt(request.getParameter("no"))));
+		model.addAttribute("reCommentList", boardService.getCommnetList(Integer.parseInt(request.getParameter("no"))));
 		model.addAttribute("commentCount", boardService.getCommentTotal(Integer.parseInt(request.getParameter("no"))));
+
 		return "views/board.jsp";
 	}
 	
@@ -222,9 +224,16 @@ public class BoardController {
 		//댓글이 db등록에 성공하면 등록된 댓글 번호(pk)랑 success 반환
 		System.out.println(comment.toString());
 		boardService.insertComment(comment);
-		map.put("success", "success");
+		
 		System.out.println("comment_number: "+comment.getComment_number());
-		map.put("comment", boardService.getOneComment(comment.getComment_number()));
+		if(boardService.getOneComment(comment.getComment_number())==null) {
+			map.put("success", "fail");
+		}
+		else {
+			map.put("comment", boardService.getOneComment(comment.getComment_number()));
+			map.put("success", "success");
+		}
+		
 		
 		return map;
 	}
@@ -233,6 +242,19 @@ public class BoardController {
 	@ResponseBody
 	public Map<Object, Object> insertreComment(@RequestBody CommentVO comment){
 		Map<Object,Object> map = new HashMap<Object, Object>();
+		
+		comment.setComment_depth(1);
+		comment.setComment_group(comment.getComment_number());
+		System.out.println("insert reComment 전: "+comment.getComment_number());
+		boardService.insertComment(comment);
+		System.out.println("insert reComment 후: "+comment.getComment_number());
+		if(boardService.getOneComment(comment.getComment_number())==null) {
+			map.put("success", "fail");
+		}
+		else {
+			map.put("comment", boardService.getOneComment(comment.getComment_number()));
+			map.put("success", "success");
+		}
 		
 		return map;
 	}

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" session="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
@@ -92,78 +93,69 @@
                             <button type="button" id="writeComment">게시</button>
                         </div>
                     <div id="commentList"> <!--댓글 리스트-->
-                    <c:forEach var="comments" items="${commentList}">
+                    <c:forEach var="comments" items="${commentList}" varStatus="status">
+                    	<c:if test="${comments.comment_depth == 0}">
                     	<div class="eachComment">
                         	<div class="userCommentDiv">
-                        		<div style="display: none;">
-                        		<input type="hidden" class="comment_number" value="${comments.comment_number}">
-                        		</div>
-	                            <div class="commentUserInfo"><!--프로필사진/닉네임/작성한 날짜,시간-->
+	                            <div class="commentUserInfo">
+	                            	<div style="display: none;">
+		                        		<input type="hidden" class="comment_number" value="${comments.comment_number}">
+		                        		<input type="hidden" class="comment_depth" value="${comments.comment_depth}">
+                        			</div>
 	                                <div>
 	                                    <img style="height: 50px; width: 50px;" src="${context}/resources/image/member/member.png">
 	                                </div>
-	                                <div class="commentUserInfoInner"><!--  -->
+	                                <div class="commentUserInfoInner">
 	                                    <span class="commentUserName">${comments.member_nickname}</span>
 	                                    <span>${comments.comment_write_date}</span>
 	                                </div>
 	                            </div>
-	                            <div class="userComment"><!--작성한 댓글-->
+	                            <div class="userComment">
 	                                <span>${comments.comment_content}</span>
 	                            </div>
-	                            <div class="recommentAndDelete"><!--답글달기 삭제하기-->
-	                                <button class="recommentWrite" >답글달기</button>
-	                               <%--  <c:if test="${comments.member_id}"> --%>
+	                            <div class="recommentAndDelete">
+	                                <button class="recommentWrite" onclick="reComment(${comments.comment_number})">답글달기</button>
+	                               <c:if test="${comments.member_nickname eq sessionScope.userNickname}">
 	                                	<span>|</span>
-	                                	<button class="commentDelete" onclick="location.href='deleteComment.do?no=${comments.comment_number}'">삭제하기</button>
-	                                <%-- </c:if> --%>
+	                                	<button class="commentDelete" onclick="deleteComment(${comments.comment_number})">삭제하기</button>
+	                               </c:if>
 	                             </div>
                             </div>
-                         </div>
-                    </c:forEach>
-                        <div class="eachComment">
-                        	<div class="userCommentDiv">
-                        		<div style="display: none;">
-                        		<input type="hidden" class="comment_number" value="1">
-                        		</div>
-	                            <div class="commentUserInfo"><!--프로필사진/닉네임/작성한 날짜,시간-->
-	                                <div >
-	                                    <img src="${context}/resources/image/board/vector_profile_willy.svg">
+                    	</div>
+                        </c:if>
+                        <%-- --%>
+                        <c:forEach var="reComments" items="${commentList}">
+                        <c:if test="${reComments.comment_depth == 1 && reComments.comment_group == comments.comment_number}">
+	                         <div class="recomment">
+	                            <div class="commentUserInfo">
+	                            	<div style="display: none;">
+		                        		<input type="hidden" class="comment_number" value="${comments.comment_number}">
+		                        		<input type="hidden" class="comment_depth" value="${comments.comment_depth}">
+	                       			</div>
+	                                <div>
+	                                    <img style="height: 50px; width: 50px;" src="${context}/resources/image/member/member.png">
 	                                </div>
 	                                <div class="commentUserInfoInner">
-	                                    <span class="commentUserName">댓글닉네임</span>
-	                                    <span>${board.board_write_date}</span>
+	                                    <span class="commentUserName">${comments.member_nickname}</span>
+	                                    <span>${comments.comment_write_date}</span>
 	                                </div>
 	                            </div>
-	                            <div class="userComment"><!--작성한 댓글-->
-	                                <span>동행하고 싶어요</span>
+	                            <div class="userComment">
+	                                <span>${comments.comment_content}</span>
 	                            </div>
-	                            <div class="recommentAndDelete"><!--답글달기 삭제하기-->
-	                                <button class="recommentWrite">답글달기</button>
-	                                <span>|</span>
-	                                <button class="commentDelete">삭제하기</button>
-	                            </div>
-                            </div>
-                            <div class="recomment"><!--답글-->
-                                <div class="commentUserInfo"><!--프로필사진/닉네임/작성한 날짜,시간-->
-                                    <div>
-                                        <img src="${context}/resources/image/board/vector_profile_willy.svg">
-                                    </div>
-                                    <div class="commentUserInfoInner">
-                                        <span class="commentUserName">답글닉네임</span>
-                                        <span>2023.06.30 09:10:33</span>
-                                    </div>
-                                </div>
-                                <div class="userComment"><!--작성한 댓글-->
-                                    <span>답글 예시</span>
-                                </div>
-                                <div class="recommentAndDelete"><!--답글달기 삭제하기-->
-                                    <button class="recommentWrite">답글달기</button>
-                                    <span>|</span>
-                                    <button class="commentDelete">삭제하기</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+	                            <div class="recommentAndDelete">
+	                                <button class="recommentWrite" onclick="reComment(${comments.comment_number})">답글달기</button>
+	                               <c:if test="${comments.member_nickname eq sessionScope.userNickname}">
+	                                	<span>|</span>
+	                                	<button class="commentDelete" onclick="deleteComment(${comments.comment_number})">삭제하기</button>
+	                               </c:if>
+	                             </div>
+	                         </div>
+	                     </c:if>
+                         </div> 
+                         </c:forEach>
+                    </c:forEach>
+                    </div>      
                 </div>
             </div>
         </div>
