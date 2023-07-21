@@ -101,8 +101,8 @@ function checkNickname(){
 					<li><a href="#memberLike">좋아요</a></li>
 					<li><a id="memberBoardLink" href="#details">내가 작성한 동행 게시글</a></li>
 					<li><a href="#review">내가 작성한 댓글</a></li>
-<!-- 					<li><a href="#approved">동행 목록</a></li>
-					<li><a href="#unapproved">미승인 동행 목록</a></li> -->
+ 					<li><a href="#approved">동행 목록</a></li>
+					<li><a href="#unapproved">미승인 동행 목록</a></li>
 					
 				</ul>
 			</div>
