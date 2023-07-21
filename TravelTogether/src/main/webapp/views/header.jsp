@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${path}/resources/css/reset.css" media="all">
-<link rel="stylesheet" href="${path}/resources/css/header.css?s">
+<link rel="stylesheet" href="${path}/resources/css/header.css?ss">
 <script src="https://kit.fontawesome.com/4d0517937c.js" crossorigin="anonymous"></script>
 <style type="text/css">
    @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@1,900&display=swap');

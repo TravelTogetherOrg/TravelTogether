@@ -62,7 +62,7 @@
   };
   
   /* --별병 중복체크-- */
-function checkNickname(){
+/* function checkNickname(){
            var nickname = $('#nickname').val(); 
            $.ajax({
                url:"<c:url value='/checkNickname.do'/>", 
@@ -84,7 +84,7 @@ function checkNickname(){
                    alert("에러입니다");
                }
            });
-           };
+           }; */
 </script>
 </head>
 <body>
@@ -150,7 +150,7 @@ function checkNickname(){
 						</tr>
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">별명<br><input type='text' name='member_nickname' id="nickname" oninput="checkNickname()" value='${member.member_nickname}'size="40" required="required"> </font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">별명<br><input type='text' name='member_nickname' id="nickname" oninput="checkNickname()" value='${member.member_nickname}'size="40" required="required" readonly="readonly"> </font>&nbsp;&nbsp;</h5>
 								<span class="user_nickname_ok">사용 가능한 별명 입니다.</span>
 	            				<span class="user_nickname_already">중복된 별명 입니다.</span>
 							</td>
@@ -206,16 +206,16 @@ $(function() {
 }); 
 </script> -->
 		<div id="details" class="tab-section" text-aligin="center">
-		<h2>내가 작성한 동행 게시글</h2>
+		<h2>${member.member_nickname}의 동행 게시글 목록</h2>
 		<hr style="border-color: black;">
-			<table border="1" cellpadding="0" cellspacing="0" width="850">
+			<table class="list" border="1" cellpadding="0" cellspacing="0" width="850">
 				<tr>
-					<th width="142">축제 이름</th>
-					<th width="142">게시글 제목</th>
-					<th width="142">동행시작일</th>
-					<th width="142">동행종료일</th>
-					<th width="142">동행인원</th>
-					<th width="142">작성일자</th>
+					<th width="186">축제 이름</th>
+					<th width="189">게시글 제목</th>
+					<th width="120">동행시작일</th>
+					<th width="120">동행종료일</th>
+					<th width="100">동행인원</th>
+					<th width="143">작성시간</th>
 				</tr>
 				<c:forEach items="${memberBoardList}" var="board">
 				<tr>
@@ -230,16 +230,16 @@ $(function() {
 			</table>
 		</div>
 		<div id="review" class="tab-section">
-			<h2>내가 작성한 댓글</h2>
+			<h2>${member.member_nickname}의 댓글 목록</h2>
 			<hr style="border-color: black;">
-			<table border="1" cellpadding="0" cellspacing="0" width="850">
+			<table class="list" border="1" cellpadding="0" cellspacing="0" width="850">
 				<tr>
-					<th width="142">댓글 번호</th>
-					<th width="142">게시판 번호</th>
-					<th width="142">댓글내용</th>
-					<th width="142">댓글 구분</th>
-					<th width="142">댓글 작성일</th>
-					<th width="142">댓글 수정일</th>
+					<th width="100">번호</th>
+					<th width="100">게시판 번호</th>
+					<th width="275">내용</th>
+					<th width="143">댓글 구분</th>
+					<th width="120">작성시간</th>
+					<th width="120">수정시간</th>
 				</tr>
 				<c:forEach items="${memberCommentList}" var="comment">
 				<tr>
@@ -253,7 +253,6 @@ $(function() {
 				</c:forEach>
 			</table>
 		</div>
-		
 		      <!-- 내가 추가 -->
       <div id="memberLike" class="tab-section">
          <h2>${member.member_nickname}의 좋아요 목록</h2>
@@ -278,9 +277,6 @@ $(function() {
                </c:forEach>
             </div>      
       </div>
-		
-		
-		
 	</div>
 </div>
 <jsp:include page="footer.jsp"/>

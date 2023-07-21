@@ -162,5 +162,8 @@ public class MemberController {
 		return cnt;
 	}
 	
+	//빔밀번호 유효성
+	
+	
 	
 }

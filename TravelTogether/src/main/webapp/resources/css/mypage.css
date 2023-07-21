@@ -279,11 +279,29 @@ input[type="file"]{
   
   /* ---테이블 디자인--- */
   
-    #likeList {
-    transition: transform 0.3s ease;
+  #likeList {
+  transition: transform 0.3s ease;
   }
   #likeList:hover {
     transform: translateY(-10px);
   }
+  .list{
+  margin-left: 13px;
+  }
+  .list th {
+  text-align: center;
+  border-bottom:2px solid black;
+  border-right: 1px solid #ccc;
+  border-left: 1px solid #ccc; 
+  background-color: orange; 
+  }
+  .list td {
+  text-align: center;
+   border-bottom:1px solid black;
+   border-right: 1px solid #ccc;
+   border-left: 1px solid #ccc;
+  }
+  
+  
   
 

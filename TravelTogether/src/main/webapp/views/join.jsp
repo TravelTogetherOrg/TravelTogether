@@ -101,42 +101,41 @@
 	    }
 	  };
 	  
-    var passwordInput = document.getElementById('password');
-    var passwordConfirmInput = document.getElementById('password2');
-    var form = document.getElementById('form');
+	   var passwordInput = document.getElementById('password');
+	   var passwordConfirmInput = document.getElementById('password2');
+	   var form = document.getElementById('form');
 
 
-    function validatePassword() {
-      var password = passwordInput.value;
-      var passwordConfirm = passwordConfirmInput.value;
+	    function validatePassword() {
+	      var password = passwordInput.value;
+	      var passwordConfirm = passwordConfirmInput.value;
 
- 
-      var passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,12}$/;
+	 
+	      var passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,12}$/;
 
-      if (!passwordPattern.test(password)) {
-        alert('비밀번호는 8~12자의 영문, 숫자, 특수문자(@$!%*#?&)를 포함해야 합니다.');
-        /* passwordInput.value = '';
-        passwordConfirmInput.value = ''; */
-        return false;
-        
-      } else if (password !== passwordConfirm) {
-        alert('비밀번호가 일치하지 않습니다.');
-        /* passwordInput.value = '';
-        passwordConfirmInput.value = ''; */
-        return false;
-      }
+	      if (!passwordPattern.test(password)) {
+	        alert('비밀번호는 8~12자의 영문, 숫자, 특수문자(@$!%*#?&)를 포함해야 합니다.');
+	        /* passwordInput.value = '';
+	        passwordConfirmInput.value = ''; */
+	        return false;
+	        
+	      } else if (password !== passwordConfirm) {
+	        alert('비밀번호가 일치하지 않습니다.');
+	        /* passwordInput.value = '';
+	        passwordConfirmInput.value = ''; */
+	        return false;
+	      }
 
-      return true;
-    }
-    form.onsubmit = function() {
-      if (!validatePassword()) {
-        return false; 
-      }
-    };
-  };
-  
+	      return true;
+	    }
+	    form.onsubmit = function() {
+	      if (!validatePassword()) {
+	        return false; 
+	      }
+	    };
+	  };
+	  
  /*  --- */
-
  function checkId(id){
 	
         var id = $('#id').val(); //id값이 "id"인 입력란의 값을 저장
