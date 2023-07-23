@@ -71,7 +71,10 @@ public class BoardController {
 		}else {
 			//이미지 없으면 선택한 축제의 기본 이미지 가져오기
 			//jpg인지 png인지 확인해서 맞는 걸로 연결하기
-			File file = new File("C:\\Users\\user\\Desktop\\KCY\\spring\\SpringSRC\\TT\\TravelTogether\\src\\main\\webapp\\resources\\image\\festival\\"
+			
+			//학원: C:\Users\\user\Desktop\\KCY\spring\SpringSRC\TT\TravelTogether\src\main\webapp\resources\image\festival\
+			//노트북: C:\Users\ddd\Desktop\TT\TravelTogether\src\main\webapp\resources\image\festival
+			File file = new File("C:\\Users\\ddd\\Desktop\\TT\\TravelTogether\\src\\main\\webapp\\resources\\image\\festival\\"
 					+board.getFestival_name()+"\\"+board.getFestival_name()+"_1_공공3유형.jpg");
 			if(file.exists()) {
 				image.setBoard_image_file(board.getFestival_name()+"_1_공공3유형.jpg");
@@ -139,7 +142,7 @@ public class BoardController {
 		boardService.viewCount(Integer.parseInt(request.getParameter("no")));
 		model.addAttribute("board", boardService.getOneBoard(Integer.parseInt(request.getParameter("no"))));
 		model.addAttribute("commentList", boardService.getCommnetList(Integer.parseInt(request.getParameter("no"))));
-		model.addAttribute("reCommentList", boardService.getCommnetList(Integer.parseInt(request.getParameter("no"))));
+		model.addAttribute("reCommentList", boardService.getReCommnetList(Integer.parseInt(request.getParameter("no"))));
 		model.addAttribute("commentCount", boardService.getCommentTotal(Integer.parseInt(request.getParameter("no"))));
 
 		return "views/board.jsp";
@@ -245,9 +248,7 @@ public class BoardController {
 		
 		comment.setComment_depth(1);
 		comment.setComment_group(comment.getComment_number());
-		System.out.println("insert reComment 전: "+comment.getComment_number());
 		boardService.insertComment(comment);
-		System.out.println("insert reComment 후: "+comment.getComment_number());
 		if(boardService.getOneComment(comment.getComment_number())==null) {
 			map.put("success", "fail");
 		}
@@ -258,6 +259,34 @@ public class BoardController {
 		
 		return map;
 	}
+	
+	@RequestMapping(value = "/updateComment.do")
+	@ResponseBody
+	public Map<Object, Object> updateComment(@RequestBody CommentVO comment){
+		Map<Object,Object> map = new HashMap<Object, Object>();
 		
+		boardService.updateComment(comment);
+		map.put("success", "success");
+		
+		return map;
+	}
+	
+	@RequestMapping(value = "/deleteComment.do")
+	@ResponseBody
+	public Map<Object, Object> deleteComment(@RequestBody CommentVO comment){
+		Map<Object,Object> map = new HashMap<Object, Object>();
+		
+		int count = boardService.getReCommentTotal(comment.getComment_number());
+		System.out.println(count);
+		if(count > 0) {
+			boardService.pretendDeleteComment(comment);
+			map.put("success", "haveReComment");
+		}else {
+			boardService.deleteComment(comment);
+			map.put("success", "successDelete");
+		}
+		
+		return map;
+	}
 	
 }

@@ -64,7 +64,7 @@
 	                    </div>
 	                    <div class="line">|</div>
 	                    <div class="topInfo festivalName">
-	                    	<p>${board.festival_name}</p>
+	                    	<p>참여일</p> <!-- 원래 축제명 있었음 -->
 	                    	<p>${board.board_start_date}</p>
 	                    </div>
 	                </div>
@@ -85,6 +85,7 @@
 	                    </div>
 	                </div>
 	                <div class="bottom">
+	                	<p class="listFestival">${board.festival_name}</p>
 	                    <p class="listTitle">${board.board_title}</p>
 	                    <p class="listContent">${board.board_content}</p>
 	                </div>

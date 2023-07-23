@@ -220,26 +220,42 @@
 	<delete id="deleteComment">
 		delete from comment where comment_number = ${comment_number}
 	</delete>
+	<update id="pretendDeleteComment">
+		update comment 
+		set comment_content = "삭제된 댓글입니다."
+		where comment_number = ${comment_number}
+	</update>
 	<update id="updateComment">
 		update comment 
 		set comment_content = #{comment_content}
 		where comment_number = ${comment_number}
 	</update>
-	<!--  -->
+	
 	<select id="getOneComment" resultType="comment" parameterType="int">
 		select member_nickname, comment_number, comment_content, comment_group, comment_depth, comment_write_date, comment_update_date
 		from comment
 		where comment_number = ${value}
 	</select>
-	<!-- and comment_depth = 0 board에서 출력할때 조건넣을 수 있을듯 resultMap="commentResult"-->
 	<select id="getCommentList" resultType="comment" parameterType="int">
 		select comment_number, member_nickname, comment_content, comment_group, comment_depth, comment_write_date, comment_update_date
 		from comment
 		where board_number = ${value}
+		and comment_depth = 0
+		ORDER BY comment_number ASC
+	</select>
+	<select id="getReCommentList" resultType="comment" parameterType="int">
+		select comment_number, member_nickname, comment_content, comment_group, comment_depth, comment_write_date, comment_update_date
+		from comment
+		where board_number = ${value}
+		and comment_depth = 1
 		ORDER BY comment_number ASC
 	</select>
 	<select id="getTotalCommentCount" resultType="int" parameterType="int">
 		select count(*) from comment
 		where board_number = ${value}
+	</select>
+	<select id="getReCommentCount" resultType="int" parameterType="int">
+		select count(*) from comment
+		where comment_group = ${value}
 	</select>
 </mapper>

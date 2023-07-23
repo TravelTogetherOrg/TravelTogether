@@ -117,7 +117,7 @@ select:focus{
 }
 .col{
     width: 17em;
-    height: 15em;
+    height: 16em;
     margin-bottom: 1.5em;
     border-radius: 1em;
     box-shadow: 0 0.0625em 0.375em rgba(0,0,0,0.12), 0 0.0625em 0.125em rgba(0,0,0,0.24);
@@ -248,6 +248,10 @@ select:focus{
     margin-block-start: 0.2em;
     margin-block-end: 0.2em;
     
+}
+.listFestival{
+	-webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 .listTitle{
     font-weight: 600;
@@ -628,6 +632,9 @@ body{
 #commentWrite button{
     font-size: 1.1em;
 }
+#commentWrite button:hover{
+	font-weight: 800;
+}
 .comment textarea{
     height: 2.4375em;
     overflow: hidden;
@@ -697,6 +704,9 @@ body{
     position: relative;
     padding: 0;
     margin: 0;
+}
+.recommentAndDelete button:hover{
+	font-weight: 800;
 }
 .recommentAndDelete span{
     margin: 0 0.1em;

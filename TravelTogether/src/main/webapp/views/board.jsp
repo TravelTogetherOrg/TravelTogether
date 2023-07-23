@@ -94,7 +94,6 @@
                         </div>
                     <div id="commentList"> <!--댓글 리스트-->
                     <c:forEach var="comments" items="${commentList}" varStatus="status">
-                    	<c:if test="${comments.comment_depth == 0}">
                     	<div class="eachComment">
                         	<div class="userCommentDiv">
 	                            <div class="commentUserInfo">
@@ -107,53 +106,93 @@
 	                                </div>
 	                                <div class="commentUserInfoInner">
 	                                    <span class="commentUserName">${comments.member_nickname}</span>
-	                                    <span>${comments.comment_write_date}</span>
+	                                    <span>댓글번호: ${comments.comment_number} ${comments.comment_write_date}</span>
 	                                </div>
 	                            </div>
 	                            <div class="userComment">
-	                                <span>${comments.comment_content}</span>
+	                                <span class="commentContent">${comments.comment_content}</span>
 	                            </div>
-	                            <div class="recommentAndDelete">
+	                            <c:if test="${comments.comment_content != '삭제된 댓글입니다.'}">
+	                            <div class="recommentAndDelete"><!--  -->
 	                                <button class="recommentWrite" onclick="reComment(${comments.comment_number})">답글달기</button>
 	                               <c:if test="${comments.member_nickname eq sessionScope.userNickname}">
+	                               		<span>|</span><!-- id="updateButton" onclick="updateComment(${comments.comment_number}, this.updateButton)"  -->
+	                               		<button class="commentUpdate" onclick="updateComment()">수정하기</button>
 	                                	<span>|</span>
 	                                	<button class="commentDelete" onclick="deleteComment(${comments.comment_number})">삭제하기</button>
 	                               </c:if>
 	                             </div>
+	                             </c:if>
                             </div>
-                    	</div>
-                        </c:if>
-                        <%-- --%>
-                        <c:forEach var="reComments" items="${commentList}">
-                        <c:if test="${reComments.comment_depth == 1 && reComments.comment_group == comments.comment_number}">
+                        <!-- 답글 --><%--[status.index] --%>
+                        <c:forEach var="reComments" items="${reCommentList}">
+                        <c:if test="${comments.comment_number eq reComments.comment_group}">
 	                         <div class="recomment">
 	                            <div class="commentUserInfo">
 	                            	<div style="display: none;">
-		                        		<input type="hidden" class="comment_number" value="${comments.comment_number}">
-		                        		<input type="hidden" class="comment_depth" value="${comments.comment_depth}">
+		                        		<input type="hidden" class="comment_number" value="${reComments.comment_number}">
+		                        		<input type="hidden" class="comment_depth" value="${reComments.comment_depth}">
 	                       			</div>
 	                                <div>
 	                                    <img style="height: 50px; width: 50px;" src="${context}/resources/image/member/member.png">
 	                                </div>
 	                                <div class="commentUserInfoInner">
-	                                    <span class="commentUserName">${comments.member_nickname}</span>
-	                                    <span>${comments.comment_write_date}</span>
+	                                    <span class="commentUserName">${reComments.member_nickname}</span>
+	                                    <span>댓글번호(그룹, 부모): ${reComments.comment_group}, ${comments.comment_number} ${reComments.comment_write_date}</span>
 	                                </div>
 	                            </div>
 	                            <div class="userComment">
-	                                <span>${comments.comment_content}</span>
+	                                <span class="commentContent">${reComments.comment_content}</span>
 	                            </div>
+	                            <c:if test="${reComments.comment_content != '삭제된 댓글입니다.'}">
 	                            <div class="recommentAndDelete">
-	                                <button class="recommentWrite" onclick="reComment(${comments.comment_number})">답글달기</button>
-	                               <c:if test="${comments.member_nickname eq sessionScope.userNickname}">
+	                                <button class="recommentWrite" onclick="reComment(${reComments.comment_number})">답글달기</button>
+	                               <c:if test="${reComments.member_nickname eq sessionScope.userNickname}">
+	                               		<span>|</span>
+	                               		<button class="commentUpdate" onclick="updateComment()">수정하기</button>
 	                                	<span>|</span>
-	                                	<button class="commentDelete" onclick="deleteComment(${comments.comment_number})">삭제하기</button>
+	                                	<button class="commentDelete" onclick="deleteComment(${reComments.comment_number})">삭제하기</button>
 	                               </c:if>
 	                             </div>
+	                             </c:if>
 	                         </div>
-	                     </c:if>
-                         </div> 
-                         </c:forEach>
+	                         </c:if>
+	                         <!-- 대댓글의 대댓글 -->
+	                         <c:forEach var="reComments2" items="${reCommentList}" >
+	                         <c:if test="${reComments.comment_number eq reComments2.comment_group}">
+	                         <div class="recomment">
+	                            <div class="commentUserInfo">
+	                            	<div style="display: none;">
+		                        		<input type="hidden" class="comment_number" value="${reComments2.comment_number}">
+		                        		<input type="hidden" class="comment_depth" value="${reComments2.comment_depth}">
+	                       			</div>
+	                                <div>
+	                                    <img style="height: 50px; width: 50px;" src="${context}/resources/image/member/member.png">
+	                                </div>
+	                                <div class="commentUserInfoInner">
+	                                    <span class="commentUserName">${reComments2.member_nickname}</span>
+	                                    <span>댓글번호(): ${reComments2.comment_group}, ${reComments.comment_number}${reComments2.comment_write_date}</span>
+	                                </div>
+	                            </div>
+	                            <div class="userComment">
+	                                <span class="commentContent">${reComments2.comment_content}</span>
+	                            </div>
+	                            <c:if test="${reComments2.comment_content != '삭제된 댓글입니다.'}">
+	                            <div class="recommentAndDelete">
+	                                <button class="recommentWrite" onclick="reComment(${reComments2.comment_number})">답글달기</button>
+	                               <c:if test="${reComments2.member_nickname eq sessionScope.userNickname}">
+	                               		<span>|</span>
+	                               		<button class="commentUpdate" onclick="updateComment()">수정하기</button>
+	                                	<span>|</span>
+	                                	<button class="commentDelete" onclick="deleteComment(${reComments2.comment_number})">삭제하기</button>
+	                               </c:if>
+	                             </div>
+	                             </c:if>
+	                         </div>
+	                         </c:if>
+	                         </c:forEach>
+                         </c:forEach><%----%>
+                    	</div>
                     </c:forEach>
                     </div>      
                 </div>
