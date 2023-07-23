@@ -12,6 +12,7 @@
 		<result property="member_birthday" jdbcType="DATE" javaType="java.sql.Date" column="MEMBER_BIRTHDAY"/>
 		<result property="member_create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" column="MEMBER_CREATE_DATE"/>
 		<result property="member_profile_url" column="MEMBER_PROFILE_URL"/>
+		<result property="member_phone_number" column="MEMBER_PHONE_NUMBER"/>
 		
 		<result property="festival_name" column="FESTIVAL_NAME"/>
 		<result property="board_title" column="BOARD_TITLE"/>
@@ -29,8 +30,8 @@
 	</resultMap>
 	
 	<insert id="insertMember" parameterType="member">
-		INSERT INTO MEMBER(MEMBER_ID, MEMBER_PASSWORD, MEMBER_NAME, MEMBER_NICKNAME, MEMBER_GENDER, MEMBER_BIRTHDAY, MEMBER_CREATE_DATE, MEMBER_PROFILE_URL)
-			VALUES(#{member_id}, #{member_password}, #{member_name}, #{member_nickname}, #{member_gender}, #{member_birthday, jdbcType=DATE}, now(), null);
+		INSERT INTO MEMBER(MEMBER_ID, MEMBER_PASSWORD, MEMBER_NAME, MEMBER_NICKNAME, MEMBER_GENDER, MEMBER_BIRTHDAY, MEMBER_CREATE_DATE, MEMBER_PROFILE_URL, MEMBER_PHONE_NUMBER)
+			VALUES(#{member_id}, #{member_password}, #{member_name}, #{member_nickname}, #{member_gender}, #{member_birthday, jdbcType=DATE}, now(), null, #{member_phone_number});
 	</insert>
 	
 	<update id="updateMember">
@@ -109,6 +110,11 @@
 		select count(MEMBER_ID) from MEMBER where MEMBER_ID = #{member_id}
 	</select>
 	
+	<!-- 휴대전화중복체크 --> 
+	<select id="checkPhoneNumber" resultType="int">
+		select count(MEMBER_PHONE_NUMBER) from MEMBER where MEMBER_PHONE_NUMBER = #{member_phone_number}
+	</select>
+	
 	<!-- 닉네임중복체크 -->
 	<select id="checkNickname" resultType="int">
 		select count(MEMBER_NICKNAME) from MEMBER where MEMBER_NICKNAME = #{member_nickname}
@@ -125,5 +131,21 @@
        FROM festival_like
        WHERE member_id = #{member_id}
    </select>
-	
+   
+   <!-- 아이디 찾기 -->
+  <select id="findMemberId" resultType="String">
+  	select MEMBER_ID 
+  	from MEMBER 
+  	where MEMBER_NAME = #{member_name}  
+  	and MEMBER_PHONE_NUMBER = #{member_phone_number}
+  </select>
+ 
+   <!-- 비밀번호 찾기 -->
+  <select id="findMemberPassword" resultType="String">
+  	select MEMBER_PASSWORD 
+  	from MEMBER 
+  	where MEMBER_NAME = #{member_name}  
+  	and MEMBER_ID = #{member_id}
+  </select>
+   
 </mapper>

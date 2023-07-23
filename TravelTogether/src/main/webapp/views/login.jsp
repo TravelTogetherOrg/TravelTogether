@@ -213,7 +213,7 @@ function alertId(){
 									</table>
 								</form>
 								<div class="function" align="center">
-								   <!--  <a href="#">아이디 찾기</a>&nbsp;·&nbsp;<a href="#">비밀번호 찾기</a> -->
+								   <a href="${path}/findId.do">아이디 찾기</a>&nbsp;·&nbsp;<a href="${path}/findPassword.do">비밀번호 찾기</a>
 								</div>
 							</div>
 						</div>

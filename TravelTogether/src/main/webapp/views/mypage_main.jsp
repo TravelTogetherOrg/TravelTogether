@@ -150,6 +150,12 @@
 						</tr>
 						<tr>
 							<td>
+								<h5><font style="font-weight: bold;">핸드폰 번호<br><input type='tel' name='member_phone_number' value='${member.member_phone_number}'size="40" readonly="readonly"></font>&nbsp;&nbsp;</h5>
+
+							</td>
+						</tr>
+						<tr>
+							<td>
 								<h5><font style="font-weight: bold;">별명<br><input type='text' name='member_nickname' id="nickname" oninput="checkNickname()" value='${member.member_nickname}'size="40" required="required" readonly="readonly"> </font>&nbsp;&nbsp;</h5>
 								<span class="user_nickname_ok">사용 가능한 별명 입니다.</span>
 	            				<span class="user_nickname_already">중복된 별명 입니다.</span>

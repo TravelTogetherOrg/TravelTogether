@@ -55,6 +55,10 @@ public class MemberDAO_mybatis {
 	public int checkId(MemberVO vo) {
 		return mybatis.selectOne("MemberDAO.checkId",vo);
 	}
+	//핸드폰 중복체크
+	public int checkPhoneNumber(MemberVO vo) {
+		return mybatis.selectOne("MemberDAO.checkPhoneNumber",vo);
+	}
 	
 	//닉네임 중복체크
 	public int checkNickname(MemberVO vo) {
@@ -70,5 +74,14 @@ public class MemberDAO_mybatis {
       return mybatis.selectList("MemberDAO.memberLikeList",vo);
    }
    
+   //아이디 찾기
+   public String findMemberId(MemberVO vo) {
+	   return mybatis.selectOne("MemberDAO.findMemberId",vo);
+   }
+   
+   //비밀번호 찾기
+   public String findMemberPassword(MemberVO vo) {
+	   return mybatis.selectOne("MemberDAO.findMemberPassword",vo);
+   }
 
 }

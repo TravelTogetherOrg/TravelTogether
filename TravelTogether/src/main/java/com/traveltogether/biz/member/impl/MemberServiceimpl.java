@@ -53,6 +53,9 @@ public class MemberServiceimpl {
 	public int checkId(MemberVO vo) {
 		return memberDAO.checkId(vo);
 	}
+	public int checkPhoneNumber(MemberVO vo) {
+		return memberDAO.checkPhoneNumber(vo);
+	}
 	
 	public int checkNickname(MemberVO vo) {
 		return memberDAO.checkNickname(vo);
@@ -63,8 +66,16 @@ public class MemberServiceimpl {
 	}
 	
 	//  KHS 추가 멤버별 like 리스트
-	  public List<MemberVO> memberLikeList(MemberVO vo){
-	     return memberDAO.memberLikeList(vo);
-	  }
+	public List<MemberVO> memberLikeList(MemberVO vo){
+	    return memberDAO.memberLikeList(vo);
+	}
+	
+	public String findMemberId(MemberVO vo) {
+		return memberDAO.findMemberId(vo);
+	}
+	
+	public String findMemberPassword(MemberVO vo) {
+		return memberDAO.findMemberPassword(vo);
+	}
 	
 }	

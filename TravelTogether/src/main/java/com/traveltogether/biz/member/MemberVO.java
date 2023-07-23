@@ -7,7 +7,6 @@ import java.sql.Timestamp;
 
 public class MemberVO {
 	
-
 	private String member_id;
 	private String member_password;
 	private String member_name;
@@ -16,6 +15,7 @@ public class MemberVO {
 	private Date member_birthday;
 	private Timestamp member_create_date;
 	private String member_profile_url;
+	private String member_phone_number;
 	
 	private String festival_name;
 	private String board_title;
@@ -80,8 +80,13 @@ public class MemberVO {
 		this.member_profile_url = member_profile_url;
 	}
 	
+	public String getMember_phone_number() {
+		return member_phone_number;
+	}
+	public void setMember_phone_number(String member_phone_number) {
+		this.member_phone_number = member_phone_number;
+	}
 	
-
 	public String getFestival_name() {
 		return festival_name;
 	}

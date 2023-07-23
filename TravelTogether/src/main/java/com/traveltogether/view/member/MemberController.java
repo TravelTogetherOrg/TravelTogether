@@ -32,6 +32,16 @@ public class MemberController {
 		return "/views/memberAgreement.jsp";
 	}
 	
+	@RequestMapping(value = "/findId.do")
+	public String findId(MemberVO vo)throws IOException {
+		return "/views/findId.jsp";
+	}
+	
+	@RequestMapping(value = "/findPassword.do")
+	public String findPassword(MemberVO vo)throws IOException {
+		return "/views/findPassword.jsp";
+	}
+	
 	@RequestMapping(value = "/insertMember.do", method = RequestMethod.GET)
 	public String insertMember1(MemberVO vo) {
 		return "/views/join.jsp";
@@ -130,8 +140,36 @@ public class MemberController {
 		
 		return "main.do";
 	}
-
-	/*--유효성---*/
+	
+	//아이디 찾기
+	@RequestMapping("/findMemberId.do")
+	@ResponseBody
+	public String findMemberId(MemberVO vo, Model model) {
+		String id = memberService.findMemberId(vo);
+		System.out.println(id);
+		
+		if(id == null) {
+			return null;
+		} else {
+			return id;
+		}
+	}
+	
+	//비밀번호 찾기
+	@RequestMapping("/findMemberPassword.do")
+	@ResponseBody
+	public String findMemberPassword(MemberVO vo) {
+		String password = memberService.findMemberPassword(vo);
+		System.out.println(password);
+		
+		if(password == null) {
+			return null;
+		} else {
+			return password;
+		}
+	}
+	
+	/*--------------유효성---------------------*/
 	
 	//아이디 중복체크
 	@RequestMapping("/checkId.do")
@@ -140,6 +178,15 @@ public class MemberController {
 		
 		int cnt = memberService.checkId(vo);
 		System.out.println("아이디 중복검사 : "+cnt);
+		return cnt;
+	}
+	//핸드폰 중복체크
+	@RequestMapping("/checkPhoneNumber.do")
+	@ResponseBody
+	public int checkPhoneNumber(MemberVO vo) {
+		
+		int cnt = memberService.checkPhoneNumber(vo);
+		System.out.println("핸드폰 중복검사 : "+cnt);
 		return cnt;
 	}
 	//닉네임 중복체크 
@@ -161,9 +208,5 @@ public class MemberController {
 		System.out.println("비밀번호 검사 : "+cnt);
 		return cnt;
 	}
-	
-	//빔밀번호 유효성
-	
-	
-	
+
 }

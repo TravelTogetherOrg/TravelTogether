@@ -70,6 +70,16 @@
   color: orange;
   display: none;
   }
+  .user_tel_ok{
+  font-weight : bolder;
+  color: blue;
+  display: none;
+  }
+  .user_tel_already{
+  font-weight : bolder;
+  color: orange;
+  display: none;
+  }
  
 </style>
 </head>
@@ -159,6 +169,29 @@
         });
         };
         
+ function checkTel(tel){
+	
+        var tel = $('#tel').val(); //id값이 "id"인 입력란의 값을 저장
+        $.ajax({
+            url:"<c:url value='/checkPhoneNumber.do'/>", //Controller에서 요청 받을 주소
+            type:'post', //POST 방식으로 전달
+            data:{'member_phone_number':tel},
+            success:function(cnt){ //컨트롤러에서 넘어온 cnt값을 받는다 
+                if(cnt == 0){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
+                    $('.user_tel_ok').css("display","inline-block");
+               		$('.user_tel_already').css("display", "none");
+                } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
+                    $('.user_tel_already').css("display","inline-block");
+                    $('.user_tel_ok').css("display", "none");
+                    alert("중복된 핸드폰 번호입니다. 다시 확인해 주세요.");
+                }
+            },
+            error:function(){
+                alert("에러입니다");
+            }
+        });
+        };
+        
         function checkNickname(){
             var nickname = $('#nickname').val(); 
             $.ajax({
@@ -211,6 +244,11 @@
 	        <div class="input_control">
 	            <input id="name" type="text" placeholder="이름" name="member_name" required>
 	            <div class="user_name"></div>
+	        </div>
+	        <div class="input_control">
+	            <input id="tel" type="tel" placeholder="핸드폰번호" name="member_phone_number" oninput="checkTel()" required>
+	            <span class="user_tel_ok">사용 가능합니다.</span>
+	            <span class="user_tel_already">중복 되었습니다.</span>
 	        </div>
 	        <div class="input_control birth">
 	            <input id="birth" type="date" name="member_birthday" required>
