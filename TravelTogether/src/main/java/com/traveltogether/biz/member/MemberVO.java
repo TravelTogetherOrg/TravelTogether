@@ -19,15 +19,19 @@ public class MemberVO {
 	
 	private String festival_name;
 	private String board_title;
+	private String board_content;
 	private String board_start_date;
 	private String board_end_date;
 	private int board_total_people;
+	private int board_view_count;
 	private Timestamp board_write_date;
+	private Timestamp board_update_date;
 	
 	private int comment_number;
 	private int board_number;
 	private String comment_content;
 	private int comment_group;
+	private int comment_depth;
 	private Timestamp comment_write_date;
 	private Timestamp comment_update_date;
 
@@ -120,6 +124,24 @@ public class MemberVO {
 	public Timestamp getBoard_write_date() {
 		return board_write_date;
 	}
+	public String getBoard_content() {
+		return board_content;
+	}
+	public void setBoard_content(String board_content) {
+		this.board_content = board_content;
+	}
+	public int getBoard_view_count() {
+		return board_view_count;
+	}
+	public void setBoard_view_count(int board_view_count) {
+		this.board_view_count = board_view_count;
+	}
+	public Timestamp getBoard_update_date() {
+		return board_update_date;
+	}
+	public void setBoard_update_date(Timestamp board_update_date) {
+		this.board_update_date = board_update_date;
+	}
 	public void setBoard_write_date(Timestamp board_write_date) {
 		this.board_write_date = board_write_date;
 	}
@@ -162,5 +184,11 @@ public class MemberVO {
 	public void setComment_update_date(Timestamp comment_update_date) {
 		this.comment_update_date = comment_update_date;
 	}
-
+	public int getComment_depth() {
+		return comment_depth;
+	}
+	public void setComment_depth(int comment_depth) {
+		this.comment_depth = comment_depth;
+	}
+	
 }

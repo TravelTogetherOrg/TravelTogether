@@ -18,13 +18,17 @@
 		<result property="board_title" column="BOARD_TITLE"/>
 		<result property="board_start_date" column="BOARD_START_DATE"/>
 		<result property="board_end_date" column="BOARD_END_DATE"/>
+		<result property="board_content" column="BOARD_CONTENT"/>
+		<result property="board_view_count" column="BOARD_VIEW_COUNT"/>
 		<result property="board_total_people" column="BOARD_TOTAL_PEOPLE"/>
 		<result property="board_write_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" column="BOARD_WRITE_DATE"/>
+		<result property="board_update_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" column="BOARD_UPDATE_DATE"/>
 		
 		<result property="comment_number" column="COMMENT_NUMBER"/>
 		<result property="board_number" column="BOARD_NUMBER"/>
 		<result property="comment_content" column="COMMENT_CONTENT"/>
 		<result property="comment_group" column="COMMENT_GROUP"/>
+		<result property="comment_depth" column="COMMENT_DEPTH"/>
 		<result property="comment_write_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" column="COMMENT_WRITE_DATE"/>
 		<result property="comment_update_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" column="COMMENT_UPDATE_DATE"/>
 	</resultMap>
@@ -74,30 +78,15 @@
 	
 	<!--회원작성 게시글 조회 -->
 	<select id="memberBoardList" resultType="member">
-		SELECT 
-			b.MEMBER_ID, 
-			a.FESTIVAL_NAME, 
-			a.BOARD_TITLE, 
-			a.BOARD_START_DATE, 
-			a.BOARD_END_DATE, 
-			a.BOARD_TOTAL_PEOPLE, 
-			a.BOARD_WRITE_DATE  
-		FROM BOARD AS a 
-		INNER JOIN MEMBER AS b 
-		ON a.MEMBER_ID = b.MEMBER_ID	
-		WHERE b.MEMBER_ID = #{member_id}
+		select a.*  
+		from board as a inner join MEMBER as b
+		on a.MEMBER_ID = b.MEMBER_ID	
+		where b.MEMBER_ID = #{member_id}
 	</select>
 	
 	<!--회원작성 댓글 조회 -->
 	<select id="memberCommentList" resultType="member">
-	  SELECT
-		 b.MEMBER_NICKNAME,
-		 a.COMMENT_NUMBER,
-		 a.BOARD_NUMBER,
-		 a.COMMENT_CONTENT,
-		 a.COMMENT_GROUP,
-		 a.COMMENT_WRITE_DATE,
-		 a.COMMENT_UPDATE_DATE  
+	  SELECT a.*
 		FROM
 		COMMENT AS a 
 		INNER JOIN MEMBER AS b 

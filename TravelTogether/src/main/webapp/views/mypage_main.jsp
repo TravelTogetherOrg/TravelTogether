@@ -63,6 +63,10 @@
     };
   };
   
+  function deleteMember() {
+	  alert('회원탈퇴가 정상적으로 처리 되었습니다.');
+  }
+  
   /* --별병 중복체크-- */
 /* function checkNickname(){
            var nickname = $('#nickname').val(); 
@@ -198,7 +202,7 @@
 				</div>
 				<div id="btn">
 					<input type="submit" id="modifyBtn" value="수정하기" onclick="checkNickname()" class="btn btn-default">&nbsp;&nbsp;
-					<a href="${path}/deleteMember.do?member_id=${member.member_id}" id="modifyBtn" class="btn btn-default">탈퇴하기</a>
+					<a href="${path}/deleteMember.do?member_id=${member.member_id}" id="modifyBtn" onclick="deleteMember()" class="btn btn-default">탈퇴하기</a>
 				</div>
 			</div>
 		</form>

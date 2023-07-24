@@ -56,11 +56,13 @@ public class MemberController {
 	
 	@RequestMapping(value = "/updateMember.do", method = RequestMethod.POST)
 	public String updateMember(@ModelAttribute("member") MemberVO vo	
-		, @RequestParam(value = "member_profile_image") MultipartFile member_profile_url) throws IOException {
+		, @RequestParam(value = "member_profile_image") MultipartFile member_profile_url, HttpSession session) throws IOException {
 		
 		String path = FileUtills.serverUploadFile(member_profile_url);
 		vo.setMember_profile_url(path);
 		memberService.updateMember(vo);
+		session.setAttribute("userNickname", memberService.getMember(vo).getMember_nickname());
+		session.setAttribute("userProfile", memberService.getMember(vo).getMember_profile_url());
 		
 		System.out.println(vo.getMember_profile_url()); //파일경로 확인
 		return "/views/mypage_main.jsp";
@@ -124,6 +126,7 @@ public class MemberController {
 			session.setAttribute("userNickname", memberService.loginMember(vo).getMember_nickname());
 			session.setAttribute("userId", memberService.loginMember(vo).getMember_id());
 			session.setAttribute("userProfile", memberService.loginMember(vo).getMember_profile_url());
+			// session.setMaxInactiveInterval(60*60); 세션 유지시간 지정(단위:초)- 우선순위가 제일 높은 방법 
 			
 			model.addAttribute("member",memberService.getMember(vo));
 			
