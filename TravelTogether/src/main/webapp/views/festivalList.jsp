@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
-<link rel="stylesheet" href="${context}/resources/css/bootstrap.min.css?asdad">
+<link rel="stylesheet" href="${context}/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="${context}/resources/css/festivalHover.css">
 
 <title>Insert title here</title>

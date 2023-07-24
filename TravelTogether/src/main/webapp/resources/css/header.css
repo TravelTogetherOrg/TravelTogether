@@ -42,7 +42,7 @@
     font-size: 1.6em;
   }
 
-  .navbar__logo span {
+  .navbar__logo .tt span {
     color: var(--accent-color);
     padding-left: 0;
   }
@@ -50,8 +50,12 @@
   i {
   margin-top: 13px;
   }
+  a {
+  	text-decoration: none;
+  	color: var(--text-color);
+  }
   
-  a{
+  .navbar__logo .tt{
     text-decoration: none;
     color: var(--text-color);
   }
@@ -108,6 +112,7 @@
   	margin-left:7px;
     margin-top: 5px;
   }
+  
   .navbar__menu li a:hover  {
     color: var(--accent-color);
     text-decoration: underline;

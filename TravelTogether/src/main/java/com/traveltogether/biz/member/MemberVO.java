@@ -27,7 +27,7 @@ public class MemberVO {
 	private int comment_number;
 	private int board_number;
 	private String comment_content;
-	private int comment_class;
+	private int comment_group;
 	private Timestamp comment_write_date;
 	private Timestamp comment_update_date;
 
@@ -144,11 +144,11 @@ public class MemberVO {
 	public void setComment_content(String comment_content) {
 		this.comment_content = comment_content;
 	}
-	public int getComment_class() {
-		return comment_class;
+	public int getComment_group() {
+		return comment_group;
 	}
-	public void setComment_class(int comment_class) {
-		this.comment_class = comment_class;
+	public void setComment_group(int comment_group) {
+		this.comment_group = comment_group;
 	}
 	public Timestamp getComment_write_date() {
 		return comment_write_date;

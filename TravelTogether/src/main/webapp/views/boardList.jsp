@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="${context}/resources/css/base.css">
-<link rel="stylesheet" href="${context}/resources/css/board.css">
+<link rel="stylesheet" href="${context}/resources/css/board.css?ss">
 
 <title>축제 동행 찾기</title>
 </head>

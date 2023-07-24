@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${path}/resources/css/reset.css" media="all">
-<link rel="stylesheet" href="${path}/resources/css/footer.css">
+<link rel="stylesheet" href="${path}/resources/css/footer.css?ss">
 <script src="https://kit.fontawesome.com/4d0517937c.js" crossorigin="anonymous"></script>
 </head>
 <body>

@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${path}/resources/css/reset.css" media="all">
-<link rel="stylesheet" href="${path}/resources/css/header.css?ss">
+<link rel="stylesheet" href="${path}/resources/css/header.css?f">
 <script src="https://kit.fontawesome.com/4d0517937c.js" crossorigin="anonymous"></script>
 <style type="text/css">
    @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@1,900&display=swap');
@@ -22,7 +22,7 @@
 <body>
  <nav class="navbar">
        <div class="navbar__logo">
-         <a href="${path}/main.do" ondragstart='return false'>🚆<span>T</span>ravel <span>T</span>ogether</a>
+         <a class="tt" href="${path}/main.do" ondragstart='return false'>🚆<span>T</span>ravel <span>T</span>ogether</a>
        </div>
        <ul class="navbar__menu">
          <li><a href="${path}/main.do">홈</a></li>

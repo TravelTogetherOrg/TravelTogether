@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/findPassword.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/findPassword.css?dd">
 <style type="text/css">
 	@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@1,900&display=swap');
 	
@@ -80,7 +80,7 @@
   display: none;
   }
   
-   .find{
+  .find{
   padding-top: 30px;
   text-align: center;
   font-size: 1.2em;
@@ -136,13 +136,13 @@ function findPassword(){
 
 </script>
 <body>
+    <div class="navbar__logo" align="center">
+   	 	<a href="${path}/main.do" ondragstart='return false'>🚆<span>T</span>ravel <span>T</span>ogether</a>
+	</div>
+	<div class="join" align="center">
+ 	 	<h4 style="font-family:'GmarketSansMedium'">비밀번호 찾기</h4>
+	</div>
 	<div class="member">
-        <div class="navbar__logo" align="center">
-       	 	<a href="${path}/main.do" ondragstart='return false'>🚆<span>T</span>ravel <span>T</span>ogether</a>
-		</div>
-		<div class="join" align="center">
-       	 	<h4 style="font-family:'GmarketSansMedium'">비밀번호 찾기</h4>
-		</div>
         <h4>* 회원가입 시 입력하신 <span style="color: orange;">이름</span>과 <span style="color: orange;">이메일</span>로 찾을 수 있습니다.</h4>
         <form id="form" action="" method="post">
 	      <div id="container">
@@ -154,7 +154,7 @@ function findPassword(){
 	            <span class="placehold-text"><input id="id" type="email" placeholder="이메일 주소" name="member_id"  required></span>
 	        </div>
 	         <input type="button" value="확 인" onclick="findPassword()" style="font-size:20px;">
-	 	 </div>
+	 	  </div>
   	</form>
 	  	<div class="find">
 			회원님의 비밀번호는 <span class="rs"></span> 입니다.

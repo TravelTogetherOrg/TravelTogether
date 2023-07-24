@@ -12,7 +12,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/main.css">
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/mypage.css?ddd">
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/mypage.css?d">
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script> 
 /* 사이드바 */
@@ -41,17 +41,19 @@
 
       if (!passwordPattern.test(password)) {
         alert('비밀번호는 8~12자의 영문, 숫자, 특수문자(@$!%*#?&)를 포함해야 합니다.');
-        /* passwordInput.value = '';
-        passwordConfirmInput.value = ''; */
+        $('.user_password_already').css("display","inline-block");
+        $('.user_password_already2').css("display","none");
         return false;
         
       } else if (password !== passwordConfirm) {
         alert('비밀번호가 일치하지 않습니다.');
-        /* passwordInput.value = '';
-        passwordConfirmInput.value = ''; */
+        $('.user_password_already').css("display","none");
+        $('.user_password_already2').css("display","inline-block");
         return false;
       }
-
+      $('.user_password_already').css("display","none");
+      $('.user_password_already2').css("display","none");
+      $('.user_password_ok').css("display","inline-block");
       return true;
     }
     form.onsubmit = function() {
@@ -85,6 +87,7 @@
                }
            });
            }; */
+           
 </script>
 </head>
 <body>
@@ -110,7 +113,7 @@
 				<h2>계정설정</h2>
 				<hr style="border-color: #ccc;">
 					
-				<div style="display: flex; flex-direction: column; align-items: center; ">
+				<div class="user_image" style="display: flex; flex-direction: column; align-items: center; ">
 					<c:if test="${ empty member.member_profile_url}">
 						<div class="rounded-image">
 							<img id="img" src="${path}/resources/image/member/member.png" height="150" width="150">
@@ -139,52 +142,55 @@
 					<table id="info_table">
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">아이디<br><input type='text' name='member_id' value='${member.member_id}'size="40" readonly="readonly"></font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">아이디<br><input type='text' name='member_id' value='${member.member_id}'size="44" readonly="readonly"></font>&nbsp;&nbsp;</h5>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">이름<br><input type='text' name='member_name' value='${member.member_name}'size="40" readonly="readonly"></font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">이름<br><input type='text' name='member_name' value='${member.member_name}'size="44" readonly="readonly"></font>&nbsp;&nbsp;</h5>
 
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">핸드폰 번호<br><input type='tel' name='member_phone_number' value='${member.member_phone_number}'size="40" readonly="readonly"></font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">핸드폰 번호<br><input type='tel' name='member_phone_number' value='${member.member_phone_number}'size="44" readonly="readonly"></font>&nbsp;&nbsp;</h5>
 
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">별명<br><input type='text' name='member_nickname' id="nickname" oninput="checkNickname()" value='${member.member_nickname}'size="40" required="required" readonly="readonly"> </font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">별명<br><input type='text' name='member_nickname' id="nickname" oninput="checkNickname()" value='${member.member_nickname}'size="44" required="required" readonly="readonly"> </font>&nbsp;&nbsp;</h5>
 								<span class="user_nickname_ok">사용 가능한 별명 입니다.</span>
 	            				<span class="user_nickname_already">중복된 별명 입니다.</span>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">비밀번호<br><input type='password' id="password" name='member_password' value='${member.member_password}'size="40" required="required"> </font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">비밀번호<br><input type='password' id="password" name='member_password' value='${member.member_password}'size="44" required="required"> </font>&nbsp;&nbsp;</h5>
+								<span class="user_password_ok">사용 가능합니다.</span>
+	            				<span class="user_password_already">비밀번호(8~12자, 영문+숫자+특수문자 사용)</span>
+	            				<span class="user_password_already2">비밀번호가 일치하지 않습니다.</span>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">비밀번호 확인<br><input type='password' id="password2" value='${member.member_password}'size="40" required="required"> </font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">비밀번호 확인<br><input type='password' id="password2" value='${member.member_password}'size="44" required="required"> </font>&nbsp;&nbsp;</h5>
 
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">생년월일<br><input type='text' name='member_birthday' value='${member.member_birthday}'size="40" readonly="readonly"></font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">생년월일<br><input type='text' name='member_birthday' value='${member.member_birthday}'size="44" readonly="readonly"></font>&nbsp;&nbsp;</h5>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">성별 <br><input type='text' name='member_gender' value='${member.member_gender}'size="40" readonly="readonly"></font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">성별 <br><input type='text' name='member_gender' value='${member.member_gender}'size="44" readonly="readonly"></font>&nbsp;&nbsp;</h5>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">가입일<br><input type='text' name='member_create_date' value='${member.member_create_date}'size="40" readonly="readonly"></font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">가입일<br><input type='text' name='member_create_date' value='${member.member_create_date}'size="44" readonly="readonly"></font>&nbsp;&nbsp;</h5>
 
 							</td>
 						</tr>
@@ -204,13 +210,7 @@
 				<p>??</p>
 		</div>	
 	</div> 
-<!-- <script>
-$(function() {
-	if("${listView}"=="t"){
-		cominfoBtn_T.click();
-	}
-}); 
-</script> -->
+	
 		<div id="details" class="tab-section" text-aligin="center">
 		<h2>${member.member_nickname}의 동행 게시글 목록</h2>
 		<hr style="border-color: black;">
@@ -225,8 +225,8 @@ $(function() {
 				</tr>
 				<c:forEach items="${memberBoardList}" var="board">
 				<tr>
-					<td>${board.festival_name}</td>				
-					<td>${board.board_title}</td>
+					<td><a href="getFestival.do?festival_name=${festival.festival_name }">${board.festival_name}</a></td>				
+					<td><a href="board.do?no=${board.board_number}">${board.board_title}</a></td>
 					<td>${board.board_start_date}</td>
 					<td>${board.board_end_date}</td>
 					<td>${board.board_total_people}</td>
@@ -252,7 +252,7 @@ $(function() {
 					<td>${comment.comment_number}</td>
 					<td>${comment.board_number}</td>				
 					<td>${comment.comment_content}</td>
-					<td>${comment.comment_class}</td>
+					<td>${comment.comment_group}</td>
 					<td>${comment.comment_write_date}</td>
 					<td>${comment.comment_update_date}</td>
 				</tr>			
@@ -277,7 +277,6 @@ $(function() {
                         <div>
                            <h4 style="font-weight: bolder;">&nbsp;${memberLike.festival_name}</h4>
                         </div>
-                     
                      </div>
                   </div>
                </c:forEach>
@@ -286,6 +285,6 @@ $(function() {
 	</div>
 </div>
 <jsp:include page="footer.jsp"/>
- <script src="${path}/resources/js/mypage.js"></script>	
+<script src="${path}/resources/js/mypage.js"></script>	
 </body>
 </html>

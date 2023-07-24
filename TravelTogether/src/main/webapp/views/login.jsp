@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/login.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/login.css?fe">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" 
 		integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" 
 		crossorigin="anonymous" 
@@ -27,7 +27,7 @@ function checkPassword(){
                 return false;
 
             } else { 
-            	$('.user_id_already').css("display", "none");
+            	$('.user_id_already').css("display","none");
             	return false;
             }
         },
@@ -49,7 +49,7 @@ $.ajax({
             /* alert("아이디와 비밀번호를 확인해주세요"); */
             return false;
         } else { 
-        	$('.user_id_already').css("display", "none");
+        	$('.user_id_already').css("display","none");
         	return false;
         }
     },
@@ -98,65 +98,7 @@ function alertId(){
 
 </script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@1,900&display=swap');
-@media (max-width: 768px) {
-  .main {
-    min-width: auto;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* align-items 값을 flex-start로 변경 */
-    height: 100vh;
-    overflow-y: auto; /* 세로 스크롤 추가 */
-  }
-
-  .login_item.login_item2 {
-    width: auto;
-    margin: 0 auto;
-  }
-  
-  .login_container {
-    width: 60%;
-  }
-}
-
-@media (max-width: 480px) {
-  .login_container {
-    width: 90%;
-  }
-  
-  #sns {
-    display: none;
-  }
-}
-.navbar__logo{
-    font-family: 'Fira Sans', sans-serif;
-    font-weight: bolder;
-    font-size: 1.6em;
-  }
-  .navbar__logo span {
-    color: orange;
-    padding-left: 0;
-  }
-  a{
-    text-decoration: none;
-    color: black;
-  }
-  .function a{
-   font-size: 0.8em; 
-   color: gray;
-  }
-  input[type="submit"]:hover,
-  input[type="submit"]:active {
-  color: orange;
-}
- .user_id_already{
-  margin-bottom: 23px;
-  margin-top: 23px;
-  font-weight : bolder;
-  color: orange;
-  display: none; 
-  }
+	@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@1,900&display=swap');
 </style>
 </head>
 <body>
@@ -207,13 +149,13 @@ function alertId(){
 												<input type="submit" id="loginBtn" value="로그인" onclick="alertId(); alertPassword()" class="middle_input">
 											</td>
 											<td>
-												<input value="회원가입" id="joinBtn" class="middle_input" style="color:rgb(192, 228, 255); background-color:white; border: 2px solid rgb(192, 228, 255);" onclick="window.location.href='memberAgreement.do'">
+												<input type="button" value="회원가입" class="middle_input" style="color:rgb(192, 228, 255); background-color:white; border: 2px solid rgb(192, 228, 255);" onclick="window.location.href='memberAgreement.do'">
 											</td>									
 										</tr>
 									</table>
 								</form>
 								<div class="function" align="center">
-								   <a href="${path}/findId.do">아이디 찾기</a>&nbsp;·&nbsp;<a href="${path}/findPassword.do">비밀번호 찾기</a>
+								   <a href="${path}/findId.do">아이디 찾기&nbsp;·&nbsp;</a><a href="${path}/findPassword.do">비밀번호 찾기</a>
 								</div>
 							</div>
 						</div>

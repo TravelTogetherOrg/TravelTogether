@@ -14,7 +14,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>TravelTogether:다같이 축제동행</title>
     <script src="https://kit.fontawesome.com/cd8f90f87a.js"crossorigin="anonymous"></script>
   </head>
   <body>

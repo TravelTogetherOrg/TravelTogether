@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/findId.css?d">
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/findId.css?dfdf"> 
 <style type="text/css">
 	@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@1,900&display=swap');
 	
@@ -106,13 +106,13 @@ function findId(){
 
 </script>
 <body>
+    <div class="navbar__logo" align="center">
+   	 	<a href="${path}/main.do" ondragstart='return false'>🚆<span>T</span>ravel <span>T</span>ogether</a>
+	</div>
+	<div class="join" align="center">
+  	 	<h4 style="font-family:'GmarketSansMedium'">아이디 찾기</h4>
+	</div>
 	<div class="member">
-        <div class="navbar__logo" align="center">
-       	 	<a href="${path}/main.do" ondragstart='return false'>🚆<span>T</span>ravel <span>T</span>ogether</a>
-		</div>
-		<div class="join" align="center">
-       	 	<h4 style="font-family:'GmarketSansMedium'">아이디 찾기</h4>
-		</div>
         <h4>* 회원가입 시 입력하신 <span style="color: orange;">이름</span>과 <span style="color: orange;">핸드폰 번호</span>로 찾을 수 있습니다.</h4>
         <form name="form" action="" method="post">
 		     <div id="container">
@@ -121,7 +121,7 @@ function findId(){
 		            <div class="user_name"></div>
 		        </div>
 		        <div class="input_control">
-		            <input id="tel" type="tel" placeholder="핸드폰번호" name="member_phone_number" required>
+		            <input id="tel" type="tel" placeholder="핸드폰번호( ' - '없이 입력 )" name="member_phone_number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
 		        </div>
 		         <input type="button" value="확 인" onclick="findId()" style="font-size:20px;">
 		 	 </div>

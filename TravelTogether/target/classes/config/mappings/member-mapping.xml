@@ -24,7 +24,7 @@
 		<result property="comment_number" column="COMMENT_NUMBER"/>
 		<result property="board_number" column="BOARD_NUMBER"/>
 		<result property="comment_content" column="COMMENT_CONTENT"/>
-		<result property="comment_class" column="COMMENT_CLASS"/>
+		<result property="comment_group" column="COMMENT_GROUP"/>
 		<result property="comment_write_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" column="COMMENT_WRITE_DATE"/>
 		<result property="comment_update_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" column="COMMENT_UPDATE_DATE"/>
 	</resultMap>
@@ -91,18 +91,18 @@
 	<!--회원작성 댓글 조회 -->
 	<select id="memberCommentList" resultType="member">
 	  SELECT
-		 b.MEMBER_ID,
+		 b.MEMBER_NICKNAME,
 		 a.COMMENT_NUMBER,
 		 a.BOARD_NUMBER,
 		 a.COMMENT_CONTENT,
-		 a.COMMENT_CLASS,
+		 a.COMMENT_GROUP,
 		 a.COMMENT_WRITE_DATE,
 		 a.COMMENT_UPDATE_DATE  
 		FROM
 		COMMENT AS a 
 		INNER JOIN MEMBER AS b 
-		ON a.MEMBER_ID = b.MEMBER_ID
-		WHERE b.MEMBER_ID = #{member_id}
+		ON a.MEMBER_NICKNAME = b.MEMBER_NICKNAME
+		WHERE b.MEMBER_NICKNAME = #{member_nickname}
 	</select>
 	
 	<!-- 아이디중복체크 --> 

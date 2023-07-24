@@ -704,9 +704,7 @@ body{
     border-bottom: 0.08em solid #DCDCDC;
 }
 /* board footer */
-.companyinfo, .copyright{
-	margin-bottom: 12.8px;
-}
+
 .footer__github ul{
 	margin: 16px 0;
 }
