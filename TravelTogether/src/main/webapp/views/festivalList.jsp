@@ -12,90 +12,21 @@
 <link rel="stylesheet" href="${context}/resources/css/festivalHover.css">
 
 <title>Insert title here</title>
-    <style>
-
-      /* 폰트 */
-      @font-face {
-                font-family: 'HSSaemaul-Regular';
-                src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/HSSaemaul-Regular.woff') format('woff');
-          font-weight: normal;
-          font-style: normal;
-      }
-
-      @font-face {
-          font-family: 'SUITE-Regular';
-          src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
-          font-weight: 400;
-          font-style: normal;
-      }
-
-      @font-face {
-          font-family: 'Dovemayo_gothic';
-          src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.1/Dovemayo_gothic.woff2') format('woff2');
-          font-weight: normal;
-          font-style: normal;
-      }
-
-
-      .card {
-        position: relative;
-        overflow: hidden;
-      }
-
-      .fixed-image {
-        width: 100%;
-        height: 270px; /* 원하는 높이로 설정 */
-        object-fit: cover;
-      }
-
-
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-      .card-margin {
-        margin-bottom: 20px;
-      }
-
-      .card-border {
-        border-radius: 20px;
-        border: 2px solid rgb(192, 228, 255);
-      }
-
-    </style>
-
     <!-- 카카오api -->
-    <style>
-      .customoverlay {position:relative;bottom:85px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left; font-family: 'SUITE-Regular', sans-serif;}
-      .customoverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
-      .customoverlay a {display:block;text-decoration:none;color:#000;text-align:center;border-radius:6px;font-size:14px;font-weight:bold;overflow:hidden;background: rgb(255, 194, 0);background: rgb(255, 194, 0) url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
-      .customoverlay .title {display:block;text-align:center;background:#fff;margin-right:35px;padding:8px 15px;font-size:14px;font-weight:bold;}
-      .customoverlay:after {content:'';position:absolute;margin-left:-12px;left:50%;bottom:-12px;width:22px;height:12px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
-    </style>
+<style>
+  .customoverlay {position:relative;bottom:85px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left; font-family: 'SUITE-Regular', sans-serif;}
+  .customoverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
+  .customoverlay a {display:block;text-decoration:none;color:#000;text-align:center;border-radius:6px;font-size:14px;font-weight:bold;overflow:hidden;background: rgb(255, 194, 0);background: rgb(255, 194, 0) url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
+  .customoverlay .title {display:block;text-align:center;background:#fff;margin-right:35px;padding:8px 15px;font-size:14px;font-weight:bold;}
+  .customoverlay:after {content:'';position:absolute;margin-left:-12px;left:50%;bottom:-12px;width:22px;height:12px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+</style>
 
 </head>
 <body style="padding-top: 70px; line-height: 1.4;">
     
 	<%@ include file="header.jsp" %>
 
-
-
-
-
 <main>
-
-
-	<!-- 올릴테니 잘 올라가는지 확인해보기 -->
 
   <br>
   <!-- 상단 축제이름 -->
@@ -156,7 +87,7 @@
 		<c:forEach items="${festivalList}" var="festival">
 		  <div class="col grid hvr-float card-margin">
 		    <div class="card shadow-sm card-border">
-		      <a href="getFestival.do?festival_name=${festival.festival_name }">
+		      <a href="getFestival?festival_name=${festival.festival_name }">
 		        <c:set var="imagePath" value="${context}/resources/image/festival/${festival.festival_name}/${festival.festival_name}_1_공공3유형" />
 				<img class="img-fluid w-100 fixed-image" src="${imagePath}.png" onerror="this.onerror=null; this.src='${imagePath}.jpg'" />
 		      </a>
@@ -200,15 +131,6 @@
 
 
 	<%@ include file="footer.jsp" %>
-
-<!-- 주소 2칸만 -->
-<script>
-  var addressElements = document.querySelectorAll('#address');
-  
-  
-</script>
-
-
 <!-- 지역 선택 스크립트 -->
 <script>
   // 페이지 로드 시 URL 파라미터를 기반으로 selectedRegion 값을 설정

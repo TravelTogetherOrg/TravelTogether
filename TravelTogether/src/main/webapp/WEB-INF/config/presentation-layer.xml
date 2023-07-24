@@ -17,9 +17,12 @@
 		<property name="maxInMemorySize" value="1000000000"></property>
 	</bean>
 	
-	<!-- 예외처리 -->
+
 	<mvc:annotation-driven/>
+	<mvc:default-servlet-handler/>
 	
+	
+	<!-- 에러처리 -->
 	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<property name="defaultErrorView" value="common/error.jsp"></property>
 	

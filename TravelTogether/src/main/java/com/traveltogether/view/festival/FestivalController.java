@@ -48,7 +48,7 @@ public class FestivalController {
   
     
 	
-	@RequestMapping("/getFestival.do")
+	@RequestMapping("/getFestival")
 	public String getFestival(FestivalVO vo, Model model, HttpSession session) {
 		
 	    String encodedFestivalName = URLEncoder.encode(vo.getFestival_name(), StandardCharsets.UTF_8);
@@ -69,14 +69,14 @@ public class FestivalController {
 	}
 	
 	
-	@RequestMapping("/getFestivalList_Month.do")
+	@RequestMapping("/getFestivalList_Month")
 	public String getFestivalList_Month(FestivalVO vo, Model model){
 	
 		model.addAttribute("festivalList", festivalService.getFestivalList_Month(vo));
 		return "views/festivalList.jsp";
 	}
 
-	@RequestMapping("main.do")
+	@RequestMapping("main")
 	public String main(FestivalVO vo, Model model){
 	
 		model.addAttribute("festivalLikeList", festivalService.getFestivalLikeList(vo));
