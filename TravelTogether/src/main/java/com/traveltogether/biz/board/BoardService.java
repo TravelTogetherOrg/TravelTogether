@@ -38,6 +38,7 @@ public interface BoardService {
 	public CommentVO getOneComment(int commentNumber);
 	public List<CommentVO> getCommnetList(int boardNumber);
 	public List<CommentVO> getReCommnetList(int boardNumber);
-	public int getCommentTotal(int boardNumber);
+	//public int getCommentTotal(int boardNumber);
 	public int getReCommentTotal(int commentNumber);
+	public List<CommentVO> getTotalCommentCount();
 }

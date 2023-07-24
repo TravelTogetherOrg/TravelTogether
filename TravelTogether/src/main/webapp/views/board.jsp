@@ -75,9 +75,12 @@
 	                	</c:otherwise>
 	                </c:choose>
 	                · 조회수 ${board.board_view_count} </p>
-                    <button>신고하기</button> &nbsp;
-                    <p><a href="${context}/updateBoard.do?no=${board.board_number}">수정</a></p>&nbsp;
-                    <p><a href="${context}/deleteBoard.do?no=${board.board_number}">삭제</a></p>
+                   <!--  <button>신고하기</button>  -->&nbsp;
+                    <c:if test="${board.member_nickname eq sessionScope.userNickname}">
+	                    <p><a href="${context}/updateBoard?no=${board.board_number}">수정</a></p>&nbsp;
+	                    <p><a href="${context}/deleteBoard?no=${board.board_number}">삭제</a></p>
+                    </c:if>
+                    
                 </div>
                 <div class="comment">
                         <div id="commentWrite">
@@ -85,8 +88,8 @@
                         	<input type="hidden" id="board_number" value="${board.board_number}">
                         	<input type="hidden" id="context" value="${context}">
                         	<c:if test="${!empty sessionScope.userId}">
-                        	<input type="hidden" id="member_id" value="${sessionScope.userId}">
-                        	<input type="hidden" id="member_nickname" value="${sessionScope.userNickname}">
+	                        	<input type="hidden" id="member_id" value="${sessionScope.userId}">
+	                        	<input type="hidden" id="member_nickname" value="${sessionScope.userNickname}">
                         	</c:if>
                         </div>
                             <textarea placeholder="댓글을 입력해주세요." id="comment_content"></textarea>
@@ -106,7 +109,7 @@
 	                                </div>
 	                                <div class="commentUserInfoInner">
 	                                    <span class="commentUserName">${comments.member_nickname}</span>
-	                                    <span>댓글번호: ${comments.comment_number} ${comments.comment_write_date}</span>
+	                                    <span>${comments.comment_write_date}</span>
 	                                </div>
 	                            </div>
 	                            <div class="userComment">
@@ -117,7 +120,7 @@
 	                                <button class="recommentWrite" onclick="reComment(${comments.comment_number})">답글달기</button>
 	                               <c:if test="${comments.member_nickname eq sessionScope.userNickname}">
 	                               		<span>|</span><!-- id="updateButton" onclick="updateComment(${comments.comment_number}, this.updateButton)"  -->
-	                               		<button class="commentUpdate" onclick="updateComment()">수정하기</button>
+	                               		<button class="commentUpdate" onclick="updateComment(${comments.comment_number})">수정하기</button>
 	                                	<span>|</span>
 	                                	<button class="commentDelete" onclick="deleteComment(${comments.comment_number})">삭제하기</button>
 	                               </c:if>
@@ -138,7 +141,7 @@
 	                                </div>
 	                                <div class="commentUserInfoInner">
 	                                    <span class="commentUserName">${reComments.member_nickname}</span>
-	                                    <span>댓글번호(그룹, 부모): ${reComments.comment_group}, ${comments.comment_number} ${reComments.comment_write_date}</span>
+	                                    <span>${reComments.comment_write_date}</span>
 	                                </div>
 	                            </div>
 	                            <div class="userComment">
@@ -149,14 +152,14 @@
 	                                <button class="recommentWrite" onclick="reComment(${reComments.comment_number})">답글달기</button>
 	                               <c:if test="${reComments.member_nickname eq sessionScope.userNickname}">
 	                               		<span>|</span>
-	                               		<button class="commentUpdate" onclick="updateComment()">수정하기</button>
+	                               		<button class="commentUpdate" onclick="updateComment(${reComments.comment_number})">수정하기</button>
 	                                	<span>|</span>
 	                                	<button class="commentDelete" onclick="deleteComment(${reComments.comment_number})">삭제하기</button>
 	                               </c:if>
 	                             </div>
 	                             </c:if>
 	                         </div>
-	                         </c:if>
+	                         <%-- </c:if> --%>
 	                         <!-- 대댓글의 대댓글 -->
 	                         <c:forEach var="reComments2" items="${reCommentList}" >
 	                         <c:if test="${reComments.comment_number eq reComments2.comment_group}">
@@ -171,7 +174,7 @@
 	                                </div>
 	                                <div class="commentUserInfoInner">
 	                                    <span class="commentUserName">${reComments2.member_nickname}</span>
-	                                    <span>댓글번호(): ${reComments2.comment_group}, ${reComments.comment_number}${reComments2.comment_write_date}</span>
+	                                    <span>${reComments2.comment_write_date}</span>
 	                                </div>
 	                            </div>
 	                            <div class="userComment">
@@ -182,7 +185,7 @@
 	                                <button class="recommentWrite" onclick="reComment(${reComments2.comment_number})">답글달기</button>
 	                               <c:if test="${reComments2.member_nickname eq sessionScope.userNickname}">
 	                               		<span>|</span>
-	                               		<button class="commentUpdate" onclick="updateComment()">수정하기</button>
+	                               		<button class="commentUpdate" onclick="updateComment(${reComments2.comment_number})">수정하기</button>
 	                                	<span>|</span>
 	                                	<button class="commentDelete" onclick="deleteComment(${reComments2.comment_number})">삭제하기</button>
 	                               </c:if>
@@ -191,6 +194,7 @@
 	                         </div>
 	                         </c:if>
 	                         </c:forEach>
+	                         </c:if>
                          </c:forEach><%----%>
                     	</div>
                     </c:forEach>

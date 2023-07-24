@@ -18,7 +18,7 @@
         <section id="festivalSearch">  <!-- 드롭다운 축제 -->
             <div>
                 <p>축제 동행 찾기</p><br> &nbsp;&nbsp;
-                <form action="findFestivalBoard.do" method="post" name="findForm">
+                <form action="findFestivalBoard" method="post" name="findForm">
                 <select id="findRegion">
                     <option disabled selected>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;지역 검색</option>
                     <option value="서울">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;서울</option>
@@ -45,13 +45,13 @@
                 <!--옵션아이콘(드롭박스)-최신순/모집중 표시 -->
             </div>
             <div id="boardWriteButton" align="right">
-            <button type="button" onclick="location.href='insertBoard.do'">글쓰기</button>
+            <button type="button" onclick="loginCheck('${sessionScope.userId}')">글쓰기</button>
             </div>
         </section>
         <section id="boardList" >  <!-- 동행 게시글 리스트 -->
             <div class="row">
         	<c:forEach var="board" items="${boardList}" begin="0" end="3">
-	            <div class="col" onclick="location.href='board.do?no=${board.board_number}'">
+	            <div class="col" onclick="location.href='board?no=${board.board_number}'">
 	                <div class="top">
 	                    <img class="profileImage" src="${context}/resources/image/board/vector_profile_willy.svg">
 	                    <div class="topInfo memberInfo">
@@ -77,9 +77,9 @@
 	                                <img src="${context}/resources/image/board/eye.svg">
 	                                <p>${board.board_view_count}</p>
 	                            </div>
-	                            <div class="view">
+	                            <div class="view boardCommentCount">
 	                                <img src="${context}/resources/image/board/chat.svg">
-	                                <p>2</p>
+	                                <p><c:forEach var="comments" items="${comments}"><c:if test="${board.board_number eq comments.board_number}">${comments.count}</c:if></c:forEach></p>
 	                            </div>
 	                        </div>
 	                    </div>
@@ -94,7 +94,7 @@
             </div>
             <div class="row">
         	<c:forEach var="board" items="${boardList}" begin="4" end="7">
-	            <div class="col" onclick="location.href='board.do?no=${board.board_number}'">
+	            <div class="col" onclick="location.href='board?no=${board.board_number}'">
 	                <div class="top">
 	                    <img class="profileImage" src="${context}/resources/image/board/vector_profile_willy.svg">
 	                    <div class="topInfo memberInfo">
@@ -136,7 +136,7 @@
             </div>
             <div class="row">
         	<c:forEach var="board" items="${boardList}" begin="8" end="11">
-	            <div class="col" onclick="location.href='board.do?no=${board.board_number}'">
+	            <div class="col" onclick="location.href='board?no=${board.board_number}'">
 	                <div class="top">
 	                    <img class="profileImage" src="${context}/resources/image/board/vector_profile_willy.svg">
 	                    <div class="topInfo memberInfo">
@@ -178,7 +178,7 @@
             </div>
             <div class="row">
         	<c:forEach var="board" items="${boardList}" begin="12" end="15">
-	            <div class="col" onclick="location.href='board.do?no=${board.board_number}'">
+	            <div class="col" onclick="location.href='board?no=${board.board_number}'">
 	                <div class="top">
 	                    <img class="profileImage" src="${context}/resources/image/board/vector_profile_willy.svg">
 	                    <div class="topInfo memberInfo">
@@ -221,7 +221,7 @@
         </section>
         <section>
             <div>
-            <form action="boardList.do" name="pageForm" id="pageChevrons" method="post">
+            <form action="boardList" name="pageForm" id="pageChevrons" method="post">
                 <button class="chevron" id="firstPage" type="button"><img src="${context}/resources/image/board/chevron-double-left.svg"></button>
                 <button class="chevron" id="prevPage" type="button" value="${pageCreate.beginPage-1}"><img src="${context}/resources/image/board/chevron-left.svg"></button>
                 <div id="pageNumbers">

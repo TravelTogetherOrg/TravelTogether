@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -41,14 +42,15 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 
-	@RequestMapping(value="/insertBoard.do", method = RequestMethod.GET)
+	@RequestMapping(value="/insertBoard", method = RequestMethod.GET)
 	public String insertBoardGet(Model model) {
 		
 		return"views/boardWrite.jsp";
 	}
 	
-	@RequestMapping(value="/insertBoard.do", method = RequestMethod.POST)
-	public String insertBoardPost(BoardVO board, HttpSession session) throws Exception {
+	@RequestMapping(value="/insertBoard", produces = "application/json; charset=utf8", method = RequestMethod.POST)
+	public String insertBoardPost(BoardVO board, HttpSession session, HttpServletRequest request) throws Exception {
+		request.setCharacterEncoding("UTF-8");
 		
 		board.setMember_id((String)session.getAttribute("userId"));
 		BoardImageVO image = new BoardImageVO();
@@ -58,23 +60,21 @@ public class BoardController {
 			
 			String uuid = UUID.randomUUID().toString();
 			Path targetPath = FileUtils.saveFile(uploadFile,uuid);
-			System.out.println("targetPath: "+targetPath);
 			image.setBoard_image_file(
 					uuid+"_"+
 					uploadFile.getOriginalFilename());
 			
 			String pathToday = FileUtils.getPathToday().toString().replace("\\", "/");
 			//2023\07\16
-			System.out.println("일지만 나오는지 확인: "+pathToday.substring(pathToday.length()-10,pathToday.length()));
 			image.setBoard_image_file_path("board/boardImage/"+pathToday.substring(pathToday.length()-10,pathToday.length()));
 			
 		}else {
 			//이미지 없으면 선택한 축제의 기본 이미지 가져오기
 			//jpg인지 png인지 확인해서 맞는 걸로 연결하기
 			
-			//학원: C:\Users\\user\Desktop\\KCY\spring\SpringSRC\TT\TravelTogether\src\main\webapp\resources\image\festival\
+			//학원: C:\Users\\user\Desktop\KCY\spring\SpringSRC\TT\TravelTogether\src\main\webapp\resources\image\festival\
 			//노트북: C:\Users\ddd\Desktop\TT\TravelTogether\src\main\webapp\resources\image\festival
-			File file = new File("C:\\Users\\ddd\\Desktop\\TT\\TravelTogether\\src\\main\\webapp\\resources\\image\\festival\\"
+			File file = new File("C:\\Users\\user\\Desktop\\KCY\\spring\\SpringSRC\\TT\\TravelTogether\\src\\main\\webapp\\resources\\image\\festival\\"
 					+board.getFestival_name()+"\\"+board.getFestival_name()+"_1_공공3유형.jpg");
 			if(file.exists()) {
 				image.setBoard_image_file(board.getFestival_name()+"_1_공공3유형.jpg");
@@ -90,26 +90,27 @@ public class BoardController {
 		BoardLimitVO limit = new BoardLimitVO();
 		limit.setFestival_name(board.getFestival_name());
 		limit.setMember_id((String)session.getAttribute("userId"));
+		
 		if(boardService.getOneBoardLimit(limit)!=null) {
 				boardService.updateBoardLimit(limit);
 		}else {
 			boardService.insertBoardLimit(limit);
 		}
-
-		System.out.println(board.toString());
 		
 		boardService.insertBoard(board);
 		//이미지 테이블에 저장
 		image.setBoard_number(board.getBoard_number());
 		boardService.insertBoardImage(image);
 		
-		return "redirect:boardList.do";
+		return "redirect:boardList";
 	}
 	
 	//게시글 작성갯수 확인
-	@RequestMapping(value = "/limitCheck.do")
+	@RequestMapping(value = "/limitCheck", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public Map<Object,Object> boardLimitCheck(@RequestBody BoardLimitVO boardLimit) {
+	public Map<Object,Object> boardLimitCheck(@RequestBody BoardLimitVO boardLimit, HttpServletRequest request) throws IOException {
+		request.setCharacterEncoding("UTF-8");
+		
 		Map<Object,Object> map = new HashMap<Object, Object>();
 		int limit = 0;
 		if(boardService.getOneBoardLimit(boardLimit)!=null) {
@@ -121,40 +122,39 @@ public class BoardController {
 		return map;
 	}
 	
-	@RequestMapping(value = "/boardList.do")
+	@RequestMapping(value = "/boardList")
 	public String getBoardList(Criteria criteria, ModelMap model, HttpSession session) throws IOException {
-		//request.setCharacterEncoding("UTF-8");
-		System.out.println(session.getAttribute("userId"));
+		
 		BoardPageCreate pageCreate = new BoardPageCreate();
 		pageCreate.setCriteria(criteria);
 		pageCreate.setTotalCount(boardService.getTotalBoardCount());
 		
 		model.addAttribute("boardList", boardService.getBoardListwithPaging(criteria));
 		model.addAttribute("pageCreate", pageCreate);
+		model.addAttribute("comments", boardService.getTotalCommentCount());
 		//System.out.println(boardService.getBoardListwithPaging(criteria).toString());
 		
 		return "views/boardList.jsp";
 	}
 	
-	@RequestMapping(value = "/board.do")
+	@RequestMapping(value = "/board")
 	public String getBoard(BoardVO board, BoardImageVO boardImage, HttpServletRequest request, Model model) {
 		
 		boardService.viewCount(Integer.parseInt(request.getParameter("no")));
 		model.addAttribute("board", boardService.getOneBoard(Integer.parseInt(request.getParameter("no"))));
 		model.addAttribute("commentList", boardService.getCommnetList(Integer.parseInt(request.getParameter("no"))));
 		model.addAttribute("reCommentList", boardService.getReCommnetList(Integer.parseInt(request.getParameter("no"))));
-		model.addAttribute("commentCount", boardService.getCommentTotal(Integer.parseInt(request.getParameter("no"))));
-
+		
 		return "views/board.jsp";
 	}
 	
-	@RequestMapping(value = "/updateBoard.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/updateBoard", method = RequestMethod.GET)
 	public String updateBoardGet(BoardVO board, BoardImageVO boardImage, FestivalVO festival, Model model, HttpServletRequest request) {
 		
 		model.addAttribute("board",boardService.getOneBoardForUpdate(Integer.parseInt(request.getParameter("no"))));
 		return "views/boardUpdate.jsp";
 	}
-	@RequestMapping(value = "/updateBoard.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/updateBoard", method = RequestMethod.POST)
 	public String updateBoardPost(BoardListVO boardList, BoardVO board, HttpServletRequest request) throws IOException {
 		
 		//파일업로드
@@ -182,16 +182,15 @@ public class BoardController {
 			boardList.setBoard_image_file_path(boardList.getBoard_image_file_path());
 		}
 		//1박 이상 날짜 확인
-		System.out.println("endDate: "+boardList.getBoard_end_date());
 		if(boardList.getBoard_end_date()==null) {
 			
 		}
 		
 		//boardService.updateBoard(boardList);
-		return "redirect:boardList.do";
+		return "redirect:boardList";
 	}
 	
-	@RequestMapping(value = "/deleteBoard.do")
+	@RequestMapping(value = "/deleteBoard")
 	public String deleteBoard (HttpServletRequest request, HttpSession session) {
 		//limit count-1하기
 		BoardListVO boardList = boardService.getOneBoard(Integer.parseInt(request.getParameter("no")));
@@ -203,15 +202,14 @@ public class BoardController {
 		boardService.deleteBoardImage(Integer.parseInt(request.getParameter("no")));
 		boardService.deleteBoard(Integer.parseInt(request.getParameter("no")));
 		
-		return "redirect:boardList.do";
+		return "redirect:boardList";
 	}
 	
-	@RequestMapping(value = "/findFestivalBoard.do")
+	@RequestMapping(value = "/findFestivalBoard")
 	public String findFestivalBaord (Criteria criteria, ModelMap model) {
 		BoardPageCreate pageCreate = new BoardPageCreate();
 		pageCreate.setCriteria(criteria);
 		pageCreate.setTotalCount(boardService.getTotalBoardCount());
-		System.out.println("축제검색: "+criteria.getFestival_name());
 		criteria.setFestival_name(criteria.getFestival_name().trim());
 		model.addAttribute("boardList", boardService.getFestivalBoardListwithPaging(criteria));
 		model.addAttribute("pageCreate", pageCreate);
@@ -220,15 +218,13 @@ public class BoardController {
 	}
 	
 	//게시판 댓글
-	@RequestMapping(value = "/insertComment.do")
+	@RequestMapping(value = "/insertComment")
 	@ResponseBody
 	public Map<Object,Object> insertComment(@RequestBody CommentVO comment) {
 		Map<Object,Object> map = new HashMap<Object, Object>();
 		//댓글이 db등록에 성공하면 등록된 댓글 번호(pk)랑 success 반환
-		System.out.println(comment.toString());
 		boardService.insertComment(comment);
 		
-		System.out.println("comment_number: "+comment.getComment_number());
 		if(boardService.getOneComment(comment.getComment_number())==null) {
 			map.put("success", "fail");
 		}
@@ -241,7 +237,7 @@ public class BoardController {
 		return map;
 	}
 	//답글
-	@RequestMapping(value = "/insertReComment.do")
+	@RequestMapping(value = "/insertReComment")
 	@ResponseBody
 	public Map<Object, Object> insertreComment(@RequestBody CommentVO comment){
 		Map<Object,Object> map = new HashMap<Object, Object>();
@@ -260,7 +256,7 @@ public class BoardController {
 		return map;
 	}
 	
-	@RequestMapping(value = "/updateComment.do")
+	@RequestMapping(value = "/updateComment")
 	@ResponseBody
 	public Map<Object, Object> updateComment(@RequestBody CommentVO comment){
 		Map<Object,Object> map = new HashMap<Object, Object>();
@@ -271,13 +267,12 @@ public class BoardController {
 		return map;
 	}
 	
-	@RequestMapping(value = "/deleteComment.do")
+	@RequestMapping(value = "/deleteComment")
 	@ResponseBody
 	public Map<Object, Object> deleteComment(@RequestBody CommentVO comment){
 		Map<Object,Object> map = new HashMap<Object, Object>();
 		
 		int count = boardService.getReCommentTotal(comment.getComment_number());
-		System.out.println(count);
 		if(count > 0) {
 			boardService.pretendDeleteComment(comment);
 			map.put("success", "haveReComment");

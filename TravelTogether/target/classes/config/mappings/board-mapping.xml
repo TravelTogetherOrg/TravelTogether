@@ -59,6 +59,7 @@
   	<result property="comment_depth" column="comment_depth"/>
   	<result property="comment_write_date" column="comment_write_date"/>
   	<result property="comment_update_date" column="comment_update_date"/>
+  	<result property="count" column="count"/>
   	
   </resultMap>
 	
@@ -250,10 +251,14 @@
 		and comment_depth = 1
 		ORDER BY comment_number ASC
 	</select>
-	<select id="getTotalCommentCount" resultType="int" parameterType="int">
-		select count(*) from comment
-		where board_number = ${value}
+	<!-- select count(*) from comment
+		where board_number = ${value} resultType="int" parameterType="int"-->
+	<select id="getTotalCommentCount" resultType="comment">
+		select count(*) as count, board_number 
+		from comment 
+		group by board_number;
 	</select>
+	<!-- delete시 대댓글이 있는지 확인용 -->
 	<select id="getReCommentCount" resultType="int" parameterType="int">
 		select count(*) from comment
 		where comment_group = ${value}

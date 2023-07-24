@@ -13,18 +13,15 @@ loadJQuery();
 let findRegion = document.getElementById('findRegion');
 if(findRegion != null){
     findRegion.addEventListener('change', function(event){
-        console.log(findRegion.value);
         let region = findRegion.value;
         $.ajax({
             async: true,
             type: 'POST',
             data: region,
-            url: "getRegionFestivals.do",
+            url: "getRegionFestivals", //.do
             dataType: "json", 
             contentType: "application/json; charset=UTF-8",
             success: function(data){
-                console.log(data);
-                console.log(data.festivals[0].festival_name);
                 let findFestivalOption = document.querySelectorAll('.findFestival')
                 if(findFestivalOption!=null){
                     for(let i=0;i<findFestivalOption.length;i++){
@@ -46,10 +43,10 @@ if(findRegion != null){
                         findFestival[i].append('\u00a0\u00a0\u00a0\u00a0\u00a0'+data.festivals[i].festival_name);
                     }
                 }
-                
+                /*
                 findFestivals.addEventListener('change', function(event){
                     console.log(findFestivals.value);
-                });
+                });*/
                 
             },
             error: function(request,status,error){
@@ -63,13 +60,23 @@ if(findRegion != null){
         if(findRegion.value=='     지역 검색' || findFestivals.value == '     어떤 축제를 찾으시나요?'){
             let hostIndex = location.href.indexOf(location.host) + location.host.length;
             let contextPath = location.href.substring(hostIndex,location.href.indexOf('/', hostIndex+1));
-            location.href = contextPath+'/boardList.do';
+            location.href = contextPath+'/boardList'; //.do
         }else{
             document.findForm.submit();
         }
     }
 }
 
+/* 글쓰기 로그인 체크*/
+function loginCheck(id){
+    if(id==null){
+        alert('로그인이 필요한 서비스 입니다.');
+    }else{
+        let hostIndex = location.href.indexOf(location.host) + location.host.length;
+        let contextPath = location.href.substring(hostIndex,location.href.indexOf('/', hostIndex+1));
+        location.href = contextPath+'/insertBoard'; //.do
+    }
+}
 
 let col = document.getElementsByClassName('col');
 let middleHover = document.getElementsByClassName('middleHover');
@@ -90,6 +97,19 @@ for(let i=0;i<col.length;i++){
 
     })
 }
+
+/*댓글 수*/
+let boardCommentCount = document.getElementsByClassName('boardCommentCount');
+if(boardCommentCount != null){
+    for(let i=0; i<boardCommentCount.length; i++){
+        let count = document.querySelectorAll('.boardCommentCount p');
+        if(count[i].innerHTML == ''){
+        	count[i].innerHTML = 0;
+        }
+    }
+}
+
+
 /* 페이징 */
 /* 해당 페이지 번호 표시, 클릭한 페이지로 이동 */
 let pageButton = document.querySelectorAll('#pageNumbers button');
@@ -98,7 +118,6 @@ pageButton.forEach((el)=>{
         el.style.color = 'rgb(192, 228, 255)';
     }
     el.addEventListener('click', function(event){
-        console.log(el.innerHTML);
         document.pageForm.pageNumber.value = el.innerHTML;
         document.pageForm.submit();
     });
@@ -175,26 +194,18 @@ for(let i=0; i<boardSelectRegion.length; i++){
         };
         boardSelectRegion[i].style.background = 'rgb(192, 228, 255)';
         /* 지역 선택시 해당지역 축제 리스트로 바뀌게*/
-        console.log(boardSelectRegion[i].getAttribute('id'));
         let selectRegion = boardSelectRegion[i].getAttribute('id');
         $.ajax({
             async: true,
             type: 'POST',
             data: selectRegion,
-            url: "getRegionFestivals.do",
+            url: "getRegionFestivals", //.do
             dataType: "json", 
             contentType: "application/json; charset=UTF-8",
             success: function(data){
-            console.log(data);
-            console.log(Object.keys(data.festivals).length);
-            //console.log(Object.keys(data.festivals)[1].festival_name);
-            console.log(data.festivals[0].festival_name);
-            console.log('축제div '+document.getElementById(selectRegion+'Festival'));
-            console.log('축제div '+ !document.getElementById(selectRegion+'Festival'));
             
             if(!document.getElementById(selectRegion+'Festival')){ //null인 경우
                 let selectFestival = document.getElementById('selectFestivalByRegion');
-                console.log(selectFestival);  
                 let div = document.createElement('div');
                 div.id = selectRegion+'Festival';
                 selectFestival.append(div);
@@ -206,7 +217,6 @@ for(let i=0; i<boardSelectRegion.length; i++){
                     tr.className = 'tr'+selectRegion;
                     table.append(tr);
                 }
-                console.log(document.getElementsByClassName('tr'+selectRegion));
                 let trs = document.querySelectorAll('.tr'+selectRegion);
                 trs.forEach((el)=>{
                     for(let i=0; i<4;i++){
@@ -226,17 +236,11 @@ for(let i=0; i<boardSelectRegion.length; i++){
             //else{
                 /* 다른 지역 선택시 기존에 선택했던 지역축제div 안보이게하기*/
                 let divs = document.getElementsByTagName('div');
-                console.log(divs.length);
                 for(let k=0; k<divs.length; k++){
-                    //selectRegion+'Festival'
-                    
-                    console.log(divs[k].id+': '+divs[k]);
-                    console.log(boardSelectRegion[i].id+': '+boardSelectRegion[i]);
                     if(divs[k].id.startsWith(boardSelectRegion[i].id)){
                         divs[k].style.display='block';
                     }
                     else if(divs[k].id.endsWith('Festival')){
-                    console.log(divs[k].id+' else: '+divs[k]);
                         divs[k].style.display='none';
                     }
                     // 지역 전환시 클릭했던 축제 색 초기화 
@@ -263,14 +267,11 @@ for(let i=0; i<boardSelectRegion.length; i++){
                         }
                     }
                     festivals[i].style.color = 'rgb(192, 228, 255)';
-                    console.log(festivals[i].innerHTML); //축제명
-                    festival_name = festivals[i].innerHTML;
+                    festival_name = festivals[i].innerHTML;//축제명
                     document.boardForm.festival_name.value = festivals[i].innerHTML;
                     data.festivals.forEach((el,index)=>{
                         if(data.festivals[index] != 'undefined' && data.festivals[index] != null){
                             if(festivals[i].innerHTML==el.festival_name){
-                                console.log(el.festival_startdate);
-                                console.log(el.festival_enddate);
                                 minDate = el.festival_startdate;
                                 maxDate = el.festival_enddate;
                                 let start_date = document.getElementById('start_date');
@@ -304,11 +305,10 @@ for(let i=0; i<boardSelectRegion.length; i++){
 let moreDaysCheckbox = document.getElementById('moreDays');
 let lastDayInput = document.getElementById('lastDay');
 if(moreDaysCheckbox != null){
-	console.log(moreDaysCheckbox.checked);
 	//수정시 end_date가 있으면 보이게 설정
 	    if(moreDaysCheckbox.checked){
 	        lastDayInput.style.display='block';
-	        end_date.setAttribute('required',true);
+	        end_date.required = true;
 	    }
 
     moreDaysCheckbox.addEventListener('click', function(event){
@@ -316,19 +316,14 @@ if(moreDaysCheckbox != null){
         
         if(moreDaysCheckbox.checked){
             lastDayInput.style.display='block';
-            end_date.setAttribute('required',true);
+            end_date.required = true;
         }
         else{
-        	//console.log(end_date.value);
-        	//end_date.value = '2023-07-18';
-        	//console.log(end_date.value);
         	end_date.value = ''
             lastDayInput.style.display='none';
-            end_date.setAttribute('required',false);
-            
-            
+            end_date.required = false;
         }
-        console.log(end_date.required); // 수정시 1박이상을 해제해도 계속 required 상태,,왜?
+        console.log(end_date.required); 
     });
    
     
@@ -347,24 +342,21 @@ if(writeImageInfo[0] != null){
 if(inputImage != null){
     let handleFiles = (e) => {
         let selectedFile = [...inputImage.files];
-        //inputImage.files[0];
         let fileReader = new FileReader();
         fileReader.readAsDataURL(selectedFile[0]);
         fileReader.onload = function () {
-            //document.getElementById("previewImg").src = fileReader.result;
             writeImageInfo[0].style.backgroundImage = 'url('+fileReader.result+')';
+            writeImageInfo[0].replaceChildren();
         };
     }
     inputImage.addEventListener("change", handleFiles);
 }
  
 
-//게시글 작성 limit확인
+//게시글 작성 limit확인 후 submit
 function limitCheck(){
     //아이디랑 축제명 넘기기
     let member_id = $("#inputId").val();
-    console.log(member_id);
-    console.log(festival_name);
     if(festival_name==null){
     	alert('축제를 선택해주세요.');
     }
@@ -375,11 +367,10 @@ function limitCheck(){
         		member_id,
         		festival_name
         		}),
-        url: "limitCheck.do",
+        url: "limitCheck", //.do
         dataType: "json", 
         contentType: "application/json; charset=UTF-8",
         success: function(data){
-        console.log(data);
             if(data.limit==3){ /*3회 이상 작성한 경우*/
                 alert('해당 축제의 게시글을 3회이상 작성하였습니다. 기존 게시글을 삭제하시고 다시 작성해주세요');
             }
@@ -480,11 +471,6 @@ if(commentWrite != null){
             //member_nickname = document.getElementById('member_nickname').value; //ajax 전송(댓글 작성자 로그인한 사람의 닉네임)
             recomments = document.getElementsByClassName('recomment');
 
-            console.log('댓글개수 확인'+commentusers.length);
-            console.log('댓글개수 확인'+recommentbuttons.length);
-            console.log('댓글개수 확인'+comment_numberInput.length);
-            console.log('댓글개수 확인'+recomments.length);
-
             for(let i=0; i<commentusers.length; i++){
                 if(commentNumber == comment_numberInput[i].value){
                     commentWrite.value = '';
@@ -522,9 +508,7 @@ if(writeComment != null){
             if(commentuserNickname != '' && comment_content.startsWith('@')){
                 if(member_nickname == null){
                     alert('로그인이 필요한 서비스 입니다.');
-                }else{
-                    //member_nickname = document.getElementById('member_nickname').value;
-                    console.log('답글');
+                }else{ //답글
                         $.ajax({
                             async: true,
                             type: 'POST',
@@ -534,11 +518,10 @@ if(writeComment != null){
                                     board_number,
                                     comment_content
                                     }),
-                            url: "insertReComment.do",
+                            url: "insertReComment", //.do
                             dataType: "json", 
                             contentType: "application/json; charset=UTF-8",
                             success: function(data){
-                                console.log(data);
                                 if(data.success=='success'){
                                     commentWrite.value = '';
                                     let eachComments = document.getElementsByClassName('eachComment');
@@ -581,8 +564,14 @@ if(writeComment != null){
                                                         recomments[i].after(div);
                                                     }
                                                 }
-                                            }else{//부모댓글이 일반 댓글이라면
-                                                eachComments[i].append(div);
+                                            }else{//부모댓글이 일반 댓글이라면 comment에서 일치하는 댓글번호 찾기
+                                                let comment_number = document.querySelectorAll('.userCommentDiv .comment_number');
+                                                for(let j=0; j<comment_number.length; j++){
+                                                    if(comment_number[j].value == data.comment.comment_group){
+                                                        eachComments[j].append(div);
+                                                    }
+                                                }
+                                                
                                             }
                                         }
                                     }
@@ -598,7 +587,7 @@ if(writeComment != null){
                         });
                 }
             }else{
-                console.log('댓글');
+                //댓글
                 $.ajax({
                     async: true,
                     type: 'POST',
@@ -607,11 +596,10 @@ if(writeComment != null){
                             member_nickname,
                             comment_content
                             }),
-                    url: "insertComment.do",
+                    url: "insertComment", //.do
                     dataType: "json", 
                     contentType: "application/json; charset=UTF-8",
                     success: function(data){
-                        console.log(data);
                         if(data.success=='success'){
                             commentWrite.value = '';
                             let commentList = document.getElementById('commentList');
@@ -662,36 +650,55 @@ if(writeComment != null){
 }
 
 /* 댓글 수정 */
-let updateButton = document.getElementsByClassName('commentUpdate');
-//if(updateButton != null){
-function updateComment(){
-    updateButton = document.getElementsByClassName('commentUpdate'); //수정하고 버튼이 저장 -> 수정으로 바뀌고 다시 조회?하기
+function updateComment(commentNumber){
+    let updateText = document.getElementById('updateText');
+    
+    let updateButton = document.querySelectorAll(".commentUpdate")
     let userComment = document.getElementsByClassName('userComment');
     let commentContent = document.getElementsByClassName('commentContent');
     let comment_number = document.getElementsByClassName('comment_number');
-    for(let i=0; i<updateButton.length; i++){
-        updateButton[i].addEventListener('click', function(){
-            let textarea = document.createElement('textarea');
-            textarea.style.height = '2.4375em';
-            textarea.style.width = '100%';
-            textarea.style.border = '0.1em solid black';
-            textarea.style.borderRadius = '0.5em';
-            textarea.style.lineHeight = '1.15';
-            textarea.style.cursor = 'text';
-            textarea.id = 'updateText';
-            textarea.value = userComment[i].innerText;
-            userComment[i].replaceChild(textarea, commentContent[i]);
+    //넘어온 comment넘버랑 일치하는 클래스찾기 그 클래스의 commentContent.innerHTMl을
+    //textarea에 띄우고 (바꾸기) 저장하기도 수정하기로 바꾸기
+    //수정하기 버튼이 있는 것 중에 comment_number,,,
+    if(updateText != null){
+        /*let span = document.createElement('span');
+        span.className = 'commentContent';
+        span.innerHTML = updateText.value // 수정한 내용이 있으면,,,안됨
+        updateText.replaceWith(span);*/
+        alert('수정 중인 댓글의 저장하기를 눌러주세요.');
+    }else{
+        for(let i=0; i<comment_number.length; i++){
+            if(comment_number[i].value == commentNumber){
+                let gap = 0;
+                if(comment_number.length>updateButton.length){
+                    gap = comment_number.length-updateButton.length; // -1
+                }
+                let textarea = document.createElement('textarea');
+                textarea.style.height = '2.4375em';
+                textarea.style.width = '100%';
+                textarea.style.border = '0.1em solid black';
+                textarea.style.borderRadius = '0.5em';
+                textarea.style.lineHeight = '1.15';
+                textarea.style.cursor = 'text';
+                textarea.id = 'updateText';
+                textarea.value = userComment[i].innerText;
+                userComment[i].replaceChild(textarea, commentContent[i]);
 
-            let button = document.createElement('button');
-            button.setAttribute('onclick','updateSave('+comment_number[i].value+', '+i+')');
-            button.innerText = '저장하기'
-            button.id = 'saveButton';
-            updateButton[i].replaceWith(button);
-        })
+                let button = document.createElement('button');
+                button.setAttribute('onclick','updateSave('+comment_number[i].value+', '+i+')');
+                button.innerText = '저장하기'
+                button.id = 'saveButton';
+                if(i-gap<0){
+                    updateButton[i-gap+1].replaceWith(button);
+                }else{
+                    updateButton[i-gap].replaceWith(button);
+                }
+                
+            }
+        }
     }
-}
     
-//}
+}
 
 function updateSave(comment_number, index){
     let comment_content = document.getElementById('updateText').value;
@@ -703,7 +710,7 @@ function updateSave(comment_number, index){
                 comment_number,
                 comment_content
                 }),
-        url: "updateComment.do",
+        url: "updateComment",  //.do
         dataType: "json", 
         contentType: "application/json; charset=UTF-8",
         success: function(data){
@@ -738,11 +745,10 @@ function deleteComment(comment_number){
             data: JSON.stringify({
                     comment_number
                     }),
-            url: "deleteComment.do",
+            url: "deleteComment", //.do
             dataType: "json", 
             contentType: "application/json; charset=UTF-8",
             success: function(data){
-                console.log(data.success);
             if(data.success == 'haveReComment'){
                 let inputCommentNumber = document.getElementsByClassName('comment_number');
                 let commentContent = document.getElementsByClassName('commentContent');
@@ -758,21 +764,13 @@ function deleteComment(comment_number){
                 let reCommentNumbers = document.querySelectorAll('.recomment .comment_number');
                 let userCommentDiv = document.getElementsByClassName('userCommentDiv');
                 let recomment = document.getElementsByClassName('recomment');
-                console.log(comment_number);
-                console.log(commentNumbers);
-                console.log(reCommentNumbers);
                 for(let i=0; i<commentNumbers.length; i++){
-                    //댓글번호가 같은 div를 지워야함,, 
-                    console.log('댓글: '+commentNumbers[i].value);
                     if(commentNumbers[i].value == comment_number){
-                        console.log('댓글일치');
                         userCommentDiv[i].remove();
                     }
                 };
                 for(let j=0; j<reCommentNumbers.length; j++){
-                    console.log('대댓글: '+reCommentNumbers[j].value);
                     if(reCommentNumbers[j].value == comment_number){
-                        console.log('대댓글일치');
                         recomment[j].remove();
                     }
                 };

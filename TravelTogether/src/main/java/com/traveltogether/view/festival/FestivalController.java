@@ -86,7 +86,7 @@ public class FestivalController {
 	}
 	
 	/* 김초율 추가 */
-	@RequestMapping("/getRegionFestivals.do")
+	@RequestMapping("/getRegionFestivals")
 	@ResponseBody
 	public Map<Object,Object> getRegionFestivals(@RequestBody String region) {
 		Map<Object,Object> map = new HashMap<Object, Object>();

@@ -23,7 +23,7 @@
     </section>
     <main class="container-md">
         <section>
-            <form action="insertBoard.do" id="form" name="boardForm" method="post" enctype="multipart/form-data">
+            <form action="insertBoard" id="form" name="boardForm" method="post" enctype="multipart/form-data">
             <div style="display: none;">
             <input type="hidden" name="id" id="inputId" value="xbj3812@gmail.com"><!-- ${sessionScope.userId} -->
             <input type="hidden" name="festival_name" id="festival_name">

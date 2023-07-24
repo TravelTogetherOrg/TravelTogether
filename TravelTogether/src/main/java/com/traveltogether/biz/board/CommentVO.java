@@ -20,6 +20,15 @@ public class CommentVO {
 	public void setMember_nickname(String member_nickname) {
 		this.member_nickname = member_nickname;
 	}
+	//댓글 수
+	private int count;
+	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
 	
 	public int getComment_number() {
 		return comment_number;
