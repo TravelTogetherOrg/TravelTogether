@@ -43,11 +43,6 @@ if(findRegion != null){
                         findFestival[i].append('\u00a0\u00a0\u00a0\u00a0\u00a0'+data.festivals[i].festival_name);
                     }
                 }
-                /*
-                findFestivals.addEventListener('change', function(event){
-                    console.log(findFestivals.value);
-                });*/
-                
             },
             error: function(request,status,error){
                 console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -233,24 +228,22 @@ for(let i=0; i<boardSelectRegion.length; i++){
                     
                 });
             }
-            //else{
-                /* 다른 지역 선택시 기존에 선택했던 지역축제div 안보이게하기*/
-                let divs = document.getElementsByTagName('div');
-                for(let k=0; k<divs.length; k++){
-                    if(divs[k].id.startsWith(boardSelectRegion[i].id)){
-                        divs[k].style.display='block';
-                    }
-                    else if(divs[k].id.endsWith('Festival')){
-                        divs[k].style.display='none';
-                    }
-                    // 지역 전환시 클릭했던 축제 색 초기화 
-                    let festivals = document.getElementsByClassName('festival');
-                    for(let j=0; j<festivals.length; j++){
-                        festivals[j].style.color = 'black';
-                    }
-                    
+            /* 다른 지역 선택시 기존에 선택했던 지역축제div 안보이게하기*/
+            let divs = document.getElementsByTagName('div');
+            for(let k=0; k<divs.length; k++){
+                if(divs[k].id.startsWith(boardSelectRegion[i].id)){
+                    divs[k].style.display='block';
                 }
-            //}
+                else if(divs[k].id.endsWith('Festival')){
+                    divs[k].style.display='none';
+                }
+                // 지역 전환시 클릭했던 축제 색 초기화 
+                let festivals = document.getElementsByClassName('festival');
+                for(let j=0; j<festivals.length; j++){
+                    festivals[j].style.color = 'black';
+                }
+            }
+            
             
             /* 각 축제td 선택시 글자색 바뀌게 */
             let festivalsByRegion = document.querySelectorAll('#festivalsByRegion td');
@@ -282,21 +275,14 @@ for(let i=0; i<boardSelectRegion.length; i++){
                                 end_date.setAttribute('max',maxDate.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3'));
                             }
                         }
-                        
                     });
-                    
                 });
             }
-            
             },
             error: function(request,status,error){
                 console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
             }
-            
         });
-        
-        
-        
     })
 }
 
@@ -323,7 +309,6 @@ if(moreDaysCheckbox != null){
             lastDayInput.style.display='none';
             end_date.required = false;
         }
-        console.log(end_date.required); 
     });
    
     
@@ -375,7 +360,16 @@ function limitCheck(){
                 alert('해당 축제의 게시글을 3회이상 작성하였습니다. 기존 게시글을 삭제하시고 다시 작성해주세요');
             }
             else{ 
-                document.boardForm.submit();
+                let board_title = document.getElementById('board_title');
+                let board_content = document.getElementById('board_content');
+
+                if(board_title.value == ''){
+                    alert('제목을 작성해 주세요.');
+                }else if(board_content.value==''){
+                    alert('내용을 작성해 주세요.');
+                }else{
+                    document.boardForm.submit();
+                }
             }
         },
         error: function(request,status,error){
@@ -394,8 +388,6 @@ if(navigator.geolocation){
     navigator.geolocation.getCurrentPosition(success);
     console.log('지원함.');
 }else{
-    /*alert('지원하지 않습니다.');*/
-
     console.log('지원하지 않습니다.');
 }
 function success(position){ //자동으로 가져옴
@@ -427,6 +419,16 @@ if(boardImage != null && boardMap != null){
 	boardImage.addEventListener("mouseout", function(event){
 	    boardMap.style.display='none';
 	});
+}
+
+/* 게시글 지우기 */
+function deleteBoard(boardNumber){
+    //deleteBoard?no=${board.board_number}"
+    if(confirm('게시글을 삭제하시겠습니까?')){
+        let hostIndex = location.href.indexOf(location.host) + location.host.length;
+        let contextPath = location.href.substring(hostIndex,location.href.indexOf('/', hostIndex+1));
+        location.href = contextPath+'/deleteBoard?no='+boardNumber;
+    }
 }
 
 /* 답글달기 누르면 댓글 작성창에 @아이디뜨게 */
@@ -657,14 +659,8 @@ function updateComment(commentNumber){
     let userComment = document.getElementsByClassName('userComment');
     let commentContent = document.getElementsByClassName('commentContent');
     let comment_number = document.getElementsByClassName('comment_number');
-    //넘어온 comment넘버랑 일치하는 클래스찾기 그 클래스의 commentContent.innerHTMl을
-    //textarea에 띄우고 (바꾸기) 저장하기도 수정하기로 바꾸기
-    //수정하기 버튼이 있는 것 중에 comment_number,,,
+
     if(updateText != null){
-        /*let span = document.createElement('span');
-        span.className = 'commentContent';
-        span.innerHTML = updateText.value // 수정한 내용이 있으면,,,안됨
-        updateText.replaceWith(span);*/
         alert('수정 중인 댓글의 저장하기를 눌러주세요.');
     }else{
         for(let i=0; i<comment_number.length; i++){
@@ -759,7 +755,6 @@ function deleteComment(comment_number){
                 });
                 
             }else if(data.success == 'successDelete'){
-                //let inputCommentNumber = document.getElementsByClassName('userCommentDiv');
                 let commentNumbers = document.querySelectorAll('.userCommentDiv .comment_number');
                 let reCommentNumbers = document.querySelectorAll('.recomment .comment_number');
                 let userCommentDiv = document.getElementsByClassName('userCommentDiv');

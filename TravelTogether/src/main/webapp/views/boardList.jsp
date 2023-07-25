@@ -15,7 +15,7 @@
 <jsp:include page="header.jsp"/>
 <body>
     <div class="container">
-        <section id="festivalSearch">  <!-- 드롭다운 축제 -->
+        <section id="festivalSearch">
             <div>
                 <p>축제 동행 찾기</p><br> &nbsp;&nbsp;
                 <form action="findFestivalBoard" method="post" name="findForm">
@@ -41,19 +41,24 @@
                 </select>
                 <button type="button" onclick="nullcheck()"><img src="${context}/resources/image/board/search.svg"></button>
                 </form>
-                <!-- 검색 아이콘 누르면 submit(검색) -->
-                <!--옵션아이콘(드롭박스)-최신순/모집중 표시 -->
             </div>
             <div id="boardWriteButton" align="right">
             <button type="button" onclick="loginCheck('${sessionScope.userId}')">글쓰기</button>
             </div>
         </section>
-        <section id="boardList" >  <!-- 동행 게시글 리스트 -->
+        <section id="boardList" >
             <div class="row">
         	<c:forEach var="board" items="${boardList}" begin="0" end="3">
 	            <div class="col" onclick="location.href='board?no=${board.board_number}'">
 	                <div class="top">
-	                    <img class="profileImage" src="${context}/resources/image/board/vector_profile_willy.svg">
+	                <c:choose>
+	                	<c:when test="${not empty board.member_profile_url}">
+	                		<img class="profileImage" src="${context}/resources/image/upload/${board.member_profile_url}">
+	                	</c:when>
+	                	<c:otherwise>
+	                		<img class="profileImage" src="${context}/resources/image/member/member.png">
+	                	</c:otherwise>
+	                </c:choose>
 	                    <div class="topInfo memberInfo">
 	                        <p>${board.member_nickname}</p>
 	                        <div class="ageandgender">
@@ -64,11 +69,11 @@
 	                    </div>
 	                    <div class="line">|</div>
 	                    <div class="topInfo festivalName">
-	                    	<p>참여일</p> <!-- 원래 축제명 있었음 -->
+	                    	<p>참여일</p>
 	                    	<p>${board.board_start_date}</p>
 	                    </div>
 	                </div>
-	                <div class="middle"><!-- /board/boardImage/ -->
+	                <div class="middle">
 	                    <img class="thumnail" src="${context}/resources/image/${board.board_image_file_path}/${board.board_image_file}">
 	                    <div class="middleHover">
 	                        <div class="state">모집중</div>
@@ -96,7 +101,14 @@
         	<c:forEach var="board" items="${boardList}" begin="4" end="7">
 	            <div class="col" onclick="location.href='board?no=${board.board_number}'">
 	                <div class="top">
-	                    <img class="profileImage" src="${context}/resources/image/board/vector_profile_willy.svg">
+	                <c:choose>
+	                	<c:when test="${not empty board.member_profile_url}">
+	                		<img class="profileImage" src="${context}/resources/image/upload/${board.member_profile_url}">
+	                	</c:when>
+	                	<c:otherwise>
+	                		<img class="profileImage" src="${context}/resources/image/member/member.png">
+	                	</c:otherwise>
+	                </c:choose>
 	                    <div class="topInfo memberInfo">
 	                        <p>${board.member_nickname}</p>
 	                        <div class="ageandgender">
@@ -107,11 +119,11 @@
 	                    </div>
 	                    <div class="line">|</div>
 	                    <div class="topInfo festivalName">
-	                    	<p>${board.festival_name}</p>
+	                    	<p>참여일</p>
 	                    	<p>${board.board_start_date}</p>
 	                    </div>
 	                </div>
-	                <div class="middle"><!-- /board/boardImage/ -->
+	                <div class="middle">
 	                    <img class="thumnail" src="${context}/resources/image/${board.board_image_file_path}/${board.board_image_file}">
 	                    <div class="middleHover">
 	                        <div class="state">모집중</div>
@@ -120,14 +132,15 @@
 	                                <img src="${context}/resources/image/board/eye.svg">
 	                                <p>${board.board_view_count}</p>
 	                            </div>
-	                            <div class="view">
+	                            <div class="view boardCommentCount">
 	                                <img src="${context}/resources/image/board/chat.svg">
-	                                <p>2</p>
+	                                <p><c:forEach var="comments" items="${comments}"><c:if test="${board.board_number eq comments.board_number}">${comments.count}</c:if></c:forEach></p>
 	                            </div>
 	                        </div>
 	                    </div>
 	                </div>
 	                <div class="bottom">
+	                	<p class="listFestival">${board.festival_name}</p>
 	                    <p class="listTitle">${board.board_title}</p>
 	                    <p class="listContent">${board.board_content}</p>
 	                </div>
@@ -138,7 +151,14 @@
         	<c:forEach var="board" items="${boardList}" begin="8" end="11">
 	            <div class="col" onclick="location.href='board?no=${board.board_number}'">
 	                <div class="top">
-	                    <img class="profileImage" src="${context}/resources/image/board/vector_profile_willy.svg">
+	                <c:choose>
+	                	<c:when test="${not empty board.member_profile_url}">
+	                		<img class="profileImage" src="${context}/resources/image/upload/${board.member_profile_url}">
+	                	</c:when>
+	                	<c:otherwise>
+	                		<img class="profileImage" src="${context}/resources/image/member/member.png">
+	                	</c:otherwise>
+	                </c:choose>
 	                    <div class="topInfo memberInfo">
 	                        <p>${board.member_nickname}</p>
 	                        <div class="ageandgender">
@@ -149,11 +169,11 @@
 	                    </div>
 	                    <div class="line">|</div>
 	                    <div class="topInfo festivalName">
-	                    	<p>${board.festival_name}</p>
+	                    	<p>참여일</p>
 	                    	<p>${board.board_start_date}</p>
 	                    </div>
 	                </div>
-	                <div class="middle"><!-- /board/boardImage/ -->
+	                <div class="middle">
 	                    <img class="thumnail" src="${context}/resources/image/${board.board_image_file_path}/${board.board_image_file}">
 	                    <div class="middleHover">
 	                        <div class="state">모집중</div>
@@ -162,14 +182,15 @@
 	                                <img src="${context}/resources/image/board/eye.svg">
 	                                <p>${board.board_view_count}</p>
 	                            </div>
-	                            <div class="view">
+	                            <div class="view boardCommentCount">
 	                                <img src="${context}/resources/image/board/chat.svg">
-	                                <p>2</p>
+	                                <p><c:forEach var="comments" items="${comments}"><c:if test="${board.board_number eq comments.board_number}">${comments.count}</c:if></c:forEach></p>
 	                            </div>
 	                        </div>
 	                    </div>
 	                </div>
 	                <div class="bottom">
+	                	<p class="listFestival">${board.festival_name}</p>
 	                    <p class="listTitle">${board.board_title}</p>
 	                    <p class="listContent">${board.board_content}</p>
 	                </div>
@@ -180,7 +201,14 @@
         	<c:forEach var="board" items="${boardList}" begin="12" end="15">
 	            <div class="col" onclick="location.href='board?no=${board.board_number}'">
 	                <div class="top">
-	                    <img class="profileImage" src="${context}/resources/image/board/vector_profile_willy.svg">
+	                <c:choose>
+	                	<c:when test="${not empty board.member_profile_url}">
+	                		<img class="profileImage" src="${context}/resources/image/upload/${board.member_profile_url}">
+	                	</c:when>
+	                	<c:otherwise>
+	                		<img class="profileImage" src="${context}/resources/image/member/member.png">
+	                	</c:otherwise>
+	                </c:choose>
 	                    <div class="topInfo memberInfo">
 	                        <p>${board.member_nickname}</p>
 	                        <div class="ageandgender">
@@ -191,11 +219,11 @@
 	                    </div>
 	                    <div class="line">|</div>
 	                    <div class="topInfo festivalName">
-	                    	<p>${board.festival_name}</p>
+	                    	<p>참여일</p>
 	                    	<p>${board.board_start_date}</p>
 	                    </div>
 	                </div>
-	                <div class="middle"><!-- /board/boardImage/ -->
+	                <div class="middle">
 	                    <img class="thumnail" src="${context}/resources/image/${board.board_image_file_path}/${board.board_image_file}">
 	                    <div class="middleHover">
 	                        <div class="state">모집중</div>
@@ -204,14 +232,15 @@
 	                                <img src="${context}/resources/image/board/eye.svg">
 	                                <p>${board.board_view_count}</p>
 	                            </div>
-	                            <div class="view">
+	                            <div class="view boardCommentCount">
 	                                <img src="${context}/resources/image/board/chat.svg">
-	                                <p>2</p>
+	                                <p><c:forEach var="comments" items="${comments}"><c:if test="${board.board_number eq comments.board_number}">${comments.count}</c:if></c:forEach></p>
 	                            </div>
 	                        </div>
 	                    </div>
 	                </div>
 	                <div class="bottom">
+	                	<p class="listFestival">${board.festival_name}</p>
 	                    <p class="listTitle">${board.board_title}</p>
 	                    <p class="listContent">${board.board_content}</p>
 	                </div>

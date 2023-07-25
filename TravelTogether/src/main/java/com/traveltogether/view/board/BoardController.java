@@ -65,15 +65,13 @@ public class BoardController {
 					uploadFile.getOriginalFilename());
 			
 			String pathToday = FileUtils.getPathToday().toString().replace("\\", "/");
-			//2023\07\16
 			image.setBoard_image_file_path("board/boardImage/"+pathToday.substring(pathToday.length()-10,pathToday.length()));
 			
 		}else {
-			//이미지 없으면 선택한 축제의 기본 이미지 가져오기
-			//jpg인지 png인지 확인해서 맞는 걸로 연결하기
-			
 			//학원: C:\Users\\user\Desktop\KCY\spring\SpringSRC\TT\TravelTogether\src\main\webapp\resources\image\festival\
 			//노트북: C:\Users\ddd\Desktop\TT\TravelTogether\src\main\webapp\resources\image\festival
+			//이미지 없으면 선택한 축제의 기본 이미지 가져오기
+			//jpg인지 png인지 확인해서 맞는 걸로 연결하기
 			File file = new File("C:\\Users\\user\\Desktop\\KCY\\spring\\SpringSRC\\TT\\TravelTogether\\src\\main\\webapp\\resources\\image\\festival\\"
 					+board.getFestival_name()+"\\"+board.getFestival_name()+"_1_공공3유형.jpg");
 			if(file.exists()) {
@@ -81,7 +79,7 @@ public class BoardController {
 			}else {
 				image.setBoard_image_file(board.getFestival_name()+"_1_공공3유형.png");
 			}
-			 
+			
 			image.setBoard_image_file_path("festival/"+board.getFestival_name());
 		}
 		

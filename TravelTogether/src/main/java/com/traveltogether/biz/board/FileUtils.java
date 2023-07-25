@@ -15,12 +15,6 @@ public class FileUtils {
 	private static final DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern(format);
 	
 	public static Path getPathToday() throws IOException{
-		//String[] path = Paths.get("").toAbsolutePath().toString().split("sts-bundle"); //(학원)  Spring(노트북)choongang
-		//String path2 = "SpringSRC\\TT\\TravelTogether\\src\\main\\webapp\\resources\\image\\board\\boardImage\\";
-		//노트북: TT\TravelTogether\src\main\webapp\resources\image\board\boardImage\
-		//학원:SpringSRC\TT\TravelTogether\src\main\webapp\resources\image\board\boardImage\
-		//System.out.println("path[0]: "+path[0]);
-		//String basePath = path[0]+path2;
 		String basePath = "C:\\Users\\user\\Desktop\\KCY\\spring\\SpringSRC\\TT\\TravelTogether\\src\\main\\webapp\\resources\\image\\board\\boardImage\\";
 		String todayPath = LocalDate.now().format(dateTimeFormat);
 		Path pathToday = Paths.get(basePath, todayPath);

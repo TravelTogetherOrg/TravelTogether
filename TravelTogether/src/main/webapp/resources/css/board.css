@@ -47,16 +47,12 @@
 #festivalSearch img{
     width: 1.5em;
     margin: 0.3em;
-    /*border: 0.01em solid black;
-    border-radius: 50%;
-    padding: 0.3em;*/
 }
 select{
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
 
-    /* width: 15.5em; */
     padding: 0.5em;
 
     border: 0.15em solid rgb(192, 228, 255);
@@ -102,14 +98,6 @@ select:focus{
 }
 
 .row{
-    /*display: grid;
-    grid-template-columns: auto(4, minmax(8em, 1fr)) ; 
-    grid-template-rows: 13em; 
-    gap: 1em 1em;
-    grid-template-areas: 
-        ". . . ."
-        ". . . ."
-        ". . . ."; */
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -141,7 +129,7 @@ select:focus{
 }
 .profileImage{
     height: 2.3em;
-    border: 0.1em solid black;
+    /*border: 0.1em solid black;*/
     border-radius: 50%;
     margin-right: 0.4em;
     
@@ -163,15 +151,7 @@ select:focus{
 .festivalName{
 	width: 95.09px
 }
-/* .festivalName p{
-	display: -webkit-box;
-    overflow: hidden;
-	text-overflow: ellipsis;
-    overflow-wrap: break-word;
-    
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-} */
+
 .ageandgender{
     display: flex;
 }
@@ -276,8 +256,6 @@ select:focus{
     -webkit-box-align: center;
     align-items: center;
     margin-bottom: 2em;
-    
-    /*cursor: pointer;*/
 }
 #pageChevrons button{
     background: none;
@@ -360,8 +338,6 @@ body{
     margin-top: 2em;
     display: flex;
     flex-direction: row;
-    /*align-items: center;
-    justify-content: center;*/
     padding: 0.5em;
 
     border: 0.1em solid black;
@@ -384,7 +360,6 @@ body{
 }
 #regions tr:first-child{
     background-color: rgb(192, 228, 255);
-    /*color: white;*/
 }
 
 #festivalsByRegion td{
@@ -505,10 +480,6 @@ body{
     margin-top: 80px;/* 1em */
     position: relative;
     padding: 0;
-    /*display: flex;
-    flex-direction: row;
-    position: relative;
-    justify-content: space-around;*/
 }
 
 #boardImage{ /*img*/
@@ -570,7 +541,6 @@ body{
     align-items: center;
 }
 .boardFestivalAndPeople p{
-    /*color: dimgrey;*/
     font-weight: 1000;
 }
 
@@ -717,6 +687,7 @@ body{
     padding-bottom: 0.5em;
     border-bottom: 0.08em solid #DCDCDC;
 }
+
 /* board footer */
 .companyinfo, .copyright{
 	margin-bottom: 12.8px;

@@ -17,8 +17,8 @@
 <body>
 <jsp:include page="header.jsp"/>
     <main class="container-md boardMain">
-        <section> <!--배경으로 이미지container-->
-            <div class="boardImageAndMap"><!--  -->
+        <section>
+            <div class="boardImageAndMap">
                 <img id="boardImage" alt="이미지" src="${context}/resources/image/${board.board_image_file_path}/${board.board_image_file}">
                 <div id="boardMap">
                     <iframe id="boardMapIframe"></iframe>
@@ -27,11 +27,11 @@
             
         </section>
         <div class="boardContents">
-            <div class="boardContent"><!--게시글 내용-->
+            <div class="boardContent">
                 <div class="boardTitle">
                     <p>${board.board_title}</p>
                 </div>
-                <div class="writerInfo"><!--작성자 프로필-->
+                <div class="writerInfo">
                     <div>
                         <img src="${context}/resources/image/board/vector_profile_willy.svg">
                     </div>
@@ -63,7 +63,7 @@
                 </div>
                 <p class="boardSubstance">${board.board_content}</p>
             </div>
-            <div class="boardSub"><!--날짜/조회수/댓글-->
+            <div class="boardSub">
                 <div>
                     <p>
 	                <c:choose>
@@ -75,12 +75,11 @@
 	                	</c:otherwise>
 	                </c:choose>
 	                · 조회수 ${board.board_view_count} </p>
-                   <!--  <button>신고하기</button>  -->&nbsp;
+                   <%--<button>신고하기</button>--%>&nbsp;  
                     <c:if test="${board.member_nickname eq sessionScope.userNickname}">
 	                    <p><a href="${context}/updateBoard?no=${board.board_number}">수정</a></p>&nbsp;
-	                    <p><a href="${context}/deleteBoard?no=${board.board_number}">삭제</a></p>
+	                    <p><a href="#" onclick="deleteBoard(${board.board_number})">삭제</a></p>
                     </c:if>
-                    
                 </div>
                 <div class="comment">
                         <div id="commentWrite">
@@ -95,7 +94,7 @@
                             <textarea placeholder="댓글을 입력해주세요." id="comment_content"></textarea>
                             <button type="button" id="writeComment">게시</button>
                         </div>
-                    <div id="commentList"> <!--댓글 리스트-->
+                    <div id="commentList">
                     <c:forEach var="comments" items="${commentList}" varStatus="status">
                     	<div class="eachComment">
                         	<div class="userCommentDiv">
@@ -127,7 +126,6 @@
 	                             </div>
 	                             </c:if>
                             </div>
-                        <!-- 답글 --><%--[status.index] --%>
                         <c:forEach var="reComments" items="${reCommentList}">
                         <c:if test="${comments.comment_number eq reComments.comment_group}">
 	                         <div class="recomment">
@@ -159,8 +157,6 @@
 	                             </div>
 	                             </c:if>
 	                         </div>
-	                         <%-- </c:if> --%>
-	                         <!-- 대댓글의 대댓글 -->
 	                         <c:forEach var="reComments2" items="${reCommentList}" >
 	                         <c:if test="${reComments.comment_number eq reComments2.comment_group}">
 	                         <div class="recomment">
@@ -195,7 +191,7 @@
 	                         </c:if>
 	                         </c:forEach>
 	                         </c:if>
-                         </c:forEach><%----%>
+                         </c:forEach>
                     	</div>
                     </c:forEach>
                     </div>      

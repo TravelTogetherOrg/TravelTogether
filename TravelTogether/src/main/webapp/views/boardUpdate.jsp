@@ -15,7 +15,7 @@
 </head>
 <body>
 <jsp:include page="header.jsp"/>
-    <section class="intro"> <!--배경으로 이미지-->
+    <section class="intro">
         <div>
             <p>나와 맞는 축제 동행과 이야기를 나누어 보아요!</p>
             <p>축제 동행 찾기</p>
@@ -24,7 +24,7 @@
     <main class="container-md">
         <section>
         <form action="updateBoard" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="member_id" id="inputId" value="xbj3812@gmail.com"><!-- ${sessionScope.userId} -->
+            <input type="hidden" name="member_id" id="inputId" value="${sessionScope.userId}">
             <input type="hidden" name="board_number" value="${board.board_number}">
             <input type="hidden" name="board_image_file_path" value="${board.board_image_file_path}">
             <input type="hidden" name="board_image_file_old" value="${board.board_image_file}">
@@ -33,7 +33,7 @@
                     <div id="festivalByRegion">
                     	<p>축제</p><p>${board.festival_name}</p>
                     </div>
-                    <div class="peopleAndDate"><!--인원수/날짜-->
+                    <div class="peopleAndDate">
                         <div class="people">
                             <select id="board_total_people" name="board_total_people" required>
                                 <option disabled selected>인원수</option>
@@ -76,7 +76,7 @@
                 </div>
             </section>
             <div><!--이미지/내용-->
-                <div class="writeImage"><!-- board/boardImage/ -->
+                <div class="writeImage">
                     <div class="writeImageInfo" style="background-image: url('${context}/resources/image/${board.board_image_file_path}/${board.board_image_file}');">
                         <c:if test="${board.board_image_file eq null}">
                         <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block;">
@@ -101,8 +101,8 @@
                     <textarea name="board_content" id="board_content" required>${board.board_content}</textarea>
                 </div>
             </div>
-            <div class="buttons"><!--취소 / 올리기 버튼-->
-                <button class="resetButton" type="reset">취소</button><!-- onclick="updateCheck()" -->
+            <div class="buttons">
+                <button class="resetButton" type="reset">취소</button>
                 <button class="submitButton" type="submit" >수정완료</button>
             </div>
         </form>

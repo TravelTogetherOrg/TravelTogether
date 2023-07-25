@@ -25,10 +25,10 @@
         <section>
             <form action="insertBoard" id="form" name="boardForm" method="post" enctype="multipart/form-data">
             <div style="display: none;">
-            <input type="hidden" name="id" id="inputId" value="xbj3812@gmail.com"><!-- ${sessionScope.userId} -->
+            <input type="hidden" name="id" id="inputId" value="${sessionScope.userId}">
             <input type="hidden" name="festival_name" id="festival_name">
             </div>
-            <section><!--축제/인원/날짜 선택--> 
+            <section>
                 <div class="chooseDetail">
                     <div id="selectFestivalByRegion">
                         <div>
@@ -74,7 +74,6 @@
                             </div>
                         </div>
                     </div>
-                    
                 </div>
             </section>
             <div><!--이미지/내용 입력-->
@@ -107,7 +106,7 @@ ex) 음악을 좋아하는 20대 여성 동행을 찾아요!
 (1000자 이내) " required></textarea>
                 </div>
             </div>
-            <div class="buttons"><!--취소 / 올리기 버튼-->
+            <div class="buttons">
                 <button class="resetButton" type="reset">취소</button>
                 <button class="submitButton" type="button" onclick="limitCheck()">작성완료</button>
             </div>
