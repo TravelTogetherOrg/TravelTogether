@@ -31,9 +31,10 @@ public class FestivalController {
 	
 	
 	@RequestMapping(value = "/festivalLike.do", method = RequestMethod.GET)
-	public String getFestivalLike(FestivalVO vo, HttpSession session, Model model) {
+	@ResponseBody
+	public Map<String, Object> getFestivalLike(FestivalVO vo, HttpSession session, Model model) {
 	    String encodedFestivalName = URLEncoder.encode(vo.getFestival_name(), StandardCharsets.UTF_8);
-	    String userId = (String) session.getAttribute("userId");
+		/* String userId = (String) session.getAttribute("userId"); */
 
 	    boolean isLiked = festivalService.isFestivalLiked(vo);
 	    
@@ -42,8 +43,12 @@ public class FestivalController {
 	    } else {
 	    	festivalService.festival_Like(vo);
 	    }
-	    return "redirect:getFestival.do?festival_name=" + encodedFestivalName + "&member_Id=" + userId;
-	}
+        // JSON 응답 데이터 생성
+        Map<String, Object> response = new HashMap<>();
+        response.put("isLiked", isLiked);
+        response.put("festivalCount", festivalService.getLikeCount(vo));
+        return response;
+    }
     
   
     
@@ -59,6 +64,7 @@ public class FestivalController {
 	    vo.setMember_id(userId);
 	    
 	    boolean isLiked = festivalService.isFestivalLiked(vo);
+	    
 	    
 	    model.addAttribute("isLiked", isLiked);
     	model.addAttribute("festivalCount", festivalService.getLikeCount(vo));
@@ -76,7 +82,7 @@ public class FestivalController {
 		return "views/festivalList.jsp";
 	}
 
-	@RequestMapping("main")
+	@RequestMapping("/main")
 	public String main(FestivalVO vo, Model model){
 	
 		model.addAttribute("festivalLikeList", festivalService.getFestivalLikeList(vo));

@@ -11,25 +11,6 @@
     <link rel="stylesheet" href="${context}/resources/css/bootstrap.min.css">
     <link rel='stylesheet' type='text/css' media='all' href='${context}/resources/css/base.css'>
     <link rel='stylesheet' type='text/css' media='all' href='${context}/resources/css/board.css'>
-    
-    
-    <style>
-  /* 버튼의 배경색 제거 */
-  .btn-primary {
-    background-color: transparent;
-    border-color: #007BFF;
-    color: #007BFF;
-  }
-  
-  /* 마우스 호버 시 버튼의 색상 변경 */
-  .btn-primary:hover {
-    background-color: #007BFF;
-    color: #fff;
-  }
-</style>
-    
-    
-    
     <title>동행 게시글</title>
 </head>
 <body>
@@ -79,49 +60,6 @@
                         <span>${board.board_start_date} <c:if test="${not empty board.board_end_date}">~ ${board.board_end_date}</c:if> </span>
                     </div>
                 </div>
-                
-                
-                
-                
-                <!-- 모달 트리거 입니다!!! -->
-				<!-- 모달 트리거 버튼 -->
-				<br>
-				<button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-					  동행자 등록
-				</button>
-				
-				<!-- 모달 -->
-				<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-				  <div class="modal-dialog">
-				    <div class="modal-content">
-				      <div class="modal-header">
-				        <h5 class="modal-title" id="staticBackdropLabel">${board.festival_name}</h5>
-				        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				      </div>
-				      <div class="modal-body">
-				        <!-- 모달 내부의 내용 -->
-				        <h3 class="fs-5">같이 동행하실 분의 닉네임을 입력해주세요!</h3>
-				        <input type="text" id="nicknameInput" class="form-control" placeholder="닉네임을 입력 후 엔터를 입력해주세요." onkeypress="handleKeyPress(event)">
-				        <hr>
-				        <h3 class="fs-5">동행자 닉네임</h3>
-				        <div id="enteredNicknames">
-				          <!-- 입력한 닉네임이 여기에 나타납니다 -->
-				        </div>
-				      </div>
-				      <div class="modal-footer">
-				        <button type="button" class="btn btn-primary" onclick="addNickname2()">등록</button>
-				        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>				        
-				      </div>
-				    </div>
-				  </div>
-				</div>
-
-				                
-                <br>
-                
-                
-                
-                
                 <p class="boardSubstance">${board.board_content}</p>
             </div>
             <div class="boardSub"><!--날짜/조회수/댓글-->
@@ -199,43 +137,5 @@
     <script src="${context}/resources/js/jquery-3.6.4.js"></script>
     <script type="text/javascript" src="${context}/resources/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="${context}/resources/js/board.js"></script>
-    
-    
-    
-    
-    
-    <!-- KHS 만든것 -->
-<script>
-  function addNickname() {
-    const nicknameInput = document.getElementById("nicknameInput");
-    const enteredNicknames = document.getElementById("enteredNicknames");
-
-    const nickname = nicknameInput.value.trim();
-    if (nickname) {
-      const nicknameElement = document.createElement("p");
-      nicknameElement.textContent = "닉네임 : " + nickname;
-      enteredNicknames.appendChild(nicknameElement);
-      enteredNicknames.appendChild(document.createElement("br"));
-      nicknameInput.value = "";
-    }
-  }
-
-  function handleKeyPress(event) {
-    if (event.key === "Enter") {
-      addNickname();
-      event.preventDefault(); // 엔터키의 기본 동작(새 줄 생성)을 막음
-    }
-  }
-  
-  
-  function addNickname2() {
-	  location.href = "${context}/main.do";
-  }
-  
-</script>
-    
-    
-    <script src="${context}/resources/js/bootstrap.bundle.min.js"></script>
-    
 </body>
 </html>

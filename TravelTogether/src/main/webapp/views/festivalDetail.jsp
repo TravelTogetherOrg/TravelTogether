@@ -13,6 +13,10 @@
 <link rel="stylesheet" href="${context }/resources/css/bootstrap.min.css?dddddddd">
 <link rel="stylesheet" href="${context }/resources/css/festivalDetail.css?dddddddd">
 </head>
+<script src="${context}/resources/js/jquery-3.6.4.js">
+
+</script>
+
 <body class="stst" style="padding-top: 70px;">
     
 
@@ -22,12 +26,12 @@
     <div class="container text-center my-3">
       <p class="text-start">  
 		<button type="button" class="btn btn-outline-primary"
-		    style="font-family: 'SUITE-Regular', sans-serif;
+		        style="font-family: 'SUITE-Regular', sans-serif;
 		    <c:if test="${isLiked}">
 		        background-color: rgb(192, 228, 255);
 		    </c:if>"
-		    onclick="checkSessionAndLike(event)"
-		    id="likeButton">
+		        onclick="likeOn()"
+		        id="likeButton">
 		    <i class="bi bi-heart-fill text-primary"></i> 좋아요 : <span id="likeCount">${festivalCount}</span>
 		</button>
         &nbsp;&nbsp;
@@ -252,7 +256,7 @@
 
 
 <!-- 좋아요 눌렀을때 세션값이 있는경우랑 없는경우-->
-<script>
+<!-- <script>
     var sessionUserId = "${sessionScope.userId}";
 
     function checkSessionAndLike(event) {
@@ -263,16 +267,35 @@
         }
         event.stopPropagation();
     }
-</script>
+</script> -->
 
-<!-- 지역 선택 스크립트 -->
+
+<!-- 좋아요 Ajax 처리 -->
 <script>
-  function changeRegion(region) {
-    document.getElementById('selectedRegion').textContent = region;
-  }
+    var sessionUserId = "${sessionScope.userId}";
+
+    function likeOn() {
+        if (sessionUserId) {
+            $.ajax({
+                url: '<c:url value="festivalLike.do"/>',
+                type: 'get',
+                data: {
+                    'festival_name': '${festival.festival_name}',
+                    'member_id': sessionUserId
+                },
+                success: function(response) {
+                    $("#likeButton").css("background-color", response.isLiked ?  "transparent" : "rgb(192, 228, 255)");
+                    $("#likeCount").text(response.festivalCount);
+                },
+                error: function() {
+                    alert("에러가 발생");
+                }
+            });
+        } else {
+            alert("로그인 후 이용해주세요.");
+        }
+    }
 </script>
-
-
 
 <!-- slider -->
 <script>
