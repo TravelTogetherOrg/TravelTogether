@@ -22,27 +22,27 @@
 <body>
  <nav class="navbar">
        <div class="navbar__logo">
-         <a class="tt" href="${path}/main.do" ondragstart='return false'>🚆<span>T</span>ravel <span>T</span>ogether</a>
+         <a class="tt" href="${path}/main" ondragstart='return false'>🚆<span>T</span>ravel <span>T</span>ogether</a>
        </div>
        <ul class="navbar__menu">
-         <li><a href="${path}/main.do">홈</a></li>
-         <li><a href="${path}/getFestivalList_Month.do">축제소개</a></li>
-         <li><a href="${path}/boardList.do">동행게시판</a></li>
+         <li><a href="${path}/main">홈</a></li>
+         <li><a href="${path}/getFestivalList_Month">축제소개</a></li>
+         <li><a href="${path}/boardList">동행게시판</a></li>
        </ul>
         <ul class="navbar__icons">
            <c:if test="${empty sessionScope.userId and empty sessionScope.userNickname }"> 
-           		<li class="icon"><a href="${path}/login.do"><i class="fa-solid fa-circle-user fa-xl"></i></a></li>
-           		<li class="text"><a class="login_text" style="font-family: 'GmarketSansMedium';" href="${path}/login.do">로그인</a>&nbsp;</li>
+           		<li class="icon"><a href="${path}/login"><i class="fa-solid fa-circle-user fa-xl"></i></a></li>
+           		<li class="text"><a class="login_text" style="font-family: 'GmarketSansMedium';" href="${path}/login">로그인</a>&nbsp;</li>
            </c:if>
            <c:if test="${!empty sessionScope.userId and !empty sessionScope.userNickname and empty sessionScope.userProfile}"> 
-           		<li><a href="${path}/getMember.do?member_id=${member.member_id}"><i class="fa-regular fa-circle-user fa-xl"></i></a></li>
+           		<li><a href="${path}/getMember?member_id=${member.member_id}"><i class="fa-regular fa-circle-user fa-xl"></i></a></li>
            		<li><a href="#"><input type="text" name="user" value="${sessionScope.userNickname}" readonly><span> 님</span></a></li>
-           		&nbsp;<li><a href="${path}/logout.do"><i class="fa-solid fa-right-from-bracket fa-lg"></i></a></li>
+           		&nbsp;<li><a href="${path}/logout"><i class="fa-solid fa-right-from-bracket fa-lg"></i></a></li>
            </c:if>
            <c:if test="${!empty sessionScope.userId and !empty sessionScope.userNickname and !empty sessionScope.userProfile}"> <!-- 로그인 시 --> 
-           		<li class="profile_image"><a href="${path}/getMember.do?member_id=${member.member_id}" ><img id="img" src="${path}${sessionScope.userProfile}" class="rounded-image" height="35" width="35"></a></li>
+           		<li class="profile_image"><a href="${path}/getMember?member_id=${member.member_id}&member_nickname=${member.member_nickname}"><img id="img" src="${path}${sessionScope.userProfile}" class="rounded-image" height="35" width="35"></a></li>
            		<li class="user_info"><a href="#"><input type="text" name="user" value="${sessionScope.userNickname}" readonly><span> 님</span></a></li>
-           		&nbsp;<li class="logout_icon"><a href="${path}/logout.do"><i class="fa-solid fa-right-from-bracket fa-lg"></i></a></li>
+           		&nbsp;<li class="logout_icon"><a href="${path}/logout"><i class="fa-solid fa-right-from-bracket fa-lg"></i></a></li>
            </c:if>
        </ul>
        <a href="#" class="navbar__toggleBtn">

@@ -83,18 +83,21 @@
   .find{
   padding-top: 30px;
   text-align: center;
-  font-size: 1.2em;
+  font-size: 1.1em;
+  font-family: 'GmarketSansMedium';
   font-weight: bolder;
   display: none;
   }
   .find .rs{
   color: blue;
-  
+  font-size: 1.1em;
+  font-family: 'GmarketSansMedium';
   font-weight: bolder;
   }
   .notFind{
   padding-top: 30px;
-  font-size: 1.2em;
+  font-size: 1.1em;
+  font-family: 'GmarketSansMedium';
   font-weight: bolder;
   color: orange;
   display: none;

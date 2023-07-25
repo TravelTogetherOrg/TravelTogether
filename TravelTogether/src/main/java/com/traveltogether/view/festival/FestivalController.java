@@ -69,14 +69,14 @@ public class FestivalController {
 	}
 	
 	
-	@RequestMapping("/getFestivalList_Month.do")
+	@RequestMapping("/getFestivalList_Month")
 	public String getFestivalList_Month(FestivalVO vo, Model model){
 	
 		model.addAttribute("festivalList", festivalService.getFestivalList_Month(vo));
 		return "views/festivalList.jsp";
 	}
 
-	@RequestMapping("main.do")
+	@RequestMapping("/main")
 	public String main(FestivalVO vo, Model model){
 	
 		model.addAttribute("festivalLikeList", festivalService.getFestivalLikeList(vo));

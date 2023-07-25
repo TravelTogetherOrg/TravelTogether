@@ -27,34 +27,34 @@ public class MemberController {
 	@Autowired
 	private MemberServiceimpl memberService;
 	
-	@RequestMapping(value = "/memberAgreement.do")
+	@RequestMapping(value = "/memberAgreement")
 	public String memberAgreement(MemberVO vo)throws IOException {
 		return "/views/memberAgreement.jsp";
 	}
 	
-	@RequestMapping(value = "/findId.do")
+	@RequestMapping(value = "/findId")
 	public String findId(MemberVO vo)throws IOException {
 		return "/views/findId.jsp";
 	}
 	
-	@RequestMapping(value = "/findPassword.do")
+	@RequestMapping(value = "/findPassword")
 	public String findPassword(MemberVO vo)throws IOException {
 		return "/views/findPassword.jsp";
 	}
 	
-	@RequestMapping(value = "/insertMember.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/insertMember", method = RequestMethod.GET)
 	public String insertMember1(MemberVO vo) {
 		return "/views/join.jsp";
 	}
 	
-	@RequestMapping(value = "/insertMember.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/insertMember", method = RequestMethod.POST)
 	public String insertMember2(MemberVO vo)throws IOException {
 		memberService.insertMember(vo);
 		
-		return "/main.do";
+		return "/main";
 	}
 	
-	@RequestMapping(value = "/updateMember.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/updateMember", method = RequestMethod.POST)
 	public String updateMember(@ModelAttribute("member") MemberVO vo	
 		, @RequestParam(value = "member_profile_image") MultipartFile member_profile_url, HttpSession session) throws IOException {
 		
@@ -68,7 +68,7 @@ public class MemberController {
 		return "/views/mypage_main.jsp";
 	}
 	
-	@RequestMapping("/getMember.do")
+	@RequestMapping("/getMember")
 	public String getMember(MemberVO vo, HttpServletRequest request, Model model) {
 //		HttpSession session = request.getSession();
 //		vo.setMember_id(session.getAttribute("userId").toString());  // 세션으로 넘길떄 
@@ -79,36 +79,36 @@ public class MemberController {
 		return "/views/mypage_main.jsp";
 	}
 	
-	@RequestMapping("/deleteMember.do")
+	@RequestMapping("/deleteMember")
 	public String deleteMember(MemberVO vo, HttpServletRequest request) {
 		memberService.deleteMember(vo);
 		HttpSession session = request.getSession();
 		session.invalidate();
 		
-		return "/main.do";
+		return "/main";
 	}
 	//관리자용
-	@RequestMapping("/views/getMemberList.do")
+	@RequestMapping("/views/getMemberList")
 	public String getMemberList(MemberVO vo, Model model) {
 		model.addAttribute("memberList",memberService.getMemberList(vo));
 		return "admin_memberList.jsp";
 	}
 	//회원게시물 조회
-	@RequestMapping("/memberBoardList.do")
+	@RequestMapping("/memberBoardList")
 	public String memberBoardList(MemberVO vo, Model model) {
 		model.addAttribute("memberBoardList",memberService.memberBoardList(vo));
 		
 		return "/views/mypage_main.jsp"; //테스트용
 	}
 	//회원댓글 조회
-	@RequestMapping("/memberCommentList.do")
+	@RequestMapping("/memberCommentList")
 	public String memberCommentList(MemberVO vo, Model model) {
 		model.addAttribute("memberCommentList",memberService.memberCommentList(vo));
 		
 		return "/views/mypage_main.jsp"; //테스트용
 	}
 	
-	@RequestMapping(value="/login.do", method=RequestMethod.GET)
+	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String loginMember(MemberVO vo) {
 		vo.setMember_id("admin@test.com");
 		vo.setMember_password("1234");
@@ -116,7 +116,7 @@ public class MemberController {
 		return "/views/login.jsp";
 	}
 	
-	@RequestMapping(value="/login.do", method=RequestMethod.POST)
+	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String loginMember(MemberVO vo, HttpSession session, Model model)throws IllegalAccessException {
 		if(vo.getMember_id() == null || vo.getMember_id() == "") {
 			throw new IllegalAccessException("아이디는 반드시 입력해야합니다.");
@@ -130,22 +130,22 @@ public class MemberController {
 			
 			model.addAttribute("member",memberService.getMember(vo));
 			
-			return "main.do";
+			return "/main";
 		} else {
 			return "/views/login.jsp";
 		}
 	}
 	
-	@RequestMapping("/logout.do")
+	@RequestMapping("/logout")
 	public String logoutMember(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		
-		return "main.do";
+		return "/main";
 	}
 	
 	//아이디 찾기
-	@RequestMapping("/findMemberId.do")
+	@RequestMapping("/findMemberId")
 	@ResponseBody
 	public String findMemberId(MemberVO vo, Model model) {
 		String id = memberService.findMemberId(vo);
@@ -159,7 +159,7 @@ public class MemberController {
 	}
 	
 	//비밀번호 찾기
-	@RequestMapping("/findMemberPassword.do")
+	@RequestMapping("/findMemberPassword")
 	@ResponseBody
 	public String findMemberPassword(MemberVO vo) {
 		String password = memberService.findMemberPassword(vo);
@@ -175,7 +175,7 @@ public class MemberController {
 	/*--------------유효성---------------------*/
 	
 	//아이디 중복체크
-	@RequestMapping("/checkId.do")
+	@RequestMapping("/checkId")
 	@ResponseBody
 	public int checkId(MemberVO vo) {
 		
@@ -184,7 +184,7 @@ public class MemberController {
 		return cnt;
 	}
 	//핸드폰 중복체크
-	@RequestMapping("/checkPhoneNumber.do")
+	@RequestMapping("/checkPhoneNumber")
 	@ResponseBody
 	public int checkPhoneNumber(MemberVO vo) {
 		
@@ -193,7 +193,7 @@ public class MemberController {
 		return cnt;
 	}
 	//닉네임 중복체크 
-	@RequestMapping("/checkNickname.do")
+	@RequestMapping("/checkNickname")
 	@ResponseBody
 	public int checkNickname(MemberVO vo) {
 		
@@ -203,7 +203,7 @@ public class MemberController {
 	}
 	
 	//비밀번호 로그인 체크
-	@RequestMapping("/checkPassword.do")
+	@RequestMapping("/checkPassword")
 	@ResponseBody
 	public int checkPassword(MemberVO vo) {
 		

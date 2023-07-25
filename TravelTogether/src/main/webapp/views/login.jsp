@@ -17,7 +17,7 @@
 function checkPassword(){
     var password = $('#password').val(); 
     $.ajax({
-        url:"<c:url value='/checkPassword.do'/>", 
+        url:"<c:url value='/checkPassword'/>", 
         type:'post',
         data:{'member_password':password},
         success:function(cnt){ 
@@ -40,7 +40,7 @@ function checkPassword(){
 function checkId(){
 var id = $('#id').val();
 $.ajax({
-    url:"<c:url value='/checkId.do'/>", 
+    url:"<c:url value='/checkId'/>", 
     type:'post',
     data:{'member_id':id},
     success:function(cnt){ 
@@ -62,7 +62,7 @@ $.ajax({
 function alertId(){
 	var id = $('#id').val();
 	$.ajax({
-	    url:"<c:url value='/checkId.do'/>", 
+	    url:"<c:url value='/checkId'/>", 
 	    type:'post',
 	    data:{'member_id':id},
 	    success:function(cnt){ 
@@ -80,7 +80,7 @@ function alertId(){
 	function alertPassword(){
 	    var password = $('#password').val(); 
 	    $.ajax({
-	        url:"<c:url value='/checkPassword.do'/>", 
+	        url:"<c:url value='/checkPassword'/>", 
 	        type:'post',
 	        data:{'member_password':password},
 	        success:function(cnt){ 
@@ -110,12 +110,12 @@ function alertId(){
 		               <div class="login_container">
 						<div class="login_item login_item1">
 							<div class="navbar__logo">
-					        	 <a href="${path}/main.do" ondragstart='return false'>🚆<span>T</span>ravel <span>T</span>ogether</a>
+					        	 <a href="${path}/main" ondragstart='return false'>🚆<span>T</span>ravel <span>T</span>ogether</a>
 					       </div>
 						</div>
 						<div class="login_item login_item2">
 							<div  style="padding-top:65px; text-align : center; height:465px;">
-								<form action="login.do" id="form" method="post">
+								<form action="login" id="form" method="post">
 									<table id="table_tr">
 										<tr id="table_tr_id">
 											<td colspan="2">
@@ -155,7 +155,7 @@ function alertId(){
 									</table>
 								</form>
 								<div class="function" align="center">
-								   <a href="${path}/findId.do">아이디 찾기&nbsp;·&nbsp;</a><a href="${path}/findPassword.do">비밀번호 찾기</a>
+								   <a href="${path}/findId">아이디 찾기&nbsp;·&nbsp;</a><a href="${path}/findPassword">비밀번호 찾기</a>
 								</div>
 							</div>
 						</div>

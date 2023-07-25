@@ -68,10 +68,10 @@
   }
   
   /* --별병 중복체크-- */
-/* function checkNickname(){
+	 function checkNickname(){
            var nickname = $('#nickname').val(); 
            $.ajax({
-               url:"<c:url value='/checkNickname.do'/>", 
+               url:"<c:url value='/checkNickname'/>", 
                type:'post', 
                data:{'member_nickname':nickname},
                success:function(cnt){ 
@@ -90,8 +90,7 @@
                    alert("에러입니다");
                }
            });
-           }; */
-           
+         }; 
 </script>
 </head>
 <body>
@@ -112,7 +111,7 @@
 			</div>
 		</div>
 		<div class="content">
-		<form id="form" action="updateMember.do" method="post" enctype="multipart/form-data">
+		<form id="form" action="updateMember" method="post" enctype="multipart/form-data">
 			<div id="description" class="tab-section">
 				<h2>계정설정</h2>
 				<hr style="border-color: #ccc;">
@@ -163,7 +162,7 @@
 						</tr>
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">별명<br><input type='text' name='member_nickname' id="nickname" oninput="checkNickname()" value='${member.member_nickname}'size="44" required="required" readonly="readonly"> </font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">별명<br><input type='text' name='member_nickname' id="nickname" oninput="checkNickname()" value='${member.member_nickname}'size="44" required="required"></font>&nbsp;&nbsp;</h5>
 								<span class="user_nickname_ok">사용 가능한 별명 입니다.</span>
 	            				<span class="user_nickname_already">중복된 별명 입니다.</span>
 							</td>
@@ -202,7 +201,7 @@
 				</div>
 				<div id="btn">
 					<input type="submit" id="modifyBtn" value="수정하기" onclick="checkNickname()" class="btn btn-default">&nbsp;&nbsp;
-					<a href="${path}/deleteMember.do?member_id=${member.member_id}" id="modifyBtn" onclick="deleteMember()" class="btn btn-default">탈퇴하기</a>
+					<a href="${path}/deleteMember?member_id=${member.member_id}" id="modifyBtn" onclick="deleteMember()" class="btn btn-default">탈퇴하기</a>
 				</div>
 			</div>
 		</form>
@@ -229,8 +228,8 @@
 				</tr>
 				<c:forEach items="${memberBoardList}" var="board">
 				<tr>
-					<td><a href="getFestival.do?festival_name=${festival.festival_name }">${board.festival_name}</a></td>				
-					<td><a href="board.do?no=${board.board_number}">${board.board_title}</a></td>
+					<td><a href="${path}/getFestival.do?festival_name=${board.festival_name}">${board.festival_name}</a></td>				
+					<td><a href="${path}/board.do?no=${board.board_number}">${board.board_title}</a></td>
 					<td>${board.board_start_date}</td>
 					<td>${board.board_end_date}</td>
 					<td>${board.board_total_people}</td>
@@ -248,17 +247,21 @@
 					<th width="100">게시판 번호</th>
 					<th width="275">내용</th>
 					<th width="143">댓글 구분</th>
+					<th width="143">댓글 depth</th>
 					<th width="120">작성시간</th>
 					<th width="120">수정시간</th>
+					<th width="120">별명</th>
 				</tr>
 				<c:forEach items="${memberCommentList}" var="comment">
 				<tr>
 					<td>${comment.comment_number}</td>
-					<td>${comment.board_number}</td>				
-					<td>${comment.comment_content}</td>
+					<td><a href="${path}/board.do?no=${board.board_number}">${comment.board_number}</a></td>				
+					<td><a href="${path}/board.do?no=${board.board_number}">${comment.comment_content}</a></td>
 					<td>${comment.comment_group}</td>
+					<td>${comment.comment_depth}</td>
 					<td>${comment.comment_write_date}</td>
 					<td>${comment.comment_update_date}</td>
+					<td>${comment.member_nickname}</td>
 				</tr>			
 				</c:forEach>
 			</table>

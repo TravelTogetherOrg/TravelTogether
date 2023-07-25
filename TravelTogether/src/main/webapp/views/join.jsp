@@ -76,11 +76,19 @@
 	    };
 	  };
 	  
+	  function checkSpace(str) {
+			if(str.search(/\s/) != -1) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	  
  function checkId(id){
 	
         var id = $('#id').val(); //id값이 "id"인 입력란의 값을 저장
         $.ajax({
-            url:"<c:url value='/checkId.do'/>", //Controller에서 요청 받을 주소
+            url:"<c:url value='/checkId'/>", //Controller에서 요청 받을 주소
             type:'post', //POST 방식으로 전달
             data:{'member_id':id},
             success:function(cnt){ //컨트롤러에서 넘어온 cnt값을 받는다 
@@ -103,7 +111,7 @@
 	
         var tel = $('#tel').val(); 
         $.ajax({
-            url:"<c:url value='/checkPhoneNumber.do'/>", 
+            url:"<c:url value='/checkPhoneNumber'/>", 
             type:'post', 
             data:{'member_phone_number':tel},
             success:function(cnt){ 
@@ -125,7 +133,7 @@
         function checkNickname(){
             var nickname = $('#nickname').val(); 
             $.ajax({
-                url:"<c:url value='/checkNickname.do'/>", 
+                url:"<c:url value='/checkNickname'/>", 
                 type:'post', 
                 data:{'member_nickname':nickname},
                 success:function(cnt){ 
@@ -150,13 +158,13 @@
 <body>
 	<div class="member">
         <div class="navbar__logo" align="center">
-       	 	<a href="${path}/main.do" ondragstart='return false'>🚆<span>T</span>ravel <span>T</span>ogether</a>
+       	 	<a href="${path}/main" ondragstart='return false'>🚆<span>T</span>ravel <span>T</span>ogether</a>
 		</div>
 		<div class="join" align="center">
        	 	<h4 style="font-family:'GmarketSansMedium'">회원가입</h4>
 		</div>
         <h4>입력사항 <span style="color:orange;">(필수)</span></h4>
-        <form id="form" action="insertMember.do" method="post">
+        <form id="form" action="insertMember" method="post">
 	      <div id="container">
 	        <div class="input_control">
 	            <span class="placehold-text"><input id="id" type="email" placeholder="이메일 주소" name="member_id" oninput="checkId()" required></span>
@@ -199,7 +207,7 @@
 	            <span class="user_nickname_ok">사용 가능한 별명 입니다.</span>
 	            <span class="user_nickname_already">중복된 별명 입니다.</span>
 	        </div>
-	         <input type="submit" value="가입하기" style="font-size:20px;">
+	         <input type="submit" value="가입하기" onclick="checkSpace()" style="font-size:20px;">
 	 	 </div>
   	</form>
   </div>

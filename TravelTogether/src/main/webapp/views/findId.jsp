@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/findId.css?dfdf"> 
 <style type="text/css">
+
 	@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@1,900&display=swap');
 	
 	@font-face {
@@ -50,20 +51,23 @@
   
   /* 아이디찾기 수타일*/
   .find{
+  font-family: 'GmarketSansMedium';
   padding-top: 30px;
   text-align: center;
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-weight: bolder;
   display: none;
   }
   .find .rs{
   color: blue;
-  
+  font-size: 1.1em;
+  font-family: 'GmarketSansMedium';
   font-weight: bolder;
   }
   .notFind{
+  font-family: 'GmarketSansMedium';
   padding-top: 30px;
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-weight: bolder;
   color: orange;
   display: none;

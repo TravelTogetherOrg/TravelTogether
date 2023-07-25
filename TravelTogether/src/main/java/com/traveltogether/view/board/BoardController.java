@@ -113,7 +113,7 @@ public class BoardController {
 		return map;
 	}
 	
-	@RequestMapping(value = "/boardList.do")
+	@RequestMapping(value = "/boardList")
 	public String getBoardList(Criteria criteria, ModelMap model, HttpServletResponse response, HttpServletRequest request) throws IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
