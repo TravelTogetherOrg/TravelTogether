@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AdminDAO">
+	<resultMap type="admin" id="adminResult">
+	<id property="member_id"  column="MEMBER_ID"/>  <!-- primary key매핑 -->
+		<result property="member_password" column="MEMBER_PASSWORD"/>
+		<result property="member_name" column="MEMBER_NAME"/>
+		<result property="member_nickname" column="MEMBER_NICKNAME"/>
+		<result property="member_gender" column="MEMBER_GENDER"/>
+		<result property="member_birthday" jdbcType="DATE" javaType="java.sql.Date" column="MEMBER_BIRTHDAY"/>
+		<result property="member_create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" column="MEMBER_CREATE_DATE"/>
+		<result property="member_profile_url" column="MEMBER_PROFILE_URL"/>
+		<result property="festival_name" column="FESTIVAL_NAME"/>
+		<result property="board_title" column="BOARD_TITLE"/>
+		<result property="board_start_date" column="BOARD_START_DATE"/>
+		<result property="board_end_date" column="BOARD_END_DATE"/>
+		<result property="board_total_people" column="BOARD_TOTAL_PEOPLE"/>
+		<result property="board_write_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" column="BOARD_WRITE_DATE"/>
+	</resultMap>
+	
+	<delete id="AdminDeleteMember">
+		DELETE FROM MEMBER WHERE MEMBER_ID=#{member_id}
+	</delete>
+	
+	<delete id="AdminDeleteFestival">
+		DELETE FROM FESTIVAL WHERE MEMBER_ID=#{festival_number}
+	</delete>
+	
+	<delete id="AdminDeleteBoard">
+		DELETE FROM BOARD WHERE MEMBER_ID=#{board_number}
+	</delete>
+	
+	<select id="festivalList" resultMap="adminResult">
+		SELECT * FROM FESTIVAL
+	</select>
+	
+	<select id="getMemberList" resultMap="adminResult">
+		SELECT * FROM MEMBER
+	</select>
+	
+	<select id="memberBoardList" resultMap="adminResult">
+		SELECT * FROM BOARD
+	</select>
+	
+
+
+</mapper>
