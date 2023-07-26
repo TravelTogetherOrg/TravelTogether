@@ -33,7 +33,14 @@
                 </div>
                 <div class="writerInfo">
                     <div>
-                        <img src="${context}/resources/image/board/vector_profile_willy.svg">
+                    <c:choose>
+	                	<c:when test="${not empty board.member_profile_url}">
+	                		<img src="${context}${board.member_profile_url}">
+	                	</c:when>
+	                	<c:otherwise>
+	                		<img src="${context}/resources/image/member/member.png">
+	                	</c:otherwise>
+	                </c:choose>
                     </div>
                     <div class="writerInfoInner">
                         <span>${board.member_nickname}</span>
