@@ -5,7 +5,7 @@
 ## 💻 참여자
 👩🏻‍💻[Hoony](https://github.com/Hoonyyyy) 
 👨🏻‍💻[PJK](https://github.com/jongkwon5) 
-👨🏻‍💻[KBJ](https://github.com/Jun048) 
+👨🏻‍💻[KBJ](https://github.com/Kim-Byungju) 
 👨🏻‍💻[KCY](https://github.com/kimchoyool)
 👨🏻‍💻[JJH](https://github.com/RaspberryIcecream)
 
