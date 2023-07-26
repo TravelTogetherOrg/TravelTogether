@@ -36,11 +36,33 @@
                     <div class="peopleAndDate">
                         <div class="people">
                             <select id="board_total_people" name="board_total_people" required>
-                                <option disabled selected>인원수</option>
-                                <option value=1>1명</option>
-                                <option value=2>2명</option>
-                                <option value=3>3명</option>
-                                <option value=4>4명</option>
+                                <option disabled>인원수</option>
+                                <c:choose>
+                                	<c:when test="${board.board_total_people eq 1}">
+                                		<option value=1 selected>1명</option>
+                                		<option value=2>2명</option>
+		                                <option value=3>3명</option>
+		                                <option value=4>4명</option>
+                                	</c:when>
+                                	<c:when test="${board.board_total_people eq 2}">
+                                		<option value=1>1명</option>
+                                		<option value=2 selected>2명</option>
+		                                <option value=3>3명</option>
+		                                <option value=4>4명</option>
+                                	</c:when>
+                                	<c:when test="${board.board_total_people eq 3}">
+                                		<option value=1>1명</option>
+                                		<option value=2>2명</option>
+		                                <option value=3 selected>3명</option>
+		                                <option value=4>4명</option>
+                                	</c:when>
+                                	<c:when test="${board.board_total_people eq 4}">
+                                		<option value=1>1명</option>
+                                		<option value=2>2명</option>
+		                                <option value=3>3명</option>
+		                                <option value=4 selected>4명</option>
+                                	</c:when>
+                                </c:choose>
                             </select>
                         </div>
                         <div class="date">
@@ -102,8 +124,8 @@
                 </div>
             </div>
             <div class="buttons">
-                <button class="resetButton" type="reset">취소</button>
-                <button class="submitButton" type="submit" >수정완료</button>
+                <button class="resetButton" type="reset" onclick="location.href='${context}/boardList'">취소</button>
+                <button class="submitButton" type="submit">수정완료</button>
             </div>
         </form>
         </section>

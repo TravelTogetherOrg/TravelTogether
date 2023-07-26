@@ -35,6 +35,7 @@
 	    <id property="board_number" column="board_number"/>
 	    <result property="festiva_name" column="festival_name"/>
 	    <result property="member_id" column="member_id"/>
+	    <result property="board_total_people" column="board_total_people"/>
 	    <result property="board_start_date" column="board_start_date"/>
 	    <result property="board_end_date" column="board_end_date"/>
 	    <result property="board_title" column="board_title"/>
@@ -107,7 +108,7 @@
 	</select>
 	<select id="getOneBoardForUpdate" resultType="boardList">
 		select board.board_number, board.member_id, board.festival_name, board.board_start_date,
-			board.board_end_date, board.board_title, board.board_content,
+			board.board_end_date, board.board_title, board.board_content, board.board_total_people,
 			festival.festival_startdate, festival.festival_enddate, 
 			board_image.board_image_file_path, board_image.board_image_file
 		from board, board_image, festival
