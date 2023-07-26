@@ -167,6 +167,51 @@ if(pageItemActive != null && lastPage != null){
 
 
 /* boardWrite */
+let seoul = '서울';
+$.ajax({
+    async: true,
+    type: 'POST',
+    data: seoul,
+    url: "getRegionFestivals", //.do
+    dataType: "json", 
+    contentType: "application/json; charset=UTF-8",
+    success: function(data){
+        if(!document.getElementById(seoul+'Festival')){
+            let selectFestival = document.getElementById('selectFestivalByRegion');
+            let div = document.createElement('div');
+            div.id = seoul+'Festival';
+            selectFestival.append(div);
+            let table = document.createElement('table');
+            table.id = 'festivalsByRegion';
+            div.append(table);
+            for(let i=0;i<Math.ceil(Object.keys(data.festivals).length/4);i++){
+                let tr = document.createElement('tr');
+                tr.className = 'tr'+seoul;
+                table.append(tr);
+            }
+            let trs = document.querySelectorAll('.tr'+seoul);
+            trs.forEach((el)=>{
+                for(let i=0; i<4;i++){
+                    let td = document.createElement('td');
+                    td.className = 'td'+seoul;
+                    el.append(td);
+                }
+            });
+            let tds = document.querySelectorAll('.td'+seoul);
+            tds.forEach((el,index)=>{
+                if(data.festivals[index] != 'undefined' && data.festivals[index] != null){
+                   el.append(data.festivals[index].festival_name);
+                }
+                
+            });
+        }
+    
+    },
+    error: function(request,status,error){
+        console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+    }
+});
+
 /* 지역td 선택시 bg/color 바뀌게 */
 let regions = document.querySelectorAll('#regions td');
 regions.forEach((el)=>{
@@ -198,8 +243,22 @@ for(let i=0; i<boardSelectRegion.length; i++){
             dataType: "json", 
             contentType: "application/json; charset=UTF-8",
             success: function(data){
-            
-            if(!document.getElementById(selectRegion+'Festival')){ //null인 경우
+            console.log(data);
+            console.log(data.festivals.length);
+            console.log(data.festivals.length==0);
+            if(data.festivals.length==0){
+                if(document.getElementById(selectRegion+'Festival') == null){
+                    let selectFestival = document.getElementById('selectFestivalByRegion');
+                    let div = document.createElement('div');
+                    div.id = selectRegion+'Festival';
+                    div.style.textAlign = 'center';
+                    div.style.fontSize = '1.25em';
+                    div.style.width = '100%'
+                    div.innerText = '해당 지역의 축제가 없습니다.';
+                    selectFestival.append(div);
+                }
+            }
+            if(!document.getElementById(selectRegion+'Festival')){ //null인 아닌 경우
                 let selectFestival = document.getElementById('selectFestivalByRegion');
                 let div = document.createElement('div');
                 div.id = selectRegion+'Festival';
@@ -286,7 +345,6 @@ for(let i=0; i<boardSelectRegion.length; i++){
     })
 }
 
-/* 축제 선택시  */
 /* 1박 이상 선택시 input date 추가 */
 let moreDaysCheckbox = document.getElementById('moreDays');
 let lastDayInput = document.getElementById('lastDay');
