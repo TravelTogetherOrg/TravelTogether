@@ -153,11 +153,41 @@ public class BoardServiceimpl implements BoardService {
 		
 		return boardDAO.getCommnetList(boardNumber);
 	}
-
+/*
 	@Override
 	public int getCommentTotal(int boardNumber) {
 		
 		return boardDAO.getCommentTotal(boardNumber);
+	}
+*/
+	@Override
+	public CommentVO getOneComment(int commentNumber) {
+		return boardDAO.getOneComment(commentNumber);
+		
+	}
+
+	@Override
+	public List<CommentVO> getReCommnetList(int boardNumber) {
+		
+		return boardDAO.getReCommnetList(boardNumber);
+	}
+
+	@Override
+	public void pretendDeleteComment(CommentVO comment) {
+		boardDAO.pretendDeleteComment(comment);
+		
+	}
+
+	@Override
+	public int getReCommentTotal(int commentNumber) {
+		
+		return boardDAO.getReCommentTotal(commentNumber);
+	}
+
+	@Override
+	public List<CommentVO> getTotalCommentCount() {
+		
+		return boardDAO.getTotalCommentCount();
 	}
 
 }

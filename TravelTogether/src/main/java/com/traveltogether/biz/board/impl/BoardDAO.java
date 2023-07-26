@@ -157,11 +157,41 @@ public class BoardDAO implements BoardService {
 		
 		return mybatis.selectList("BoardDAO.getCommentList", boardNumber);
 	}
-
+/*
 	@Override
 	public int getCommentTotal(int boardNumber) {
 		
-		return mybatis.selectOne("BoardDAO.getTotalCommentCount");
+		return mybatis.selectOne("BoardDAO.getTotalCommentCount",boardNumber);
+	}
+*/
+	@Override
+	public CommentVO getOneComment(int commentNumber) {
+		
+		return mybatis.selectOne("BoardDAO.getOneComment", commentNumber);
+	}
+
+	@Override
+	public List<CommentVO> getReCommnetList(int boardNumber) {
+		
+		return mybatis.selectList("BoardDAO.getReCommentList", boardNumber);
+	}
+
+	@Override
+	public void pretendDeleteComment(CommentVO comment) {
+		mybatis.update("BoardDAO.pretendDeleteComment", comment);
+		
+	}
+
+	@Override
+	public int getReCommentTotal(int commentNumber) {
+		
+		return mybatis.selectOne("BoardDAO.getReCommentCount", commentNumber);
+	}
+
+	@Override
+	public List<CommentVO> getTotalCommentCount() {
+		
+		return mybatis.selectList("BoardDAO.getTotalCommentCount");
 	}
 
 	

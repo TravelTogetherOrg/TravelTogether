@@ -40,7 +40,7 @@
         </button> -->
         <button type="button" class="btn btn-lg btn-outline-primary"  
                 style="font-family: 'SUITE-Regular', sans-serif;"
-                onclick="location.href='boardList.do'">
+                onclick="location.href='boardList'">
           <i class="bi bi-chat-right-dots text-primary"></i> 동행자구하기
         </button>
       </p>
@@ -277,7 +277,7 @@
     function likeOn() {
         if (sessionUserId) {
             $.ajax({
-                url: '<c:url value="festivalLike.do"/>',
+                url: '<c:url value="festivalLike"/>',
                 type: 'get',
                 data: {
                     'festival_name': '${festival.festival_name}',

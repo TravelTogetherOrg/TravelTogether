@@ -30,7 +30,7 @@ public class FestivalController {
 	private FestivalServiceimpl festivalService;
 	
 	
-	@RequestMapping(value = "/festivalLike.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/festivalLike", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> getFestivalLike(FestivalVO vo, HttpSession session, Model model) {
 	    String encodedFestivalName = URLEncoder.encode(vo.getFestival_name(), StandardCharsets.UTF_8);

@@ -56,23 +56,23 @@
 
 
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="getFestivalList_Month.do?#" onclick="changeRegion('전체')">전체</a></li>
-          <li><a class="dropdown-item" href="getFestivalList_Month.do?festival_address=서울" onclick="changeRegion('서울')">서울</a></li>
-          <li><a class="dropdown-item" href="getFestivalList_Month.do?festival_address=경기도" onclick="changeRegion('경기도')">경기도</a></li>
-          <li><a class="dropdown-item" href="getFestivalList_Month.do?festival_address=인천" onclick="changeRegion('인천광역시')">인천광역시</a></li>
-          <li><a class="dropdown-item" href="getFestivalList_Month.do?festival_address=강원" onclick="changeRegion('강원도')">강원도</a></li>
-          <li><a class="dropdown-item" href="getFestivalList_Month.do?festival_address=대전" onclick="changeRegion('대전광역시')">대전광역시</a></li>
-          <li><a class="dropdown-item" href="getFestivalList_Month.do?festival_address=충청북도" onclick="changeRegion('충청북도')">충청북도</a></li>
-          <li><a class="dropdown-item" href="getFestivalList_Month.do?festival_address=충청남도" onclick="changeRegion('충청남도')">충청남도</a></li>
-          <li><a class="dropdown-item" href="getFestivalList_Month.do?festival_address=세종" onclick="changeRegion('세종특별시')">세종특별시</a></li>
-          <li><a class="dropdown-item" href="getFestivalList_Month.do?festival_address=부산" onclick="changeRegion('부산광역시')">부산광역시</a></li>
-          <li><a class="dropdown-item" href="getFestivalList_Month.do?festival_address=울산" onclick="changeRegion('울산광역시')">울산광역시</a></li>
-          <li><a class="dropdown-item" href="getFestivalList_Month.do?festival_address=경상북도" onclick="changeRegion('대구광역시')">경상북도</a></li>
-          <li><a class="dropdown-item" href="getFestivalList_Month.do?festival_address=경상남도" onclick="changeRegion('경상남도')">경상남도</a></li>
-          <li><a class="dropdown-item" href="getFestivalList_Month.do?festival_address=전라북도" onclick="changeRegion('전라북도')">전라북도</a></li>
-          <li><a class="dropdown-item" href="getFestivalList_Month.do?festival_address=전라남도" onclick="changeRegion('전라남도')">전라남도</a></li>
-          <li><a class="dropdown-item" href="getFestivalList_Month.do?festival_address=광주" onclick="changeRegion('광주광역시')">광주광역시</a></li>
-          <li><a class="dropdown-item" href="getFestivalList_Month.do?festival_address=제주" onclick="changeRegion('제주도')">제주도</a></li>
+          <li><a class="dropdown-item" href="getFestivalList_Month?#" onclick="changeRegion('전체')">전체</a></li>
+          <li><a class="dropdown-item" href="getFestivalList_Month?festival_address=서울" onclick="changeRegion('서울')">서울</a></li>
+          <li><a class="dropdown-item" href="getFestivalList_Month?festival_address=경기도" onclick="changeRegion('경기도')">경기도</a></li>
+          <li><a class="dropdown-item" href="getFestivalList_Month?festival_address=인천" onclick="changeRegion('인천광역시')">인천광역시</a></li>
+          <li><a class="dropdown-item" href="getFestivalList_Month?festival_address=강원" onclick="changeRegion('강원도')">강원도</a></li>
+          <li><a class="dropdown-item" href="getFestivalList_Month?festival_address=대전" onclick="changeRegion('대전광역시')">대전광역시</a></li>
+          <li><a class="dropdown-item" href="getFestivalList_Month?festival_address=충청북도" onclick="changeRegion('충청북도')">충청북도</a></li>
+          <li><a class="dropdown-item" href="getFestivalList_Month?festival_address=충청남도" onclick="changeRegion('충청남도')">충청남도</a></li>
+          <li><a class="dropdown-item" href="getFestivalList_Month?festival_address=세종" onclick="changeRegion('세종특별시')">세종특별시</a></li>
+          <li><a class="dropdown-item" href="getFestivalList_Month?festival_address=부산" onclick="changeRegion('부산광역시')">부산광역시</a></li>
+          <li><a class="dropdown-item" href="getFestivalList_Month?festival_address=울산" onclick="changeRegion('울산광역시')">울산광역시</a></li>
+          <li><a class="dropdown-item" href="getFestivalList_Month?festival_address=경상북도" onclick="changeRegion('대구광역시')">경상북도</a></li>
+          <li><a class="dropdown-item" href="getFestivalList_Month?festival_address=경상남도" onclick="changeRegion('경상남도')">경상남도</a></li>
+          <li><a class="dropdown-item" href="getFestivalList_Month?festival_address=전라북도" onclick="changeRegion('전라북도')">전라북도</a></li>
+          <li><a class="dropdown-item" href="getFestivalList_Month?festival_address=전라남도" onclick="changeRegion('전라남도')">전라남도</a></li>
+          <li><a class="dropdown-item" href="getFestivalList_Month?festival_address=광주" onclick="changeRegion('광주광역시')">광주광역시</a></li>
+          <li><a class="dropdown-item" href="getFestivalList_Month?festival_address=제주" onclick="changeRegion('제주도')">제주도</a></li>
           <!-- 나머지 항목들 -->
         </ul>
       </div>
@@ -163,7 +163,7 @@
       {
         title: "${festival.festival_name}",
         latlng: new kakao.maps.LatLng(${festival.festival_latitude}, ${festival.festival_longitude}),
-        url: "getFestival.do?festival_name=${festival.festival_name}"
+        url: "getFestival?festival_name=${festival.festival_name}"
       },
     </c:forEach>
   ];
