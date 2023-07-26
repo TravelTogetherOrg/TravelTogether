@@ -17,6 +17,15 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>	
 	
+<<<<<<< HEAD
+=======
+		<!-- 세션유지시간 설정(단위:분) 설정 안할시 기본 30분(톰캣서버에서 확인) -->
+	<session-config>
+		<session-timeout>60</session-timeout>
+	</session-config>
+	
+	
+>>>>>>> c2f9a3d3c3ccee84c217736a42b12df2c46d67e9
 	<!-- 리스너 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>

@@ -242,7 +242,7 @@ for(let i=0; i<boardSelectRegion.length; i++){
             url: "getRegionFestivals", //.do
             dataType: "json", 
             contentType: "application/json; charset=UTF-8",
-            success: function(data){
+            success: function(data){s
             console.log(data);
             console.log(data.festivals.length);
             console.log(data.festivals.length==0);
@@ -257,8 +257,8 @@ for(let i=0; i<boardSelectRegion.length; i++){
                     div.innerText = '해당 지역의 축제가 없습니다.';
                     selectFestival.append(div);
                 }
-            }
-            if(!document.getElementById(selectRegion+'Festival')){ //null인 아닌 경우
+            }        
+            if(!document.getElementById(selectRegion+'Festival')){ //null인 경우
                 let selectFestival = document.getElementById('selectFestivalByRegion');
                 let div = document.createElement('div');
                 div.id = selectRegion+'Festival';
@@ -344,6 +344,7 @@ for(let i=0; i<boardSelectRegion.length; i++){
         });
     })
 }
+
 
 /* 1박 이상 선택시 input date 추가 */
 let moreDaysCheckbox = document.getElementById('moreDays');

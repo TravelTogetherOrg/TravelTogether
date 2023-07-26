@@ -20,6 +20,8 @@
 		<typeAlias alias="boardImage" type="com.traveltogether.biz.board.BoardImageVO"/>
 		<typeAlias alias="comment" type="com.traveltogether.biz.board.CommentVO"/>
 		<typeAlias alias="chatList" type="com.traveltogether.biz.chat.ChatListDTO"/>
+		<typeAlias alias="chatRoom" type="com.traveltogether.biz.chat.ChatRoomVO"/>
+		<typeAlias alias="chatCount" type="com.traveltogether.biz.chat.ChatCountVO"/>
 	</typeAliases>
 	
 	 <mappers>

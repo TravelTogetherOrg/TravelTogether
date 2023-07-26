@@ -8,14 +8,22 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${path}/resources/css/reset.css" media="all">
+<<<<<<< HEAD
 <link rel="stylesheet" href="${path}/resources/css/footer.css">
+=======
+<link rel="stylesheet" href="${path}/resources/css/footer.css?ss">
+>>>>>>> c2f9a3d3c3ccee84c217736a42b12df2c46d67e9
 <script src="https://kit.fontawesome.com/4d0517937c.js" crossorigin="anonymous"></script>
 </head>
 <body>
 	<footer>
         <div class="footer__info">
             <div class="footer__logo">
+<<<<<<< HEAD
                 <a href="${path}/main.do">🚆<span>T</span>ravel <span>T</span>ogether</a>
+=======
+                <a href="${path}/main">🚆<span>T</span>ravel <span>T</span>ogether</a>
+>>>>>>> c2f9a3d3c3ccee84c217736a42b12df2c46d67e9
             </div>
             <p class="companyinfo">
                 주식회사 트래블투게더 | 서울 마포구 신촌로 176 | info@TravelTogether.com<br>

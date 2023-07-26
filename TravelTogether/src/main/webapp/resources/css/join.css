@@ -67,7 +67,13 @@ a{
     width: 100%;
     margin-bottom: 5px;
 }
+<<<<<<< HEAD
 
+=======
+.member input:placeholder{
+	color: #dadada;
+}
+>>>>>>> c2f9a3d3c3ccee84c217736a42b12df2c46d67e9
 .member input[type=button],
 .member input[type=submit]{
 background-color: rgb(192, 228, 255);
@@ -155,7 +161,97 @@ color:#fff
 .member-footer div a:last-child:after{
     display: none;
 }
+<<<<<<< HEAD
 
 
 
 
+=======
+/* ------- */
+	@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@1,900&display=swap');
+	
+	@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+  .navbar__logo{
+	margin-top : 50px;
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: bolder;
+    font-size: 1.6em;
+   }
+   
+  .navbar__logo span {
+    color: orange;
+    padding-left: 0;
+  }
+  
+  a{
+    text-decoration: none;
+    color: black;
+  }
+	
+  select option[value=""][disabled] {
+	display: none;
+  }
+ 
+  input[type="submit"]{
+ 	font-weight:bolder;
+ 	color: black;
+  }
+ 
+  input[type="submit"]:hover,
+  input[type="submit"]:active {
+  font-weight:bolder;
+  color: orange;
+  }
+  
+  /* 유효성 스타일 */
+  .user_id_ok{
+  font-weight : bolder;
+  color: blue;
+  display: none;
+  }
+  .user_id_already{
+  font-weight : bolder;
+  color: orange;
+  display: none;
+  }
+  .user_nickname_ok{
+  font-weight : bolder;
+  color: blue;
+  display: none;
+  }
+  .user_nickname_already{
+  font-weight : bolder;
+  color: orange;
+  display: none;
+  }
+  .user_tel_ok{
+  font-weight : bolder;
+  color: blue;
+  display: none;
+  }
+  .user_tel_already{
+  font-weight : bolder;
+  color: orange;
+  display: none;
+  }
+   .user_password_ok{
+  font-weight : bolder;
+  color: blue;
+  display: none;
+  }
+  .user_password_already{
+  font-weight : bolder;
+  color: orange;
+  display: none;
+  }
+  .user_password_already2{
+  font-weight : bolder;
+  color: orange;
+  display: none;
+  }
+>>>>>>> c2f9a3d3c3ccee84c217736a42b12df2c46d67e9

@@ -179,13 +179,14 @@ public class BoardController {
 			boardList.setBoard_image_file(boardList.getBoard_image_file_old());
 			boardList.setBoard_image_file_path(boardList.getBoard_image_file_path());
 		}
-		
+
 		//1박 이상 선택 안했을 시 null로 넘어가게 하기
 		if(boardList.getBoard_end_date().isEmpty()) {
 			boardList.setBoard_end_date(null);
 		}
 		
 		boardService.updateBoard(boardList);
+
 		return "redirect:boardList";
 	}
 	

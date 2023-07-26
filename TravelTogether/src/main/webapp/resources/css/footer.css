@@ -54,11 +54,18 @@
         font-family: 'SUITE-Regular';
         font-weight: 900;
         padding-top:20px;
+<<<<<<< HEAD
+=======
+        padding-bottom:20px;
+>>>>>>> c2f9a3d3c3ccee84c217736a42b12df2c46d67e9
     }
     .footer__info .copyright{
         color: black;
         font-family: 'SUITE-Regular';
+<<<<<<< HEAD
         padding-top:-20px;
+=======
+>>>>>>> c2f9a3d3c3ccee84c217736a42b12df2c46d67e9
     }
     .footer__github {
       padding-top: 20px  

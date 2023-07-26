@@ -30,10 +30,11 @@ public class FestivalController {
 	private FestivalServiceimpl festivalService;
 	
 	
-	@RequestMapping(value = "/festivalLike.do", method = RequestMethod.GET)
-	public String getFestivalLike(FestivalVO vo, HttpSession session, Model model) {
+	@RequestMapping(value = "/festivalLike", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getFestivalLike(FestivalVO vo, HttpSession session, Model model) {
 	    String encodedFestivalName = URLEncoder.encode(vo.getFestival_name(), StandardCharsets.UTF_8);
-	    String userId = (String) session.getAttribute("userId");
+		/* String userId = (String) session.getAttribute("userId"); */
 
 	    boolean isLiked = festivalService.isFestivalLiked(vo);
 	    
@@ -42,13 +43,17 @@ public class FestivalController {
 	    } else {
 	    	festivalService.festival_Like(vo);
 	    }
-	    return "redirect:getFestival.do?festival_name=" + encodedFestivalName + "&member_Id=" + userId;
-	}
+        // JSON 응답 데이터 생성
+        Map<String, Object> response = new HashMap<>();
+        response.put("isLiked", isLiked);
+        response.put("festivalCount", festivalService.getLikeCount(vo));
+        return response;
+    }
     
   
     
 	
-	@RequestMapping("/getFestival.do")
+	@RequestMapping("/getFestival")
 	public String getFestival(FestivalVO vo, Model model, HttpSession session) {
 		
 	    String encodedFestivalName = URLEncoder.encode(vo.getFestival_name(), StandardCharsets.UTF_8);
@@ -60,6 +65,7 @@ public class FestivalController {
 	    
 	    boolean isLiked = festivalService.isFestivalLiked(vo);
 	    
+	    
 	    model.addAttribute("isLiked", isLiked);
     	model.addAttribute("festivalCount", festivalService.getLikeCount(vo));
 		model.addAttribute("festival", festivalService.getFestival(vo));
@@ -69,14 +75,14 @@ public class FestivalController {
 	}
 	
 	
-	@RequestMapping("/getFestivalList_Month.do")
+	@RequestMapping("/getFestivalList_Month")
 	public String getFestivalList_Month(FestivalVO vo, Model model){
 	
 		model.addAttribute("festivalList", festivalService.getFestivalList_Month(vo));
 		return "views/festivalList.jsp";
 	}
 
-	@RequestMapping("main.do")
+	@RequestMapping("/main")
 	public String main(FestivalVO vo, Model model){
 	
 		model.addAttribute("festivalLikeList", festivalService.getFestivalLikeList(vo));

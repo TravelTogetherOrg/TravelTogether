@@ -41,6 +41,26 @@
 		<constructor-arg ref="sqlSession"></constructor-arg>
 	</bean>
   
+
+	<!-- MyBatis 트랜잭션 매니저 설정 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	    <property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- 트랜잭션 어드바이스 설정 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+	    <tx:attributes>
+	        <tx:method name="get*" read-only="true" />
+	        <tx:method name="*" />
+	    </tx:attributes>
+	</tx:advice>
+	
+	<!-- AOP 설정 -->
+	<aop:config>
+	    <aop:pointcut id="txPointcut" expression="execution(* com.traveltogether.biz..*.*(..))" />
+	    <aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice" />
+	</aop:config>
+   
    
    <!-- Spring과 JPA 연동 설정 -->
    <!-- 

@@ -243,7 +243,11 @@ label.required::after {
 
       form.addEventListener("submit", (e) => {
         e.preventDefault();
+<<<<<<< HEAD
         window.location.href = "./join.jsp";
+=======
+        window.location.href = "insertMember";
+>>>>>>> c2f9a3d3c3ccee84c217736a42b12df2c46d67e9
       });
 
       checkBoxes.forEach((item) => item.addEventListener("input", toggleCheckbox));

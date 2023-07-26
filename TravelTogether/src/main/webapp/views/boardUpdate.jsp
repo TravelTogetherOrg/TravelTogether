@@ -36,6 +36,7 @@
                     <div class="peopleAndDate">
                         <div class="people">
                             <select id="board_total_people" name="board_total_people" required>
+<<<<<<< HEAD
                                 <option disabled>인원수</option>
                                 <c:choose>
                                 	<c:when test="${board.board_total_people eq 1}">
@@ -63,6 +64,13 @@
 		                                <option value=4 selected>4명</option>
                                 	</c:when>
                                 </c:choose>
+=======
+                                <option disabled selected>인원수</option>
+                                <option value=1>1명</option>
+                                <option value=2>2명</option>
+                                <option value=3>3명</option>
+                                <option value=4>4명</option>
+>>>>>>> c2f9a3d3c3ccee84c217736a42b12df2c46d67e9
                             </select>
                         </div>
                         <div class="date">
@@ -124,8 +132,13 @@
                 </div>
             </div>
             <div class="buttons">
+<<<<<<< HEAD
                 <button class="resetButton" type="reset" onclick="location.href='${context}/boardList'">취소</button>
                 <button class="submitButton" type="submit">수정완료</button>
+=======
+                <button class="resetButton" type="reset">취소</button>
+                <button class="submitButton" type="submit" >수정완료</button>
+>>>>>>> c2f9a3d3c3ccee84c217736a42b12df2c46d67e9
             </div>
         </form>
         </section>

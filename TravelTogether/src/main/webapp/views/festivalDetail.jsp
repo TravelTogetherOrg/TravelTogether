@@ -11,187 +11,27 @@
 <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"/>
 <link rel="stylesheet" href="${context }/resources/css/bootstrap.min.css?dddddddd">
-    <style>
-      @font-face {
-          font-family: 'HSSaemaul-Regular';
-          src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/HSSaemaul-Regular.woff') format('woff');
-          font-weight: normal;
-          font-style: normal;
-      }
-
-      @font-face {
-          font-family: 'SUITE-Regular';
-          src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
-          font-weight: 400;
-          font-style: normal;
-      }
-
-      @font-face {
-          font-family: 'Dovemayo_gothic';
-          src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.1/Dovemayo_gothic.woff2') format('woff2');
-          font-weight: normal;
-          font-style: normal;
-      }
-
-      .text-start {
-        display: flex;
-        justify-content: flex-start;
-      }
-
-      .text-start .btn:nth-child(2) {
-        order: 1;
-        margin-left: auto;
-      }
-
-
-
-	/* 좋아요 구현관한 사항 */
-	.btn-like {
-	  background-color: rgb(192, 228, 255);
-	  color: white;
-	}
-
-
-/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
-/* 슬라이더 관한 사항 */
-
-
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-      /* button */
-      /* 기본 스타일 */
-      .btn {
-        color: black;
-        /* 다른 스타일 속성들 */
-      }
-
-      /* hover 상태일 때 스타일 */
-      .btn:hover {
-        color: rgb(247, 212, 237);
-        /* 다른 스타일 속성들 */
-      }
-
-
-      /* slider */
-      @media (max-width: 767px) {
-		.carousel-inner .carousel-item > div {
-			display: none;
-		}
-		.carousel-inner .carousel-item > div:first-child {
-			display: block;
-		}
-	}
-
-	.carousel-inner .carousel-item.active,
-	.carousel-inner .carousel-item-next,
-	.carousel-inner .carousel-item-prev {
-		display: flex;
-	}
-
-	/* medium and up screens */
-	@media (min-width: 768px) {
-
-		.carousel-inner .carousel-item-end.active,
-		.carousel-inner .carousel-item-next {
-			transform: translateX(25%);
-		}
-
-		.carousel-inner .carousel-item-start.active, 
-		.carousel-inner .carousel-item-prev {
-			transform: translateX(-25%);
-		}
-	}
-
-	.carousel-inner .carousel-item-end,
-	.carousel-inner .carousel-item-start { 
-		transform: translateX(0);
-	}
-  
-
-
-
-
-/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
-
-
-
-
-
-/* 5개 그림이랑 있는 글씨 .lead */
-  .lead {
-    text-align: left;
-  }
-
-
-/* comment 댓글 */
-  .comment {
-      border: 1px solid #ddd;
-      padding: 10px;
-      margin-bottom: 10px;
-    }
-
-    .comment .comment-author {
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-
-    .comment .comment-content {
-      margin-bottom: 0;
-    }
-
-
-    /* 포스터 옆 글씨 */
-    #fest {
-      padding-left: 10px;
-    }
-
-    </style>
-  
-  <!-- 카카오 api에 관한것 -->
-  <style>
-    .overlay_info {border-radius: 6px; margin-bottom: 12px; float:left;position: relative; border: 1px solid #ccc; border-bottom: 2px solid #ddd;background-color:#fff;}
-    .overlay_info:nth-of-type(n) {border:0; box-shadow: 0px 1px 2px #888;}
-    .overlay_info a {display: block; background: #457cc4; background: #457cc4 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center; text-decoration: none; color: #fff; padding:12px 36px 12px 14px; font-size: 14px; border-radius: 6px 6px 0 0}
-    .overlay_info a strong {background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/place_icon.png) no-repeat; padding-left: 27px;}
-    .overlay_info .desc {padding:10px;position: relative; min-width: 190px; height: 56px}
-    .overlay_info .address {font-size: 12px; color: #333; position: absolute; left: 10px; right: 10px; top: 10px; white-space: normal}
-    .overlay_info:after {content:'';position: absolute; margin-left: -11px; left: 50%; bottom: -12px; width: 22px; height: 12px; background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png) no-repeat 0 bottom;}
-</style>
+<link rel="stylesheet" href="${context }/resources/css/festivalDetail.css?dddddddd">
 </head>
+<script src="${context}/resources/js/jquery-3.6.4.js">
+
+</script>
+
 <body class="stst" style="padding-top: 70px;">
     
 
-
 	<%@ include file="header.jsp" %>
-
-
-
 <main>
-
-       
-
     <br>
     <div class="container text-center my-3">
       <p class="text-start">  
 		<button type="button" class="btn btn-outline-primary"
-		    style="font-family: 'SUITE-Regular', sans-serif;
+		        style="font-family: 'SUITE-Regular', sans-serif;
 		    <c:if test="${isLiked}">
 		        background-color: rgb(192, 228, 255);
 		    </c:if>"
-		    onclick="checkSessionAndLike(event)"
-		    id="likeButton">
+		        onclick="likeOn()"
+		        id="likeButton">
 		    <i class="bi bi-heart-fill text-primary"></i> 좋아요 : <span id="likeCount">${festivalCount}</span>
 		</button>
         &nbsp;&nbsp;
@@ -200,7 +40,7 @@
         </button> -->
         <button type="button" class="btn btn-lg btn-outline-primary"  
                 style="font-family: 'SUITE-Regular', sans-serif;"
-                onclick="location.href='boardList.do'">
+                onclick="location.href='boardList'">
           <i class="bi bi-chat-right-dots text-primary"></i> 동행자구하기
         </button>
       </p>
@@ -416,7 +256,7 @@
 
 
 <!-- 좋아요 눌렀을때 세션값이 있는경우랑 없는경우-->
-<script>
+<!-- <script>
     var sessionUserId = "${sessionScope.userId}";
 
     function checkSessionAndLike(event) {
@@ -427,24 +267,35 @@
         }
         event.stopPropagation();
     }
-</script>
+</script> -->
 
 
-
-
-<!-- 좋아요 갯수 -->
-
-
-
-
-<!-- 지역 선택 스크립트 -->
+<!-- 좋아요 Ajax 처리 -->
 <script>
-  function changeRegion(region) {
-    document.getElementById('selectedRegion').textContent = region;
-  }
+    var sessionUserId = "${sessionScope.userId}";
+
+    function likeOn() {
+        if (sessionUserId) {
+            $.ajax({
+                url: '<c:url value="festivalLike"/>',
+                type: 'get',
+                data: {
+                    'festival_name': '${festival.festival_name}',
+                    'member_id': sessionUserId
+                },
+                success: function(response) {
+                    $("#likeButton").css("background-color", response.isLiked ?  "transparent" : "rgb(192, 228, 255)");
+                    $("#likeCount").text(response.festivalCount);
+                },
+                error: function() {
+                    alert("에러가 발생");
+                }
+            });
+        } else {
+            alert("로그인 후 이용해주세요.");
+        }
+    }
 </script>
-
-
 
 <!-- slider -->
 <script>
@@ -574,38 +425,6 @@
 
 
   </script>
-
-
-
-<!-- 댓글 -->
-<!-- <script>
-  document.getElementById('commentForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // 폼 제출 기본 동작 막기
-
-    // 입력한 이름과 댓글 내용 가져오기
-    var nameInput = document.getElementById('name');
-    var commentInput = document.getElementById('comment');
-    var name = nameInput.value;
-    var comment = commentInput.value;
-
-    // 댓글 출력하기
-    var commentList = document.getElementById('commentList');
-    var commentElement = document.createElement('div');
-    commentElement.classList.add('card', 'mb-3');
-    commentElement.innerHTML = `
-      <div class="card-body">
-        <h5 class="card-text">${comment}</h5>
-        <p class="card-title">작성자 : ${name} 2023-06-26</p>
-      </div>
-
-    `;
-    commentList.appendChild(commentElement);
-
-    // 입력 필드 초기화
-    nameInput.value = '';
-    commentInput.value = '';
-  });
-</script> -->
 
     <script src="${context}/resources/js/bootstrap.bundle.min.js"></script>
 

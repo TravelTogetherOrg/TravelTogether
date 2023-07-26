@@ -3,4 +3,8 @@
 >>>>>>>=KHS
 eclipse.preferences.version=1
 encoding//src/main/java/com/traveltogether/view/board/BoardController.java=UTF-8
+<<<<<<< HEAD
+=======
+encoding//src/main/java/com/traveltogether/view/common/CommonExceptionHandler.java=UTF-8
+>>>>>>> c2f9a3d3c3ccee84c217736a42b12df2c46d67e9
 encoding//src/main/java/com/traveltogether/view/member/MemberController.java=UTF-8

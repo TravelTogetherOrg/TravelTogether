@@ -1,14 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
     pageEncoding="UTF-8" session="true"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <script src="https://kit.fontawesome.com/cd8f90f87a.js"crossorigin="anonymous"></script>
-      <link rel="stylesheet" href="${context}/resources/css/chatRoom.css">
-  <%
-String userNickName = (String)session.getAttribute("userNickname");
-%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://kit.fontawesome.com/cd8f90f87a.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="${context}/resources/css/chatRoom.css">
+<% String userNickName = (String)session.getAttribute("userNickname"); %>
+<% int roomNumber = (int)session.getAttribute("chatNumber");%>
+<% String userId = (String)session.getAttribute("userId"); %>
+<% String chatTitle = (String)session.getAttribute("chatTitle"); %>
+
 <title>박종권</title>
 </head>
 <body>
@@ -20,19 +23,16 @@ String userNickName = (String)session.getAttribute("userNickname");
 		    		<div>
 		    			<i class="fa-solid fa-angles-left" style="margin-left: 20px;" onclick="historyBack()"></i>
 		    		</div>
-		    		<div>
-		    			<p>채팅방 제목들어갈 자리입니다~~~<p>
-		    		</div>
+		    			<p><%=chatTitle %></p>
 		    		 <div>
 		    			<i class="fa-solid fa-xmark 1.5x" style="margin-right: 20px;"></i>
 		    		</div>  
 		   		</div>
 	  			<div class="inputContainer">
-	     			<input type="text" id="sender" value="<%= userNickName%>" style="display: none;">
+	     			<input type="text" id="sender" value="<%=userNickName %>" style="display: none;">
 	   			</div>
 				<div id="messages">
 	      			<div class="notice" ></div>
-	      			
 	               	<div class="anotherMsg">
 	                   <span class="anotherName"></span>
 	                   <div class="anotherCurrentTime">
@@ -50,8 +50,6 @@ String userNickName = (String)session.getAttribute("userNickname");
 	     			<input type="text" id="messageInput" placeholder="메시지를 입력하세요">
 	     			<button type="button" id="removeButton" onclick="clearText()">전체 지우기</button>
 	     			<input type="submit" id="textSend" value="보내기" style="cursor: pointer">
-	      			<input type="file" id="fileInput">
-					<button onclick="sendFile()">파일 전송</button>
 				</div>  
 			</div>
 	  		<div id="memberWrap">
@@ -63,15 +61,27 @@ String userNickName = (String)session.getAttribute("userNickname");
 						<div class="memberEl"></div> 
 	                </div>
 				</div>
-				<div id="chatButton">
-					<!-- <button id="exitButton" onclick="onClose()">대화방 나가기</button> -->
-	            </div>
+				<div id="chatButton"></div>
 			</div>
 		</div>
 	</div>
-	
   <!-- websocket javascript -->
   <script type="text/javascript">
+  
+	history.pushState(null, null, location.href);
+	window.onpopstate = function () {
+	 	history.go(1);
+	};
+  
+	document.onkeydown = doNotReload;
+	function doNotReload(){
+		if((event.ctrlKey == true && (event.keyCode == 78 || event.keyCode == 82)) || (event.keyCode == 116)){
+			event.keyCode = 0;
+			event.cancelBubble = true;
+			event.returnValue = false;
+		} 
+	};
+  
     var ws;
     var messages = document.getElementById("messages");
     var notice = document.querySelector(".notice")
@@ -82,8 +92,13 @@ String userNickName = (String)session.getAttribute("userNickname");
 	};
     
     function openSocket() {	
-		var url = "ws://172.30.1.46:8080/echo.do/"
-		url += '<%=userNickName%>';
+		var url = "ws://172.30.1.79:8080/echo.do/"
+		var userNickName = '<%=userNickName%>';
+		var roomNumber = '<%=roomNumber%>';
+		var userId = '<%=userId %>';
+		
+		url += userNickName + "/" + roomNumber + "/" + userId;
+		
 		ws = new WebSocket(url);
 		ws.onmessage = onMessage;
 		ws.onopen = onOpen;
@@ -93,6 +108,7 @@ String userNickName = (String)session.getAttribute("userNickname");
    	function onMessage(event){
    		var message = event.data;
    		var nickname="";	
+   		console.log(message);
 	   	if(message.startsWith("ROOM_SIZE:")){
 	   		var roomSize = message.substring(10);
 	   		var formattedRoomSize = roomSize + "명";
@@ -126,13 +142,10 @@ String userNickName = (String)session.getAttribute("userNickname");
       	}
 	};
     
-   	function onOpen(event){};
-   	
-   	
 	function onClose(){
    		window.location.href='/ChatRoomList.do';
-   	};
-   	
+	}
+   	 
     function scrollToBottom() {
     	messages.scrollTop = messages.scrollHeight;
     };
@@ -174,6 +187,7 @@ String userNickName = (String)session.getAttribute("userNickname");
     function closeSocket() {
 		ws.close();
     }
+    
     function clearText(){
 		var messagesContainer = document.getElementById("messages");
 			if (!confirm("대화내용을 삭제하시겠습니까?")) {
@@ -183,11 +197,12 @@ String userNickName = (String)session.getAttribute("userNickname");
     	        messagesContainer.removeChild(messagesContainer.firstChild);
     	   		}
        		}};
+       		
     function historyBack(){
 			if (!confirm("채팅방 목록으로 가시겠습니까?    (대화내용은 모두 삭제됩니다.)")){
 				return;
     	    }else {
-    			window.location.href='/ChatRoomList.do';
+    			window.location.href='/deleteChatUser.do';
     	    }};
      
     function writeResponse(text) {
@@ -198,9 +213,6 @@ String userNickName = (String)session.getAttribute("userNickname");
 	     	var whisper_TargetNickname = whisper_Container[3];
 			var whisper_Sender = whisper_Nickname+"("+whisper_TargetNickname+"님에게 보낸 귓속말입니다)"
 			var whisper_Receiver = whisper_Nickname+"("+whisper_Nickname+"님에게 받은 귓속말입니다)"
-	   /* 	console.log("보낸사람입니다"+whisper_Nickname);
-	    console.log("받는사람입니다"+whisper_TargetNickname);
-	    console.log("귓속말 끝입니다"); */
    		}
     	var messages = document.getElementById("messages");
     	var msgContainer = text.split(':');
@@ -220,6 +232,7 @@ String userNickName = (String)session.getAttribute("userNickname");
      	    var myTextSpan = document.createElement('span');
     	    myTextSpan.classList.add('myText', 'msg');
       	    if(text.startsWith("$귓속말")){
+      	    	myNameSpan.style.color = "purple";
        	  		myNameSpan.textContent = whisper_Sender;	
 				myTextSpan.textContent = whisper_Message;
       	    }else{
@@ -227,7 +240,7 @@ String userNickName = (String)session.getAttribute("userNickname");
 				myTextSpan.textContent = messageText;
 			}
 		var myProfileImage = document.createElement('img');
-		myProfileImage.src = "${context}/cat.jpg";
+		myProfileImage.src = "${context}/resources/image/chatRoom/chatProfill.jpg";
 		myProfileImage.style.width = "40px"; // 이미지의 너비 설정
 		myProfileImage.style.height = "40px"; // 이미지의 높이 설정
 		myProfileImage.style.borderRadius = "100px";
@@ -249,24 +262,31 @@ String userNickName = (String)session.getAttribute("userNickname");
 	     	var anotherTextSpan = document.createElement('span');
 		    anotherTextSpan.classList.add('anotherText', 'msg');
 	      	if(text.startsWith("$귓속말")){
+	      		anotherNameSpan.style.color = "purple";
 	      		anotherNameSpan.textContent = whisper_Receiver;
 		 	 	anotherTextSpan.textContent = whisper_Message;
 	     	}else{
 	    		anotherNameSpan.textContent = name;
 	 	 		anotherTextSpan.textContent = messageText;
 	      	}
+	    var anotherProfileImage = document.createElement('img');
+	    anotherProfileImage.src = "${context}/resources/image/chatRoom/chatProfill_2.jpg";
+	    anotherProfileImage.style.width = "40px"; // 이미지의 너비 설정
+	    anotherProfileImage.style.height = "40px"; // 이미지의 높이 설정
+	    anotherProfileImage.style.borderRadius = "100px";
 		var anotherCurrentTime = document.createElement('div');
 		anotherCurrentTime.classList.add('anotherMsg'); 
 		anotherCurrentTime.textContent = formattedTime;
-		
+
 		anotherCurrentTime.insertAdjacentElement('afterbegin', anotherTextSpan); 
+		/* anotherMsgContainer.appendChild(anotherProfileImage); */
 		anotherMsgContainer.appendChild(anotherNameSpan);
 	  	anotherMsgContainer.appendChild(anotherCurrentTime);
 		messages.appendChild(anotherMsgContainer);
 	    scrollToBottom();
 	    }
-      }
+    }
+
   </script>
 </body>
 </html>
-

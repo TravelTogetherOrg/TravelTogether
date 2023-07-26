@@ -78,6 +78,12 @@ body{
 	background: rgb(192, 228, 255);
 	color: white;
 }
+<<<<<<< HEAD
+=======
+#modifyBtn:hover{
+	color: orange;
+}
+>>>>>>> c2f9a3d3c3ccee84c217736a42b12df2c46d67e9
 #btn{
 	display: flex;
 	justify-content: center;
@@ -193,7 +199,11 @@ a{
 #tabs li a.current {
 	background: rgb(192, 228, 255);
 	color: white;
+<<<<<<< HEAD
 	
+=======
+	border-radius: 10xp;
+>>>>>>> c2f9a3d3c3ccee84c217736a42b12df2c46d67e9
 }
 
 .tab-section {
@@ -203,12 +213,22 @@ a{
 	margin-bottom: 50px; 
 	background:white;
 	align: center;
+<<<<<<< HEAD
+=======
+	border-radius:10px; 
+>>>>>>> c2f9a3d3c3ccee84c217736a42b12df2c46d67e9
 }
 
 .sidebar {
 	width: 220px;
+<<<<<<< HEAD
 	height: auto;            /* 사이드바 세로 박스 크기 */
 	margin-bottom: 50px;            /* 하단 간격 */
+=======
+	height: 190px;    
+	margin-top:10px;       /* 사이드바 세로 박스 크기 */
+	margin-bottom: 40px;            /* 하단 간격 */
+>>>>>>> c2f9a3d3c3ccee84c217736a42b12df2c46d67e9
 	padding: 10px;
 	border: 2px solid #ccc;
 	border-radius: 10px;			
@@ -231,6 +251,10 @@ a{
   flex-direction: column;
   align-items: center;
   text-align: left;
+<<<<<<< HEAD
+=======
+  padding-left: 10px;
+>>>>>>> c2f9a3d3c3ccee84c217736a42b12df2c46d67e9
 }
 
 .info table {
@@ -244,6 +268,16 @@ a{
   border: 1px solid #ccc;
   height: 25px;
 }
+<<<<<<< HEAD
+=======
+.info input[type="tel"] {
+  margin-top:5px;
+  text-align: center; 
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  height: 25px;
+}
+>>>>>>> c2f9a3d3c3ccee84c217736a42b12df2c46d67e9
 .info input[type="password"] {
   margin-top:5px;
   text-align: center; 
@@ -256,6 +290,74 @@ a{
   text-align: center;
   margin-top: 20px;
 }
+<<<<<<< HEAD
 input[type="file"]{
 	margin-bottom: 15px;
 }
+=======
+.user_image{
+	padding-top:15px;
+	width:380px;
+	border: solid 1px #ccc;
+	margin: auto;
+	margin-bottom: 15px;
+}
+.user_image input[type="file"]{
+	
+	margin-bottom: 15px;
+	margin-top: 15px;
+}
+
+/* -유효성-- */
+  .user_nickname_ok{
+  font-weight : bolder;
+  color: blue;
+  display: none;
+  }
+  .user_nickname_already{
+  font-weight : bolder;
+  color: orange;
+  display: none;
+  }
+    .user_password_ok{
+  font-weight : bolder;
+  color: blue;
+  display: none;
+  }
+  .user_password_already{
+  font-weight : bolder;
+  color: orange;
+  display: none;
+  }
+  .user_password_already2{
+  font-weight : bolder;
+  color: orange;
+  display: none;
+  }
+  
+  /* ---테이블 디자인--- */
+  
+  #likeList {
+  transition: transform 0.3s ease;
+  }
+  #likeList:hover {
+    transform: translateY(-10px);
+  }
+  .list{
+  margin-left: 13px;
+  border:1px solid black;
+  }
+  .list th {
+  padding-top: 4px;
+  text-align: center;
+  border-bottom:2px solid black;
+  border-right: 1px solid #ccc;
+  border-left: 1px solid #ccc; 
+  }
+  .list td {
+  text-align: center;
+   border-bottom:1px solid darkgray;
+   border-right: 1px solid #ccc;
+   border-left: 1px solid #ccc;
+  }
+>>>>>>> c2f9a3d3c3ccee84c217736a42b12df2c46d67e9

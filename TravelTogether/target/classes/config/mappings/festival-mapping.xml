@@ -121,11 +121,7 @@
 		select festival_name,festival_startdate,festival_enddate,festival_address
 		from festival
 		where festival_address
-		like CONCAT('%', #{value}, '%')
-		<![CDATA[AND YEAR(FESTIVAL_STARTDATE) <= YEAR(CURDATE())]]>
-		<![CDATA[AND MONTH(FESTIVAL_STARTDATE) <= MONTH(CURDATE())]]>
-		<![CDATA[AND YEAR(FESTIVAL_ENDDATE) <= YEAR(CURDATE())]]>
-		<![CDATA[AND MONTH(FESTIVAL_ENDDATE) <= MONTH(CURDATE())]]>
+		like CONCAT('%', #{value}, '%');
 	</select>
 
 	

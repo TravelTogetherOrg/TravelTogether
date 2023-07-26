@@ -115,10 +115,20 @@ input {
 
 .login_container .right_input:active{
 	background-color: rgb(192, 228, 255);
+<<<<<<< HEAD
+=======
+	border: 2px solid orange;
+  	color: orange;
+>>>>>>> c2f9a3d3c3ccee84c217736a42b12df2c46d67e9
 }
 
 .login_container .right_input:hover{
 	background-color: rgb(192, 228, 255);
+<<<<<<< HEAD
+=======
+	border: 2px solid orange;
+  	color: orange;
+>>>>>>> c2f9a3d3c3ccee84c217736a42b12df2c46d67e9
 }
 
 /* 아이디 비밀번호 , 4버튼 테이블 */
@@ -149,3 +159,68 @@ input {
 	justify-content: center;
 	align-items: center;
 }
+<<<<<<< HEAD
+=======
+
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@1,900&display=swap');
+@media (max-width: 768px) {
+  .main {
+    min-width: auto;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* align-items 값을 flex-start로 변경 */
+    height: 100vh;
+    overflow-y: auto; /* 세로 스크롤 추가 */
+  }
+
+  .login_item.login_item2 {
+    width: auto;
+    margin: 0 auto;
+  }
+  
+  .login_container {
+    width: 60%;
+  }
+}
+
+@media (max-width: 480px) {
+  .login_container {
+    width: 90%;
+  }
+  
+  #sns {
+    display: none;
+  }
+}
+.navbar__logo{
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: bolder;
+    font-size: 1.6em;
+  }
+  .navbar__logo span {
+    color: orange;
+    padding-left: 0;
+  }
+  a{
+    text-decoration: none;
+    color: black;
+  }
+  .function a{
+   font-size: 0.8em; 
+   color: gray;
+  }
+  input[type="submit"]:hover,
+  input[type="submit"]:active {
+  font-weight:bolder;
+  color: orange;
+}
+ .user_id_already{
+  margin-bottom: 23px;
+  margin-top: 23px;
+  font-weight : bolder;
+  color: orange;
+  display: none; 
+  }
+>>>>>>> c2f9a3d3c3ccee84c217736a42b12df2c46d67e9
