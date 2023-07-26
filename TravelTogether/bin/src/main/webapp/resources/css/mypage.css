@@ -1,0 +1,336 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	border: 0;
+	border-collapse:collapse;
+	box-sizing:border-box;
+	text-decoration:none;
+}
+
+html{ 
+	height : 100%;
+}
+body{
+	height : 100%;
+	text-decoration:none;
+}
+
+.wrap{
+	min-height:100%;
+	position : relative;
+	padding-bottom : 200px;
+}
+.sidebar{
+	align: center;
+	width: 160px;
+    height: 180px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.sidebar img{
+	width: 70px;
+	height: 70px;
+	
+}
+#MyPage{
+	margin: 0 auto;
+	width: 1000px;
+	text-align: center;
+	margin-bottom: 50px;
+	
+	
+}
+#profile_img{
+	display: inline-block;
+	width: 40%;
+	height: 280px;
+	float: left;
+	text-align: right;
+	padding-right: 10px 50px 10px 50px;
+}
+#info{
+	display: inline-block;
+	width: 50%;
+	height: 300px;
+	padding: 30px 0px 30px 60px;
+}
+#hr{
+	border-top-color: #0AC5A8;
+	margin-top: 50px;
+}
+.my_img{
+	width: 180px;
+	height: 180px;
+	display: inline-block;
+	margin-bottom: 10px;
+}
+#modifyBtn{
+	background: rgb(192, 228, 255);
+	color: white;
+}
+#modifyBtn:hover{
+	color: orange;
+}
+#btn{
+	display: flex;
+	justify-content: center;
+}
+
+#infobox{
+	background: #f5f5f5a6;
+    width: 800px;
+    height: 300px;
+    margin: 0 auto;
+    border-radius: 25px;
+    box-shadow: 5px 5px 5px lightgrey;  
+}
+
+td h5{
+	margin-top: 7px;
+    margin-bottom: 7px;
+}
+html, body {
+   	height: 100%
+}
+.container {   	/* footer 고정 */
+	 font-family: 'GmarketSansMedium';
+	 min-height: 100%;
+	 position: relative;
+	 display: flex;
+}
+
+#companioninfo {
+	padding: 0;
+	margin: 0;
+	border: 0;
+	border-collapse:collapse;
+	box-sizing:border-box;
+	text-decoration:none;
+}
+
+.companioninfo{
+	min-height:100%;
+	position : relative;
+	padding-bottom : 200px;
+}
+.title{
+	margin-top: 100px;
+	padding-bottom:10px;
+}
+#input_img{                  /* 프로필 이미지 추가 버튼 */
+	border:1px solid #ccc; 
+	border-radius: 5px; 
+	padding:5px;
+	text-align:center;
+}
+
+
+.rounded-image {            /* 사진파일 동그랗게 편집 */
+    border-radius: 50%;
+    overflow: hidden;
+    border:1px solid black; 
+  }
+
+#writedlist{                  /* 동행신청정보 탭 */
+	border: 1px solid #ccc;
+	flex: 1;
+	padding: 10px;
+	
+}
+.btn-default2{
+	width: 49%;
+}
+#cominfoBtn_G{
+	background: #2C3C5B;
+	color: white;
+}
+#companioninfo_t, #msg2{
+	display: none;
+}
+#endBtn{
+	padding: 1px 3px 1px 3px;
+}
+a{
+	text-decoration: none;
+}
+.textDiv{
+	margin-top: 30px;
+}
+
+.wrapper {
+	display: flex; /* Add flex display to the wrapper */
+}
+
+#tabs {
+	width: 200px; /* Adjust the width as per your preference */
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#tabs li {
+	margin: 0;
+	padding: 0;
+}
+
+#tabs li a {
+	display: block;
+	padding: 10px;
+	border-bottom: 2px solid #fff;
+	text-align: center;
+	color: #000;
+	text-decoration: none;
+	z-index: 999;
+}
+
+#tabs li a.current {
+	background: rgb(192, 228, 255);
+	color: white;
+	border-radius: 10xp;
+}
+
+.tab-section {
+	flex: 1;
+	padding: 10px;
+	border: 2px solid #ccc;
+	margin-bottom: 50px; 
+	background:white;
+	align: center;
+	border-radius:10px; 
+}
+
+.sidebar {
+	width: 220px;
+	height: 190px;    
+	margin-top:10px;       /* 사이드바 세로 박스 크기 */
+	margin-bottom: 40px;            /* 하단 간격 */
+	padding: 10px;
+	border: 2px solid #ccc;
+	border-radius: 10px;			
+}
+
+.content {
+	flex: 1;
+	padding: 10px;
+	height: 100%; 
+	overflow-y: auto; 
+	position: relative; 
+}
+	#companioninfo_g td {
+       padding: 5px; /* 셀의 내부 여백 조정 */
+   }
+   
+   /* --- */
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.info table {
+  margin: 0 auto;
+}
+
+.info input[type="text"] {
+  margin-top:5px;
+  text-align: center; 
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  height: 25px;
+}
+.info input[type="tel"] {
+  margin-top:5px;
+  text-align: center; 
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  height: 25px;
+}
+.info input[type="password"] {
+  margin-top:5px;
+  text-align: center; 
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  height: 25px;
+}
+
+#btn {
+  text-align: center;
+  margin-top: 20px;
+}
+.user_image{
+	padding-top:15px;
+	width:380px;
+	border: solid 1px #ccc;
+	margin: auto;
+	margin-bottom: 15px;
+}
+.user_image input[type="file"]{
+	
+	margin-bottom: 15px;
+	margin-top: 15px;
+}
+
+/* -유효성-- */
+  .user_nickname_ok{
+  font-weight : bolder;
+  color: blue;
+  display: none;
+  }
+  .user_nickname_already{
+  font-weight : bolder;
+  color: orange;
+  display: none;
+  }
+    .user_password_ok{
+  font-weight : bolder;
+  color: blue;
+  display: none;
+  }
+  .user_password_already{
+  font-weight : bolder;
+  color: orange;
+  display: none;
+  }
+  .user_password_already2{
+  font-weight : bolder;
+  color: orange;
+  display: none;
+  }
+  
+  /* ---테이블 디자인--- */
+  
+  #likeList {
+  transition: transform 0.3s ease;
+  }
+  #likeList:hover {
+    transform: translateY(-10px);
+  }
+  .list{
+  margin-left: 13px;
+  border:1px solid black;
+  }
+  .list th {
+  padding-top: 4px;
+  text-align: center;
+  border-bottom:2px solid black;
+  border-right: 1px solid #ccc;
+  border-left: 1px solid #ccc; 
+  }
+  .list td {
+  text-align: center;
+   border-bottom:1px solid darkgray;
+   border-right: 1px solid #ccc;
+   border-left: 1px solid #ccc;
+  }

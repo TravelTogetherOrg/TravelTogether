@@ -1,0 +1,705 @@
+@charset "UTF-8";
+
+.container{
+    width: 1120px; /*1120*/
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto 120px auto;
+
+}
+@media screen and (max-width:768px){
+    .container{
+        width: 760px;
+        justify-content: center;
+        text-align: center;
+        margin: 0 auto 120px auto;
+    }
+    #boardWriteButton{
+    	text-align: center;
+    	margin-top: 0.5em;
+    }
+    
+}
+
+/* boardList */
+#festivalSearch{
+    margin-top: 2em;
+    vertical-align: middle;
+    padding-top: 5em;
+}
+#festivalSearch p{
+    font-size: 3em;
+    vertical-align: middle;
+    user-select: none;
+}
+#festivalSearch button{
+    vertical-align: middle;
+    background:none;
+    /*background-color: rgb(192, 228, 255);*/
+    cursor: pointer;
+
+    border: 0.13em solid rgb(192, 228, 255);
+    border-radius: 50%;
+    
+    box-shadow: 0 0.1875em 0.375em rgba(0,0,0,0.16), 0 0.1875em 0.375em rgba(0,0,0,0.23);
+    
+}
+#festivalSearch img{
+    width: 1.5em;
+    margin: 0.3em;
+}
+select{
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+
+    padding: 0.5em;
+
+    border: 0.15em solid rgb(192, 228, 255);
+    border-radius: 1em;
+    box-shadow: 0 0.1875em 0.375em rgba(0,0,0,0.16), 0 0.1875em 0.375em rgba(0,0,0,0.23);
+
+    background-image: url(../image/board/search.svg);
+    background-repeat: no-repeat;
+    background-position: 0.5em 50%;
+
+    cursor: pointer;
+    outline: none;
+
+    margin-top: 1em;
+}
+select::-ms-expand{ display: none; }
+select:focus{
+    border-color: rgb(192, 228, 255);
+}
+
+#findRegion{
+	width: 7.5em;
+}
+#findFestivals{
+	width: 17em;
+}
+
+#boardWriteButton button{
+	width: 8em;
+	margin-right: 0.5em;
+	border-radius: 1em;
+	padding: 0.5em;
+	background: rgba(192, 228, 255, 0.5);
+	border: 0;
+	box-shadow: 0 0.1875em 0.375em rgba(0,0,0,0.16), 0 0.1875em 0.375em rgba(0,0,0,0.23);
+	
+	transition: background 0.3s ease-in-out,
+				color 0.3s ease-in-out;
+}
+#boardWriteButton button:hover{
+	background: rgb(192, 228, 255);
+	
+}
+
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-bottom: 0.5em;
+}
+.col{
+    width: 17em;
+    height: 16em;
+    margin-bottom: 1.5em;
+    border-radius: 1em;
+    box-shadow: 0 0.0625em 0.375em rgba(0,0,0,0.12), 0 0.0625em 0.125em rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    cursor: pointer;
+}
+.col:hover {
+    box-shadow: 0 0.875em 1.75em rgba(0,0,0,0.25), 0 0.625em 0.625em rgba(0,0,0,0.22);
+  }
+
+.top, .middle, .bottom{
+    width: 100%;
+    border-radius: 0.5em;
+    
+}
+.top{
+    height: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.profileImage{
+    height: 2.3em;
+    /*border: 0.1em solid black;*/
+    border-radius: 50%;
+    margin-right: 0.4em;
+    
+}
+.topInfo p{
+    margin: 0;
+    display: -webkit-box;
+    overflow: hidden;
+	text-overflow: ellipsis;
+    overflow-wrap: break-word;
+    
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    
+}
+.memberInfo{
+	width: 74.72px
+}
+.festivalName{
+	width: 95.09px
+}
+
+.ageandgender{
+    display: flex;
+}
+.ageandgender div{
+    margin: 0 0.2em;
+}
+.line{
+    margin: 0 0.4em;
+}
+.middle{
+    height: 7em;
+    position: relative;
+    overflow: hidden;
+}
+.thumnail{
+    width: 17em;
+    height: 6.95em;
+    border-radius: 0.5em;
+    object-fit: cover;
+}
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translateZ(0);
+    }
+}
+.middleHover{
+    display:none;
+    width: 17em;
+    position: absolute;
+    bottom: 0;
+    background: rgba(236, 236, 236,0.7);
+    border-radius: 0.5em;
+    padding: 0.3em;
+    
+    animation: fadeInUp 0.5s;
+    
+}
+.middleHover div{
+    display: inline-block;
+}
+.middleHover img{
+    height: 1em;
+    width: 1em;
+    display: flex;
+}
+.state{
+    margin-right: 6em;
+}
+.viewandchat{
+    display: flex;
+    
+}
+
+.view img,p{
+    display: inline-block;
+}
+
+.bottom{
+    height: 4em;
+    padding: 0.5em;
+    
+}
+.bottom p{
+    display: -webkit-box;
+    margin: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+    overflow-wrap: break-word;
+    margin-block-start: 0.2em;
+    margin-block-end: 0.2em;
+    
+}
+.listFestival{
+	-webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.listTitle{
+    font-weight: 600;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    
+}
+.listContent{
+    
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    
+}
+
+#boardList{
+    margin-top: 1em;
+}
+#pageChevrons{
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-bottom: 2em;
+}
+#pageChevrons button{
+    background: none;
+    user-select: none;
+    cursor: pointer;
+}
+.chevron{
+    border-radius: 50%;
+    border: 0.05em solid black;
+    margin: 0 0.1em;
+    cursor: pointer;
+    padding: 0.08em;
+}
+.chevron img{
+    width: 1.5em;
+    vertical-align: middle;
+    align-items: center;
+}
+#pageNumbers{
+    margin: 0 0.5em;
+    font-size: 1.5em;
+}
+
+/* boardWrite */
+body{
+    line-height: 1.35;
+	
+}
+.container-md{
+    justify-content: center;
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 120px;
+}
+
+.intro{
+    width: unset;
+    text-align: center;
+    margin-top: 80px;
+}
+.intro div{
+    height: 21.3125em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    background-image: url(../image/board/IMG_2359.JPG);
+    background-size: cover;
+}
+.intro div::before{
+    content: "";
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000;
+}
+
+.intro P{
+    margin: 0;
+    color: white;
+}
+.intro p:first-child{
+    font-size: 1.25em;
+}
+.intro p:nth-child(2){
+    font-size: 3.125em;
+    margin-top: 0.3em;
+}
+
+.chooseDetail{
+    border: 0.1em solid black;
+    border-radius: 0.5em;
+    padding: 1.5em;
+}
+
+#selectFestivalByRegion{
+    margin-top: 2em;
+    display: flex;
+    flex-direction: row;
+    padding: 0.5em;
+
+    border: 0.1em solid black;
+    border-radius: 0.5em;
+}
+#selectFestivalByRegion div:first-child{
+    padding-right: 0.5em;
+    border-right: 0.1em solid black;
+}
+
+#regions{
+    width: 150px;
+}
+#regions td{
+    width: 12.5em;
+    font-size: 1.25em;
+    padding: 0.5em 0;
+    cursor: pointer;
+    border-radius: 0.5em;
+}
+#regions tr:first-child{
+    background-color: rgb(192, 228, 255);
+}
+
+#festivalsByRegion td{
+    width: 14.375em;
+    font-size: 1.15em;
+    padding: 0.3em;
+    cursor: pointer;
+    vertical-align: middle;
+    font-weight: 600;
+}
+
+/* 맨 처음 보여지는 지역 외 div는 숨기기 */
+#gyeonggidoFestival{
+    display: none;
+}
+
+.peopleAndDate{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 0.5em;
+}
+.people select{
+    background-image: none;
+    width: 5.5em;
+    border: 0.05em black solid;
+    text-align: center;
+    box-shadow: none;
+    appearance: menulist-button;
+    padding: 0.3em;
+    margin: 0;
+}
+.date{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    padding: 0;
+    
+}
+.date label{
+    margin: 0;
+}
+.date div{
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em;
+    text-align: center;
+}
+.date input{
+    border: 0.05em black solid;
+    border-radius: 1em;
+    padding: 0.4em;
+}
+#lastDay{
+    display: none;
+}
+
+.writeImage{
+    margin-top: 2em;
+}
+.writeImageInfo{
+    height: 25em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    border-radius: 0.5em;
+    background-size: cover;
+
+    border: 0.1em solid black;
+}
+.writeTitle input{
+    width: 100%;
+    line-height: 1.25em;
+    padding: 1em 1.25em;
+    margin-top: 1em;
+    border-radius: 0.5em;
+
+    border: 0.1em solid black;
+}
+.writeContent textarea{
+    width: 100%;
+    height: 25em;
+    overflow: auto;
+    line-height: 1.25em;
+    padding: 1em 1.25em;
+    margin-top: 1em;
+    resize: none;
+    border-radius: 0.5em;
+
+    border: 0.1em solid black;
+}
+
+.buttons{
+    padding: 4.375em 0 4.375em;
+    
+}
+.resetButton, .submitButton{
+    width: 15em;
+    height: 3em;
+    cursor: pointer;
+    border-radius: 0.5em;
+    margin-top: 0.5em;
+    font-weight: 800;
+}
+.submitButton{
+    background-color: rgb(192, 228, 255);
+}
+
+
+/* board */
+.boardMain{
+    margin-top: 5em;
+}
+.boardImageAndMap{
+    margin-top: 80px;/* 1em */
+    position: relative;
+    padding: 0;
+}
+
+#boardImage{ /*img*/
+    height: 25em;
+    width: 100%;
+    border-radius: 0.5em;
+    margin-top: 2.5em 0;
+    object-fit: cover;
+}
+#boardMap iframe{
+    height: 25em;
+    width: 100%;
+    border-radius: 0.5em;
+}
+#boardMap{
+    display: none;
+    position: absolute;
+    height: 25em;
+    width: 100%;
+    animation: fadeInUp 0.5s;
+   bottom: 0em;
+    left: 0;
+    z-index: 50;
+    padding: 0;
+}
+
+.boardContents{
+    padding: 4.375em 0 7.5em;
+    text-align: left;
+}
+
+.boardTitle{
+    font-weight: 400;
+    font-size: 2em;
+    /*text-align: left;*/
+}
+.writerInfo{
+    display: flex;
+    position: relative;
+    flex-flow: row;
+    margin-top: 0.8em;
+}
+.writerInfoInner{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    justify-content: space-evenly;
+    margin-left: 0.6em;
+}
+.boardInfo{
+    margin-top: 1em;
+    padding: 1.25em 1.875em;
+    border: 0.1em solid black;
+    border-radius: 0.5em;
+}
+.boardFestivalAndPeople{
+    display: flex;
+    align-items: center;
+}
+.boardFestivalAndPeople p{
+    font-weight: 1000;
+}
+
+.boardFestivalAndPeople span{
+    margin-left: 0.3em;
+}
+.boardPeople{
+    margin-left: 0.5em;
+} 
+.boardDate{
+    margin-top: 0.5em;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+.boardDate span{
+    margin-left: 0.5em;
+}
+
+.boardSubstance{
+    line-height: 1.5em;
+    margin-top: 1.875em;
+    min-height: 100px;
+    word-break: break-all;
+    white-space: pre-wrap;
+
+}
+.boardSub{
+    margin-top: 6.25em;
+}
+.boardSub button{
+    margin-left: 0.5em;
+    text-decoration: underline;
+    appearance: button;
+    text-transform: none;
+    user-select: none;
+    cursor: pointer;
+    outline: none;
+    background: unset;
+}
+.comment{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+
+    margin-top: 1.5em;
+}
+#commentWrite{
+    min-height: 3em;
+    display: flex;
+    position: relative;
+    line-height: 3em;
+    overflow: hidden;
+    align-items: center;
+    border: 0.1em solid black;
+    border-radius: 0.5em;
+    box-sizing: border-box;
+}
+#commentWrite button{
+    font-size: 1.1em;
+}
+#commentWrite button:hover{
+	font-weight: 800;
+}
+.comment textarea{
+    height: 2.4375em;
+    overflow: hidden;
+    width: 85%;
+    padding: 0.75em;
+    outline: none;
+    border: none;
+    line-height: 1.15;
+    resize: none;
+    appearance: none;
+    cursor: text;
+}
+.comment button{
+    display: block;
+    position: absolute;
+    overflow: hidden;
+    width: max-content;
+    height: 100%;
+    align-self: center;
+    text-align: center;
+    font-weight: 400;
+    font-size: 0.875em;
+    padding: 0 0.75em;
+    right: 0;
+    user-select: none;
+    text-decoration: none;
+}
+
+#commentList{
+    margin-top: 1.5em;
+}
+
+.eachComment{
+	margin-bottom: 0.5em;
+}
+
+.userCommentDiv{
+	padding-bottom: 1em;
+	border-bottom: 0.08em solid #DCDCDC;
+}
+
+.commentUserInfo{
+    display: flex;
+    position: relative;
+    flex-flow: row;
+}
+
+.commentUserInfoInner{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    justify-content: space-evenly;
+    margin-left: 0.6em;
+}
+.userComment, .recommentAndDelete{
+    margin-top: 0.7em;
+}
+.recommentAndDelete{
+    display: flex;
+    position: relative;
+    flex-flow: row;
+    font-size: 0.9em;
+    color: grey;
+}
+.recommentAndDelete button{
+    position: relative;
+    padding: 0;
+    margin: 0;
+}
+.recommentAndDelete button:hover{
+	font-weight: 800;
+}
+.recommentAndDelete span{
+    margin: 0 0.1em;
+}
+.recomment{
+    margin-left:1.5em;
+    margin-top: 0.5em;
+    padding-bottom: 0.5em;
+    border-bottom: 0.08em solid #DCDCDC;
+}
+
+/* board footer */
+.companyinfo, .copyright{
+	margin-bottom: 12.8px;
+}
+.footer__github ul{
+	margin: 16px 0;
+}
+/* boardUpdate */
+#festivalByRegion{
+	font-size: 20px;
+}
+#festivalByRegion p:first-child {
+	margin-right: 5px;
+	font-weight:700;
+}

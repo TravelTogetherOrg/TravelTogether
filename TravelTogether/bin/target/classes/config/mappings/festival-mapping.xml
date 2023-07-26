@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="FestivalDAO">
+			<!-- vo                db table -->
+	<resultMap type="festival" id="festivalResult">
+		<id property="festival_name" column="FESTIVAL_NAME"/>
+		<result property="festival_startdate" column="FESTIVAL_STARTDATE"/>
+		<result property="festival_enddate" column="FESTIVAL_ENDDATE"/>
+		<result property="festival_address" column="FESTIVAL_ADDRESS"/>
+		<result property="festival_detail_information" column="FESTIVAL_DETAIL_INFORMATION"/>
+		<result property="festival_showaddress" column="FESTIVAL_SHOWADDRESS"/>
+		<result property="festival_number" column="FESTIVAL_NUMBER"/>
+		<result property="festival_latitude" column="FESTIVAL_LATITUDE"/>
+		<result property="festival_longitude" column="FESTIVAL_LONGITUDE"/>
+		<result property="festival_fee" column="FESTIVAL_FEE"/>
+		<result property="festival_instagram_name" column="FESTIVAL_INSTAGRAM_NAME"/>
+		<result property="festival_instagram_address" column="FESTIVAL_INSTAGRAM_ADDRESS"/>
+		<result property="festival_homepage_address" column="FESTIVAL_HOMEPAGE_ADDRESS"/>
+		
+		<result property="like_no" column="LIKE_NO"/>
+		<result property="member_id" column="MEMBER_ID"/>
+		<result property="festival_like_count" column="FESTIVAL_LIKE_COUNT" />
+		
+		<result property="festival_file_1" column="FESTIVAL_FILE_1"/>
+		<result property="festival_file_2" column="FESTIVAL_FILE_2"/>
+		<result property="festival_file_3" column="FESTIVAL_FILE_3"/>
+		<result property="festival_file_4" column="FESTIVAL_FILE_4"/>
+		<result property="festival_file_5" column="FESTIVAL_FILE_5"/>
+		<result property="festival_file_6" column="FESTIVAL_FILE_6"/>
+	</resultMap>
+	
+	
+	<!-- 전체검색 -->
+	<select id="getFestivalList_Month_All" resultMap="festivalResult">
+		SELECT *
+		FROM festival as f1
+		join festival_address as f2
+			on f1.festival_name = f2.festival_name
+		WHERE MONTH(CURDATE()) BETWEEN MONTH(festival_startdate) AND MONTH(festival_enddate);
+	</select>
+	
+	<!-- 지역별로 보기 -->
+	<select id="getFestivalList_Month" resultMap="festivalResult">
+	  SELECT *
+	  FROM festival as f1
+	  JOIN festival_address as f2 ON f1.festival_name = f2.festival_name
+	  WHERE MONTH(CURDATE()) BETWEEN MONTH(festival_startdate) AND MONTH(festival_enddate)
+	    AND f1.festival_address LIKE CONCAT('%', #{festival_address}, '%');
+	</select>
+	
+	
+		<!-- 메인에 보여질 좋아요 갯수에 따라 보여지는 축제들 -->
+	<!-- 간략하게 코드 설명하면, 좋아요가 눌러져 있는 행을 많은 순서대로 가져오는데 만약 좋아요가 눌린 행이 8개가 안될경우 전체 이름중에서 나머지를 가져온다. -->
+	<!-- 전체 행이 8개가 들어와야 메인에 8개가 들어가니 8개가 안되면 위에 말한대로 넣어주고 8개가 무조건 넘으니 limit으로 8개 제한한다. -->
+	<select id="mainFestivalLikeCount" resultMap="festivalResult">
+		SELECT f.festival_name, f.festival_address, COUNT(fl.festival_name) AS festival_like_count
+		FROM festival f
+		JOIN festival_like fl ON f.festival_name = fl.festival_name
+		GROUP BY f.festival_name, f.festival_address
+		HAVING COUNT(fl.festival_name) > 0
+		UNION
+		SELECT f.festival_name, f.festival_address, 0 AS festival_like_count
+		FROM festival f
+		WHERE NOT EXISTS (
+		    SELECT 1
+		    FROM festival_like fl
+		    WHERE fl.festival_name = f.festival_name
+		)
+		ORDER BY festival_like_count DESC
+		limit 8
+	</select>
+	
+	<!-- 메인에 TT추천 리스트 랜덤으로 보이게 하기 -->
+	<select id="getFestivalRandomList" resultMap="festivalResult">
+		select a.festival_name, a.FESTIVAL_ADDRESS
+		from festival a
+		WHERE CURDATE() BETWEEN festival_startdate AND festival_enddate
+		order by rand()
+		limit 8;
+	</select>
+
+	
+	<!-- 상세검색 -->
+	<select id="getFestival" resultType="festival">
+		select *
+			from festival as f1
+			join festival_address as f2
+				on f1.festival_name = f2.FESTIVAL_NAME
+			join festival_insta as f3
+				on f1.festival_name = f3.FESTIVAL_NAME
+			join festival_fee as f4
+				on f1.festival_name = f4.festival_name
+			where f1.festival_name = #{festival_name}
+	</select>
+
+	<!-- 페스티벌 게시물 좋아요 구현 -->
+	<insert id="festival_Like" parameterType="festival">
+		  INSERT INTO festival_like (festival_name, member_id)
+  			VALUES (#{festival_name}, #{member_id})
+	</insert>
+	
+	<delete id="festival_Delete_Like">
+	  DELETE FROM festival_like a WHERE a.festival_name = #{festival_name} AND a.member_id = #{member_id}
+	</delete>
+	
+	<!-- 페스티벌 게시물이 좋아요 눌려있는지 안눌려있는지 -->
+	<select id="isFestival_Liked" resultType="festival">
+		select *
+			from festival_like a
+				where a.festival_name = #{festival_name} and a.member_id = #{member_id}
+	</select>
+	
+	<!-- 해당 게시물 좋아요 수 -->
+	<select id="getFestivalLikeCount" resultType="java.lang.Integer">
+    	SELECT COUNT(*) FROM festival_like WHERE festival_name = #{festival_name}
+	</select>
+	
+	<!-- 지역별 축제명 검색 김초율 추가 -->
+	<select id="getRegionFestivals" parameterType="String" resultMap="festivalResult">
+		select festival_name, festival_startdate, festival_enddate, festival_address
+		from festival
+		where festival_address LIKE CONCAT('%', #{value}, '%')
+		<![CDATA[AND YEAR(FESTIVAL_STARTDATE) <= YEAR(CURDATE())]]>
+		<![CDATA[AND MONTH(festival_startdate) <= MONTH(CURDATE())]]>
+		<![CDATA[AND YEAR(festival_enddate) >= YEAR(CURDATE())]]>
+		<![CDATA[AND MONTH(festival_enddate) >= MONTH(CURDATE())]]>;
+	</select>
+
+	
+</mapper>

@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="BoardDAO">
+
+	<resultMap type="board" id="boardResult">
+		<id property="board_number" column="board_number"/>
+		<result property="festival_name" column="festival_name"/>
+		<result property="member_id" column="member_id"/>
+		<result property="board_total_people" column="board_total_people"/>
+		<result property="board_start_date" column="board_start_date"/>
+		<result property="board_end_date" column="board_end_date"/>
+		<result property="board_write_date" column="board_write_date"/>
+		<result property="board_title" column="board_title"/>
+		<result property="board_content" column="board_content"/>
+		<result property="board_view_count" column="board_view_count"/>
+		<result property="board_update_date" column="board_update_date"/>
+	</resultMap>
+	
+	<resultMap type="boardLimit" id="BoardLimitResult">
+		<id property="board_limit_number" column="board_limit_number"/>
+		<result property="festival_name" column="festival_name"/>
+		<result property="member_id" column="member_id"/>
+		<result property="board_limit_count" column="board_limit_count"/>
+	</resultMap>
+	
+	<resultMap type="boardImage" id="boardImageResult">
+		<id property="board_number" column="board_number"/>
+		<result property="board_image_file" column="board_image_file"/>
+		<result property="board_image_file_path" column="board_image_file_path"/>
+	</resultMap>
+	
+	<resultMap id="boardList" type="boardList">
+	    <id property="board_number" column="board_number"/>
+	    <result property="festiva_name" column="festival_name"/>
+	    <result property="member_id" column="member_id"/>
+	    <result property="board_total_people" column="board_total_people"/>
+	    <result property="board_start_date" column="board_start_date"/>
+	    <result property="board_end_date" column="board_end_date"/>
+	    <result property="board_title" column="board_title"/>
+	    <result property="board_content" column="board_content"/>
+	    <result property="board_view_count" column="board_view_count"/>
+	    <result property="festival_startdate" column="festival_startdate"/>
+	    <result property="festival_enddate" column="festival_enddate"/>
+	    <result property="member_nickname" column="member_nickname"/>
+	    <result property="member_gender" column="member_gender"/>
+	    <result property="member_birthday" column="member_birthday"/>
+	    <result property="member_profile_url" column="member_profile_url"/>
+	    <result property="board_image_file" column="board_image_file"/>
+	    <result property="board_image_file_path" column="board_image_file_path"/>
+  </resultMap>
+  
+  <resultMap type="comment" id="commentResult">
+  	<id property="comment_number" column="comment_number"/>
+  	<result property="board_number" column="board_number"/>
+  	<result property="member_nickname" column="member_nickname"/>
+  	<result property="comment_content" column="comment_content"/>
+  	<result property="comment_group" column="comment_group"/>
+  	<result property="comment_depth" column="comment_depth"/>
+  	<result property="comment_write_date" column="comment_write_date"/>
+  	<result property="comment_update_date" column="comment_update_date"/>
+  	<result property="count" column="count"/>
+  	
+  </resultMap>
+	
+	<!-- board -->
+	<insert id="insertBoard" useGeneratedKeys="true" keyProperty="board_number" parameterType="board">
+		insert into board (festival_name, member_id, board_total_people, board_start_date, board_title, board_content)
+			values(#{festival_name},#{member_id},${board_total_people},#{board_start_date},#{board_title},#{board_content});
+	</insert>
+	
+	<update id="updateBoard">
+		update board 
+		inner join board_image on board.board_number = board_image.board_number
+		set board.board_total_people = #{board_total_people},
+			board.board_start_date = #{board_start_date},
+			board.board_end_date = #{board_end_date},
+			board.board_title = #{board_title},
+			board.board_content=#{board_content},
+			board_image.board_image_file_path = #{board_image_file_path},
+		    board_image.board_image_file = #{board_image_file}
+		WHERE board.board_number = ${board_number}
+	</update>
+	
+	<update id="countBoard" parameterType="int">
+		update board
+		set board_view_count = board_view_count+1
+		where board_number = ${value}
+	</update>
+	
+	<delete id="deleteBoard" parameterType="int">
+		delete from board where board_number = ${value}
+	</delete>
+	
+	<!-- select * from board where board_number = #{board_number} -->
+	<select id="getOneBoard" resultType="boardList">
+		select board.board_number, board.member_id, board.festival_name, board.board_start_date,
+			board.board_end_date, board.board_title, board.board_content,
+			board.board_write_date,board.board_total_people,board.board_view_count,board.board_update_date,
+			member.member_nickname, member.member_gender, member.member_birthday,member.member_profile_url,
+			board_image.board_image_file_path, board_image.board_image_file
+		from board, board_image, member
+		where board.board_number = #{board_number}
+		and board.member_id = member.member_id
+		and board.board_number = board_image.board_number;
+		
+	</select>
+	<select id="getOneBoardForUpdate" resultType="boardList">
+		select board.board_number, board.member_id, board.festival_name, board.board_start_date,
+			board.board_end_date, board.board_title, board.board_content, board.board_total_people,
+			festival.festival_startdate, festival.festival_enddate, 
+			board_image.board_image_file_path, board_image.board_image_file
+		from board, board_image, festival
+		where board.board_number = #{board_number}
+		and board.festival_name = festival.festival_name
+		and board.board_number = board_image.board_number;
+	</select>
+	
+	<select id="getMemberBoardList" resultMap="boardResult">
+		select * from board where member_id = #{member_id}
+	</select>
+	<!-- 페이징 
+		select board_number, festival_name, member_id, board_start_date, board_title, board_content, board_view_count
+			from (
+				select @ROWNUM := @ROWNUM + 1 as rnum, board_number, festival_name, member_id, board_start_date, board_title, board_content, board_view_count
+				from
+				 board, (SELECT @ROWNUM :=0) A
+				 ORDER BY board_number DESC
+				 ) RESULT
+			where rnum > (#{pageNumber} -1) * #{amount}
+			LIMIT #{amount}
+	-->
+	<select id="getBoardListwithPaging" resultType="boardList">
+		<![CDATA[
+			select RESULT.board_number, RESULT.festival_name, RESULT.member_id, RESULT.board_start_date,
+			 RESULT.board_title, RESULT.board_content, RESULT.board_view_count, 
+			 member.member_nickname, member.member_gender, member.member_birthday, member.member_profile_url,
+			 board_image.board_image_file, board_image.board_image_file_path
+				from (
+					select @ROWNUM := @ROWNUM + 1 as rnum, board_number, festival_name, member_id, board_start_date,
+					board_title, board_content, board_view_count
+					from
+					 board, (SELECT @ROWNUM :=0) A
+					 ORDER BY board_number DESC
+					 ) RESULT, member, board_image
+				where rnum > (#{pageNumber} -1) * #{amount}
+			    and RESULT.member_id = member.member_id
+			    and RESULT.board_number = board_image.board_number
+				LIMIT #{amount}
+		]]>
+	</select>
+	<!-- 축제별 게시판 리스트 -->
+	<select id="getFestivalBoardListwithPaging" resultType="boardList">
+		<![CDATA[
+			select RESULT.board_number, RESULT.festival_name, RESULT.member_id, RESULT.board_start_date,
+			 RESULT.board_title, RESULT.board_content, RESULT.board_view_count, 
+			 member.member_nickname, member.member_gender, member.member_birthday, member.member_profile_url,
+			 board_image.board_image_file, board_image.board_image_file_path
+				from (
+					select @ROWNUM := @ROWNUM + 1 as rnum, board_number, festival_name, member_id, board_start_date,
+					board_title, board_content, board_view_count
+					from
+					 board, (SELECT @ROWNUM :=0) A
+					 ORDER BY board_number DESC
+					 ) RESULT, member, board_image
+				where rnum > (#{pageNumber} -1) * #{amount}
+				and RESULT.festival_name =#{festival_name}
+			    and RESULT.member_id = member.member_id
+			    and RESULT.board_number = board_image.board_number
+				LIMIT #{amount}
+		]]>
+	</select>
+	<!-- 토탈 게시글 수 -->
+	<select id="getTotalBoardCount" resultType="int">
+		select count(*) from board;
+	</select>
+	
+	<!-- boardLimit  -->
+	<insert id="insertBoardLimit" parameterType="boardLimit">
+		insert into board_limit (festival_name, member_id)
+			values(#{festival_name},#{member_id})
+	</insert>
+	<update id="updateBoardLimit">
+		update board_limit set board_limit_count = board_limit_count+1
+			where festival_name = #{festival_name}
+			and member_id = #{member_id}
+	</update>
+	<update id="minusBoardLimit">
+		update board_limit set board_limit_count = board_limit_count-1
+			where festival_name = #{festival_name}
+			and member_id = #{member_id}
+	</update>
+	<select id="getOneBoardLimit" resultType="boardLimit">
+		select * from board_limit 
+		where festival_name = #{festival_name}
+			and member_id = #{member_id}
+	</select>
+	<select id="boardLimitCheck" parameterType="String" resultType="int">
+		select board_limit_count from board_limit
+		where festival_name = #{festival_name}
+			and member_id = #{member_id}
+	</select>
+	
+	<!-- board_image -->
+	<insert id="insertBoardImage">
+		insert into board_image values(${board_number},#{board_image_file},#{board_image_file_path})
+	</insert>
+	<delete id="deleteBoardImage" parameterType="int">
+		delete from board_image where board_number = ${value};
+	</delete>
+	<select id="getOneboardIamge" resultType="boardImage">
+		select * from board_image
+		where board_number = ${board_number}
+	</select>
+	
+	<!-- comment -->
+	<insert id="insertComment" useGeneratedKeys="true" keyProperty="comment_number"  parameterType="comment">
+		insert into comment (board_number, member_nickname, comment_content, comment_group, comment_depth)
+		values(${board_number}, #{member_nickname}, #{comment_content}, ${comment_group}, ${comment_depth});
+	</insert>
+	<delete id="deleteComment">
+		delete from comment where comment_number = ${comment_number}
+	</delete>
+	<update id="pretendDeleteComment">
+		update comment 
+		set comment_content = "삭제된 댓글입니다."
+		where comment_number = ${comment_number}
+	</update>
+	<update id="updateComment">
+		update comment 
+		set comment_content = #{comment_content}
+		where comment_number = ${comment_number}
+	</update>
+	
+	<select id="getOneComment" resultType="comment" parameterType="int">
+		select member_nickname, comment_number, comment_content, comment_group, comment_depth, comment_write_date, comment_update_date
+		from comment
+		where comment_number = ${value}
+	</select>
+	<select id="getCommentList" resultType="comment" parameterType="int">
+		select comment_number, member_nickname, comment_content, comment_group, comment_depth, comment_write_date, comment_update_date
+		from comment
+		where board_number = ${value}
+		and comment_depth = 0
+		ORDER BY comment_number ASC
+	</select>
+	<select id="getReCommentList" resultType="comment" parameterType="int">
+		select comment_number, member_nickname, comment_content, comment_group, comment_depth, comment_write_date, comment_update_date
+		from comment
+		where board_number = ${value}
+		and comment_depth = 1
+		ORDER BY comment_number ASC
+	</select>
+	<!-- select count(*) from comment
+		where board_number = ${value} resultType="int" parameterType="int"-->
+	<select id="getTotalCommentCount" resultType="comment">
+		select count(*) as count, board_number 
+		from comment 
+		group by board_number;
+	</select>
+	<!-- delete시 대댓글이 있는지 확인용 -->
+	<select id="getReCommentCount" resultType="int" parameterType="int">
+		select count(*) from comment
+		where comment_group = ${value}
+	</select>
+</mapper>

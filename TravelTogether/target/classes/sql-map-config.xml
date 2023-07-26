@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<!-- classpath:config/database.properties db.properties-->
+	<properties resource="/config/database.properties"/>
+	
+	<settings>
+    	<setting name="cacheEnabled" value="false" /> 
+        <setting name="jdbcTypeForNull" value="NULL" /> 
+    </settings>
+     
+	<typeAliases>
+		<typeAlias alias="member" type="com.traveltogether.biz.member.MemberVO"/>
+		<typeAlias alias="festival" type="com.traveltogether.biz.festival.FestivalVO"/>
+		
+		<typeAlias alias="board" type="com.traveltogether.biz.board.BoardVO"/>
+		<typeAlias alias="boardList" type="com.traveltogether.biz.board.BoardListVO"/>
+		<typeAlias alias="boardLimit" type="com.traveltogether.biz.board.BoardLimitVO"/>
+		<typeAlias alias="boardImage" type="com.traveltogether.biz.board.BoardImageVO"/>
+		<typeAlias alias="comment" type="com.traveltogether.biz.board.CommentVO"/>
+		<typeAlias alias="chatRoom" type="com.traveltogether.biz.chat.ChatRoomVO"/>
+		<typeAlias alias="chatCount" type="com.traveltogether.biz.chat.ChatCountVO"/>
+	</typeAliases>
+	
+	 <mappers>
+	 	<mapper resource="config/mappings/member-mapping.xml"/>
+	    <mapper resource="config/mappings/festival-mapping.xml"/><!--  xml붙여야하나? -->	
+	    <mapper resource="config/mappings/board-mapping.xml"/>
+		<mapper resource="config/mappings/chatList-mapping.xml"/> 
+	 </mappers>
+	 
+</configuration>

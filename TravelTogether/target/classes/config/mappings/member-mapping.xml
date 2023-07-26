@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MemberDAO">
+			<!-- vo                db table -->
+	<resultMap type="member" id="memberResult">
+		<id property="member_id"  column="MEMBER_ID"/>  <!-- primary key매핑 -->
+		<result property="member_password" column="MEMBER_PASSWORD"/>
+		<result property="member_name" column="MEMBER_NAME"/>
+		<result property="member_nickname" column="MEMBER_NICKNAME"/>
+		<result property="member_gender" column="MEMBER_GENDER"/>
+		<result property="member_birthday" jdbcType="DATE" javaType="java.sql.Date" column="MEMBER_BIRTHDAY"/>
+		<result property="member_create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" column="MEMBER_CREATE_DATE"/>
+		<result property="member_profile_url" column="MEMBER_PROFILE_URL"/>
+		<result property="member_phone_number" column="MEMBER_PHONE_NUMBER"/>
+		
+		<result property="festival_name" column="FESTIVAL_NAME"/>
+		<result property="board_title" column="BOARD_TITLE"/>
+		<result property="board_start_date" column="BOARD_START_DATE"/>
+		<result property="board_end_date" column="BOARD_END_DATE"/>
+		<result property="board_content" column="BOARD_CONTENT"/>
+		<result property="board_view_count" column="BOARD_VIEW_COUNT"/>
+		<result property="board_total_people" column="BOARD_TOTAL_PEOPLE"/>
+		<result property="board_write_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" column="BOARD_WRITE_DATE"/>
+		<result property="board_update_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" column="BOARD_UPDATE_DATE"/>
+		
+		<result property="comment_number" column="COMMENT_NUMBER"/>
+		<result property="board_number" column="BOARD_NUMBER"/>
+		<result property="comment_content" column="COMMENT_CONTENT"/>
+		<result property="comment_group" column="COMMENT_GROUP"/>
+		<result property="comment_depth" column="COMMENT_DEPTH"/>
+		<result property="comment_write_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" column="COMMENT_WRITE_DATE"/>
+		<result property="comment_update_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" column="COMMENT_UPDATE_DATE"/>
+	</resultMap>
+	
+	<insert id="insertMember" parameterType="member">
+		INSERT INTO MEMBER(MEMBER_ID, MEMBER_PASSWORD, MEMBER_NAME, MEMBER_NICKNAME, MEMBER_GENDER, MEMBER_BIRTHDAY, MEMBER_CREATE_DATE, MEMBER_PROFILE_URL, MEMBER_PHONE_NUMBER)
+			VALUES(#{member_id}, #{member_password}, #{member_name}, #{member_nickname}, #{member_gender}, #{member_birthday, jdbcType=DATE}, now(), null, #{member_phone_number});
+	</insert>
+	
+	<update id="updateMember">
+		UPDATE MEMBER 
+		SET 
+		<if test="member_password != null">
+			MEMBER_PASSWORD = #{member_password},
+		</if>
+		<if test="member_name != null">
+			MEMBER_NAME = #{member_name},
+		</if>
+		<if test="member_nickname != null">
+			MEMBER_NICKNAME = #{member_nickname},
+		</if>
+		<if test="member_profile_url != null"> 
+			MEMBER_PROFILE_URL = #{member_profile_url},
+		</if>
+		member_id = member_id
+		WHERE MEMBER_ID=#{member_id}
+	</update>
+	
+	<delete id="deleteMember">
+		DELETE FROM MEMBER WHERE MEMBER_ID=#{member_id}
+	</delete>
+	
+	<!-- 전체리스트 -->
+	<select id="getMemberList" resultMap="memberResult">
+		SELECT * FROM MEMBER
+	</select>
+	
+	<!-- 상세검색 -->
+	<select id="getMember" resultType="member" >		
+		SELECT * FROM MEMBER WHERE MEMBER_ID = #{member_id}		
+	</select>
+	
+	<!-- 회원정보 -->
+	<select id="loginMember" resultType="member">
+		SELECT * FROM MEMBER WHERE MEMBER_ID = #{member_id} AND MEMBER_PASSWORD = #{member_password}
+	</select>
+	
+	<!--회원작성 게시글 조회 -->
+	<select id="memberBoardList" resultType="member">
+		select a.*  
+		from board as a inner join MEMBER as b
+		on a.MEMBER_ID = b.MEMBER_ID	
+		where b.MEMBER_ID = #{member_id}
+	</select>
+	
+	<!--회원작성 댓글 조회 -->
+	<select id="memberCommentList" resultType="member">
+	  SELECT a.*
+		FROM
+		COMMENT AS a 
+		INNER JOIN MEMBER AS b 
+		ON a.MEMBER_NICKNAME = b.MEMBER_NICKNAME
+		WHERE b.MEMBER_NICKNAME = #{member_nickname}
+	</select>
+	
+	<!-- 아이디중복체크 --> 
+	<select id="checkId" resultType="int">
+		select count(MEMBER_ID) from MEMBER where MEMBER_ID = #{member_id}
+	</select>
+	
+	<!-- 휴대전화중복체크 --> 
+	<select id="checkPhoneNumber" resultType="int">
+		select count(MEMBER_PHONE_NUMBER) from MEMBER where MEMBER_PHONE_NUMBER = #{member_phone_number}
+	</select>
+	
+	<!-- 닉네임중복체크 -->
+	<select id="checkNickname" resultType="int">
+		select count(MEMBER_NICKNAME) from MEMBER where MEMBER_NICKNAME = #{member_nickname}
+	</select>
+	
+	<!--비밀번호 로그인 유효성 -->
+	<select id="checkPassword" resultType="int">
+		select count(MEMBER_PASSWORD) from MEMBER where MEMBER_PASSWORD = #{member_password}
+	</select>
+	
+	   <!-- KHS 추가 멤버별 좋아요리스트 -->
+   <select id="memberLikeList" resultMap="memberResult">
+       SELECT *
+       FROM festival_like
+       WHERE member_id = #{member_id}
+   </select>
+   
+   <!-- 아이디 찾기 -->
+  <select id="findMemberId" resultType="String">
+  	select MEMBER_ID 
+  	from MEMBER 
+  	where MEMBER_NAME = #{member_name}  
+  	and MEMBER_PHONE_NUMBER = #{member_phone_number}
+  </select>
+ 
+   <!-- 비밀번호 찾기 -->
+  <select id="findMemberPassword" resultType="String">
+  	select MEMBER_PASSWORD 
+  	from MEMBER 
+  	where MEMBER_NAME = #{member_name}  
+  	and MEMBER_ID = #{member_id}
+  </select>
+   
+</mapper>
