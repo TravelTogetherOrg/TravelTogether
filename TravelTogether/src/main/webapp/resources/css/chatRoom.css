@@ -1,0 +1,290 @@
+@charset "UTF-8";
+@font-face {
+  font-family: 'SUITE-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+i{
+	font-size: 30px;
+	cursor: pointer;
+}
+
+p{
+	font-size: 18px;
+	font-weight: 200;
+	margin-top: 0px;
+    font-weight: 600;
+}
+
+body {
+	list-style: none;
+	font-family: 'SUITE-Regular';
+	background-color: #f0f0f0;
+	margin:0px;
+	padding:0px;
+}
+
+#chatMain {
+    width: 700px;
+    background-color: rgb(192, 228, 255);
+    height: 82.9vh;
+    box-sizing: border-box;
+    border: 2px solid black;
+    position: relative;
+    top: 12%;
+}
+
+#chatForm {
+   display: block;
+   width: 100%;
+   height: 48px;
+   border-bottom:2px solid black;
+   background-color:white;
+   line-height: 47px;
+}
+
+#container{
+	margin:0px;
+	padding:0px;
+	width: 100%;
+	height:100vh;
+	background-color:white;
+}
+
+#main{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    padding-top: px;
+    justify-content: center;
+    background-color: rgb(247, 212, 237);
+    position: relative;
+}
+
+.button-container {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.inputContainer {
+	display: flex;
+	align-items: center;
+}
+
+.aa{
+	width: 500px;
+	height: 500px;
+	background-color: red;
+	background-image: url(../../cold.jpg);
+}
+
+#messageInput {
+   width: 65%;
+    height: calc(100% - 1px);
+    border: none;
+    padding-bottom: 0;
+    box-sizing: border-box;
+    padding:10px;
+    line-height: calc(100% - 1px);
+}
+
+#removeButton{
+	padding: 5px;
+	background-color: #4CAF50;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	width: 18%;
+	border:1px solid black;
+	font-size:15px;
+}
+
+#chatButton{
+	position: relative;
+	top:50%;
+}
+
+#chatForm > input[type=submit] {
+    outline: none;
+    border: none;
+    background: white;
+    color: #0084FF;
+    font-size: 17px;
+    line-height: 40px;
+}
+
+#textSend{
+	margin-left:20px;
+}
+
+#messages {
+	height: 69.2vh;
+    overflow-y: auto;
+    padding: 10px;
+	overflow-y: auto;
+	
+}
+
+#messages::-webkit-scrollbar{
+  width: 13px;
+}
+
+/* 스크롤바 막대 설정*/
+#messages::-webkit-scrollbar-thumb{
+  background-color: rgb(192, 228, 255);
+  /* 스크롤바 둥글게 설정    */
+  border-radius: 10px; 
+/*   border: 1px solid rgba(0,0,0,0.8); */
+}
+
+/* 스크롤바 뒷 배경 설정*/
+#messages::-webkit-scrollbar-track{
+  background-color: rgba(0,0,0,0);
+}
+
+#messageInput:focus {
+    outline: none;
+}
+
+.chatHeader {
+	margin: 0px;
+	padding: 0px;
+ 	height: 60px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 25px;
+    background-color: rgb(252, 243, 224);
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.left{
+	background-color:red;
+}
+
+.let{
+	list-style:none;
+   	padding-left:0px;
+   	margin-top: 5px;
+}
+
+.notice{
+	background-color: yellow;
+	border-radius: 50px;
+	text-align: center;
+	font-size:15px;
+	font-weight:bold;
+	text-align: center;
+	line-height: 35px;
+    position: relative;
+    left: 25%;
+    width: 50%;
+    margin-bottom:15px;
+    margin-top:10px;
+}
+
+.myMsg {
+    text-align: right;
+    backgroudn-color:yellow;
+    font-size:0.9em;
+}
+
+.anotherMsg {
+    text-align: left;
+    margin-bottom: 5px;
+    font-size:0.9em;
+}
+
+.msg {
+    display: inline-block;
+    border-radius: 6px;
+    padding: 7px 15px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    font-size: 15px;
+
+}
+.anotherMessage{
+	display: flex;
+}
+
+.anotherText {
+	background-color: white;
+   	color: black;
+    margin-right: 7px;
+}
+
+.myCurrentTime{
+	color:red;
+}
+
+.anotherCurrentTime{
+	color:red;
+}
+
+.myMsg > .msg {
+  	background-color: yellow;
+    color: black;
+    margin-left: 7px;
+}
+
+.anotherName {
+    font-size: 16px;
+    display: block;
+    font-weight: bold;
+}
+
+.myName {
+   	font-size: 16px;
+    display: block;
+	margin-right: 3px;
+	font-weight: 600;
+}
+
+
+#memberWrap{
+    width: 158px;
+    position: relative;
+    top: 12%;
+    left:5%;
+    height:80vh;
+}
+
+#memberList {
+    border-radius: 5px;
+    text-align: center;
+}
+
+#memberHeader {
+    height: 40px;
+    font-size: 18px;
+    line-height: 40px;
+    padding-left: 15px;
+    border: 1px solid #aaaaaa;
+    font-weight: 600;
+    background-color:rgb(252, 243, 224);
+    display: flex;
+}
+
+.myProfile {
+	width: 20px; /* 이미지의 너비 설정 */
+	height: 20px; /* 이미지의 높이 설정 */
+	margin-left: 5px; /* 이미지와 이름 사이의 간격 조정 */
+}
+
+.anotherProfile {
+	width: 20px; /* 이미지의 너비 설정 */
+	height: 20px; /* 이미지의 높이 설정 */
+	margin-left: 5px; /* 이미지와 이름 사이의 간격 조정 */
+}
+
+.memberEl {
+    border-bottom: 1px solid #aaaaaa;
+    padding: 10px 20px;
+    font-size: 16px;
+	background-color:lightgray;
+}

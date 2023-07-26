@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:aop="http://www.springframework.org/schema/aop"
+   xmlns:tx="http://www.springframework.org/schema/tx"
+   xmlns:mvc="http://www.springframework.org/schema/mvc"
+   xmlns:c="http://www.springframework.org/schema/c"
+   xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+   xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+      http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+
+   <context:component-scan base-package="com.traveltogether.biz" />
+   
+   
+   
+   <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+
+
+   <!-- DataSource 설정 -->
+   <context:property-placeholder location="classpath:config/database.properties" />
+   
+   <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+      <property name="driverClassName" value="${jdbc.driver}" />
+      <property name="url" value="${jdbc.url}" />
+      <property name="username" value="${jdbc.username}" />
+      <property name="password" value="${jdbc.password}" />
+   </bean>
+
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:sql-map-config.xml"/>
+	</bean>
+
+	<bean class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSession"></constructor-arg>
+	</bean>
+  
+
+	<!-- MyBatis 트랜잭션 매니저 설정 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	    <property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- 트랜잭션 어드바이스 설정 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+	    <tx:attributes>
+	        <tx:method name="get*" read-only="true" />
+	        <tx:method name="*" />
+	    </tx:attributes>
+	</tx:advice>
+	
+	<!-- AOP 설정 -->
+	<aop:config>
+	    <aop:pointcut id="txPointcut" expression="execution(* com.traveltogether.biz..*.*(..))" />
+	    <aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice" />
+	</aop:config>
+   
+   
+   <!-- Spring과 JPA 연동 설정 -->
+   <!-- 
+      . HibernateJpaVendorAdapter : JPA 벤더(Database) 지정할 때 사용하는 하이버네이트의 클래스
+      . LocalContainerEntityManagerFactoryBean : EntityManager객체를 가져오는 클래스
+                              - 여기에  japVendorAdapter를 의존주입하면 된다.    
+    -->
+<!--    <bean id="jpaVendorAdapter"
+      class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"></bean>
+   <bean id="entityManagerFactory"
+      class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+      <property name="dataSource" ref="dataSource"></property>
+      <property name="jpaVendorAdapter" ref="jpaVendorAdapter"></property>
+      <property name="packagesToScan" value="com.mycompany.biz.board"></property>
+      <property name="jpaProperties">
+         <props>
+            <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+            <prop key="hibernate.show_sql">true</prop>
+            <prop key="hibernate.format_sql">true</prop>
+            <prop key="hibernate.use_sql_comments">true</prop>
+            <prop key="hibernate.id.new_generator_mappings">true</prop>
+            <prop key="hibernate.hbm2ddl.auto">update</prop>    중요: create/update등... 
+         </props>
+      </property>
+   </bean> -->
+
+   
+   
+</beans>
