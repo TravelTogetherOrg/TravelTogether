@@ -187,7 +187,7 @@ $.ajax({
             for(let i=0;i<Math.ceil(Object.keys(data.festivals).length/4);i++){
                 let tr = document.createElement('tr');
                 tr.className = 'tr'+seoul;
-                table.append(tr);
+                table.append(tr); 
             }
             let trs = document.querySelectorAll('.tr'+seoul);
             trs.forEach((el)=>{
