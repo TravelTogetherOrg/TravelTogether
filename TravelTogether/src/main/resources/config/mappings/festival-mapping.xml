@@ -118,10 +118,13 @@
 	
 	<!-- 지역별 축제명 검색 김초율 추가 -->
 	<select id="getRegionFestivals" parameterType="String" resultMap="festivalResult">
-		select festival_name,festival_startdate,festival_enddate,festival_address
+		select festival_name, festival_startdate, festival_enddate, festival_address
 		from festival
-		where festival_address
-		like CONCAT('%', #{value}, '%');
+		where festival_address LIKE CONCAT('%', #{value}, '%')
+		<![CDATA[AND YEAR(FESTIVAL_STARTDATE) <= YEAR(CURDATE())]]>
+		<![CDATA[AND MONTH(festival_startdate) <= MONTH(CURDATE())]]>
+		<![CDATA[AND YEAR(festival_enddate) >= YEAR(CURDATE())]]>
+		<![CDATA[AND MONTH(festival_enddate) >= MONTH(CURDATE())]]>;
 	</select>
 
 	
