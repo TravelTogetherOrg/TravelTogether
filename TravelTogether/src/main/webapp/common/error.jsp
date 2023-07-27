@@ -67,7 +67,7 @@
 <br>
 <br> 
 		<div class="navbar__logo">
-			<a href="${path}/main.do" ondragstart='return false'>🚆<span>T</span>ravel <span>T</span>ogether</a>
+			<a href="${path}/main" ondragstart='return false'>🚆<span>T</span>ravel <span>T</span>ogether</a>
 		</div>
 		<br>
 	
@@ -84,7 +84,7 @@
 		    	일시적으로 사용이 중단되었습니다.
 		    	<br>
 		    	<br>
-		    	<button class="btn btn-outline-secondary" onclick="window.location.href='${path}/main.do'">메인페이지</button> &nbsp;&nbsp;
+		    	<button class="btn btn-outline-secondary" onclick="window.location.href='${path}/main'">메인페이지</button> &nbsp;&nbsp;
 		    	<button class="btn btn-outline-secondary" onclick="goBack()">이전페이지</button>
 		    <br>
 		    <br>
