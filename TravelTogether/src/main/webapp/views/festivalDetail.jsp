@@ -18,7 +18,7 @@
 </script>
 
 <body class="stst" style="padding-top: 70px;">
-    
+    <!-- 무엇인가 추가해보기 그리고 KHS에서 확인하기 -->
 
 	<%@ include file="header.jsp" %>
 <main>
