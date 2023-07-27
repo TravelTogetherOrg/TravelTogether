@@ -30,6 +30,16 @@ public class CommentVO {
 		this.count = count;
 	}
 	
+	//댓글 작성자 프로필 이미지
+	private String member_profile_url;
+	
+	public String getMember_profile_url() {
+		return member_profile_url;
+	}
+	public void setMember_profile_url(String member_profile_url) {
+		this.member_profile_url = member_profile_url;
+	}
+	
 	public int getComment_number() {
 		return comment_number;
 	}

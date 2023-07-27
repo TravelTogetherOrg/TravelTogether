@@ -167,62 +167,103 @@ if(pageItemActive != null && lastPage != null){
 
 
 /* boardWrite */
-let seoul = '서울';
-$.ajax({
-    async: true,
-    type: 'POST',
-    data: seoul,
-    url: "getRegionFestivals", //.do
-    dataType: "json", 
-    contentType: "application/json; charset=UTF-8",
-    success: function(data){
-        if(!document.getElementById(seoul+'Festival')){
-            let selectFestival = document.getElementById('selectFestivalByRegion');
-            let div = document.createElement('div');
-            div.id = seoul+'Festival';
-            selectFestival.append(div);
-            let table = document.createElement('table');
-            table.id = 'festivalsByRegion';
-            div.append(table);
-            for(let i=0;i<Math.ceil(Object.keys(data.festivals).length/4);i++){
-                let tr = document.createElement('tr');
-                tr.className = 'tr'+seoul;
-                table.append(tr); 
-            }
-            let trs = document.querySelectorAll('.tr'+seoul);
-            trs.forEach((el)=>{
-                for(let i=0; i<4;i++){
-                    let td = document.createElement('td');
-                    td.className = 'td'+seoul;
-                    el.append(td);
-                }
-            });
-            let tds = document.querySelectorAll('.td'+seoul);
-            tds.forEach((el,index)=>{
-                if(data.festivals[index] != 'undefined' && data.festivals[index] != null){
-                   el.append(data.festivals[index].festival_name);
-                }
-                
-            });
-        }
-    
-    },
-    error: function(request,status,error){
-        console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-    }
-});
-
-/* 지역td 선택시 bg/color 바뀌게 */
-let regions = document.querySelectorAll('#regions td');
-regions.forEach((el)=>{
-    el.className='region';
-});
 //게시글 등록시 넘길 값
 let festival_name;
 //축제 시작날
 let minDate;
 //축제 마지막날
 let maxDate;
+let seoul = '서울';
+if(document.getElementById('selectFestivalByRegion') != null){
+    $.ajax({
+        async: true,
+        type: 'POST',
+        data: seoul,
+        url: "getRegionFestivals", //.do
+        dataType: "json", 
+        contentType: "application/json; charset=UTF-8",
+        success: function(data){
+            if(!document.getElementById(seoul+'Festival')){
+                let selectFestival = document.getElementById('selectFestivalByRegion');
+                let div = document.createElement('div');
+                div.id = seoul+'Festival';
+                selectFestival.append(div);
+                let table = document.createElement('table');
+                table.id = 'festivalsByRegion';
+                div.append(table);
+                for(let i=0;i<Math.ceil(Object.keys(data.festivals).length/4);i++){
+                    let tr = document.createElement('tr');
+                    tr.className = 'tr'+seoul;
+                    table.append(tr); 
+                }
+                let trs = document.querySelectorAll('.tr'+seoul);
+                trs.forEach((el)=>{
+                    for(let i=0; i<4;i++){
+                        let td = document.createElement('td');
+                        td.className = 'td'+seoul;
+                        el.append(td);
+                    }
+                });
+                let tds = document.querySelectorAll('.td'+seoul);
+                tds.forEach((el,index)=>{
+                    if(data.festivals[index] != 'undefined' && data.festivals[index] != null){
+                       el.append(data.festivals[index].festival_name);
+                    }
+                    
+                });
+            }
+            /* 각 축제td 선택시 글자색 바뀌게 */
+            let festivalsByRegion = document.querySelectorAll('#festivalsByRegion td');
+            festivalsByRegion.forEach((el)=>{
+                el.className='festival';
+            });
+
+            let festivals = document.getElementsByClassName('festival');
+            for(let i=0; i<festivals.length; i++){
+                festivals[i].addEventListener('click', function(event){
+                    for(let j=0; j<festivals.length; j++){
+                        if(festivals[j].style.color = 'rgb(192, 228, 255)'){
+                            festivals[j].style.color = 'black';
+                        }
+                    }
+                    festivals[i].style.color = 'rgb(192, 228, 255)';
+                    festival_name = festivals[i].innerHTML;//축제명
+                    document.boardForm.festival_name.value = festivals[i].innerHTML;
+                    data.festivals.forEach((el,index)=>{
+                        if(data.festivals[index] != 'undefined' && data.festivals[index] != null){
+                            if(festivals[i].innerHTML==el.festival_name){ //시작일이 오늘보다 이전이면 오늘부터 선택 가능
+                                let today = new Date();
+                                if(today.getMonth()+1 >= el.festival_startdate.substring(5,6)){
+                                    minDate = today.getFullYear()+'0'+(today.getMonth()+1)+today.getDate();
+                                }else{
+                                    minDate = el.festival_startdate;
+                                }
+                                
+                                maxDate = el.festival_enddate;
+                                let start_date = document.getElementById('start_date');
+                                start_date.setAttribute('min',minDate.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3'));
+                                start_date.setAttribute('max',maxDate.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3'));
+                                let end_date = document.getElementById('end_date');
+                                end_date.setAttribute('min',minDate.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3'));
+                                end_date.setAttribute('max',maxDate.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3'));
+                            }
+                        }
+                    });
+                });
+            }
+        },
+        error: function(request,status,error){
+            console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+        }
+    });
+    
+}
+
+/* 지역td 선택시 bg/color 바뀌게 */
+let regions = document.querySelectorAll('#regions td');
+regions.forEach((el)=>{
+    el.className='region';
+});
 let boardSelectRegion = document.getElementsByClassName('region');
 for(let i=0; i<boardSelectRegion.length; i++){
     boardSelectRegion[i].addEventListener('click', function(event){
@@ -419,14 +460,30 @@ function limitCheck(){
                 alert('해당 축제의 게시글을 3회이상 작성하였습니다. 기존 게시글을 삭제하시고 다시 작성해주세요');
             }
             else{ 
+                let board_total_people = document.getElementById('board_total_people');
+                let start_date = document.getElementById('start_date');
+                let end_date = document.getElementById('end_date');
                 let board_title = document.getElementById('board_title');
                 let board_content = document.getElementById('board_content');
-
-                if(board_title.value == ''){
+                
+                if(board_total_people.value == '인원수'){
+                    alert('인원수를 선택해 주세요.');
+                }
+                else if(start_date.value == ''){
+                    alert('축제 참가일자를 선택해 주세요.');
+                }
+                else if(moreDaysCheckbox.checked){
+                    if(end_date.value == ''){
+                        alert('축제 참가 마지막 일자를 선택해 주세요.');
+                    }
+                }
+                else if(board_title.value == ''){
                     alert('제목을 작성해 주세요.');
-                }else if(board_content.value==''){
+                }
+                else if(board_content.value==''){
                     alert('내용을 작성해 주세요.');
-                }else{
+                }
+                else{
                     document.boardForm.submit();
                 }
             }
@@ -587,20 +644,23 @@ if(writeComment != null){
                                     commentWrite.value = '';
                                     let eachComments = document.getElementsByClassName('eachComment');
                                     let comment_numberInput = document.getElementsByClassName('comment_number');
-                                    
+                                    let member_profile_url = '/resources/image/member/member.png';
+                                    if(data.comment.member_profile_url!=null){
+                                        member_profile_url = data.comment.member_profile_url;
+                                    }
                                     for(let i=0; i<comment_numberInput.length; i++){
                                         if(data.comment.comment_group == comment_numberInput[i].value){ 
                                             let div = document.createElement('div');
                                             let comment_depth = document.getElementsByClassName('comment_depth');
                                             div.className = 'recomment';
                                             let addComment = 
-                                            "<div class='commentUserInfo'>"+
+                                            "<div class='commentUserInfo' id='"+data.comment.comment_number+"' tabindex='0'>"+
                                                 "<div style='display: none;'>"+
                                                     "<input type='hidden' class='comment_number' value='"+data.comment.comment_number+"'>"+
                                                     "<input type='hidden' class='comment_depth' value='"+data.comment.comment_depth+"'>"+
                                                 "</div>"+
                                                 "<div>"+
-                                                    "<img style='height: 50px; width: 50px;' src='"+context+"/resources/image/member/member.png'>"+
+                                                    "<img style='height: 50px; width: 50px;' src='"+context+member_profile_url+"'>"+
                                                 "</div>"+
                                                 "<div class='commentUserInfoInner'>"+
                                                     "<span class='commentUserName'>"+data.comment.member_nickname+"</span>"+
@@ -634,6 +694,7 @@ if(writeComment != null){
                                                 }
                                                 
                                             }
+                                            document.getElementById(data.comment.comment_number).focus();
                                         }
                                     }
                                 }
@@ -662,19 +723,23 @@ if(writeComment != null){
                     contentType: "application/json; charset=UTF-8",
                     success: function(data){
                         if(data.success=='success'){
+                            let member_profile_url = '/resources/image/member/member.png';
+                                    if(data.comment.member_profile_url!=null){
+                                        member_profile_url = data.comment.member_profile_url;
+                                    }
                             commentWrite.value = '';
                             let commentList = document.getElementById('commentList');
                             let div = document.createElement('div');
                             div.className = 'eachComment';
                             let addComment = 
-                                "<div class='userCommentDiv'>"+
+                                "<div class='userCommentDiv' id='"+data.comment.comment_number+"' tabindex='0'>"+
                                     "<div style='display: none;'>"+
                                         "<input type='hidden' class='comment_number' value='"+data.comment.comment_number+"'>"+
                                         "<input type='hidden' class='comment_depth' value='"+data.comment.comment_depth+"'>"+
                                     "</div>"+
                                         "<div class='commentUserInfo'>"+
                                             "<div>"+
-                                            "<img style='height: 50px; width: 50px;' src='"+context+"/resources/image/member/member.png'>"+
+                                            "<img style='height: 50px; width: 50px;' src='"+context+member_profile_url+"'>"+
                                             "</div>"+
                                             "<div class='commentUserInfoInner'>"+
                                             "<span class='commentUserName'>"+data.comment.member_nickname+"</span>"+
@@ -695,6 +760,7 @@ if(writeComment != null){
                                 "</div>";
                             div.innerHTML = addComment
                             commentList.append(div);
+                            document.getElementById(data.comment.comment_number).focus();
                         }else{
                             alert('댓글이 등록되지 않았습니다.\n다시한번 시도하여 주십시오');
                         }

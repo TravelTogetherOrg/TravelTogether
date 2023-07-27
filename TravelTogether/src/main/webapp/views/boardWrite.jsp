@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" session="true"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -11,7 +10,7 @@
     <link rel="stylesheet" href="${context}/resources/css/bootstrap.min.css">
     <link rel='stylesheet' type='text/css' media='all' href='${context}/resources/css/base.css'>
     <link rel='stylesheet' type='text/css' media='all' href='${context}/resources/css/board.css'>
-    <title>동행 찾기</title>
+    <title>동행 게시글 작성</title>
 </head>
 <body>
 <jsp:include page="header.jsp"/>
@@ -59,7 +58,6 @@
                                 <option value=3>3명</option>
                                 <option value=4>4명</option>
                             </select>
-                         	
                         </div>
                         <div class="date">
                             <div>
