@@ -92,10 +92,10 @@
                     <input id="inputImage" name="uploadFile" type="file" accept="image/bmp,image/jpg,image/jpeg,image/png" style="display: none; margin: 0px; padding: 0px;">
                 </div>
                 <div class="writeTitle">
-                    <input type="text" name="board_title" id="board_title" placeholder="ex) 8월 펜타포트 같이 갈 동행 3명 구해요" maxlength="100" required>
+                    <input type="text" name="board_title" id="board_title" placeholder="ex) 8월 펜타포트 같이 갈 동행 3명 구해요" maxlength="50" required>
                 </div>
                 <div class="writeContent">
-                	<textarea name="board_content" id="board_content" placeholder="1. 현재 동행이 있나요? 
+                	<textarea name="board_content" id="board_content" maxlength="1000" placeholder="1. 현재 동행이 있나요? 
 ex) 혼자에요 / 동행 1명이 있어요 
 
 2.어떤 동행을 찾고 있나요? 

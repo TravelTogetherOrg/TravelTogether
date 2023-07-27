@@ -526,13 +526,13 @@ function success(position){ //자동으로 가져옴
 
 }
 
-let boardImage = document.getElementById('boardImage');
+let boardImageAndMap = document.getElementsByClassName('boardImageAndMap');
 let boardMap = document.getElementById('boardMap');
-if(boardImage != null && boardMap != null){
-	boardImage.addEventListener('mouseover', function(event){
+if(boardImageAndMap[0] != null && boardMap != null){
+	boardImageAndMap[0].addEventListener('mouseenter', function(event){ 
 	    boardMap.style.display='block';
 	});
-	boardImage.addEventListener("mouseout", function(event){
+	boardImageAndMap[0].addEventListener('mouseleave', function(event){ 
 	    boardMap.style.display='none';
 	});
 }
