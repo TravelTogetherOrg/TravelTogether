@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.traveltogether.biz.festival.FestivalService;
 import com.traveltogether.biz.festival.FestivalVO;
 import com.traveltogether.biz.festival.impl.FestivalServiceimpl;
 import com.traveltogether.biz.member.MemberVO;
@@ -27,7 +28,7 @@ import com.traveltogether.biz.member.MemberVO;
 public class FestivalController {
 	
 	@Autowired
-	private FestivalServiceimpl festivalService;
+	private FestivalService festivalService;
 	
 	
 	@RequestMapping(value = "/festivalLike", method = RequestMethod.GET)
