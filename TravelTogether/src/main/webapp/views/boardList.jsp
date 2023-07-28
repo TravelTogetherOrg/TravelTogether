@@ -9,7 +9,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="${context}/resources/css/base.css">
 <link rel="stylesheet" href="${context}/resources/css/board.css">
-
 <title>축제 동행 찾기</title>
 </head>
 <jsp:include page="header.jsp"/>
@@ -256,7 +255,6 @@
                 <div id="pageNumbers">
                 	<c:forEach var="page" begin="${pageCreate.beginPage}" end="${pageCreate.endPage}">
                 		<button type="button" class="${pageCreate.criteria.pageNumber == page ? 'pageItemActive' : 'pageItem'}">${page}</button>
-                	
                 	</c:forEach>
                      <input type="hidden" name="pageNumber" value="${pageCreate.criteria.pageNumber}">
                      <input type="hidden" name="amount" value="${pageCreate.criteria.amount}">

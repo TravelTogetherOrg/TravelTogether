@@ -72,7 +72,7 @@ public class BoardController {
 			//노트북: C:\Users\ddd\Desktop\TT\TravelTogether\src\main\webapp\resources\image\festival
 			//이미지 없으면 선택한 축제의 기본 이미지 가져오기
 			//jpg인지 png인지 확인해서 맞는 걸로 연결하기
-			File file = new File("E:\\3인TT\\TravelTogether\\src\\main\\webapp\\resources\\image\\board\\boardImage"
+			File file = new File("C:\\Users\\\\user\\Desktop\\KCY\\spring\\SpringSRC\\TT\\TravelTogether\\src\\main\\webapp\\resources\\image\\festival\\"
 					+board.getFestival_name()+"\\"+board.getFestival_name()+"_1_공공3유형.jpg");
 			if(file.exists()) {
 				image.setBoard_image_file(board.getFestival_name()+"_1_공공3유형.jpg");
@@ -207,10 +207,12 @@ public class BoardController {
 	
 	@RequestMapping(value = "/findFestivalBoard")
 	public String findFestivalBaord (Criteria criteria, ModelMap model) {
+		criteria.setFestival_name(criteria.getFestival_name().trim());
+		
 		BoardPageCreate pageCreate = new BoardPageCreate();
 		pageCreate.setCriteria(criteria);
-		pageCreate.setTotalCount(boardService.getTotalBoardCount());
-		criteria.setFestival_name(criteria.getFestival_name().trim());
+		pageCreate.setTotalCount(boardService.getTotalFestivalBoardCount(criteria)); //해당 축제의 개수만 받아오기
+		
 		model.addAttribute("boardList", boardService.getFestivalBoardListwithPaging(criteria));
 		model.addAttribute("pageCreate", pageCreate);
 		

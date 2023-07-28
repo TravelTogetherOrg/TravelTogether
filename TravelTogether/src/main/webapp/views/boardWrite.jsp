@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" session="true"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -11,7 +10,7 @@
     <link rel="stylesheet" href="${context}/resources/css/bootstrap.min.css">
     <link rel='stylesheet' type='text/css' media='all' href='${context}/resources/css/base.css'>
     <link rel='stylesheet' type='text/css' media='all' href='${context}/resources/css/board.css'>
-    <title>동행 찾기</title>
+    <title>동행 게시글 작성</title>
 </head>
 <body>
 <jsp:include page="header.jsp"/>
@@ -59,7 +58,6 @@
                                 <option value=3>3명</option>
                                 <option value=4>4명</option>
                             </select>
-                         	
                         </div>
                         <div class="date">
                             <div>
@@ -94,10 +92,10 @@
                     <input id="inputImage" name="uploadFile" type="file" accept="image/bmp,image/jpg,image/jpeg,image/png" style="display: none; margin: 0px; padding: 0px;">
                 </div>
                 <div class="writeTitle">
-                    <input type="text" name="board_title" id="board_title" placeholder="ex) 8월 펜타포트 같이 갈 동행 3명 구해요" maxlength="100" required>
+                    <input type="text" name="board_title" id="board_title" placeholder="ex) 8월 펜타포트 같이 갈 동행 3명 구해요" maxlength="50" required>
                 </div>
                 <div class="writeContent">
-                	<textarea name="board_content" id="board_content" placeholder="1. 현재 동행이 있나요? 
+                	<textarea name="board_content" id="board_content" maxlength="1000" placeholder="1. 현재 동행이 있나요? 
 ex) 혼자에요 / 동행 1명이 있어요 
 
 2.어떤 동행을 찾고 있나요? 

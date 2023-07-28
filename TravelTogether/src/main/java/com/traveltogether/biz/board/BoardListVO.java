@@ -80,7 +80,7 @@ public class BoardListVO {
 		this.board_total_people = board_total_people;
 	}
 	public String getBoard_start_date() {
-		return board_start_date.substring(0, 10);
+		return board_start_date.substring(0, 10); 
 	}
 	public void setBoard_start_date(String board_start_date) {
 		this.board_start_date = board_start_date;

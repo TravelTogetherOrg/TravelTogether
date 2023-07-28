@@ -133,6 +133,12 @@ public class BoardDAO implements BoardService {
 		
 		return mybatis.selectList("BoardDAO.getFestivalBoardListwithPaging", criteria);
 	}
+	
+	@Override
+	public int getTotalFestivalBoardCount(Criteria criteria) {
+		
+		return mybatis.selectOne("BoardDAO.getTotalFestivalBoardCount", criteria);
+	}
 
 	@Override
 	public void insertComment(CommentVO comment) {
@@ -157,13 +163,7 @@ public class BoardDAO implements BoardService {
 		
 		return mybatis.selectList("BoardDAO.getCommentList", boardNumber);
 	}
-/*
-	@Override
-	public int getCommentTotal(int boardNumber) {
-		
-		return mybatis.selectOne("BoardDAO.getTotalCommentCount",boardNumber);
-	}
-*/
+
 	@Override
 	public CommentVO getOneComment(int commentNumber) {
 		
@@ -194,5 +194,4 @@ public class BoardDAO implements BoardService {
 		return mybatis.selectList("BoardDAO.getTotalCommentCount");
 	}
 
-	
 }
