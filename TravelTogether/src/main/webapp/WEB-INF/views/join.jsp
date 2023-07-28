@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>TT_회원가입</title>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/join.css?s">
 </head>
 <style>

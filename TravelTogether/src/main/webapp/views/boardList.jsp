@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="${context}/resources/css/base.css">
 <link rel="stylesheet" href="${context}/resources/css/board.css">
-<title>축제 동행 찾기</title>
+<title>TT_축제 동행 찾기</title>
 </head>
 <jsp:include page="header.jsp"/>
 <body>

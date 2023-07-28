@@ -113,7 +113,7 @@ public class ChatController {
 	}
 	
 }
-		return "main.jsp";
+		return "main";
 	}
 	
 	@RequestMapping(value = "/boardList", method = RequestMethod.GET)

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이페이지</title>
+<title>TT_마이페이지</title>
 <script src="${path}/resources/js/jquery-3.6.4.js"></script>
 <script src="${path}/resources/js/jquery-3.5.1.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

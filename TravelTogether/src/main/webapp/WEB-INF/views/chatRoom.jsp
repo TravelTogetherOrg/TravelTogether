@@ -13,7 +13,7 @@
 <% int roomNumber = (int)session.getAttribute("chatNumber");%>
 <% String userId = (String)session.getAttribute("userId"); %>
 <% String chatTitle = (String)session.getAttribute("chatTitle"); %>
-<title>박종권</title>
+<title>TT_채팅방</title>
 </head>
 <body onload="test();">
   <jsp:include page="header.jsp"/>
@@ -140,7 +140,7 @@
 	};
     
     function openSocket() {	
-		var url = "ws://172.30.1.79:8080/echo.do/"
+		var url = "ws://172.30.1.63:8080/echo.do/"
 		var userNickName = '<%=userNickName%>';
 		var roomNumber = '<%=roomNumber%>';
 		var userId = '<%=userId %>';

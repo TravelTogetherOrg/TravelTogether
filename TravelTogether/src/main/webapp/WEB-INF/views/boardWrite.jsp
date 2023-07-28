@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="${context}/resources/css/bootstrap.min.css">
     <link rel='stylesheet' type='text/css' media='all' href='${context}/resources/css/base.css'>
     <link rel='stylesheet' type='text/css' media='all' href='${context}/resources/css/board.css'>
-    <title>동행 게시글 작성</title>
+    <title>TT_동행 게시글 작성</title>
 </head>
 <body>
 <jsp:include page="header.jsp"/>

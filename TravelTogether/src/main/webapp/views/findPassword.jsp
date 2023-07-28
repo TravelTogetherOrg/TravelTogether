@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>TT_비밀번호찾기</title>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/findPassword.css?dd">
 <style type="text/css">
 	@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@1,900&display=swap');

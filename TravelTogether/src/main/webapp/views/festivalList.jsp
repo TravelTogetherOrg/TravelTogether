@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="${context}/resources/css/bootstrap.min.css?asdad">
 <link rel="stylesheet" href="${context}/resources/css/festivalHover.css">
 
-<title>Insert title here</title>
+<title>TT_축제 리스트</title>
     <!-- 카카오api -->
 <style>
   .customoverlay {position:relative;bottom:85px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left; font-family: 'SUITE-Regular', sans-serif;}

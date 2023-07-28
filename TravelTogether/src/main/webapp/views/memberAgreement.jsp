@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/memberAgreement.css">
-<title>약관</title>
+<title>TT_약관</title>
 <style>
 @charset "UTF-8";
 	@font-face {

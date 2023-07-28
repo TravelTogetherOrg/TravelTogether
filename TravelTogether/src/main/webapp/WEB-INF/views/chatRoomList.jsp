@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="${context}/resources/css/chatRoomList.css">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chat Room List</title>
+<title>TT_채팅방목록</title>
 </head>
 <body>
 <div id="container" style="background: url(../image/main/main_middle_background.png) 50% center no-repeat rgb(237, 245, 212);">

@@ -14,12 +14,12 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Document</title>
+<title>TravelTogether</title>
 <script src="https://kit.fontawesome.com/cd8f90f87a.js"crossorigin="anonymous"></script>
 </head>
 <body>
 	<div id="container">
-		<%@ include file="./views/header.jsp" %>
+		<%@ include file="header.jsp" %>
 		<div class="chat-icon">
 			<a href="ChatRoomList.do"> <!-- onclick="chatRoom()" -->
 				<ul class="chat-icon-inner">
@@ -139,7 +139,7 @@
 					</div>
 				</c:forEach> 
 			</div>
-			<%@ include file="./views/footer.jsp" %>
+			<%@ include file="footer.jsp" %>
 		</div>
 	</div>
  

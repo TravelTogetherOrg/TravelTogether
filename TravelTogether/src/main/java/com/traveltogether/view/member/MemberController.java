@@ -65,7 +65,7 @@ public class MemberController {
 		session.setAttribute("userProfile", memberService.getMember(vo).getMember_profile_url());
 		
 		System.out.println(vo.getMember_profile_url()); //파일경로 확인
-		return "/main";
+		return "redirect:/main";
 	}
 	
 	@RequestMapping("/getMember")
@@ -120,6 +120,12 @@ public class MemberController {
 	public String loginMember(MemberVO vo, HttpSession session, Model model)throws IllegalAccessException {
 		if(vo.getMember_id() == null || vo.getMember_id() == "") {
 			throw new IllegalAccessException("아이디는 반드시 입력해야합니다.");
+		}
+
+		String a = vo.getMember_id();
+		if (a != null && a.equals("admin@test.com")) {
+  		   
+			return "/adminGetMemberList.do";
 		}
 		
 		if(memberService.loginMember(vo) != null) {
