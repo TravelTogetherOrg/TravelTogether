@@ -160,7 +160,7 @@ public class ChatController {
 		}
 		
 	}
-	return "views/festivalList.jsp";
+	return "festivalList";
 }
 	
 	

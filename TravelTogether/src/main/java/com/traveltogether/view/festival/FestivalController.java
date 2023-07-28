@@ -71,7 +71,7 @@ public class FestivalController {
     	model.addAttribute("festivalCount", festivalService.getLikeCount(vo));
 		model.addAttribute("festival", festivalService.getFestival(vo));
 		
-		return "views/festivalDetail.jsp";
+		return "festivalDetail";
 		
 	}
 	
@@ -80,7 +80,7 @@ public class FestivalController {
 	public String getFestivalList_Month(FestivalVO vo, Model model){
 	
 		model.addAttribute("festivalList", festivalService.getFestivalList_Month(vo));
-		return "views/festivalList.jsp";
+		return "festivalList";
 	}
 
 	/* 김초율 추가 */

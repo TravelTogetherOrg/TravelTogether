@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="${context }/resources/css/bootstrap.min.css?dddddddd">
 <link rel="stylesheet" href="${context }/resources/css/festivalDetail.css?dddddddd">
 </head>
+<link rel="icon" type="image/png" sizes="16x16" href="${context}/resources/image/favi/favicon-16x16.png">
 <script src="${context}/resources/js/jquery-3.6.4.js">
 
 </script>
