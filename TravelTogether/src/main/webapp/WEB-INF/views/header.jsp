@@ -28,6 +28,7 @@
          <li><a href="${path}/main">홈</a></li>
          <li><a href="${path}/getFestivalList_Month">축제소개</a></li>
          <li><a href="${path}/boardList">동행게시판</a></li>
+         <li><a href="${path}/ChatRoomList" onclick="chatRoom(event)">채팅</a></li>
        </ul>
         <ul class="navbar__icons">
            <c:if test="${empty sessionScope.userId and empty sessionScope.userNickname }"> 
@@ -50,6 +51,17 @@
        </a>
    </nav>
    <script src="${path}/resources/js/header.js"></script>
- 
+ 	<script>
+    
+    var sessionUserId = "${sessionScope.userId}";
+    
+   function chatRoom(event){
+ 		if(sessionUserId === null){
+ 			alert("회원만 이용 가능합니다.");
+ 			event.preventDefault();
+ 		}
+   };
+   
+ 	</script>
 </body>
 </html>
