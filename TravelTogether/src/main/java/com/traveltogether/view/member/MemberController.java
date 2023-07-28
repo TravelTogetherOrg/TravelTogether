@@ -17,15 +17,15 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.traveltogether.biz.common.utill.FileUtills;
+import com.traveltogether.biz.member.MemberService;
 import com.traveltogether.biz.member.MemberVO;
-import com.traveltogether.biz.member.impl.MemberServiceimpl;
 
 @Controller
 @SessionAttributes("member")
 public class MemberController {
 	
 	@Autowired
-	private MemberServiceimpl memberService;
+	private MemberService memberService;
 	
 	@RequestMapping(value = "/memberAgreement")
 	public String memberAgreement(MemberVO vo)throws IOException {
@@ -65,7 +65,7 @@ public class MemberController {
 		session.setAttribute("userProfile", memberService.getMember(vo).getMember_profile_url());
 		
 		System.out.println(vo.getMember_profile_url()); //파일경로 확인
-		return "/views/mypage_main.jsp";
+		return "/main";
 	}
 	
 	@RequestMapping("/getMember")

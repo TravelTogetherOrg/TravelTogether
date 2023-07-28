@@ -13,11 +13,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/main.css">
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/mypage.css?d">
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/mypage.css?dddd">
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script> 
 /* 사이드바 */
 	$(() => {
+		
 		$('#tabs a').bind('click', function(e) {
 			$('#tabs a.current').removeClass('current');
 			$('.tab-section:visible').hide();
@@ -57,10 +58,12 @@
       $('.user_password_ok').css("display","inline-block");
       return true;
     }
+    
     form.onsubmit = function() {
       if (!validatePassword()) {
         return false; 
       }
+      alert('회원정보가 수정되었습니다. 상단 프로필을 클릭하여 확인해주세요~!');
     };
   };
   
@@ -104,8 +107,8 @@
 		<div class="sidebar">
 			<div class="sidebar-inner">
 				<ul id="tabs">
-					<li><a href="#description">계정설정</a></li>
-					<li><a href="#memberLike">좋아요</a></li>
+					<li><a href="#description">회원 정보</a></li>
+					<li><a href="#memberLike">'좋아요' 목록</a></li>
 					<li><a id="memberBoardLink" href="#details">내가 작성한 동행 게시글</a></li>
 					<li><a href="#review">내가 작성한 댓글</a></li>
 				</ul>
@@ -114,21 +117,21 @@
 		<div class="content">
 		<form id="form" action="updateMember" method="post" enctype="multipart/form-data">
 			<div id="description" class="tab-section">
-				<h2>계정설정</h2>
+				<h2>회원 정보</h2>
 				<hr style="border-color: #ccc;">
 					
 				<div class="user_image" style="display: flex; flex-direction: column; align-items: center; ">
-					<c:if test="${ empty member.member_profile_url}">
+					<c:if test="${ empty sessionScope.userProfile}">
 						<div class="rounded-image">
 							<img id="img" src="${path}/resources/image/member/member.png" height="150" width="150">
 						</div>
 					</c:if>
-					<c:if test="${not empty member.member_profile_url}">
+					<c:if test="${not empty sessionScope.userProfile}">
 						<div class="rounded-image">
-							<img id="img" src="${path}${member.member_profile_url}" height="150" width="150">
+							<img id="img2" src="${path}${sessionScope.userProfile}" height="150" width="150">
 						</div>
 					</c:if>
-						<input id="input_img" type="file" name="member_profile_image" >
+						<input id="input_img" type="file" name="member_profile_image" accept="image/bmp,image/jpg,image/jpeg,image/png">
 				</div>
 									
 				<script>                  
@@ -137,11 +140,29 @@
 						var reader = new FileReader();
 						    reader.onload = function (e) {
 						    $('#img').attr('src', e.target.result);
+						    $('#img2').attr('src', e.target.result);
 					  	}
 					  	reader.readAsDataURL(this.files[0]);
 					});
-				</script>
 				
+					// 업로드 확장자 제한
+					document.getElementById("input_img").addEventListener("change", function(event) {
+					  const fileInput = event.target;
+					  const allowedExtensions = ["bmp", "jpg", "jpeg", "png"];
+					  
+					  if (!fileInput.files || fileInput.files.length === 0) {
+					    return;
+					  }
+					  const selectedFile = fileInput.files[0];
+					  const fileExtension = selectedFile.name.split(".").pop().toLowerCase();
+
+					  if (!allowedExtensions.includes(fileExtension)) {
+					    alert("이미지 파일의 확장자는 " + allowedExtensions.join(", ") + " 중 하나여야 합니다.");
+					    fileInput.value = "";
+					  }
+					});
+
+				</script>
 				<div class="info">
 					<table id="info_table">
 						<tr>
@@ -194,13 +215,14 @@
 						</tr>
 						<tr>
 							<td>
-								<h5><font style="font-weight: bold;">가입일시<br><input type='text' name='member_create_date' value="${member.member_create_date}" size="44" readonly="readonly"></font>&nbsp;&nbsp;</h5>
+								<h5><font style="font-weight: bold;">가입일시<br><div class="create_date"><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${member.member_create_date}"/></div></font>&nbsp;&nbsp;</h5>
+								<%-- <input type='text' name='member_create_date' value="${member.member_create_date}" size="44" readonly="readonly"> --%>
 							</td>
 						</tr>
 					</table>
 				</div>
 				<div id="btn">
-					<input type="submit" id="modifyBtn" value="수정하기" onclick="checkNickname()" class="btn btn-default">&nbsp;&nbsp;
+					<input type="submit" id="modifyBtn" value="수정하기" class="btn btn-default">&nbsp;&nbsp;
 					<a href="${path}/deleteMember?member_id=${member.member_id}" id="modifyBtn" onclick="deleteMember()" class="btn btn-default">탈퇴하기</a>
 				</div>
 			</div>
@@ -219,12 +241,12 @@
 		<hr style="border-color: black;">
 			<table class="list" border="1" cellpadding="0" cellspacing="0" width="850">
 				<tr>
-					<th width="186">축제 이름</th>
+					<th width="252">축제 이름</th>
 					<th width="189">게시글 제목</th>
-					<th width="120">동행시작일</th>
-					<th width="120">동행종료일</th>
-					<th width="100">동행인원</th>
-					<th width="143">작성일</th>
+					<th width="110">동행시작일</th>
+					<th width="110">동행종료일</th>
+					<th width="110">작성일</th>
+					<th width="110">수정일</th>
 				</tr>
 				<c:forEach items="${memberBoardList}" var="board">
 				<tr>
@@ -232,8 +254,8 @@
 					<td><a href="${path}/board.do?no=${board.board_number}">${board.board_title}</a></td>
 					<td>${board.board_start_date}</td>
 					<td>${board.board_end_date}</td>
-					<td>${board.board_total_people}</td>
 					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.board_write_date}"/></td>
+					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.board_update_date}"/></td>
 				</tr>			
 				</c:forEach>
 			</table>
@@ -245,23 +267,17 @@
 				<tr>
 					<th width="100">번호</th>
 					<th width="100">게시판 번호</th>
-					<th width="275">내용</th>
-					<th width="143">댓글 구분</th>
-					<th width="143">댓글 depth</th>
+					<th width="395">내용</th>
 					<th width="120">작성일</th>
 					<th width="120">수정일</th>
-					<th width="120">별명</th>
 				</tr>
 				<c:forEach items="${memberCommentList}" var="comment">
 				<tr>
 					<td>${comment.comment_number}</td>
-					<td><a href="${path}/board.do?no=${board.board_number}">${comment.board_number}</a></td>				
-					<td><a href="${path}/board.do?no=${board.board_number}">${comment.comment_content}</a></td>
-					<td>${comment.comment_group}</td>
-					<td>${comment.comment_depth}</td>
+					<td><a href="${path}/board.do?no=${comment.board_number}">${comment.board_number}</a></td>				
+					<td><a href="${path}/board.do?no=${comment.board_number}">${comment.comment_content}</a></td> <%-- ${path}/comment?no=${comment.comment_number} --%>
 					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${comment.comment_write_date}"/></td>
 					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${comment.comment_update_date}"/></td>
-					<td>${comment.member_nickname}</td>
 				</tr>			
 				</c:forEach>
 			</table>

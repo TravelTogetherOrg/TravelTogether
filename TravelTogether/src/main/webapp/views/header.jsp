@@ -34,13 +34,13 @@
            		<li class="icon"><a href="${path}/login"><i class="fa-solid fa-circle-user fa-xl"></i></a></li>
            		<li class="text"><a class="login_text" style="font-family: 'GmarketSansMedium';" href="${path}/login">로그인</a>&nbsp;</li>
            </c:if>
-           <c:if test="${!empty sessionScope.userId and !empty sessionScope.userNickname and empty sessionScope.userProfile}"> 
-           		<li><a href="${path}/getMember?member_id=${member.member_id}"><i class="fa-regular fa-circle-user fa-xl"></i></a></li>
+           <c:if test="${!empty sessionScope.userId and !empty sessionScope.userNickname and empty sessionScope.userProfile}">  <!-- 로그인 ,프사없을경우 --> 
+           		<li><a href="${path}/getMember?member_id=${sessionScope.userId}&member_nickname=${sessionScope.userNickname}"><i class="fa-regular fa-circle-user fa-xl"></i></a></li>
            		<li><a href="#"><input type="text" name="user" value="${sessionScope.userNickname}" readonly><span> 님</span></a></li>
            		&nbsp;<li><a href="${path}/logout"><i class="fa-solid fa-right-from-bracket fa-lg"></i></a></li>
            </c:if>
-           <c:if test="${!empty sessionScope.userId and !empty sessionScope.userNickname and !empty sessionScope.userProfile}"> <!-- 로그인 시 --> 
-           		<li class="profile_image"><a href="${path}/getMember?member_id=${member.member_id}&member_nickname=${member.member_nickname}"><img id="img" src="${path}${sessionScope.userProfile}" class="rounded-image" height="35" width="35"></a></li>
+           <c:if test="${!empty sessionScope.userId and !empty sessionScope.userNickname and !empty sessionScope.userProfile}"> <!-- 로그인 ,프사있을경우 --> 
+           		<li class="profile_image"><a href="${path}/getMember?member_id=${sessionScope.userId}&member_nickname=${sessionScope.userNickname}"><img id="img" src="${path}${sessionScope.userProfile}" class="rounded-image" height="35" width="35"></a></li>
            		<li class="user_info"><a href="#"><input type="text" name="user" value="${sessionScope.userNickname}" readonly><span> 님</span></a></li>
            		&nbsp;<li class="logout_icon"><a href="${path}/logout"><i class="fa-solid fa-right-from-bracket fa-lg"></i></a></li>
            </c:if>

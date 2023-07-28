@@ -75,15 +75,7 @@
 	      }
 	    };
 	  };
-	  
-	  function checkSpace(str) {
-			if(str.search(/\s/) != -1) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-	  
+
  function checkId(id){
 	
         var id = $('#id').val(); //id값이 "id"인 입력란의 값을 저장
@@ -98,7 +90,8 @@
                 } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
                     $('.user_id_already').css("display","inline-block");
                     $('.user_id_ok').css("display", "none");
-                    alert("아이디가 중복되었습니다.");
+                    alert("이메일이 중복되었습니다. 다시 확인해 주세요.");
+                    $('#id').val('');
                 }
             },
             error:function(){
@@ -122,6 +115,7 @@
                     $('.user_tel_already').css("display","inline-block");
                     $('.user_tel_ok').css("display", "none");
                     alert("중복된 핸드폰 번호입니다. 다시 확인해 주세요.");
+                    $('#tel').val('');
                 }
             },
             error:function(){
@@ -144,16 +138,15 @@
                     } else { 
                         $('.user_nickname_already').css("display","inline-block");
                         $('.user_nickname_ok').css("display", "none");
-                        alert("별명이 중복되었습니다.");
-                  
+                        alert("별명이 중복되었습니다. 다시 확인해 주세요.");
+                        $('#nickname').val('');
                     }
                 },
                 error:function(){
                     alert("에러입니다");
                 }
             });
-          };
-
+          };    
 </script>
 <body>
 	<div class="member">
@@ -207,7 +200,7 @@
 	            <span class="user_nickname_ok">사용 가능한 별명 입니다.</span>
 	            <span class="user_nickname_already">중복된 별명 입니다.</span>
 	        </div>
-	         <input type="submit" value="가입하기" onclick="checkSpace()" style="font-size:20px;">
+	         <input type="submit" value="가입하기" style="font-size:20px;">
 	 	 </div>
   	</form>
   </div>
