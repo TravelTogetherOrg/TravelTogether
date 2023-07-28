@@ -15,7 +15,7 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>TravelTogether</title>
+ <title>TravelTogether</title>
 <script src="https://kit.fontawesome.com/cd8f90f87a.js"crossorigin="anonymous"></script>
 </head>
 <link rel="icon" type="image/png" sizes="16x16" href="${context}/resources/image/favi/favicon-16x16.png">
@@ -25,7 +25,7 @@
 		<div class="chat-icon">
 			<a href="ChatRoomList.do"> <!-- onclick="chatRoom()" -->
 				<ul class="chat-icon-inner">
-					<li>
+					<li> 
 						<i class="fa-solid fa-comment-dots"></i>
 					</li>
 				</ul>
