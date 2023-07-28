@@ -18,6 +18,7 @@
 <title>TravelTogether</title>
 <script src="https://kit.fontawesome.com/cd8f90f87a.js"crossorigin="anonymous"></script>
 </head>
+<link rel="icon" type="image/png" sizes="16x16" href="${context}/resources/image/favi/favicon-16x16.png">
 <body>
 	<div id="container">
 		<%@ include file="header.jsp" %>
