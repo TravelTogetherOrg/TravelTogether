@@ -21,7 +21,7 @@
 	<div id="container">
 		<%@ include file="./views/header.jsp" %>
 		<div class="chat-icon">
-			<a href="#" onclick="chatRoom()">
+			<a href="ChatRoomList.do"> <!-- onclick="chatRoom()" -->
 				<ul class="chat-icon-inner">
 					<li>
 						<i class="fa-solid fa-comment-dots"></i>
@@ -148,15 +148,17 @@
     
    var sessionUserId = "${sessionScope.userId}";
    
-   function chatRoom(){
-		if(sessionUserId == null){
+   
+  <%--  function chatRoom(){
+		if(sessionUserId == null || <%=userId%> == null){
 			alert("회원만 이용 가능합니다.");
+			
 			return;
 		}else{
-			location.href = "/ChatRoomList.do";
+			location.href = "ChatRoomList.do";
 		}
 	};
-  
+   --%>
   $(document).ready(function(){
 		// 퀵배너 스크롤
 		function updateChatIcon() {
@@ -179,11 +181,7 @@
   <!-----------------------------swiper js-------------------------------- -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script>
-  function handleClick() {
-      document.querySelector('#chat_iframe').style.display = 'block';
-  }
   
-  document.querySelector('.chat-icon').addEventListener('click', handleClick);
     var galleryTop = new Swiper(".gallery-top", {
       spaceBetween: 10, speed: 800, loop: true, loopedSlides: 1,
       autoplay: {

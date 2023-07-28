@@ -120,20 +120,20 @@ public class BoardController {
 		return map;
 	}
 	
-	@RequestMapping(value = "/boardList")
-	public String getBoardList(Criteria criteria, ModelMap model, HttpSession session) throws IOException {
-		
-		BoardPageCreate pageCreate = new BoardPageCreate();
-		pageCreate.setCriteria(criteria);
-		pageCreate.setTotalCount(boardService.getTotalBoardCount());
-		
-		model.addAttribute("boardList", boardService.getBoardListwithPaging(criteria));
-		model.addAttribute("pageCreate", pageCreate);
-		model.addAttribute("comments", boardService.getTotalCommentCount());
-		//System.out.println(boardService.getBoardListwithPaging(criteria).toString());
-		
-		return "views/boardList.jsp";
-	}
+//	@RequestMapping(value = "/boardList")
+//	public String getBoardList(Criteria criteria, ModelMap model, HttpSession session) throws IOException {
+//		
+//		BoardPageCreate pageCreate = new BoardPageCreate();
+//		pageCreate.setCriteria(criteria);
+//		pageCreate.setTotalCount(boardService.getTotalBoardCount());
+//		
+//		model.addAttribute("boardList", boardService.getBoardListwithPaging(criteria));
+//		model.addAttribute("pageCreate", pageCreate);
+//		model.addAttribute("comments", boardService.getTotalCommentCount());
+//		//System.out.println(boardService.getBoardListwithPaging(criteria).toString());
+//		
+//		return "views/boardList.jsp";
+//	}
 	
 	@RequestMapping(value = "/board")
 	public String getBoard(BoardVO board, BoardImageVO boardImage, HttpServletRequest request, Model model) {

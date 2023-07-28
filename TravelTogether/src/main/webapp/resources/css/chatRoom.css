@@ -18,6 +18,15 @@ p{
     font-weight: 600;
 }
 
+h3{
+	margin-bottom: 0px;
+    margin-top: -3px;
+    align-self: center;
+    margin-left: 5px;
+    font-size: 0.93em;
+    font-weight: 500;
+}
+
 body {
 	list-style: none;
 	font-family: 'SUITE-Regular';
@@ -34,15 +43,20 @@ body {
     border: 2px solid black;
     position: relative;
     top: 12%;
+    z-index:10;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+     box-shadow: 3px 3px 3px 3px gray;
 }
 
 #chatForm {
-   display: block;
-   width: 100%;
-   height: 48px;
-   border-bottom:2px solid black;
-   background-color:white;
-   line-height: 47px;
+	display: block;
+    width: 100%;
+    height: 48px;
+    background-color: white;
+    line-height: 47px;
+    position: absolute;
+    bottom: 0%;
 }
 
 #container{
@@ -50,7 +64,7 @@ body {
 	padding:0px;
 	width: 100%;
 	height:100vh;
-	background-color:white;
+	background: url("../image/main/main_middle_background.png") 50% center no-repeat rgb(237, 245, 212);
 }
 
 #main{
@@ -59,8 +73,11 @@ body {
     display: flex;
     padding-top: px;
     justify-content: center;
-    background-color: rgb(247, 212, 237);
+  /*   background-color: rgb(247, 212, 237); */
     position: relative;
+        top: 50%;
+	left: 50%;
+	transform: translate(-54%, -50%);
 }
 
 .button-container {
@@ -90,18 +107,6 @@ body {
     line-height: calc(100% - 1px);
 }
 
-#removeButton{
-	padding: 5px;
-	background-color: #4CAF50;
-	color: #fff;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-	width: 18%;
-	border:1px solid black;
-	font-size:15px;
-}
-
 #chatButton{
 	position: relative;
 	top:50%;
@@ -117,7 +122,48 @@ body {
 }
 
 #textSend{
-	margin-left:20px;
+  
+    position: absolute;
+    right: 0%;
+    text-align: center;
+    height: 100%;
+    background-color: #32465a;
+    width: 8%;
+}
+#leftBox{
+	position: relative;
+    top: 12%;
+	background-color:red;
+	height: 500px;
+	width: 200px;
+
+	
+}
+.fa-paper-plane,
+.fa-trash-can{
+ 	margin-top: 0px;
+    color: white;
+}
+
+.fa-paper-plane:hover, 
+.fa-trash-can:hover,
+.fa-solid:hover{
+    color:rgb(247, 212, 237);
+}
+
+
+#removeButton{
+    padding: 5px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    width: 18%;
+    position: absolute;
+    right: 8%;
+    width: 8.5%;
+    height: 100%;
+    z-index: 10;
 }
 
 #messages {
@@ -128,38 +174,41 @@ body {
 	
 }
 
-#messages::-webkit-scrollbar{
-  width: 13px;
+#messages::-webkit-scrollbar {
+  width: 10px;
 }
 
-/* 스크롤바 막대 설정*/
-#messages::-webkit-scrollbar-thumb{
-  background-color: rgb(192, 228, 255);
-  /* 스크롤바 둥글게 설정    */
-  border-radius: 10px; 
-/*   border: 1px solid rgba(0,0,0,0.8); */
+#messages::-webkit-scrollbar-track {
+  background-color: transparent;
 }
 
-/* 스크롤바 뒷 배경 설정*/
-#messages::-webkit-scrollbar-track{
-  background-color: rgba(0,0,0,0);
+#messages::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: #c0c0c0;
+  border-radius: 10px;
+}
+
+#messages::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
 }
 
 #messageInput:focus {
     outline: none;
-}
+} 
 
 .chatHeader {
-	margin: 0px;
-	padding: 0px;
- 	height: 60px;
+    margin: 0px;
+    padding: 0px;
+    height: 50px;
     text-align: center;
-    line-height: 60px;
-    font-size: 25px;
     background-color: rgb(252, 243, 224);
     display: flex;
-    -webkit-box-pack: justify;
     justify-content: space-between;
+    align-items: center;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+
 }
 
 .left{
@@ -213,15 +262,37 @@ body {
 }
 
 .anotherText {
-	background-color: white;
-   	color: black;
+	color: black;
     margin-right: 7px;
+    display: flex;
+    text-align: end;
+    align-items: end;
+    margin-bottom: 5px;
+    padding-left: 5px;
 }
-
+.anotherTopText{
+	display: flex;
+}
 .myCurrentTime{
 	color:red;
 }
+.anotherMsgBottom{
+	display: flex;
+}
+.anotherTexta{
+	display: inline-block;
+    border-radius: 6px;
+    padding: 7px 15px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    font-size: 15px;
+    background-color: white;
+    color: black;
+    margin-left: 7px;
+}
 
+
+}
 .anotherCurrentTime{
 	color:red;
 }
@@ -236,6 +307,7 @@ body {
     font-size: 16px;
     display: block;
     font-weight: bold;
+        padding-left: 5px;
 }
 
 .myName {
@@ -249,9 +321,10 @@ body {
 #memberWrap{
     width: 158px;
     position: relative;
-    top: 12%;
-    left:5%;
+    top: 17.4%;
     height:80vh;
+   
+
 }
 
 #memberList {
@@ -260,14 +333,17 @@ body {
 }
 
 #memberHeader {
-    height: 40px;
+    height: 50px;
     font-size: 18px;
     line-height: 40px;
-    padding-left: 15px;
+      justify-content: center;
     border: 1px solid #aaaaaa;
     font-weight: 600;
-    background-color:rgb(252, 243, 224);
-    display: flex;
+    background-color:white;
+   	text-align:center;
+   	display: flex;
+   	align-items: center;
+   	border-top-right-radius: 20px;
 }
 
 .myProfile {
@@ -283,8 +359,41 @@ body {
 }
 
 .memberEl {
-    border-bottom: 1px solid #aaaaaa;
-    padding: 10px 20px;
+    font-size: 1.0em;
+    font-weight: 500;
+    padding: 6px 0px 6px 8px;
     font-size: 16px;
-	background-color:lightgray;
+    background-color: lightgray;
+    background: #2c3e50;
+    color: #f5f5f5;
+    display: flex;
+    border-right: 1px solid #aaaaaa;
 }
+.memberSelect:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+.mySwiper {
+    margin-left:0px;
+    margin-right:0px;
+      width: 400px;
+         height: 695px;
+    top: 17.5%;
+   
+  
+    }
+    
+    .swiper-slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: bold;
+      color: #fff;
+      border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+    background-size: cover;
+         box-shadow: 5px 5px 5px 5px gray;   
+    }
+
+   

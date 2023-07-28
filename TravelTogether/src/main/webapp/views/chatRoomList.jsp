@@ -4,16 +4,16 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="context" value="${pageContext.request.contextPath}" />
-<link rel="stylesheet" href="${context}/resources/css/chatRoomList.css">
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="${context}/resources/css/chatRoomList.css">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chat Room List</title>
 </head>
 <body>
-<div id="container">
+<div id="container" style="background: url(../image/main/main_middle_background.png) 50% center no-repeat rgb(237, 245, 212);">
 	<div class="box">
 		<jsp:include page="header.jsp"/>
 	<!-- ---------------------------modal----------------------------- -->
@@ -76,16 +76,17 @@
 						<c:forEach items="${chatRoomList}" var="chatRoomList"><tr>
 	      	  				<td>${chatRoomList.chat_number}</td>
 	       					<td>
-	            				<span class="region-button">${chatRoomList.chat_region}</span>
 	           					<c:choose>
 	               					<c:when test="${empty chatRoomList.chat_password}">
 	                  					<a href="ChatRoom.do?chat_number=${chatRoomList.chat_number}&chat_title=${chatRoomList.chat_title}&member_id=${sessionScope.userId}">
+	 										<span class="region-button">${chatRoomList.chat_region}</span>
 	 										${chatRoomList.chat_title}
 	                    				</a> 
 									</c:when>
 									<c:otherwise>
 										<a href="#" data-chat-number="${chatRoomList.chat_number}" data-chat-password="${chatRoomList.chat_password}"
 	        							data-chat-title="${chatRoomList.chat_title}" data-chat-member_id="${sessionScope.userId}">
+											<span class="region-button">${chatRoomList.chat_region}</span>
 											${chatRoomList.chat_title}
 											<span class="lock-icon">&#128274;</span>
 										</a>

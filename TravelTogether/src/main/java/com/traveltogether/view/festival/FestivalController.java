@@ -83,15 +83,6 @@ public class FestivalController {
 		return "views/festivalList.jsp";
 	}
 
-	@RequestMapping("/main")
-	public String main(FestivalVO vo, Model model){
-	
-		model.addAttribute("festivalLikeList", festivalService.getFestivalLikeList(vo));
-		model.addAttribute("festivalRandomList", festivalService.getFestivalRandomList(vo));
-		
-		return "main.jsp";
-	}
-	
 	/* 김초율 추가 */
 	@RequestMapping("/getRegionFestivals")
 	@ResponseBody

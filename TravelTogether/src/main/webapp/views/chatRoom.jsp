@@ -5,27 +5,37 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://kit.fontawesome.com/cd8f90f87a.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="${context}/resources/css/chatRoom.css">
+<link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 <% String userNickName = (String)session.getAttribute("userNickname"); %>
 <% int roomNumber = (int)session.getAttribute("chatNumber");%>
 <% String userId = (String)session.getAttribute("userId"); %>
 <% String chatTitle = (String)session.getAttribute("chatTitle"); %>
-
 <title>박종권</title>
 </head>
-<body>
+<body onload="test();">
   <jsp:include page="header.jsp"/>
+  
 	<div id="container">
 	  	<div id="main">
+	  	  <div class="swiper mySwiper" style="margin:0px;">
+    		<div class="swiper-wrapper">
+	      		<div class="swiper-slide"  style="background-image: url(${context}/resources/image/chatRoom/ad_1.png")></div>
+	      		<div class="swiper-slide"  style="background-image: url(${context}/resources/image/chatRoom/ad_2.png")></div>
+	      		<div class="swiper-slide"  style="background-image: url(${context}/resources/image/chatRoom/ad_3.png")></div>
+	    		<div class="swiper-slide"  style="background-image: url(${context}/resources/image/chatRoom/ad_4.png")></div>
+    		</div>
+  		</div>
 			<div id="chatMain">
 		   		<div class="chatHeader">
 		    		<div>
-		    			<i class="fa-solid fa-angles-left" style="margin-left: 20px;" onclick="historyBack()"></i>
+		    			<i class="fa-solid fa-angles-left" style="margin-left: 20px; margin-top:0px;" onclick="historyBack()"></i>
 		    		</div>
-		    			<p><%=chatTitle %></p>
+		    			<p style="margin-bottom: 0px;"><%=chatTitle %></p>
 		    		 <div>
-		    			<i class="fa-solid fa-xmark 1.5x" style="margin-right: 20px;"></i>
+		    			<i class="fa-solid fa-bars" style="margin-right: 20px; margin-top:0px;"></i>	    	
 		    		</div>  
 		   		</div>
 	  			<div class="inputContainer">
@@ -48,14 +58,19 @@
 				</div>
 	 			<div id="chatForm">
 	     			<input type="text" id="messageInput" placeholder="메시지를 입력하세요">
-	     			<button type="button" id="removeButton" onclick="clearText()">전체 지우기</button>
-	     			<input type="submit" id="textSend" value="보내기" style="cursor: pointer">
+	     			<button type="button" id="removeButton" onclick="clearText()">
+	     			<i class="fa-regular fa-trash-can"></i>
+	     			</button>
+	     			<button type="submit" id="textSend" style="cursor: pointer">
+	     			<i class="fa fa-paper-plane"></i>
+	     			</button>
+	     			
 				</div>  
 			</div>
 	  		<div id="memberWrap">
 				<div id="memberList">
-					<div id="memberHeader" >채팅방 인원 &nbsp;:&nbsp;&nbsp;
-						<p id="roomSizeElement"></p>
+					<div id="memberHeader" >참여 인원 : &nbsp;
+						<p id="roomSizeElement" style="margin-bottom:0px;"></p>
 	        		</div>
 	                <div id="memberSelect">
 						<div class="memberEl"></div> 
@@ -66,8 +81,41 @@
 		</div>
 	</div>
   <!-- websocket javascript -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script type="text/javascript">
+    var swiper = new Swiper(".mySwiper", {
+      grabCursor: true,
+      spaceBetween: 10,
+      speed: 800, 
+      loop: true,
+      loopedSlides: 1,
+      autoplay: {
+          delay: 3000, disableOnInteraction: false},
+      effect: "creative",
+      creativeEffect: {
+        prev: {
+          shadow: true,
+          translate: [0, 0, -400],
+        },
+        next: {
+          translate: ["100%", 0, 0],
+        },
+      },
+    });
   
+    let isExpanded = false;
+ $(".fa-bars").click(function() {
+   if (!isExpanded) {
+     $("#memberWrap").stop().animate({ left: "-5.5%" }, 800, function() {
+       isExpanded = true;
+     });
+   } else {
+     $("#memberWrap").stop().animate({ left: "5px" }, 800, function() {
+       isExpanded = false;
+     });
+   }
+ });
+    
 	history.pushState(null, null, location.href);
 	window.onpopstate = function () {
 	 	history.go(1);
@@ -92,7 +140,7 @@
 	};
     
     function openSocket() {	
-		var url = "ws://localhost:8080/echo.do/"
+		var url = "ws://172.30.1.79:8080/echo.do/"
 		var userNickName = '<%=userNickName%>';
 		var roomNumber = '<%=roomNumber%>';
 		var userId = '<%=userId %>';
@@ -124,9 +172,17 @@
            		}
         	});
       		uniqueNicknames.forEach(function (nickname) {
+      			var myProfileImage = document.createElement('img');
+      			myProfileImage.src = "${context}/resources/image/chatRoom/chatProfill_2.jpg";
+      			myProfileImage.style.width = "40px"; // 이미지의 너비 설정
+      			myProfileImage.style.height = "40px"; // 이미지의 높이 설정
+      			myProfileImage.style.borderRadius = "100px";
 				var memberDiv = document.createElement('div');
+				var memberDiva = document.createElement('h3');
+				memberDiva.textContent = nickname;
 				memberDiv.classList.add("memberEl");
-				memberDiv.textContent = nickname;
+				memberDiv.appendChild(myProfileImage);
+				memberDiv.appendChild(memberDiva);
 				memberListDiv.appendChild(memberDiv);
           	});
 		}else if (message.startsWith("NOTICE")){
@@ -260,7 +316,7 @@
 	      	var anotherNameSpan = document.createElement('span');
 	     	anotherNameSpan.classList.add('anotherName');
 	     	var anotherTextSpan = document.createElement('span');
-		    anotherTextSpan.classList.add('anotherText', 'msg');
+		    anotherTextSpan.classList.add('anotherTexta', 'msg');
 	      	if(text.startsWith("$귓속말")){
 	      		anotherNameSpan.style.color = "purple";
 	      		anotherNameSpan.textContent = whisper_Receiver;
@@ -269,23 +325,31 @@
 	    		anotherNameSpan.textContent = name;
 	 	 		anotherTextSpan.textContent = messageText;
 	      	}
+	    var anotherTopText = document.createElement('div');  	
+	    anotherTopText.classList.add('anotherText');
 	    var anotherProfileImage = document.createElement('img');
 	    anotherProfileImage.src = "${context}/resources/image/chatRoom/chatProfill_2.jpg";
 	    anotherProfileImage.style.width = "40px"; // 이미지의 너비 설정
 	    anotherProfileImage.style.height = "40px"; // 이미지의 높이 설정
 	    anotherProfileImage.style.borderRadius = "100px";
 		var anotherCurrentTime = document.createElement('div');
-		anotherCurrentTime.classList.add('anotherMsg'); 
-		anotherCurrentTime.textContent = formattedTime;
-
+		var anotherCurrentTimea = document.createElement('h3');
+		anotherCurrentTime.classList.add('anotherMsgBottom'); 
+		anotherCurrentTimea.textContent = formattedTime;
+	
+		
+		anotherTopText.appendChild(anotherProfileImage);
+		anotherTopText.appendChild(anotherNameSpan);
 		anotherCurrentTime.insertAdjacentElement('afterbegin', anotherTextSpan); 
+		anotherCurrentTime.appendChild(anotherCurrentTimea);
 		/* anotherMsgContainer.appendChild(anotherProfileImage); */
-		anotherMsgContainer.appendChild(anotherNameSpan);
+		anotherMsgContainer.appendChild(anotherTopText);
 	  	anotherMsgContainer.appendChild(anotherCurrentTime);
 		messages.appendChild(anotherMsgContainer);
 	    scrollToBottom();
 	    }
     }
+    
 
   </script>
 </body>
