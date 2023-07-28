@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/image/favi/favicon-16x16.png">
 <meta charset="UTF-8">
 <title>TT_마이페이지</title>
 <script src="${path}/resources/js/jquery-3.6.4.js"></script>

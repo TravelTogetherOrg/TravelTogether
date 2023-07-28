@@ -5,11 +5,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/image/favi/favicon-16x16.png">
 <meta charset="UTF-8">
-<title>TT_아이디찾기</title>
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/findId.css?dfdf"> 
+<title>TT_비밀번호찾기</title>
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/findPassword.css?dd">
 <style type="text/css">
-
 	@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@1,900&display=swap');
 	
 	@font-face {
@@ -49,12 +49,43 @@
   color: orange;
   }
   
-  /* 아이디찾기 수타일*/
+  /* 유효성 스타일 */
+  .user_id_ok{
+  font-weight : bolder;
+  color: blue;
+  display: none;
+  }
+  .user_id_already{
+  font-weight : bolder;
+  color: orange;
+  display: none;
+  }
+  .user_nickname_ok{
+  font-weight : bolder;
+  color: blue;
+  display: none;
+  }
+  .user_nickname_already{
+  font-weight : bolder;
+  color: orange;
+  display: none;
+  }
+  .user_tel_ok{
+  font-weight : bolder;
+  color: blue;
+  display: none;
+  }
+  .user_tel_already{
+  font-weight : bolder;
+  color: orange;
+  display: none;
+  }
+  
   .find{
-  font-family: 'GmarketSansMedium';
   padding-top: 30px;
   text-align: center;
   font-size: 1.1em;
+  font-family: 'GmarketSansMedium';
   font-weight: bolder;
   display: none;
   }
@@ -65,14 +96,14 @@
   font-weight: bolder;
   }
   .notFind{
-  font-family: 'GmarketSansMedium';
   padding-top: 30px;
   font-size: 1.1em;
+  font-family: 'GmarketSansMedium';
   font-weight: bolder;
   color: orange;
   display: none;
-  }
-
+  } 
+ 
 </style>
 </head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" 
@@ -82,22 +113,21 @@
 </script>
 <script type="text/javascript">
 
-function findId(){
-	/* var form = document.form; */
+function findPassword(){
 	var name = form.member_name.value;
-	var tel = form.member_phone_number.value;
+	var id = form.member_id.value;
 	
 	$.ajax({
-	    url:"<c:url value='/findMemberId'/>", 
+	    url:"<c:url value='/findMemberPassword'/>", 
 	    type:'post',
-	    data:{'member_name':name,'member_phone_number':tel},
-	    success:function(id){ 
-	        if(id === ""){ 
+	    data:{'member_name':name,'member_id':id},
+	    success:function(password){ 
+	        if(password === ""){ 
 	           $('.notFind').css("display", "inline-block");
 	           $('.find').css("display", "none");
 	            
 	        } else { 
-	        	$('.rs').empty().append(id);
+	        	$('.rs').empty().append(password);
 	        	$('.find').css("display", "inline-block");
 	        	$('.notFind').css("display", "none");
 	        }
@@ -114,28 +144,28 @@ function findId(){
    	 	<a href="${path}/main.do" ondragstart='return false'>🚆<span>T</span>ravel <span>T</span>ogether</a>
 	</div>
 	<div class="join" align="center">
-  	 	<h4 style="font-family:'GmarketSansMedium'">아이디 찾기</h4>
+ 	 	<h4 style="font-family:'GmarketSansMedium'">비밀번호 찾기</h4>
 	</div>
 	<div class="member">
-        <h4>* 회원가입 시 입력하신 <span style="color: orange;">이름</span>과 <span style="color: orange;">핸드폰 번호</span>로 찾을 수 있습니다.</h4>
-        <form name="form" action="" method="post">
-		     <div id="container">
-		        <div class="input_control">
-		            <input id="name" type="text" placeholder="이름" name="member_name" required>
-		            <div class="user_name"></div>
-		        </div>
-		        <div class="input_control">
-		            <input id="tel" type="tel" placeholder="핸드폰번호( ' - '없이 입력 )" name="member_phone_number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
-		        </div>
-		         <input type="button" value="확 인" onclick="findId()" style="font-size:20px;">
-		 	 </div>
-  		</form>
-  			<div class="find">
-  				회원님의 아이디는 <span class="rs"></span> 입니다.
-  			</div>
-  			<div class="notFind">
-  				아이디를 찾지 못하였습니다. 다시 확인해 주세요.
-  			</div>
+        <h4>* 회원가입 시 입력하신 <span style="color: orange;">이름</span>과 <span style="color: orange;">이메일</span>로 찾을 수 있습니다.</h4>
+        <form id="form" action="" method="post">
+	      <div id="container">
+	        <div class="input_control">
+	            <input id="name" type="text" placeholder="이름" name="member_name" required>
+	            <div class="user_name"></div>
+	        </div>
+	       <div class="input_control">
+	            <span class="placehold-text"><input id="id" type="email" placeholder="이메일 주소" name="member_id"  required></span>
+	        </div>
+	         <input type="button" value="확 인" onclick="findPassword()" style="font-size:20px;">
+	 	  </div>
+  	</form>
+	  	<div class="find">
+			회원님의 비밀번호는 <span class="rs"></span> 입니다.
+		</div>
+		<div class="notFind">
+			비빌번호를 찾지 못하였습니다. 다시 확인해 주세요.
+		</div>
   </div>
 </body>
 </html>
