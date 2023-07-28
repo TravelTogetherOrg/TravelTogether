@@ -5,11 +5,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/image/favi/favicon-16x16.png"> 
 <meta charset="UTF-8">
 <title>TT_아이디찾기</title>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/findId.css?dfdf"> 
 <style type="text/css">
-
 	@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@1,900&display=swap');
 	
 	@font-face {

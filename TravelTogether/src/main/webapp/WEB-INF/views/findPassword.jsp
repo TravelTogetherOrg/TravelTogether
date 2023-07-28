@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/image/favi/favicon-16x16.png">
 <meta charset="UTF-8">
 <title>TT_비밀번호찾기</title>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/findPassword.css?dd">
