@@ -15,22 +15,22 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- <title>TravelTogether</title>
+<title>TravelTogether</title>
 <script src="https://kit.fontawesome.com/cd8f90f87a.js"crossorigin="anonymous"></script>
 </head>
 <link rel="icon" type="image/png" sizes="16x16" href="${context}/resources/image/favi/favicon-16x16.png">
 <body>
 	<div id="container">
 		<%@ include file="header.jsp" %>
+		<a href="ChatRoomList" onclick="chatRoom(event)">
 		<div class="chat-icon">
-			<a href="ChatRoomList.do"> <!-- onclick="chatRoom()" -->
 				<ul class="chat-icon-inner">
-					<li> 
+					<li>
 						<i class="fa-solid fa-comment-dots"></i>
 					</li>
 				</ul>
-			</a>
 		</div>
+		</a>
       <!-- ---------------------------image swiper----------------------------- -->
 		<div id="main-top-section" style="background-color: rgb(192, 228, 255)">
         	<img src="${context}/resources/image/main/main_top_symbol.png" id="main-top-img" />
@@ -151,16 +151,13 @@
    var sessionUserId = "${sessionScope.userId}";
    
    
-  <%--  function chatRoom(){
-		if(sessionUserId == null || <%=userId%> == null){
+  function chatRoom(event){
+		if(sessionUserId === null || <%=userId%> === null){
 			alert("회원만 이용 가능합니다.");
-			
-			return;
-		}else{
-			location.href = "ChatRoomList.do";
+			event.preventDefault();
 		}
-	};
-   --%>
+  };
+  
   $(document).ready(function(){
 		// 퀵배너 스크롤
 		function updateChatIcon() {

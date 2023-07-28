@@ -12,6 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TT_채팅방목록</title>
 </head>
+<link rel="icon" type="image/png" sizes="16x16" href="${context}/resources/image/favi/favicon-16x16.png">
 <body>
 <div id="container" style="background: url(../image/main/main_middle_background.png) 50% center no-repeat rgb(237, 245, 212);">
 	<div class="box">
@@ -20,7 +21,7 @@
 		<div id="myModal" class="modal">
     	<div class="modal-content">
   			<span class="close" id="closeModal">&times;</span>
-			<form action="insertChat.do" method="get">
+			<form action="insertChat" method="get">
 				<label id="roomCreate">채팅방 만들기</label><br>
        			<label for="chat_regionlist">지역 선택</label>
             	<select id="chat_regionlist" name="chat_region">
@@ -78,7 +79,7 @@
 	       					<td>
 	           					<c:choose>
 	               					<c:when test="${empty chatRoomList.chat_password}">
-	                  					<a href="ChatRoom.do?chat_number=${chatRoomList.chat_number}&chat_title=${chatRoomList.chat_title}&member_id=${sessionScope.userId}">
+	                  					<a href="ChatRoom?chat_number=${chatRoomList.chat_number}&chat_title=${chatRoomList.chat_title}&member_id=${sessionScope.userId}">
 	 										<span class="region-button">${chatRoomList.chat_region}</span>
 	 										${chatRoomList.chat_title}
 	                    				</a> 
@@ -113,7 +114,11 @@
 </div>
 </body>
 <script>
-setTimeout(function(){location.reload();},20000);
+function refreshPage() {
+    location.reload();
+}
+setInterval(refreshPage, 12000); 
+
 document.addEventListener("DOMContentLoaded", function(){
 	const passwordElements = document.querySelectorAll("[data-chat-number][data-chat-password][data-chat-title][data-chat-member_id]");
 	passwordElements.forEach(function(element){
