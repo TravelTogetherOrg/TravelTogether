@@ -308,6 +308,14 @@ a{
   color: orange;
   display: none;
   }
+  .create_date{
+   text-align: center;
+   border: 1px solid #ccc;
+   width: 405px;
+   height: 25px;
+   vertical-align: center;
+   padding: 5px 0px;
+  }
   
   /* ---테이블 디자인--- */
   
