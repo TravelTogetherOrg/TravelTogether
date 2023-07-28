@@ -35,7 +35,7 @@ import com.traveltogether.biz.chat.impl.ChatRoomServiceImpl;
 import java.nio.ByteBuffer;
 
 @Controller
-@ServerEndpoint(value="/echo.do/{userNickName}/{roomNumber}/{userId}")
+@ServerEndpoint(value="/echo/{userNickName}/{roomNumber}/{userId}")
 public class WebSocketChat {
 	private static final String MESSAGE_PREFIX_ROOM_SIZE = "ROOM_SIZE:";
     private static final Map<String, String> nicknames = new HashMap<>();
@@ -143,18 +143,12 @@ public class WebSocketChat {
     	                int roomSize = targetSessions.size();
     	                String roomSizeStr = String.valueOf(roomSize);
     	                targetSession.getBasicRemote().sendText(MESSAGE_PREFIX_ROOM_SIZE + roomSizeStr);   
-    	            }
-    	               
+    	            } 	               
     	        }    
-    	        System.out.println("1번입니다");
-    	        System.out.println(userId);
-
     	        chatRooms.remove(session);
     	    }  
-    	    return "/deleteChatUser.do";
+    	    return "deleteChatUser";
     	}
-    
-   
 }
     
  

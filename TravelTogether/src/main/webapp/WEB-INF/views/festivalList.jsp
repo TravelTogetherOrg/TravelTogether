@@ -22,6 +22,7 @@
 </style>
 
 </head>
+<link rel="icon" type="image/png" sizes="16x16" href="${context}/resources/image/favi/favicon-16x16.png">
 <body style="padding-top: 70px; line-height: 1.4;">
     
 	<%@ include file="header.jsp" %>

@@ -15,6 +15,7 @@
 <% String chatTitle = (String)session.getAttribute("chatTitle"); %>
 <title>TT_채팅방</title>
 </head>
+<link rel="icon" type="image/png" sizes="16x16" href="${context}/resources/image/favi/favicon-16x16.png">
 <body onload="test();">
   <jsp:include page="header.jsp"/>
   
@@ -31,7 +32,9 @@
 			<div id="chatMain">
 		   		<div class="chatHeader">
 		    		<div>
-		    			<i class="fa-solid fa-angles-left" style="margin-left: 20px; margin-top:0px;" onclick="historyBack()"></i>
+		    			<a href="deleteChatUser" onclick="chatRoomListBack(event)">
+		    				<i class="fa-solid fa-angles-left" style="margin-left: 20px; margin-top:0px;"></i>
+		    			</a>
 		    		</div>
 		    			<p style="margin-bottom: 0px;"><%=chatTitle %></p>
 		    		 <div>
@@ -140,7 +143,7 @@
 	};
     
     function openSocket() {	
-		var url = "ws://172.30.1.63:8080/echo.do/"
+		var url = "ws://172.30.1.79:8080/echo/"
 		var userNickName = '<%=userNickName%>';
 		var roomNumber = '<%=roomNumber%>';
 		var userId = '<%=userId %>';
@@ -199,7 +202,7 @@
 	};
     
 	function onClose(){
-   		window.location.href='/ChatRoomList.do';
+   		window.location.href='ChatRoomList';
 	}
    	 
     function scrollToBottom() {
@@ -254,12 +257,12 @@
     	   		}
        		}};
        		
-    function historyBack(){
+    function chatRoomListBack(){
 			if (!confirm("채팅방 목록으로 가시겠습니까?    (대화내용은 모두 삭제됩니다.)")){
-				return;
-    	    }else {
-    			window.location.href='/deleteChatUser.do';
-    	    }};
+				event.preventDefault();
+				
+    	    }
+    	    };
      
     function writeResponse(text) {
     	if(text.startsWith("$귓속말")){

@@ -46,24 +46,36 @@ public class ChatController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ChatController.class);
 	
-	@RequestMapping(value = "/ChatRoomList.do", method = RequestMethod.GET)
-	public String roomList(ChatRoomVO vo, ChatCountVO voo, Model model)  {
+	@RequestMapping(value = "ChatRoomList", method = RequestMethod.GET)
+	public String roomList(HttpServletRequest request, ChatRoomVO vo, ChatCountVO voo, Model model)  {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("chatNumber") != null) {
+			int roomNumber = (int) session.getAttribute("chatNumber");
+			String userId = (String)session.getAttribute("userId");
+			vo.setMember_id(userId);
+			chatService.deleteChatUser(vo);
+			voo.setChat_number(roomNumber);
+			
+			if(chatService.getChatRoomUser(voo) == null || chatService.getChatRoomUser(voo) == 0) {
+				chatService.deleteChatRoom(voo); 
+		}	
+	}
 		model.addAttribute("chatRoomList",chatService.getChatList(vo));
 		model.addAttribute("NumberOfPeople", chatService.getNumberOfPeople(voo)); 
-		return "/views/chatRoomList.jsp";
+		return "chatRoomList";
 	}
 	
-	@RequestMapping(value = "/insertChat.do", method = RequestMethod.GET)
+	@RequestMapping(value = "insertChat", method = RequestMethod.GET)
 	public String insertChatRoom(HttpServletRequest request, ChatRoomVO vo,ChatCountVO voo, Model model)throws IOException {
 		chatService.createChat(vo);
 		chatService.chatRoomUserInsert(voo);
 	    HttpSession session = request.getSession();
 	    session.setAttribute("chatTitle", vo.getChat_title());
 		session.setAttribute("chatNumber", voo.getChat_number());
-		return "/views/chatRoom.jsp";
+		return "chatRoom";
 	}
 
-	@RequestMapping(value = "/ChatRoom.do", method = RequestMethod.GET)
+	@RequestMapping(value = "ChatRoom", method = RequestMethod.GET)
 	public String joinChatRoom(HttpServletRequest request, ChatRoomVO vo, @RequestParam("chat_number") int chatNumber,  
 								@RequestParam("chat_title") String chatTitle, @RequestParam("member_id") String memeberID,
 								Model model, ChatCountVO voo) {
@@ -71,17 +83,16 @@ public class ChatController {
 		HttpSession session = request.getSession();
 		session.setAttribute("chatNumber", vo.getChat_number());
 		session.setAttribute("chatTitle", vo.getChat_title());
-		return "/views/chatRoom.jsp";
+		return "chatRoom";
 	}
 	
-	@RequestMapping(value = "/deleteChatUser.do", method = RequestMethod.GET)
+	@RequestMapping(value = "deleteChatUser", method = RequestMethod.GET)
 	public String deleteChatUser(HttpServletRequest request, ChatRoomVO vo, ChatCountVO voo, Model model) throws IOException{
 		HttpSession session = request.getSession();
 		String userId = (String)session.getAttribute("userId");
 		String chatTitle = (String) session.getAttribute("chatTitle");
 		int roomNumber = (int) session.getAttribute("chatNumber");
 
-	    System.out.println("2번입니다");
 		vo.setMember_id(userId);
 		chatService.deleteChatUser(vo);
 		voo.setChat_number(roomNumber);
@@ -89,7 +100,7 @@ public class ChatController {
 		if(chatService.getChatRoomUser(voo) == null || chatService.getChatRoomUser(voo) == 0) {
 			chatService.deleteChatRoom(voo); 
 		}
-		return "/ChatRoomList.do";
+		return "redirect:ChatRoomList";
 	}
 	
 	@RequestMapping(value = "/main")
@@ -127,7 +138,6 @@ public class ChatController {
 		model.addAttribute("boardList", boardService.getBoardListwithPaging(criteria));
 		model.addAttribute("pageCreate", pageCreate);
 		model.addAttribute("comments", boardService.getTotalCommentCount());
-		//System.out.println(boardService.getBoardListwithPaging(criteria).toString());	
 		
 		if(session.getAttribute("chatNumber") != null) {
 			int roomNumber = (int) session.getAttribute("chatNumber");
@@ -141,7 +151,7 @@ public class ChatController {
 		}
 		
 	}
-	return "views/boardList.jsp";
+	return "boardList";
 }
 	
 	@RequestMapping(value = "/getFestivalList_Month", method = RequestMethod.GET)
@@ -160,7 +170,7 @@ public class ChatController {
 		}
 		
 	}
-	return "views/festivalList.jsp";
+	return "festivalList";
 }
 	
 	
