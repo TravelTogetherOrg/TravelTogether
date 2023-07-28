@@ -23,12 +23,6 @@ public class FestivalVO {
 	private String member_id;
 	private int festival_like_count;
 	
-	private String festival_file_1;
-	private String festival_file_2;
-	private String festival_file_3;
-	private String festival_file_4;
-	private String festival_file_5;
-	private String festival_file_6;
 
 	public String getFestival_name() {
 		return festival_name;
@@ -128,45 +122,5 @@ public class FestivalVO {
 	}
 	public void setFestival_like_count(int festival_like_count) {
 		this.festival_like_count = festival_like_count;
-	}
-	
-	
-	
-	public String getFestival_file_1() {
-		return festival_file_1;
-	}
-	public void setFestival_file_1(String festival_file_1) {
-		this.festival_file_1 = festival_file_1;
-	}
-	public String getFestival_file_2() {
-		return festival_file_2;
-	}
-	public void setFestival_file_2(String festival_file_2) {
-		this.festival_file_2 = festival_file_2;
-	}
-	public String getFestival_file_3() {
-		return festival_file_3;
-	}
-	public void setFestival_file_3(String festival_file_3) {
-		this.festival_file_3 = festival_file_3;
-	}
-	public String getFestival_file_4() {
-		return festival_file_4;
-	}
-	public void setFestival_file_4(String festival_file_4) {
-		this.festival_file_4 = festival_file_4;
-	}
-	public String getFestival_file_5() {
-		return festival_file_5;
-	}
-	public void setFestival_file_5(String festival_file_5) {
-		this.festival_file_5 = festival_file_5;
-	}
-	public String getFestival_file_6() {
-		return festival_file_6;
-	}
-	public void setFestival_file_6(String festival_file_6) {
-		this.festival_file_6 = festival_file_6;
-	}
-	
+	}	
 }
