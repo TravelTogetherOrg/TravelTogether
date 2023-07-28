@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/image/favi/favicon-16x16.png">
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/memberAgreement.css">
 <title>TT_약관</title>

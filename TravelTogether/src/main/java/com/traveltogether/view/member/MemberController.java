@@ -29,22 +29,22 @@ public class MemberController {
 	
 	@RequestMapping(value = "/memberAgreement")
 	public String memberAgreement(MemberVO vo)throws IOException {
-		return "/views/memberAgreement.jsp";
+		return "/memberAgreement";
 	}
 	
 	@RequestMapping(value = "/findId")
 	public String findId(MemberVO vo)throws IOException {
-		return "/views/findId.jsp";
+		return "/findId";
 	}
 	
 	@RequestMapping(value = "/findPassword")
 	public String findPassword(MemberVO vo)throws IOException {
-		return "/views/findPassword.jsp";
+		return "/findPassword";
 	}
 	
 	@RequestMapping(value = "/insertMember", method = RequestMethod.GET)
 	public String insertMember1(MemberVO vo) {
-		return "/views/join.jsp";
+		return "/join";
 	}
 	
 	@RequestMapping(value = "/insertMember", method = RequestMethod.POST)
@@ -76,7 +76,7 @@ public class MemberController {
 		model.addAttribute("memberBoardList",memberService.memberBoardList(vo));
 		model.addAttribute("memberCommentList",memberService.memberCommentList(vo));
 		model.addAttribute("memberLikeList", memberService.memberLikeList(vo));
-		return "/views/mypage_main.jsp";
+		return "/mypage_main";
 	}
 	
 	@RequestMapping("/deleteMember")
@@ -87,25 +87,20 @@ public class MemberController {
 		
 		return "/main";
 	}
-	//관리자용
-	@RequestMapping("/views/getMemberList")
-	public String getMemberList(MemberVO vo, Model model) {
-		model.addAttribute("memberList",memberService.getMemberList(vo));
-		return "admin_memberList.jsp";
-	}
+	
 	//회원게시물 조회
 	@RequestMapping("/memberBoardList")
 	public String memberBoardList(MemberVO vo, Model model) {
 		model.addAttribute("memberBoardList",memberService.memberBoardList(vo));
 		
-		return "/views/mypage_main.jsp"; //테스트용
+		return "/mypage_main"; //테스트용
 	}
 	//회원댓글 조회
 	@RequestMapping("/memberCommentList")
 	public String memberCommentList(MemberVO vo, Model model) {
 		model.addAttribute("memberCommentList",memberService.memberCommentList(vo));
 		
-		return "/views/mypage_main.jsp"; //테스트용
+		return "/mypage_main"; //테스트용
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
@@ -113,7 +108,7 @@ public class MemberController {
 		vo.setMember_id("admin@test.com");
 		vo.setMember_password("1234");
 		
-		return "/views/login.jsp";
+		return "/login";
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
@@ -138,7 +133,7 @@ public class MemberController {
 			
 			return "/main";
 		} else {
-			return "/views/login.jsp";
+			return "/login";
 		}
 	}
 	
