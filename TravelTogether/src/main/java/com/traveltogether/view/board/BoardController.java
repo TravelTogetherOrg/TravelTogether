@@ -45,7 +45,7 @@ public class BoardController {
 	@RequestMapping(value="/insertBoard", method = RequestMethod.GET)
 	public String insertBoardGet(Model model) {
 		
-		return"views/boardWrite.jsp";
+		return"boardWrite";
 	}
 	
 	@RequestMapping(value="/insertBoard", produces = "application/json; charset=utf8", method = RequestMethod.POST)
@@ -143,14 +143,14 @@ public class BoardController {
 		model.addAttribute("commentList", boardService.getCommnetList(Integer.parseInt(request.getParameter("no"))));
 		model.addAttribute("reCommentList", boardService.getReCommnetList(Integer.parseInt(request.getParameter("no"))));
 		
-		return "views/board.jsp";
+		return "board";
 	}
 	
 	@RequestMapping(value = "/updateBoard", method = RequestMethod.GET)
 	public String updateBoardGet(BoardVO board, BoardImageVO boardImage, FestivalVO festival, Model model, HttpServletRequest request) {
 		
 		model.addAttribute("board",boardService.getOneBoardForUpdate(Integer.parseInt(request.getParameter("no"))));
-		return "views/boardUpdate.jsp";
+		return "boardUpdate";
 	}
 	@RequestMapping(value = "/updateBoard", method = RequestMethod.POST)
 	public String updateBoardPost(BoardListVO boardList, BoardVO board, HttpServletRequest request) throws IOException {
@@ -216,7 +216,7 @@ public class BoardController {
 		model.addAttribute("boardList", boardService.getFestivalBoardListwithPaging(criteria));
 		model.addAttribute("pageCreate", pageCreate);
 		
-		return "views/boardList.jsp";
+		return "boardList";
 	}
 	
 	//게시판 댓글
