@@ -141,7 +141,7 @@ public class ChatController {
 		}
 		
 	}
-	return "views/boardList.jsp";
+	return "boardList";
 }
 	
 	@RequestMapping(value = "/getFestivalList_Month", method = RequestMethod.GET)

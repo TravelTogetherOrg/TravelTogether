@@ -112,8 +112,8 @@ public class MemberController {
 	public String loginMember(MemberVO vo) {
 		vo.setMember_id("admin@test.com");
 		vo.setMember_password("1234");
-		
-		return "/views/login.jsp";
+		 
+		return "redirect:/views/login.jsp"; ///views/login.jsp
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
@@ -138,7 +138,7 @@ public class MemberController {
 			
 			return "/main";
 		} else {
-			return "/views/login.jsp";
+			return "redirect:/views/login.jsp"; ///views/login.jsp
 		}
 	}
 	
