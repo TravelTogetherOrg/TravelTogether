@@ -240,6 +240,7 @@
 		<div id="details" class="tab-section" text-aligin="center">
 		<h2>${member.member_nickname}의 동행 게시글 목록</h2>
 		<hr style="border-color: black;">
+		<c:if test="${!empty memberBoardList}">
 			<table class="list" border="1" cellpadding="0" cellspacing="0" width="850">
 				<tr>
 					<th width="252">축제 이름</th>
@@ -260,10 +261,15 @@
 				</tr>			
 				</c:forEach>
 			</table>
+			</c:if>
+			<c:if test="${empty memberBoardList}">
+				<h4>동행게시글을 작성하여 모두와 축제 동행을 해보세요.</h4>
+			</c:if>
 		</div>
 		<div id="review" class="tab-section">
 			<h2>${member.member_nickname}의 댓글 목록</h2>
 			<hr style="border-color: black;">
+			<c:if test="${!empty memberCommentList}">
 			<table class="list" border="1" cellpadding="0" cellspacing="0" width="850">
 				<tr>
 					<th width="100">번호</th>
@@ -282,11 +288,16 @@
 				</tr>			
 				</c:forEach>
 			</table>
+			</c:if>
+			<c:if test="${empty memberCommentList}">
+				<h4>작성된 댓글이 없습니다.</h4>
+			</c:if>
 		</div>
 		      <!-- 내가 추가 -->
       <div id="memberLike" class="tab-section">
          <h2>${member.member_nickname}의 좋아요 목록</h2>
          <hr style="border-color: black;">
+         <c:if test="${!empty memberLikeList}">
             <div class="row">
                <c:forEach items="${memberLikeList}" var="memberLike">
                   <div id="likeList" class="col-md-4 col-sm-6 col-12 mb-3" style="margin-top: 30px;">
@@ -304,7 +315,11 @@
                      </div>
                   </div>
                </c:forEach>
-            </div>      
+            </div> 
+            </c:if>
+            <c:if test="${empty memberLikeList}">
+				<h4>축제정보를 확인하고 좋아요 버튼을 눌러주세요!</h4>
+			</c:if>     
       </div>
 	</div>
 </div>
