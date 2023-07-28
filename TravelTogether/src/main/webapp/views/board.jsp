@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" session="true"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
@@ -24,7 +23,6 @@
                     <iframe id="boardMapIframe"></iframe>
                 </div>
             </div>
-            
         </section>
         <div class="boardContents">
             <div class="boardContent">
@@ -33,7 +31,14 @@
                 </div>
                 <div class="writerInfo">
                     <div>
-                        <img src="${context}/resources/image/board/vector_profile_willy.svg">
+                    <c:choose>
+	                	<c:when test="${not empty board.member_profile_url}">
+	                		<img style="height: 50px; width: 50px;" src="${context}${board.member_profile_url}">
+	                	</c:when>
+	                	<c:otherwise>
+	                		<img style="height: 50px; width: 50px;" src="${context}/resources/image/member/member.png">
+	                	</c:otherwise>
+	                </c:choose>
                     </div>
                     <div class="writerInfoInner">
                         <span>${board.member_nickname}</span>
@@ -104,7 +109,14 @@
 		                        		<input type="hidden" class="comment_depth" value="${comments.comment_depth}">
                         			</div>
 	                                <div>
-	                                    <img style="height: 50px; width: 50px;" src="${context}/resources/image/member/member.png">
+	                                <c:choose>
+					                	<c:when test="${not empty comments.member_profile_url}">
+					                		<img style="height: 50px; width: 50px;" src="${context}${comments.member_profile_url}">
+					                	</c:when>
+					                	<c:otherwise>
+	                                    	<img style="height: 50px; width: 50px;" src="${context}/resources/image/member/member.png">
+					                	</c:otherwise>
+					                </c:choose>
 	                                </div>
 	                                <div class="commentUserInfoInner">
 	                                    <span class="commentUserName">${comments.member_nickname}</span>
@@ -135,7 +147,14 @@
 		                        		<input type="hidden" class="comment_depth" value="${reComments.comment_depth}">
 	                       			</div>
 	                                <div>
-	                                    <img style="height: 50px; width: 50px;" src="${context}/resources/image/member/member.png">
+                                    <c:choose>
+				                	<c:when test="${not empty reComments.member_profile_url}">
+				                		<img style="height: 50px; width: 50px;" src="${context}${reComments.member_profile_url}">
+				                	</c:when>
+				                	<c:otherwise>
+                                    	<img style="height: 50px; width: 50px;" src="${context}/resources/image/member/member.png">
+				                	</c:otherwise>
+					                </c:choose>
 	                                </div>
 	                                <div class="commentUserInfoInner">
 	                                    <span class="commentUserName">${reComments.member_nickname}</span>
@@ -166,7 +185,14 @@
 		                        		<input type="hidden" class="comment_depth" value="${reComments2.comment_depth}">
 	                       			</div>
 	                                <div>
-	                                    <img style="height: 50px; width: 50px;" src="${context}/resources/image/member/member.png">
+                                    <c:choose>
+				                	<c:when test="${not empty reComments2.member_profile_url}">
+				                		<img style="height: 50px; width: 50px;" src="${context}${reComments2.member_profile_url}">
+				                	</c:when>
+				                	<c:otherwise>
+                                    	<img style="height: 50px; width: 50px;" src="${context}/resources/image/member/member.png">
+				                	</c:otherwise>
+					                </c:choose>
 	                                </div>
 	                                <div class="commentUserInfoInner">
 	                                    <span class="commentUserName">${reComments2.member_nickname}</span>

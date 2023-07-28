@@ -129,6 +129,12 @@ public class BoardServiceimpl implements BoardService {
 		
 		return boardDAO.getFestivalBoardListwithPaging(criteria);
 	}
+	
+	@Override
+	public int getTotalFestivalBoardCount(Criteria criteria) {
+		
+		return boardDAO.getTotalFestivalBoardCount(criteria);
+	}
 
 	@Override
 	public void insertComment(CommentVO comment) {
@@ -153,13 +159,7 @@ public class BoardServiceimpl implements BoardService {
 		
 		return boardDAO.getCommnetList(boardNumber);
 	}
-/*
-	@Override
-	public int getCommentTotal(int boardNumber) {
-		
-		return boardDAO.getCommentTotal(boardNumber);
-	}
-*/
+	
 	@Override
 	public CommentVO getOneComment(int commentNumber) {
 		return boardDAO.getOneComment(commentNumber);
@@ -189,5 +189,6 @@ public class BoardServiceimpl implements BoardService {
 		
 		return boardDAO.getTotalCommentCount();
 	}
+
 
 }

@@ -500,7 +500,7 @@ body{
     height: 25em;
     width: 100%;
     animation: fadeInUp 0.5s;
-   bottom: 0em;
+    bottom: 0em;
     left: 0;
     z-index: 50;
     padding: 0;
@@ -682,7 +682,7 @@ body{
     margin: 0 0.1em;
 }
 .recomment{
-    margin-left:1.5em;
+    margin-left:2.5em;
     margin-top: 0.5em;
     padding-bottom: 0.5em;
     border-bottom: 0.08em solid #DCDCDC;

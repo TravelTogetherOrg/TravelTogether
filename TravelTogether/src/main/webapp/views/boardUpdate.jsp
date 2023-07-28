@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" session="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="${context}/resources/css/bootstrap.min.css">
     <link rel='stylesheet' type='text/css' media='all' href='${context}/resources/css/base.css'>
     <link rel='stylesheet' type='text/css' media='all' href='${context}/resources/css/board.css'>
-    <title>동행 찾기</title>
+    <title>동행 게시글 수정</title>
 </head>
 <body>
 <jsp:include page="header.jsp"/>
@@ -100,7 +100,7 @@
             <div><!--이미지/내용-->
                 <div class="writeImage">
                     <div class="writeImageInfo" style="background-image: url('${context}/resources/image/${board.board_image_file_path}/${board.board_image_file}');">
-                        <c:if test="${board.board_image_file eq null}">
+                        <c:if test="${fn:contains(board.board_image_file, '공공3유형')}">
                         <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block;">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M0 6.54397C0 2.92984 2.93584 0 6.55738 0H43.4426C47.0642 0 50 2.92983 50 6.54397V43.456C50 47.0702 47.0642 50 43.4426 50H6.55738C2.93584 50 0 47.0702 0 43.456V6.54397ZM6.55738 2.86299C4.52026 2.86299 2.86885 4.51102 2.86885 6.54397V43.456C2.86885 45.489 4.52026 47.137 6.55738 47.137H9.23315L32.1003 23.5656C34.6482 20.9392 38.8581 20.9052 41.4483 23.4901L47.1311 29.1613V6.54397C47.1311 4.51102 45.4797 2.86299 43.4426 2.86299H6.55738ZM43.4426 47.137H13.2262L34.1615 25.557C35.5947 24.0796 37.9627 24.0605 39.4197 25.5145L47.1311 33.2102V43.456C47.1311 45.489 45.4797 47.137 43.4426 47.137ZM11.5779 17.1268C11.5779 14.1056 14.032 11.6564 17.0594 11.6564C20.0868 11.6564 22.541 14.1056 22.541 17.1268C22.541 20.148 20.0868 22.5971 17.0594 22.5971C14.032 22.5971 11.5779 20.148 11.5779 17.1268ZM17.0594 8.79346C12.4476 8.79346 8.70902 12.5244 8.70902 17.1268C8.70902 21.7292 12.4476 25.4601 17.0594 25.4601C21.6712 25.4601 25.4098 21.7292 25.4098 17.1268C25.4098 12.5244 21.6712 8.79346 17.0594 8.79346Z" fill="#DBDBDB"></path>
                         </svg>
@@ -117,7 +117,7 @@
                     <input id="inputImage" name="uploadFile" type="file" value="${board.board_image_file}" accept="image/bmp,image/jpg,image/jpeg,image/png" style="display: none; margin: 0px; padding: 0px;">
                 </div>
                 <div class="writeTitle">
-                    <input type="text" name="board_title" id="board_title" value="${board.board_title}" maxlength="100" required>
+                    <input type="text" name="board_title" id="board_title" value="${board.board_title}" maxlength="50" required>
                 </div>
                 <div class="writeContent">
                     <textarea name="board_content" id="board_content" required>${board.board_content}</textarea>

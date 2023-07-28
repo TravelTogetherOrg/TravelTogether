@@ -92,7 +92,7 @@
 	};
     
     function openSocket() {	
-		var url = "ws://172.30.1.5:8080/echo.do/"
+		var url = "ws://localhost:8080/echo.do/"
 		var userNickName = '<%=userNickName%>';
 		var roomNumber = '<%=roomNumber%>';
 		var userId = '<%=userId %>';

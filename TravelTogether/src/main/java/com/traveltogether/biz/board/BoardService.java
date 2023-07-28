@@ -14,9 +14,10 @@ public interface BoardService {
 	public void viewCount(int boardNumber);
 	//페이징
 	public List<BoardVO> getBoardListwithPaging(Criteria criteria);
-	public int getTotalBoardCount ();
+	public int getTotalBoardCount();
 	//축제별 게시판 리스트
 	public List<BoardVO> getFestivalBoardListwithPaging(Criteria criteria);
+	public int getTotalFestivalBoardCount(Criteria criteria);
 	
 	//board_limit 테이블
 	public int boardLimitCheck(BoardLimitVO boardLimit);

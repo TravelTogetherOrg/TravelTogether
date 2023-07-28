@@ -15,8 +15,8 @@ public class FileUtils {
 	private static final DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern(format);
 	
 	public static Path getPathToday() throws IOException{
-		//C:\\Users\\user\\Desktop\\KCY\\spring\\SpringSRC\\TT\\TravelTogether\\src\\main\\webapp\\resources\\image\\board\\boardImage\\
-		String basePath = "E:\\3인TT\\TravelTogether\\src\\main\\webapp\\resources\\image\\board\\boardImage\\";
+		
+		String basePath = "C:\\Users\\user\\Desktop\\KCY\\spring\\SpringSRC\\TT\\TravelTogether\\src\\main\\webapp\\resources\\image\\board\\boardImage\\";
 		String todayPath = LocalDate.now().format(dateTimeFormat);
 		Path pathToday = Paths.get(basePath, todayPath);
 		
