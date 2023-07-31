@@ -127,7 +127,7 @@ public class ChatController {
 		return "main";
 	}
 	
-	@RequestMapping(value = "/boardList", method = RequestMethod.GET)
+	@RequestMapping(value = "/boardList")
 	public String boardList(HttpServletRequest request, ChatRoomVO vo, ChatCountVO voo, Model model, Criteria criteria, ModelMap model2) throws IOException{
 		HttpSession session = request.getSession();
 		
@@ -149,7 +149,6 @@ public class ChatController {
 			if(chatService.getChatRoomUser(voo) == null || chatService.getChatRoomUser(voo) == 0) {
 				chatService.deleteChatRoom(voo); 
 		}
-		
 	}
 	return "boardList";
 }
@@ -168,10 +167,29 @@ public class ChatController {
 			if(chatService.getChatRoomUser(voo) == null || chatService.getChatRoomUser(voo) == 0) {
 				chatService.deleteChatRoom(voo); 
 		}
-		
 	}
 	return "festivalList";
 }
+	
+	@RequestMapping("/logout")
+	public String logoutMember(HttpServletRequest request, ChatRoomVO vo, ChatCountVO voo) {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("chatNumber") != null) {
+			int roomNumber = (int) session.getAttribute("chatNumber");
+			String userId = (String)session.getAttribute("userId");
+			vo.setMember_id(userId);
+			chatService.deleteChatUser(vo);
+			voo.setChat_number(roomNumber);
+			
+			if(chatService.getChatRoomUser(voo) == null || chatService.getChatRoomUser(voo) == 0) {
+				chatService.deleteChatRoom(voo); 
+		}
+		
+	}
+		session.invalidate();
+		return "/main";
+	}
+	
 	
 	
 	
