@@ -23,7 +23,7 @@
 	<mvc:default-servlet-handler/>
 	
    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-      <property name="defaultErrorView" value="common/error.jsp"></property>      
+      <property name="defaultErrorView" value="common/error"></property>      
    </bean>	
 	
 	<!-- 뷰리졸버 -->
