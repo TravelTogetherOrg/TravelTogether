@@ -127,7 +127,7 @@ public class ChatController {
 		return "main";
 	}
 	
-	@RequestMapping(value = "/boardList", method = RequestMethod.GET)
+	@RequestMapping(value = "/boardList")
 	public String boardList(HttpServletRequest request, ChatRoomVO vo, ChatCountVO voo, Model model, Criteria criteria, ModelMap model2) throws IOException{
 		HttpSession session = request.getSession();
 		

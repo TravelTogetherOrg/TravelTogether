@@ -106,7 +106,7 @@ ex) 음악을 좋아하는 20대 여성 동행을 찾아요!
                 </div>
             </div>
             <div class="buttons">
-                <button class="resetButton" type="reset">취소</button>
+                <button class="resetButton" type="button" onclick="location.href='boardList'">취소</button>
                 <button class="submitButton" type="button" onclick="limitCheck()">작성완료</button>
             </div>
         </form>
