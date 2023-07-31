@@ -120,7 +120,7 @@ public class MemberController {
 		String a = vo.getMember_id();
 		if (a != null && a.equals("admin@test.com")) {
   		   
-			return "/adminGetMemberList.do";
+			return "/AdminPage";
 		}
 		
 		if(memberService.loginMember(vo) != null) {
@@ -131,7 +131,7 @@ public class MemberController {
 			
 			model.addAttribute("member",memberService.getMember(vo));
 			
-			return "/main";
+			return "redirect:main";
 		} else {
 			return "/login";
 		}

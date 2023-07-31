@@ -13,6 +13,7 @@
 		<result property="member_profile_url" column="MEMBER_PROFILE_URL"/>
 		<result property="member_phone_number" column="MEMBER_PHONE_NUMBER"/>
 		
+			
 		<result property="festival_name" column="FESTIVAL_NAME"/>
 		<result property="board_title" column="BOARD_TITLE"/>
 		<result property="board_start_date" column="BOARD_START_DATE"/>
@@ -28,25 +29,24 @@
 	</delete>
 	
 	<delete id="AdminDeleteFestival">
-		DELETE FROM FESTIVAL WHERE MEMBER_ID=#{festival_number}
+		DELETE FROM FESTIVAL WHERE FESTIVAL_NUMBER=#{festival_number}
 	</delete>
 	
 	<delete id="AdminDeleteBoard">
-		DELETE FROM BOARD WHERE MEMBER_ID=#{board_number}
+		DELETE FROM BOARD WHERE BOARD_TITLE=#{board_title}
 	</delete>
 	
 	<select id="AdminFestivalList" resultMap="adminResult">
-		SELECT * FROM FESTIVAL
+	    SELECT * FROM FESTIVAL
 	</select>
 	
 	<select id="AdminGetMemberList" resultMap="adminResult">
 		SELECT * FROM MEMBER
 	</select>
 	
+	<!--회원작성 게시글조회 -->
 	<select id="AdminMemberBoardList" resultMap="adminResult">
 		SELECT * FROM BOARD
 	</select>
 	
-
-
 </mapper>

@@ -148,15 +148,7 @@
  <!-----------------------------script---------------------------------->
    <script>
     
-   var sessionUserId = "${sessionScope.userId}";
-   
-   
-  function chatRoom(event){
-		if(sessionUserId === null || <%=userId%> === null){
-			alert("회원만 이용 가능합니다.");
-			event.preventDefault();
-		}
-  };
+
   
   $(document).ready(function(){
 		// 퀵배너 스크롤

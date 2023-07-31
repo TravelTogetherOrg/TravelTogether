@@ -109,7 +109,7 @@ label {
 	cursor: pointer;
 }
 
-.imgtextbox {
+.imgtextbox { 
 	flex-direction: inherit;
 }
 
@@ -286,6 +286,94 @@ a:link {
 	text-decoration: none;
 	color: black;
 }
+
+
+/* ---------더보기-------- */
+li {
+  list-style-type: none;
+}
+
+.post-container {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  border: 2px solid #d7d7d7;
+  margin: 15px;
+}
+
+.post-title {
+  font-size: 20px;
+}
+
+.post-number {
+  font-size: 15px;
+  padding: 15px;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+}
+
+.prev-button:hover,
+.next-button:hover,
+.number-button:hover {
+  font-weight: 800;
+  color: red;
+}
+
+.pagination-container {
+  user-select: none;
+}
+
+.selected {
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: dodgerblue;
+}
+.context-wrapper {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center; /* 가로 가운데 정렬 */
+  align-items: flex-start; 
+}
+
+ .context {
+    --max-lines: 1;
+    --lh: 1.1;
+    position: relative;
+    max-height: calc(var(--lh) * var(--max-lines));
+    overflow: hidden;
+    padding-right: 1rem;
+    line-height: var(--lh);
+    display: -webkit-box;
+    -webkit-line-clamp: var(--max-lines);
+    -webkit-box-orient: vertical;
+  }
+
+.context-button {
+  margin-left: 10px;
+  display: none;
+}
+
+.context-wrapper:hover .context-button {
+  display: inline-block;
+}
+
+.context-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  
+.context-text {
+   flex: 1;
+   padding-right: 2rem; /* 버튼을 우측으로 밀어냄 */
+ }
+ 
+ 
+ /* ------페이지네이션------ */
+
 </style>
 
 <script
@@ -298,7 +386,7 @@ a:link {
         if (confirm(memberId + "님의 계정을 정말 삭제 하시겠습니까?")) {
             // 삭제 성공 시 메시지 출력
             alert("삭제 완료");
-            location.href = "/biz/AdminDeleteMember.do?member_id=" + member_id;
+            location.href = "AdminDeleteMember?member_id=" + member_id;
         } else {
             // 삭제 실패 시 메시지 출력
             alert("삭제 실패");
@@ -310,7 +398,7 @@ a:link {
         if (confirm(festivalId + " 축제를 정말 삭제 하시겠습니까?")) {
             // 삭제 성공 시 메시지 출력
             alert("축제 삭제 완료");
-            location.href = "/biz/AdminDeleteFestival.do?festival_number=" + festival_number;
+            location.href = "AdminDeleteFestival?festival_number=" + festival_number;
         } else {
             // 삭제 실패 시 메시지 출력
             alert("축제 삭제 실패");
@@ -322,7 +410,7 @@ a:link {
         if (confirm(boardId + " 글을 정말 삭제 하시겠습니까?")) {
             // 삭제 성공 시 메시지 출력
             alert("게시판 삭제 완료");
-            location.href = "/biz/AdminDeleteBoard.do?board_title=" + board_title;
+            location.href = "AdminDeleteBoard?board_title=" + board_title;
         } else {
             // 삭제 실패 시 메시지 출력
             alert("게시판 삭제 실패");
@@ -330,10 +418,72 @@ a:link {
     }
 </script>
 
+<script>                  /* 축제정보 더보기 */
+
+function expandText(element) {
+    element.style.webkitLineClamp = "unset";
+    element.parentElement.style.display = "flex";
+    element.parentElement.style.alignItems = "center";
+  }
+
+  function collapseText(element) {
+    element.style.webkitLineClamp = "1";
+    element.parentElement.style.display = "block";
+    element.parentElement.style.alignItems = "initial";
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const contextCells = document.querySelectorAll(".context");
+
+    contextCells.forEach((cell) => {
+      if (cell.scrollHeight > cell.clientHeight) {
+        const moreButton = document.createElement("button");
+        moreButton.innerText = "더보기";
+        moreButton.classList.add("context-button", "btn", "btn-default");
+        moreButton.addEventListener("click", () => {
+          expandText(cell);
+          moreButton.style.display = "none";
+        });
+
+        const collapseButton = document.createElement("button");
+        collapseButton.innerText = "접기";
+        collapseButton.classList.add("context-button", "btn", "btn-default");
+        collapseButton.addEventListener("click", () => {
+          collapseText(cell);
+          moreButton.style.display = "block";
+        });
+
+        const buttonWrapper = document.createElement("div");
+        buttonWrapper.classList.add("context-wrapper");
+        cell.after(buttonWrapper);
+        buttonWrapper.appendChild(cell);
+        buttonWrapper.appendChild(moreButton);
+        buttonWrapper.appendChild(collapseButton);
+
+        cell.parentElement.style.display = "block";
+        collapseText(cell);
+      } else {
+        const cellWrapper = document.createElement("div");
+        cellWrapper.classList.add("context-wrapper");
+        cell.after(cellWrapper);
+        const textWrapper = document.createElement("div");
+        textWrapper.classList.add("context-text");
+        cellWrapper.appendChild(textWrapper);
+        textWrapper.appendChild(cell);
+        cellWrapper.style.display = "flex";
+        cellWrapper.style.alignItems = "center";
+      }
+    });
+  });
+</script>
+
+
+
+
 </head>
 <body>
 	<div class="wrap">
-		<jsp:include page="header.jsp" />
+		
 		<div style="display:flex;justify-content: center;">
 		<section>
 			<div
@@ -348,15 +498,15 @@ a:link {
 					<div class="boardtype">
 						
 						<div class="boardtype-1">
-							<a href="${context}/adminGetMemberList.do" class="typelink" id="typeM">회원관리</a>
+							<a href="${context}/AdminGetMemberList" class="typelink" id="typeM">회원관리</a>
 						</div>
 					
 						<div class="boardtype-1">
-							<a href="${context}/AdminFestivalList.do" class="typelink" id="typeF">축제정보</a>
+							<a href="${context}/AdminFestivalList" class="typelink" id="typeF">축제정보</a>
 						</div>
 						
 						<div class="boardtype-1">
-							<a href="${context}/AdminMemberBoardList.do" class="typelink" id="typeB">동행게시판</a>
+							<a href="${context}/AdminMemberBoardList" class="typelink" id="typeB">동행게시판</a>
 						</div>
 						
 					</div>
@@ -429,14 +579,14 @@ a:link {
 				<td>축제번호</td>
 				<td>축제관리</td>
 			</tr>
-			<c:if test="${not empty festivalList }">
-				<c:forEach items="${festivalList }" var="fl">
+			<c:if test="${not empty AdminFestivalList }">
+				<c:forEach items="${AdminFestivalList }" var="fl">
 				 <tr>
 				 	<td>${fl.festival_name}</td>
 					<td>${fl.festival_startdate}</td>
 		            <td>${fl.festival_enddate}</td>
-		            <td>${fl.festival_address}</td>
-		            <td>${fl.festival_detail_information}</td>
+		            <td style="width: 180px;">${fl.festival_address}</td>
+		            <td class="context" style="width: 500px;">${fl.festival_detail_information}</td>
 		            <td>${fl.festival_showaddress}</td>
 		            <td>${fl.festival_number}</td>
 		            <td> 
@@ -450,7 +600,7 @@ a:link {
 				</c:forEach>
 			</c:if>
 			
-			<c:if test="${empty festivalList}">
+			<c:if test="${empty AdminFestivalList}">
 				<tr>
 					<td colspan='10'>검색결과가 없습니다</td>
 				</tr>
@@ -475,8 +625,8 @@ a:link {
 				<td>게시판관리</td>
 				
 			</tr>
-			<c:if test="${not empty memberBoardList }">
-				<c:forEach items="${memberBoardList }" var="mb">
+			<c:if test="${not empty AdminMemberBoardList }">
+				<c:forEach items="${AdminMemberBoardList }" var="mb">
 			
 				 <tr>
 				 	<td>${mb.festival_name}</td>
@@ -489,6 +639,7 @@ a:link {
 		            <td>${mb.board_content}</td>
 		            <td>${mb.board_view_count}</td>
 		            <td>${mb.board_update_date}</td>
+		            
 		            <td> 
 	            		  <%-- <c:if test="${mb.deleteMember eq 'N'.charAt(0)}"></c:if> --%>
 	                    <input type="text" style="border:1px solid #lightgray" class="btn btn-default" placeholder="삭제사유를 입력해주세요" required="required">
@@ -501,7 +652,7 @@ a:link {
 		         	</tr>
 				</c:forEach>
 			</c:if>
-			<c:if test="${empty memberBoardList}">
+			<c:if test="${empty AdminMemberBoardList}">
 				<tr>
 					<td colspan='10'>검색결과가 없습니다</td>
 				</tr>
@@ -510,63 +661,7 @@ a:link {
 	
 	</c:if>	
 						
-							
-	<table>
 
-		<tr align="center" height="20">
-			<td colspan="6"
-				style="padding-top: 20px; color: #0AC5A8;">
-				
-			<c:if test="${currentPage <= 1}"> [이전]&nbsp;
-					</c:if> 
-					
-					<c:if test="${currentPage > 1}">
-				<c:url var="blistST" value="AdminPage.jsp">
-					<c:param name="page" value="${currentPage-1}" />
-					<c:param name="type" value="${type}" />
-					<c:if test="${not empty keyword}">
-						<c:param name="keyword" value="${keyword }"></c:param>
-					</c:if>
-				</c:url>
-				<a href="${blistST}"
-					style="color: #0AC5A8;">[이전]</a>
-			</c:if> 
-	
-	<!-- 끝 페이지 번호 처리  -->
-	<c:forEach var="p" begin="${startPage}"
-		end="${endPage }">
-		<c:if test="${p <= maxPage}">
-			<c:if test="${p eq currentPage}">
-				<font color="cornflowerblue" size="4"><b>[${p}]</b></font>
-			</c:if>
-			<c:if test="${p ne currentPage}">
-				<c:url var="blistchk" value="AdminPage.do">
-					<c:param name="page" value="${p}" />
-					<c:param name="type" value="${type}" />
-					<c:if test="${not empty keyword}">
-						<c:param name="keyword" value="${keyword }"></c:param>
-					</c:if>
-				</c:url>
-				<a href="${blistchk}">${p}</a>
-			</c:if>
-		</c:if>
-	</c:forEach> <c:if test="${currentPage >= maxPage}">
-				 [다음]
-				 </c:if> 
-				 <c:if test="${currentPage < maxPage}">
-		<c:url var="blistEND" value="AdminPage.do">
-			<c:param name="page" value="${currentPage+1}" />
-			<c:param name="type" value="${type}" />
-			<c:if test="${not empty keyword}">
-				<c:param name="keyword" value="${keyword }"></c:param>
-			</c:if>
-		</c:url>
-		<a href="${blistEND}"
-			style="color: #0AC5A8;">[다음]</a>
-	</c:if>
-	</td>
-	</tr>
-</table>
 		
 			</div>
 		</div>	

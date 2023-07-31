@@ -29,6 +29,7 @@ public class AdminDAO_mybatis {
 			return mybatis.selectList("AdminDAO.AdminFestivalList",vo);
 		}
 		
+		
 		//회원리스트
 		public List<AdminVO> AdminGetMemberList(AdminVO vo){
 			return mybatis.selectList("AdminDAO.AdminGetMemberList",vo);

@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.traveltogether.biz.admin.AdminService;
 import com.traveltogether.biz.admin.AdminVO;
-import com.traveltogether.biz.member.MemberService;
-import com.traveltogether.biz.member.MemberVO;
 
 @Controller
 @SessionAttributes("admin")
@@ -29,7 +27,7 @@ public class AdminController {
 		     
 		 	/*
 		 	  
-		 	// MemberController 에서 실행하면 잘됨 ㅠㅠ
+		 	// MemberController 에서 실행
 		 	@RequestMapping("/getMember")
 		 	public String getMember(MemberVO vo, HttpServletRequest request, Model model) {
 		 		HttpSession session = request.getSession();
@@ -68,8 +66,8 @@ public class AdminController {
 	
 		 */   
 		     
-		     // 회원리스트조회
-		 		@RequestMapping("/adminGetMemberList.do")
+		        // 회원리스트조회
+		 		@RequestMapping("/AdminGetMemberList")
 				public String AdminGetMemberList(AdminVO vo, Model model) {
 				    model.addAttribute("type", "M");
 				    List<AdminVO> memberList = adminService.AdminGetMemberList(vo);
@@ -85,60 +83,67 @@ public class AdminController {
 
 				    model.addAttribute("memberList", filteredList);
 				    System.out.println(vo.toString());
-				    return "views/AdminPage.jsp?type=M";
+				    return "AdminPage.jsp?type=M";
 				}
 					
 						
 				
 				//축제리스트조회
-				@RequestMapping("/AdminFestivalList.do")
+				@RequestMapping("/AdminFestivalList")
 				public String AdminFestivalList(AdminVO vo, Model model) {
 					model.addAttribute("type", "F");
 					model.addAttribute("AdminFestivalList",adminService.AdminFestivalList(vo));
-					return "/views/AdminPage.jsp?type=F";
+					return "AdminPage.jsp?type=F";
 				
 				}
 				
 				//회원게시물 조회
-				@RequestMapping("/AdminMemberBoardList.do")
+				@RequestMapping("/AdminMemberBoardList")
 				public String AdminMemberBoardList(AdminVO vo, Model model) {
 					model.addAttribute("type", "B");
 					model.addAttribute("AdminMemberBoardList",adminService.AdminMemberBoardList(vo));
-					return "/views/AdminPage.jsp?type=B";     
+					return "AdminPage.jsp?type=B";     
 				}
+				
+				
+				
 			
+				/*--------------------------------------------------------*/
+				
+				
+				
 				
 				//회원삭제 
-				@RequestMapping("/AdminDeleteMember.do")
+				@RequestMapping("/AdminDeleteMember")
 				public String AdminDeleteMember(AdminVO vo, HttpServletRequest request) {
 				    adminService.AdminDeleteMember(vo);
 				    HttpSession session = request.getSession();
 				    session.invalidate();
 				    
 				    // 삭제 후에 그대로 회원 리스트 페이지로 이동
-				    return "/adminGetMemberList.do";
+				    return "redirect:/AdminGetMemberList";
 				}
 				
 				//축제삭제 
-				@RequestMapping("/AdminDeleteFestival.do")
+				@RequestMapping("/AdminDeleteFestival")
 				public String AdminDeleteFestival(AdminVO vo, HttpServletRequest request) {
 				    adminService.AdminDeleteFestival(vo);
 				    HttpSession session = request.getSession();
 				    session.invalidate();
 				    
 				    // 삭제 후에 그대로 회원 리스트 페이지로 이동
-				    return "redirect:/views/festivalList.do";
+				    return "redirect:/AdminFestivalList";
 				}
 				
 				//게시판삭제
-				@RequestMapping("/AdminDeleteBoard.do")
+				@RequestMapping("/AdminDeleteBoard")
 				public String AdminDeleteBoard(AdminVO vo, HttpServletRequest request) {
 				    adminService.AdminDeleteBoard(vo);
 				    HttpSession session = request.getSession();
 				    session.invalidate();
 				    
 				    // 삭제 후에 그대로 회원 리스트 페이지로 이동
-				    return "redirect:/views/memberBoardList.do";
+				    return "redirect:/AdminMemberBoardList";
 				}
 
 }

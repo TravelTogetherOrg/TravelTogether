@@ -5,10 +5,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/image/favi/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/image/favi/favicon-16x16.png?ddd">
 <meta charset="UTF-8">
 <title>TT_비밀번호찾기</title>
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/findPassword.css?dd">
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/findPassword.css?ddd">
 <style type="text/css">
 	@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@1,900&display=swap');
 	

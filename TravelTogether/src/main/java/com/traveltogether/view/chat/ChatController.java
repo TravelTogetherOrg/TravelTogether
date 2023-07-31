@@ -187,7 +187,7 @@ public class ChatController {
 		
 	}
 		session.invalidate();
-		return "/main";
+		return "redirect:main";
 	}
 	
 	

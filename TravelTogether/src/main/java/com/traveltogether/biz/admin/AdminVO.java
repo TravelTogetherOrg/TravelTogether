@@ -24,14 +24,30 @@ public class AdminVO {
 	private char AdminDeleteFestival;
 	private String AdminFestivalList;
 	
+	private String festival_name;
+	private String festival_startdate;
+	private String festival_enddate;
+	private String festival_address;
+	private String festival_detail_information;
+	private String festival_showaddress;
+	private String festival_number;
+	
 	
 	
 	private char AdminDeleteBoard;
-	private String AdminBoardList;
+	private String AdminMemberBoardList;
 	
+	private String board_title;
+	private String board_start_date;
+	private String board_end_date;
+	private int board_total_people;
+	private Timestamp board_write_date;
+	private String board_content;
+	private int board_view_count;
+	private Timestamp board_update_date;
+	private int board_number;
 	
-	
-	
+
 	
 	public String getMember_password() {
 		return member_password;
@@ -117,21 +133,109 @@ public class AdminVO {
 	public void setAdminFestivalList(String adminFestivalList) {
 		AdminFestivalList = adminFestivalList;
 	}
-	public String getAdminBoardList() {
-		return AdminBoardList;
+
+	
+	public String getFestival_name() {
+		return festival_name;
 	}
-	public void setAdminBoardList(String adminBoardList) {
-		AdminBoardList = adminBoardList;
+	public void setFestival_name(String festival_name) {
+		this.festival_name = festival_name;
 	}
-	@Override
-	public String toString() {
-		return "AdminVO [AdminDeleteMember=" + AdminDeleteMember + ", AdminMemberList=" + AdminMemberList
-				+ ", member_id=" + member_id + ", member_password=" + member_password + ", member_name=" + member_name
-				+ ", member_nickname=" + member_nickname + ", member_gender=" + member_gender + ", member_birthday="
-				+ member_birthday + ", member_create_date=" + member_create_date + ", member_profile_url="
-				+ member_profile_url + ", member_phone_number=" + member_phone_number + ", AdminDeleteFestival="
-				+ AdminDeleteFestival + ", AdminFestivalList=" + AdminFestivalList + ", AdminDeleteBoard="
-				+ AdminDeleteBoard + ", AdminBoardList=" + AdminBoardList + "]";
+	public String getFestival_startdate() {
+		return festival_startdate;
+	}
+	public void setFestival_startdate(String festival_startdate) {
+		this.festival_startdate = festival_startdate;
+	}
+	public String getFestival_enddate() {
+		return festival_enddate;
+	}
+	public void setFestival_enddate(String festival_enddate) {
+		this.festival_enddate = festival_enddate;
+	}
+	public String getFestival_address() {
+		return festival_address;
+	}
+	public void setFestival_address(String festival_address) {
+		this.festival_address = festival_address;
+	}
+	public String getFestival_detail_information() {
+		return festival_detail_information;
+	}
+	public void setFestival_detail_information(String festival_detail_information) {
+		this.festival_detail_information = festival_detail_information;
+	}
+	public String getFestival_showaddress() {
+		return festival_showaddress;
+	}
+	public void setFestival_showaddress(String festival_showaddress) {
+		this.festival_showaddress = festival_showaddress;
+	}
+	public String getFestival_number() {
+		return festival_number;
+	}
+	public void setFestival_number(String festival_number) {
+		this.festival_number = festival_number;
+	}
+	public String getBoard_title() {
+		return board_title;
+	}
+	public void setBoard_title(String board_title) {
+		this.board_title = board_title;
+	}
+	public String getBoard_start_date() {
+		return board_start_date;
+	}
+	public void setBoard_start_date(String board_start_date) {
+		this.board_start_date = board_start_date;
+	}
+	public String getBoard_end_date() {
+		return board_end_date;
+	}
+	public void setBoard_end_date(String board_end_date) {
+		this.board_end_date = board_end_date;
+	}
+	public int getBoard_total_people() {
+		return board_total_people;
+	}
+	public void setBoard_total_people(int board_total_people) {
+		this.board_total_people = board_total_people;
+	}
+	public Timestamp getBoard_write_date() {
+		return board_write_date;
+	}
+	public void setBoard_write_date(Timestamp board_write_date) {
+		this.board_write_date = board_write_date;
+	}
+	public String getBoard_content() {
+		return board_content;
+	}
+	public void setBoard_content(String board_content) {
+		this.board_content = board_content;
+	}
+	public int getBoard_view_count() {
+		return board_view_count;
+	}
+	public void setBoard_view_count(int board_view_count) {
+		this.board_view_count = board_view_count;
+	}
+	public Timestamp getBoard_update_date() {
+		return board_update_date;
+	}
+	public void setBoard_update_date(Timestamp board_update_date) {
+		this.board_update_date = board_update_date;
+	}
+	public int getBoard_number() {
+		return board_number;
+	}
+	public void setBoard_number(int board_number) {
+		this.board_number = board_number;
+	}
+	public String getAdminMemberBoardList() {
+		return AdminMemberBoardList;
+	}
+	public void setAdminMemberBoardList(String adminMemberBoardList) {
+		AdminMemberBoardList = adminMemberBoardList;
 	}
 	
 
