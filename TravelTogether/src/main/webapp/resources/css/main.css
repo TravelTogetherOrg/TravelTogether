@@ -491,7 +491,7 @@ i:hover {
 }
 
 /* ---------------------------chat--------------------------------  */
-.chat-icon .chat{position:relative;width:100%;min-width:1000px;  cursor: pointer;
+.chat-icon{position:relative;width:100%;min-width:1000px;  cursor: pointer;
 }
 .chat-icon .chat-icon-inner{position:absolute;top:88vh;right:7% ;z-index:60;margin-left:250px;cursor: pointer;
 }
