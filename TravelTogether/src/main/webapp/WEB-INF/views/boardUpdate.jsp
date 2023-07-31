@@ -125,7 +125,7 @@
                 </div>
             </div>
             <div class="buttons">
-                <button class="resetButton" type="reset" onclick="location.href='${context}/boardList'">취소</button>
+                <button class="resetButton" type="button" onclick="location.href='${context}/boardList'">취소</button>
                 <button class="submitButton" type="submit">수정완료</button>
             </div>
         </form>
