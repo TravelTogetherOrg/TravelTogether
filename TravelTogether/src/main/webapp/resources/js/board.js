@@ -673,7 +673,7 @@ if(writeComment != null){
                                             "<div class='recommentAndDelete'>"+
                                                 "<button class='recommentWrite' onclick='reComment("+data.comment.comment_number+")'>답글달기</button>"+
                                                 "<span>|</span>"+
-                                                "<button class='commentUpdate' onclick='updateComment()>수정하기</button>"+
+                                                "<button class='commentUpdate' onclick='updateComment("+data.comment.comment_number+")'>수정하기</button>"+
                                                 "<span>|</span>"+
                                                 "<button class='commentDelete' onclick='deleteComment("+data.comment.comment_number+")'>삭제하기</button>"+
                                             "</div>";
@@ -752,7 +752,7 @@ if(writeComment != null){
                                         "<div class='recommentAndDelete'>"+
                                             "<button class='recommentWrite' onclick='reComment("+data.comment.comment_number+")'>답글달기</button>"+
                                             "<span>|</span>"+
-                                            "<button class='commentUpdate' onclick='updateComment()'>수정하기</button>"+
+                                            "<button class='commentUpdate' onclick='updateComment("+data.comment.comment_number+")'>수정하기</button>"+
                                             "<span>|</span>"+
                                             "<button class='commentDelete' onclick='deleteComment("+data.comment.comment_number+")'>삭제하기</button>"+
                                         "</div>"+
