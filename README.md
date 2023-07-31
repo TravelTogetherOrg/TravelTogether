@@ -1,6 +1,6 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=header&text=Travle%20Together&fontSize=90)
 
-# Team Project : Travler Together
+# Team Project : Travel Together
 
 ## 💻 참여자
 👩🏻‍💻[Hoony](https://github.com/Hoonyyyy) 
