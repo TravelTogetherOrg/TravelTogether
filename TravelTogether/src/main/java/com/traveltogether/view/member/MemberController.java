@@ -137,14 +137,6 @@ public class MemberController {
 		}
 	}
 	
-	@RequestMapping("/logout")
-	public String logoutMember(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		session.invalidate();
-		
-		return "/main";
-	}
-	
 	//아이디 찾기
 	@RequestMapping("/findMemberId")
 	@ResponseBody
