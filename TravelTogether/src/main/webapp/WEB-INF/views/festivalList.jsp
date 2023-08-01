@@ -32,7 +32,7 @@
   <br>
   <!-- 상단 축제이름 -->
   <div class="container">
-    <h1 style="font-family: 'SUITE-Regular', sans-serif; font-size: 40px; text-align: center; font-weight: bold;"><span style="color: rgb(129, 189, 235)">7월 </span>축제 리스트</h1>
+    <h1 style="font-family: 'SUITE-Regular', sans-serif; font-size: 40px; text-align: center; font-weight: bold;"><span style="color: rgb(129, 189, 235)">8월 </span>축제 리스트</h1>
 
   </div>  
 
