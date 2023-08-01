@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.traveltogether.biz.admin.AdminService;
@@ -22,6 +24,8 @@ public class AdminController {
 	
 		     @Autowired 
 			  private AdminService adminService;
+			  
+		      private List<AdminVO> memberList;
 
 		
 		     
@@ -145,6 +149,60 @@ public class AdminController {
 				    // 삭제 후에 그대로 회원 리스트 페이지로 이동
 				    return "redirect:/AdminMemberBoardList";
 				}
+				
+				
+				/*------------------페이지네이션-----------------*/
+				
+				@GetMapping("/AdminPage")
+				public String showProductManagement(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "5") int itemsPerPage, @RequestParam(required = false) String keyword, Model model, HttpSession session) {
+				    // ... 이전 코드 생략 ...
+
+				    // 검색어가 있을 경우, 해당 검색어로 필터링된 목록을 가져옴
+				    if (keyword != null && !keyword.trim().isEmpty()) {
+				        memberList = filterMemberListByKeyword(memberList, keyword);
+				    }
+
+				    // 전체 페이지 수 계산
+				    int totalPages = (int) Math.ceil((double) memberList.size() / itemsPerPage);
+
+				    // 요청한 페이지 번호가 유효하지 않은 경우 기본값으로 설정
+				    if (page <= 0) {
+				        page = 1;
+				    } else if (page > totalPages) {
+				        page = totalPages;
+				    }
+
+				    // 페이징을 위한 회원 리스트
+				    int startIndex = (page - 1) * itemsPerPage;
+				    int endIndex = Math.min(startIndex + itemsPerPage, memberList.size());
+				    List<AdminVO> pagedMemberList = memberList.subList(startIndex, endIndex);
+
+				    // 총 회원 수를 JSP에 전달
+				    model.addAttribute("totalMember", memberList.size());
+
+				    // 페이징된 회원 리스트를 JSP에 전달
+				    model.addAttribute("memberList", pagedMemberList);
+				    model.addAttribute("totalPages", totalPages);
+				    model.addAttribute("currentPage", page);
+
+				    return "/AdminPage";
+				}
+
+				// 회원 목록에 검색어로 필터링하는 메서드
+				@SuppressWarnings("unused")
+				private List<AdminVO> filterMemberListByKeyword(List<AdminVO> memberList, String keyword) {
+				    List<AdminVO> filteredList = new ArrayList<>();
+				    for (AdminVO member : memberList) {
+				        // 검색어로 회원 아이디 또는 회원명에 포함되는지 확인
+				        if (member.getMember_id().contains(keyword) || member.getMember_name().contains(keyword)) {
+				            filteredList.add(member);
+				        }
+				    }
+				    return filteredList;
+				}
+				
+			
+
 
 }
 				

@@ -23,5 +23,7 @@ public interface AdminService {
 	
 	boolean adminLogin(AdminVO vo);
 
+	
+
 }
 

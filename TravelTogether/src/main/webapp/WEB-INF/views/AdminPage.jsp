@@ -9,9 +9,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="16x16" href="${context}/resources/image/favi/favicon-16x16.png">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<%-- <link rel="stylesheet" type="text/css" href="${path}/resources/css/admin.css"> --%>
 <title>TT_관리자페이지</title> 
 <style>
+@charset "UTF-8";
 
 * { 
 	outline: none;
@@ -91,11 +94,16 @@ section {
 	margin: 20px;
 	font-size: 25px;
 }
+									
+  .boardtype-1 a:hover {				/* 메뉴에 마우스를 올렸을 때의 스타일 */
+    color: orange;
+  }
 
 .boardtype {
 	width: 20%;
 	display: contents;
 }
+ 
 
 .Board {
 	display: flex;
@@ -254,13 +262,11 @@ td {
 	padding: 10px;
 }
 
-#searchbar {
-	padding-left: 10px;
-	width: 350px;
-	outline: none;
-	border-radius: 20px;
-	height: 30px;
-	border: 1px solid brown;
+.maintitle {
+	background-color:rgb(192, 228, 255);  
+	white-space: nowrap; 
+	font-weight: bold;
+	
 }
 
 .adminform {
@@ -285,6 +291,37 @@ a:visited {
 a:link {
 	text-decoration: none;
 	color: black;
+}
+
+      /* logo */
+.navbar__logo{
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: bolder;
+    font-size: 1.6em;
+    white-space: nowrap; 
+	font-weight: bold;
+	
+	
+	
+  }
+  .navbar__logo span {
+    color: orange;
+    align:center;
+    padding-left: 0;
+    
+  }
+  #logo{
+    text-decoration: none;
+    color: black;
+  }
+  #function logo{
+   font-size: 0.8em; 
+   color: gray;
+  }
+  input[type="submit"]:hover,
+  input[type="submit"]:active {
+  font-weight:bolder;
+  color: orange;
 }
 
 
@@ -340,8 +377,8 @@ li {
 }
 
  .context {
-    --max-lines: 1;
-    --lh: 1.1;
+    --max-lines: 2;
+    --lh: 1;
     position: relative;
     max-height: calc(var(--lh) * var(--max-lines));
     overflow: hidden;
@@ -366,21 +403,216 @@ li {
     flex-direction: column;
   }
   
-.context-text {
-   flex: 1;
-   padding-right: 2rem; /* 버튼을 우측으로 밀어냄 */
- }
- 
+
  
  /* ------페이지네이션------ */
 
+
 </style>
+
+
+</head>
+<body>
+											<!-- 로고 (홈버튼) -->
+			<div class="navbar__logo" style="padding : 50px 50px 50px 50px;">
+	        	 <a id="logo" href="${path}/biz/main" ondragstart='return false'>🚆<span>T</span>ravel <span>T</span>ogether</a>
+	       </div>
+	       
+	<div class="wrap">
+		<div style="display:flex;justify-content: center;">
+			<section>
+				<div
+					style="display: flex; justify-content: center; margin-bottom: 50px;">
+					<h1 style="font-size: 40px;">관리자페이지</h1>
+				</div>
+			
+			<div id="menuwrap">
+				<div class="Board" style="width: 500px;">
+					<div class="boardtype">
+						
+						<div class="boardtype-1">
+							<a href="${context}/AdminGetMemberList" class="typelink" id="typeM">회원관리</a>
+						</div>
+					
+						<div class="boardtype-1">
+							<a href="${context}/AdminFestivalList" class="typelink" id="typeF">축제정보</a>
+						</div>
+						
+						<div class="boardtype-1">
+							<a href="${context}/AdminMemberBoardList" class="typelink" id="typeB">동행게시판</a>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			
+			
+			
+		
+	<div class="board_wrap">
+		<div class="board-wrap">
+			<c:if test="${type eq 'M'}">
+		<table>
+			<tr class="maintitle">
+				<td>번호</td>                                  <!-- 번호부여 -->
+				<td>계정</td>
+				<td>비밀번호</td>
+				<td>회원명</td>
+				<td>닉네임</td>
+				<td>성별</td>
+				<td>전화번호</td>
+				<td>가입일</td>
+				<td>회원관리</td>
+			</tr>
+			<c:if test="${not empty memberList }">            <!-- 번호부여 -->
+				<c:forEach items="${memberList }" var="ml" varStatus="status">
+			
+				 <tr>
+					<td>${status.index + 1}</td>              <!-- 번호부여 -->
+				 	<td>${ml.member_id}</td>
+					<td>${ml.member_password}</td>
+		            <td>${ml.member_name}</td>
+		            <td>${ml.member_nickname}</td>
+		            <td>${ml.member_gender}</td>
+		            <td>${ml.member_phone_number}</td>
+		            <fmt:formatDate value="${ml.member_create_date}" 
+		            				pattern="yyyy-MM-dd HH:mm:ss" var="formattedDate" />   <!-- 날짜 표기 조정 -->                               
+	                <td>${formattedDate}</td>
+	                <td> 
+	            		<%-- <c:if test="${ml.deleteMember eq 'N'.charAt(0)}"> </c:if>  --%>
+	            			<input type="button" class="btn btn-default" onclick="AdminDeleteMember('${ml.member_id}')" value="회원삭제" />
+							<input type="hidden" value="${mb.member_id}"  class="btn btn-default" name="member_id">
+		               <!--   <form action="deleteMember.do" method="post" class="outform" style="display: none;"> </form>  -->
+	                 
+		                 </td> 
+		         	</tr>
+				</c:forEach>
+			</c:if>
+			<c:if test="${empty memberList}">
+				<tr>
+					<td colspan='10'>검색결과가 없습니다</td>
+				</tr>
+			</c:if>
+		</table>
+	
+	</c:if>	
+
+					
+					
+	<c:if test="${type eq 'F'}">
+		<table>
+			<tr class="maintitle">
+				<td>축제명</td>
+				<td>축제시작일</td>
+				<td>축제종료일</td>
+				<td>축제정보</td>
+				<td>축제장소</td>
+				<td>축제번호</td>
+				<td>축제관리</td>
+			</tr>
+			<c:if test="${not empty AdminFestivalList }">
+				<c:forEach items="${AdminFestivalList }" var="fl">
+				 <tr>
+				 	<td style="max-width:200px;
+		            		   white-space: nowrap; /* 텍스트 줄 바꿈 없이 한 줄로 표시 */
+							   overflow: hidden; /* 넘칠 경우 텍스트 숨기기 */
+							   text-overflow: ellipsis;">${fl.festival_name}</td>
+					<td>${fl.festival_startdate}</td>
+		            <td>${fl.festival_enddate}</td>
+		            <td class="context" style="max-width: 700px;">${fl.festival_detail_information}</td>
+		            <td style="max-width:150px;
+		            		   white-space: nowrap; /* 텍스트 줄 바꿈 없이 한 줄로 표시 */
+							   overflow: hidden; /* 넘칠 경우 텍스트 숨기기 */
+							   text-overflow: ellipsis;">${fl.festival_showaddress}</td>
+		            <td>${fl.festival_number}</td>
+		            <td> 
+	            		<%-- <c:if test="${fl.deleteFestival eq 'N'.charAt(0)}"> </c:if>  --%>
+	            			<input type="button" class="btn btn-default" onclick="AdminDeleteFestival('${fl.festival_number}')" value="축제삭제" />
+							<input type="hidden" value="${mb.member_id}"  class="btn btn-default" name="member_id">
+		               <!--   <form action="deleteMember.do" method="post" class="outform" style="display: none;"> </form>  -->
+	                </td>
+	              </tr>
+				</c:forEach>
+			</c:if>
+			
+			<c:if test="${empty AdminFestivalList}">
+				<tr>
+					<td colspan='10'>검색결과가 없습니다</td>
+				</tr>
+			</c:if>
+		</table>
+	
+	</c:if>	
+					
+	<c:if test="${type eq 'B'}">
+		<table>
+			<tr class="maintitle">
+				<td>축제명</td>
+				<td>회원계정</td>
+				<td>작성일</td>
+				<td>참여최대인원</td>
+				<td>시작일</td>
+				<td>종료일</td>
+				<td>제목</td>
+				<td>내용</td>
+				<td>조회수</td>
+				<td>수정시간</td>
+				<td>게시판관리</td>
+				
+			</tr>
+			<c:if test="${not empty AdminMemberBoardList }">
+				<c:forEach items="${AdminMemberBoardList }" var="mb">
+			
+				 <tr>
+				 	<td>${mb.festival_name}</td>
+					<td>${mb.member_id}</td>
+		            <td>${mb.board_write_date}</td>
+		            <td>${mb.board_total_people}</td>
+		            <td>${mb.board_start_date}</td>
+		            <td>${mb.board_end_date}</td>
+		            <td>${mb.board_title}</td>
+		            <td>${mb.board_content}</td>
+		            <td>${mb.board_view_count}</td>
+		            <td>${mb.board_update_date}</td>
+		            
+		            <td> 
+	            		  <%-- <c:if test="${mb.deleteMember eq 'N'.charAt(0)}"></c:if> --%>
+	                        <input type="button" class="btn btn-default" onclick="AdminDeleteBoard('${mb.board_title}')" value="축제삭제" />
+							<input type="hidden" value="${mb.member_id}"  class="btn btn-default" name="member_id">
+		                 
+		                  <!-- <form action="deleteMember.do" method="post" class="outform" style="display: none;">  </form> -->
+	                 
+		                 </td> 
+		         	</tr>
+				</c:forEach>
+			</c:if>
+			<c:if test="${empty AdminMemberBoardList}">
+				<tr>
+					<td colspan='10'>검색결과가 없습니다</td>
+				</tr>
+			</c:if>
+		</table>
+	
+	</c:if>	
+	
+						
+
+		
+			</div>
+		</div>	
+	</section>
+</div>
+		 
+		
+<jsp:include page="footer.jsp" />
+</div>
+
 
 <script
 	src="${pageContext.request.contextPath }/js/jquery-3.5.1.js">
 </script>
 
-  <script type="text/javascript">
+ <script type="text/javascript">
     function AdminDeleteMember(member_id) {
         var memberId = member_id;
         if (confirm(memberId + "님의 계정을 정말 삭제 하시겠습니까?")) {
@@ -418,7 +650,7 @@ li {
     }
 </script>
 
-<script>                  /* 축제정보 더보기 */
+<script>                  /* 축제정보 더보기,접어두기 */
 
 function expandText(element) {
     element.style.webkitLineClamp = "unset";
@@ -480,197 +712,6 @@ function expandText(element) {
 
 
 
-</head>
-<body>
-	<div class="wrap">
-		
-		<div style="display:flex;justify-content: center;">
-		<section>
-			<div
-				style="display: flex; justify-content: center; margin-bottom: 50px;">
-				<h1 style="font-size: 40px; margin-top: 100px;">관리자페이지</h1>
-			</div>
-			
-			
-			
-			<div id="menuwrap">
-				<div class="Board" style="width: 500px;">
-					<div class="boardtype">
-						
-						<div class="boardtype-1">
-							<a href="${context}/AdminGetMemberList" class="typelink" id="typeM">회원관리</a>
-						</div>
-					
-						<div class="boardtype-1">
-							<a href="${context}/AdminFestivalList" class="typelink" id="typeF">축제정보</a>
-						</div>
-						
-						<div class="boardtype-1">
-							<a href="${context}/AdminMemberBoardList" class="typelink" id="typeB">동행게시판</a>
-						</div>
-						
-					</div>
-				</div>
-			</div>
-			
-			
-			
-		
-	<div class="board_wrap">
-		<div class="board-wrap">
-			<c:if test="${type eq 'M'}">
-		<table>
-			<tr>
-				<td>번호</td>                                  <!-- 번호부여 -->
-				<td>계정</td>
-				<td>비밀번호</td>
-				<td>회원명</td>
-				<td>닉네임</td>
-				<td>성별</td>
-				<td>전화번호</td>
-				<td>가입일</td>
-				<td>회원관리</td>
-			</tr>
-			<c:if test="${not empty memberList }">            <!-- 번호부여 -->
-				<c:forEach items="${memberList }" var="ml" varStatus="status">
-			
-				 <tr>
-					<td>${status.index + 1}</td>              <!-- 번호부여 -->
-				 	<td>${ml.member_id}</td>
-					<td>${ml.member_password}</td>
-		            <td>${ml.member_name}</td>
-		            <td>${ml.member_nickname}</td>
-		            <td>${ml.member_gender}</td>
-		            <td>${ml.member_phone_number}</td>
-		            <fmt:formatDate value="${ml.member_create_date}" 
-		            				pattern="yyyy-MM-dd HH:mm:ss" var="formattedDate" />   <!-- 날짜 표기 조정 -->                               
-	                <td>${formattedDate}</td>
-	                <td> 
-	            		<%-- <c:if test="${ml.deleteMember eq 'N'.charAt(0)}"> </c:if>  --%>
-	            			<input type="text" style="border:1px solid #lightgray" class="btn btn-default" placeholder="삭제사유를 입력해주세요" required="required">
-	            			<input type="button" class="btn btn-default" onclick="AdminDeleteMember('${ml.member_id}')" value="회원삭제" />
-							<input type="hidden" value="${mb.member_id}"  class="btn btn-default" name="member_id">
-		               <!--   <form action="deleteMember.do" method="post" class="outform" style="display: none;"> </form>  -->
-	                 
-		                 </td> 
-		         	</tr>
-				</c:forEach>
-			</c:if>
-			<c:if test="${empty memberList}">
-				<tr>
-					<td colspan='10'>검색결과가 없습니다</td>
-				</tr>
-			</c:if>
-		</table>
-	
-	</c:if>	
-
-					
-					
-	<c:if test="${type eq 'F'}">
-		<table>
-			<tr>
-				<td>축제명</td>
-				<td>축제시작일</td>
-				<td>축제종료일</td>
-				<td>지역</td>
-				<td>축제정보</td>
-				<td>축제장소</td>
-				<td>축제번호</td>
-				<td>축제관리</td>
-			</tr>
-			<c:if test="${not empty AdminFestivalList }">
-				<c:forEach items="${AdminFestivalList }" var="fl">
-				 <tr>
-				 	<td>${fl.festival_name}</td>
-					<td>${fl.festival_startdate}</td>
-		            <td>${fl.festival_enddate}</td>
-		            <td style="width: 180px;">${fl.festival_address}</td>
-		            <td class="context" style="width: 500px;">${fl.festival_detail_information}</td>
-		            <td>${fl.festival_showaddress}</td>
-		            <td>${fl.festival_number}</td>
-		            <td> 
-	            		<%-- <c:if test="${fl.deleteFestival eq 'N'.charAt(0)}"> </c:if>  --%>
-	            			<input type="text" style="border:1px solid #lightgray" class="btn btn-default" placeholder="삭제사유를 입력해주세요" required="required">
-	            			<input type="button" class="btn btn-default" onclick="AdminDeleteFestival('${fl.festival_number}')" value="축제삭제" />
-							<input type="hidden" value="${mb.member_id}"  class="btn btn-default" name="member_id">
-		               <!--   <form action="deleteMember.do" method="post" class="outform" style="display: none;"> </form>  -->
-	                </td>
-	              </tr>
-				</c:forEach>
-			</c:if>
-			
-			<c:if test="${empty AdminFestivalList}">
-				<tr>
-					<td colspan='10'>검색결과가 없습니다</td>
-				</tr>
-			</c:if>
-		</table>
-	
-	</c:if>	
-					
-	<c:if test="${type eq 'B'}">
-		<table>
-			<tr>
-				<td>축제명</td>
-				<td>회원계정</td>
-				<td>작성일</td>
-				<td>참여최대인원</td>
-				<td>시작일</td>
-				<td>종료일</td>
-				<td>제목</td>
-				<td>내용</td>
-				<td>조회수</td>
-				<td>수정시간</td>
-				<td>게시판관리</td>
-				
-			</tr>
-			<c:if test="${not empty AdminMemberBoardList }">
-				<c:forEach items="${AdminMemberBoardList }" var="mb">
-			
-				 <tr>
-				 	<td>${mb.festival_name}</td>
-					<td>${mb.member_id}</td>
-		            <td>${mb.board_write_date}</td>
-		            <td>${mb.board_total_people}</td>
-		            <td>${mb.board_start_date}</td>
-		            <td>${mb.board_end_date}</td>
-		            <td>${mb.board_title}</td>
-		            <td>${mb.board_content}</td>
-		            <td>${mb.board_view_count}</td>
-		            <td>${mb.board_update_date}</td>
-		            
-		            <td> 
-	            		  <%-- <c:if test="${mb.deleteMember eq 'N'.charAt(0)}"></c:if> --%>
-	                    <input type="text" style="border:1px solid #lightgray" class="btn btn-default" placeholder="삭제사유를 입력해주세요" required="required">
-	            			<input type="button" class="btn btn-default" onclick="AdminDeleteBoard('${mb.board_title}')" value="축제삭제" />
-							<input type="hidden" value="${mb.member_id}"  class="btn btn-default" name="member_id">
-		                 
-		                  <!-- <form action="deleteMember.do" method="post" class="outform" style="display: none;">  </form> -->
-	                 
-		                 </td> 
-		         	</tr>
-				</c:forEach>
-			</c:if>
-			<c:if test="${empty AdminMemberBoardList}">
-				<tr>
-					<td colspan='10'>검색결과가 없습니다</td>
-				</tr>
-			</c:if>
-		</table>
-	
-	</c:if>	
-						
-
-		
-			</div>
-		</div>	
-	</section>
-</div>
-		 
-		
-<jsp:include page="footer.jsp" />
-</div>
 	
 
 </body>
