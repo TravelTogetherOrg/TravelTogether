@@ -72,6 +72,14 @@ public class MemberController {
 	public String getMember(MemberVO vo, HttpServletRequest request, Model model) {
 //		HttpSession session = request.getSession();
 //		vo.setMember_id(session.getAttribute("userId").toString());  // 세션으로 넘길떄 
+		
+		HttpSession session = request.getSession();
+  	    String userId = (String) session.getAttribute("userId");
+  	    
+  	   if (userId != null && userId.equals("admin@test.com")) {
+  		   return "/AdminPage.jsp?type=M";
+ 	    }
+		
 		model.addAttribute("member", memberService.getMember(vo));
 		model.addAttribute("memberBoardList",memberService.memberBoardList(vo));
 		model.addAttribute("memberCommentList",memberService.memberCommentList(vo));
@@ -116,13 +124,13 @@ public class MemberController {
 		if(vo.getMember_id() == null || vo.getMember_id() == "") {
 			throw new IllegalAccessException("아이디는 반드시 입력해야합니다.");
 		}
-
+/*
 		String a = vo.getMember_id();
 		if (a != null && a.equals("admin@test.com")) {
   		   
-			return "/AdminPage";
+			return "/AdminPage.jsp?type=M";
 		}
-		
+	*/	
 		if(memberService.loginMember(vo) != null) {
 			session.setAttribute("userNickname", memberService.loginMember(vo).getMember_nickname());
 			session.setAttribute("userId", memberService.loginMember(vo).getMember_id());

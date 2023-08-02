@@ -51,4 +51,6 @@ public class AdminServiceimpl implements AdminService {
 	        AdminVO admin = adminDAO.getMember(vo);
 	        return admin != null && "admin@test.com".equals(admin.getMember_id());
 	    }
+
+		
 }
