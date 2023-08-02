@@ -77,7 +77,7 @@ public class MemberController {
   	    String userId = (String) session.getAttribute("userId");
   	    
   	   if (userId != null && userId.equals("admin@test.com")) {
-  		   return "/AdminPage.jsp?type=M";
+  		 return "forward:/AdminGetMemberList";
  	    }
 		
 		model.addAttribute("member", memberService.getMember(vo));

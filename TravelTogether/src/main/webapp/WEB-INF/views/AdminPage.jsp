@@ -415,7 +415,7 @@ li {
 <body>
 											<!-- 로고 (홈버튼) -->
 			<div class="navbar__logo" style="padding : 50px 50px 50px 50px;">
-	        	 <a id="logo" href="${path}/biz/main" ondragstart='return false'>🚆<span>T</span>ravel <span>T</span>ogether</a>
+	        	 <a id="logo" href="${path}/main" ondragstart='return false'>🚆<span>T</span>ravel <span>T</span>ogether</a>
 	       </div>
 	       
 	<div class="wrap">
