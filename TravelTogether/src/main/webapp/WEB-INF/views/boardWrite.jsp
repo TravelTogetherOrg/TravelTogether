@@ -40,10 +40,10 @@
                                 <tr><td id="제주">제주도</td></tr>
                                 <tr><td id="강원">강원도</td></tr>
                                 <tr><td id="세종">세종</td></tr>
-                                <tr><td id="충청">충정도</td></tr>
+                                <tr><td id="충청">충청도</td></tr>
                                 <tr><td id="경상">경상도</td></tr>
                                 <tr><td id="전라">전라도</td></tr>
-                                <tr><td id="광주광역시">광주광역시</td></tr>
+                                <tr><td id="광주광역시">광주</td></tr>
                                 <tr><td id="대전">대전</td></tr>
                                 <tr><td id="대구">대구</td></tr>
                                 <tr><td id="울산">울산</td></tr>

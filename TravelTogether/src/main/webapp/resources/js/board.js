@@ -69,7 +69,7 @@ function loginCheck(id){
     }else{
         let hostIndex = location.href.indexOf(location.host) + location.host.length;
         let contextPath = location.href.substring(hostIndex,location.href.indexOf('/', hostIndex+1));
-        //location.href = contextPath+'/insertBoard'; //.do
+        location.href = contextPath+'/insertBoard'; //.do
     }
 }
 
