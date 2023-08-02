@@ -75,7 +75,7 @@ public class BoardController {
 		}else {
 			//이미지 없으면 선택한 축제의 기본 이미지 가져오기
 			//jpg인지 png인지 확인해서 맞는 걸로 연결하기
-			File file = new File("C:\\Users\\ddd\\Desktop\\TT\\TravelTogether\\src\\main\\webapp\\resources\\image\\festival\\"
+			File file = new File("C:\\Users\\admin\\Desktop\\TravelTogether\\TravelTogether\\src\\main\\webapp\\resources\\image\\festival"
 					+board.getFestival_name()+"\\"+board.getFestival_name()+"_1_공공3유형.jpg");
 			if(file.exists()) {
 				image.setBoard_image_file(board.getFestival_name()+"_1_공공3유형.jpg");
@@ -163,7 +163,7 @@ public class BoardController {
 		if( !uploadFile.isEmpty() ) { //새로 업로드한 파일의 존재여부
 			//기존에 있던 board_image 해당 데이터 지우고 수정하기(파일 위치는 그대로하고 파일만 바꿔도 될것같다)
 			//기존에 있던 사진파일 지우기
-			String path = "C:\\Users\\ddd\\Desktop\\TT\\TravelTogether\\src\\main\\webapp\\resources\\image\\board\\boardImage\\";
+			String path = "C:\\Users\\admin\\Desktop\\TravelTogether\\TravelTogether\\src\\main\\webapp\\resources\\image\\board\\boardImage";
 			File file = new File(path +boardList.getBoard_image_file_path()+ "\\" + boardList.getBoard_image_file_old());
 			
 			if(file.exists()) { // 파일이 존재하면
@@ -176,7 +176,7 @@ public class BoardController {
 					uuid+"_"+
 					uploadFile.getOriginalFilename());
 			String pathToday = FileUtils.getPathToday().toString().replace("\\", "/");
-			boardList.setBoard_image_file_path(pathToday.substring(pathToday.length()-10,pathToday.length()));
+			boardList.setBoard_image_file_path("board/boardImage/"+pathToday.substring(pathToday.length()-10,pathToday.length()));
 		}
 		else { //사진은 수정 안했을 경우
 			boardList.setBoard_image_file(boardList.getBoard_image_file_old());

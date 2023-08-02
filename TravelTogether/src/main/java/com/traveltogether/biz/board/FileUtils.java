@@ -16,7 +16,7 @@ public class FileUtils {
 	
 	public static Path getPathToday() throws IOException{
 		
-		String basePath = "C:\\Users\\ddd\\Desktop\\TT\\TravelTogether\\src\\main\\webapp\\resources\\image\\board\\boardImage\\";
+		String basePath = "C:\\Users\\admin\\Desktop\\TravelTogether\\TravelTogether\\src\\main\\webapp\\resources\\image\\board\\boardImage";
 		String todayPath = LocalDate.now().format(dateTimeFormat);
 		Path pathToday = Paths.get(basePath, todayPath);
 		

@@ -76,14 +76,15 @@
 	                </div>
 	                <div class="middle">
 	                <!-- path에 festival있으면 아니면../board/boardImage 추가하기 -->
-	                <c:choose>
+	                <%-- <c:choose>
 	                	<c:when test="${fn:startsWith(board.board_image_file_path,'festival')}">
 	                		<img class="thumnail" src="${context}/resources/image/${board.board_image_file_path}/${board.board_image_file}">
 	                	</c:when>
 	                	<c:otherwise>
 	                		<img class="thumnail" src="${context}/resources/image/board/boardImage/${board.board_image_file_path}/${board.board_image_file}">
 	                	</c:otherwise>
-	                </c:choose>
+	                </c:choose> --%>
+	                <img class="thumnail" src="${context}/resources/image/${board.board_image_file_path}/${board.board_image_file}">
 	                    <div class="middleHover">
 	                        <div class="state">모집중</div>
 	                        <div class="viewandchat">

@@ -150,7 +150,6 @@ public class MemberController {
 	@ResponseBody
 	public String findMemberId(MemberVO vo, Model model) {
 		String id = memberService.findMemberId(vo);
-		System.out.println(id);
 		
 		if(id == null) {
 			return null;
@@ -164,7 +163,6 @@ public class MemberController {
 	@ResponseBody
 	public String findMemberPassword(MemberVO vo) {
 		String password = memberService.findMemberPassword(vo);
-		System.out.println(password);
 		
 		if(password == null) {
 			return null;
@@ -181,7 +179,6 @@ public class MemberController {
 	public int checkId(MemberVO vo) {
 		
 		int cnt = memberService.checkId(vo);
-		System.out.println("아이디 중복검사 : "+cnt);
 		return cnt;
 	}
 	//핸드폰 중복체크
@@ -190,7 +187,6 @@ public class MemberController {
 	public int checkPhoneNumber(MemberVO vo) {
 		
 		int cnt = memberService.checkPhoneNumber(vo);
-		System.out.println("핸드폰 중복검사 : "+cnt);
 		return cnt;
 	}
 	//닉네임 중복체크 
@@ -199,7 +195,6 @@ public class MemberController {
 	public int checkNickname(MemberVO vo) {
 		
 		int cnt = memberService.checkNickname(vo);
-		System.out.println("별명 중복검사 : "+cnt);
 		return cnt;
 	}
 	
@@ -209,7 +204,6 @@ public class MemberController {
 	public int checkPassword(MemberVO vo) {
 		
 		int cnt = memberService.checkPassword(vo);
-		System.out.println("비밀번호 검사 : "+cnt);
 		return cnt;
 	}
 
