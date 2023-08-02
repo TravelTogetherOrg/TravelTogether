@@ -472,10 +472,8 @@ function limitCheck(){
                 else if(start_date.value == ''){
                     alert('축제 참가일자를 선택해 주세요.');
                 }
-                else if(moreDaysCheckbox.checked){
-                    if(end_date.value == ''){
-                        alert('축제 참가 마지막 일자를 선택해 주세요.');
-                    }
+                else if(moreDaysCheckbox.checked && end_date.value == ''){
+                    alert('축제 참가 마지막 일자를 선택해 주세요.');
                 }
                 else if(board_title.value == ''){
                     alert('제목을 작성해 주세요.');

@@ -66,8 +66,8 @@
 	
 	<!-- board -->
 	<insert id="insertBoard" useGeneratedKeys="true" keyProperty="board_number" parameterType="board">
-		insert into board (festival_name, member_id, board_total_people, board_start_date, board_title, board_content)
-			values(#{festival_name},#{member_id},${board_total_people},#{board_start_date},#{board_title},#{board_content});
+		insert into board (festival_name, member_id, board_total_people, board_start_date,board_end_date, board_title, board_content)
+			values(#{festival_name},#{member_id},${board_total_people},#{board_start_date},#{board_end_date},#{board_title},#{board_content});
 	</insert>
 	
 	<update id="updateBoard">

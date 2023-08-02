@@ -53,6 +53,11 @@ public class BoardController {
 		request.setCharacterEncoding("UTF-8");
 		
 		board.setMember_id((String)session.getAttribute("userId"));
+		
+		if(board.getBoard_end_date().isEmpty()) {
+			board.setBoard_end_date(null);
+		}
+		
 		BoardImageVO image = new BoardImageVO();
 		//파일업로드
 		MultipartFile uploadFile = board.getUploadFile();
@@ -68,8 +73,6 @@ public class BoardController {
 			image.setBoard_image_file_path("board/boardImage/"+pathToday.substring(pathToday.length()-10,pathToday.length()));
 			
 		}else {
-			//학원: C:\Users\\user\Desktop\KCY\spring\SpringSRC\TT\TravelTogether\src\main\webapp\resources\image\festival\
-			//노트북: C:\Users\ddd\Desktop\TT\TravelTogether\src\main\webapp\resources\image\festival
 			//이미지 없으면 선택한 축제의 기본 이미지 가져오기
 			//jpg인지 png인지 확인해서 맞는 걸로 연결하기
 			File file = new File("C:\\Users\\ddd\\Desktop\\TT\\TravelTogether\\src\\main\\webapp\\resources\\image\\festival\\"

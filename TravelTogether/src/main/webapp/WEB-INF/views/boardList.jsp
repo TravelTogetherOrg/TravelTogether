@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" session="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="context" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -74,7 +75,15 @@
 	                    </div>
 	                </div>
 	                <div class="middle">
-	                    <img class="thumnail" src="${context}/resources/image/${board.board_image_file_path}/${board.board_image_file}">
+	                <!-- path에 festival있으면 아니면../board/boardImage 추가하기 -->
+	                <c:choose>
+	                	<c:when test="${fn:startsWith(board.board_image_file_path,'festival')}">
+	                		<img class="thumnail" src="${context}/resources/image/${board.board_image_file_path}/${board.board_image_file}">
+	                	</c:when>
+	                	<c:otherwise>
+	                		<img class="thumnail" src="${context}/resources/image/board/boardImage/${board.board_image_file_path}/${board.board_image_file}">
+	                	</c:otherwise>
+	                </c:choose>
 	                    <div class="middleHover">
 	                        <div class="state">모집중</div>
 	                        <div class="viewandchat">
