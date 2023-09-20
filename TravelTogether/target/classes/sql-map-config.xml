@@ -19,8 +19,8 @@
 		<typeAlias alias="boardLimit" type="com.traveltogether.biz.board.BoardLimitVO"/>
 		<typeAlias alias="boardImage" type="com.traveltogether.biz.board.BoardImageVO"/>
 		<typeAlias alias="comment" type="com.traveltogether.biz.board.CommentVO"/>
-		<typeAlias alias="chatRoom" type="com.traveltogether.biz.chat.ChatRoomVO"/>
-		<typeAlias alias="chatCount" type="com.traveltogether.biz.chat.ChatCountVO"/>
+		<typeAlias alias="chatRoom" type="com.traveltogether.biz.chat.ChatRoomDTO"/>
+		<typeAlias alias="chatCount" type="com.traveltogether.biz.chat.ChatCountDTO"/>
 	</typeAliases>
 	
 	 <mappers>

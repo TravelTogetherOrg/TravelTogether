@@ -6,46 +6,45 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.traveltogether.biz.chat.ChatCountVO;
-import com.traveltogether.biz.chat.ChatRoomVO;
-
-
+import com.traveltogether.biz.chat.ChatCountDTO;
+import com.traveltogether.biz.chat.ChatRoomDTO;
 
 @Repository
 public class ChatRoomDAO {
 
 	@Autowired
 	private SqlSessionTemplate mybatis;
+
+	public void CreateChat(ChatRoomDTO dto) {
+		mybatis.insert("ChatRoomDAO.createChat", dto);
+	}
 	
-
-	public void CreateChat(ChatRoomVO vo) {
-		mybatis.insert("ChatRoomDAO.createChat", vo);
+	public List<ChatRoomDTO> getChatList(ChatRoomDTO dto) {
+		return mybatis.selectList("ChatRoomDAO.getChatList", dto);
+	}
+	
+	public void chatRoomUserInsert(ChatCountDTO dto) {
+		mybatis.insert("ChatRoomDAO.chatRoomUserInsert", dto);
+	}
+	
+	public void deleteChatUser(ChatRoomDTO dto) {
+		mybatis.delete("ChatRoomDAO.deleteChatUser", dto);
 	}
 
-	public List<ChatRoomVO> getChatList(ChatRoomVO vo) {
-		return mybatis.selectList("ChatRoomDAO.getChatList", vo);
+	public List<ChatCountDTO> getNumberOfPeople(ChatCountDTO dto) { 
+		return mybatis.selectList("ChatRoomDAO.getNumberOfPeople", dto);
 	}
 
-	public void chatRoomUserInsert(ChatCountVO vo) {
-		mybatis.insert("ChatRoomDAO.chatRoomUserInsert", vo);
+	public Integer getChatRoomUser(ChatCountDTO dto){
+		return mybatis.selectOne("ChatRoomDAO.getChatRoomUser", dto);
 	}
-
-	public void deleteChatUser(ChatRoomVO vo) {
-		mybatis.delete("ChatRoomDAO.deleteChatUser", vo);
+	
+	public void deleteChatRoom(ChatCountDTO dto) {
+		 mybatis.delete("ChatRoomDAO.deleteChatRoom", dto);
 	}
-
-	 public List<ChatCountVO> getNumberOfPeople(ChatCountVO vo) { 
-		 return mybatis.selectList("ChatRoomDAO.getNumberOfPeople", vo);
-		 }
 	 
-	
-	 public Integer getChatRoomUser(ChatCountVO vo){
-		 return mybatis.selectOne("ChatRoomDAO.getChatRoomUser", vo);
-	 }
-	 public void deleteChatRoom(ChatCountVO vo) {
-		 mybatis.delete("ChatRoomDAO.deleteChatRoom", vo);
-	 }
-	 
-	
+	public ChatRoomDTO getChatRoom(int number){
+		return mybatis.selectOne("ChatRoomDAO.getChatRoom", number);
+	}
 	
 }

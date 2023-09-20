@@ -9,10 +9,7 @@
 <script src="https://kit.fontawesome.com/cd8f90f87a.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="${context}/resources/css/chatRoom.css">
 <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-<% String userNickName = (String)session.getAttribute("userNickname"); %>
-<% int roomNumber = (int)session.getAttribute("chatNumber");%>
-<% String userId = (String)session.getAttribute("userId"); %>
-<% String chatTitle = (String)session.getAttribute("chatTitle"); %>
+
 <title>TT_채팅방</title>
 </head>
 <link rel="icon" type="image/png" sizes="16x16" href="${context}/resources/image/favi/favicon-16x16.png">
@@ -32,17 +29,18 @@
 			<div id="chatMain">
 		   		<div class="chatHeader">
 		    		<div>
+		    		
 		    			<a href="deleteChatUser" onclick="chatRoomListBack(event)">
 		    				<i class="fa-solid fa-angles-left" style="margin-left: 20px; margin-top:0px;"></i>
 		    			</a>
 		    		</div>
-		    			<p style="margin-bottom: 0px;"><%=chatTitle %></p>
+		    			<p style="margin-bottom: 0px;">${chatRoom.chatTitle}</p>
 		    		 <div>
 		    			<i class="fa-solid fa-bars" style="margin-right: 20px; margin-top:0px;"></i>	    	
 		    		</div>  
 		   		</div>
 	  			<div class="inputContainer">
-	     			<input type="text" id="sender" value="<%=userNickName %>" style="display: none;">
+	     			<input type="text" id="sender" value="${sessionScope.userNickname}" style="display: none;">
 	   			</div>
 				<div id="messages">
 	      			<div class="notice" ></div>
@@ -83,9 +81,9 @@
 			</div>
 		</div>
 	</div>
-  <!-- websocket javascript -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script type="text/javascript">
+  /* swiper */
     var swiper = new Swiper(".mySwiper", {
       grabCursor: true,
       spaceBetween: 10,
@@ -105,83 +103,71 @@
         },
       },
     });
-  
-    let isExpanded = false;
- $(".fa-bars").click(function() {
-   if (!isExpanded) {
-     $("#memberWrap").stop().animate({ left: "-5.5%" }, 800, function() {
-       isExpanded = true;
-     });
-   } else {
-     $("#memberWrap").stop().animate({ left: "5px" }, 800, function() {
-       isExpanded = false;
-     });
-   }
- });
-    
-	history.pushState(null, null, location.href);
-	window.onpopstate = function () {
+ 
+	let isExpanded = false;
+	$(".fa-bars").click(function() {
+		if (!isExpanded) {
+			$("#memberWrap").stop().animate({ left: "-5.5%"}, 800, function(){
+				isExpanded = true;
+ 			});
+   		}else{
+     		$("#memberWrap").stop().animate({ left: "5px"}, 800, function(){
+       			isExpanded = false;
+     		});
+   		}
+ 	});
+ 
+ /* WebSocket */
+	history.pushState(null, null, location.href);  
+	window.onpopstate = function () {	//뒤로가기 버튼 강제 제어
 	 	history.go(1);
 	};
   
-	document.onkeydown = doNotReload;
-	function doNotReload(){
-		if((event.ctrlKey == true && (event.keyCode == 78 || event.keyCode == 82)) || (event.keyCode == 116)){
-			event.keyCode = 0;
-			event.cancelBubble = true;
-			event.returnValue = false;
-		} 
-	};
-  
-    var ws;
-    var messages = document.getElementById("messages");
-    var notice = document.querySelector(".notice")
+    let ws;
+    let notice = document.querySelector(".notice")
+    const messages = document.getElementById("messages");
+    const userNickName = '${sessionScope.userNickname}';
+    const userId = '${sessionScope.userId}';
+    const roomNumber = '${chatRoom.chatNumber}';
     
     window.onload = function() {
         openSocket();
         notice.textContent = "채팅방에 입장하셨습니다.";
 	};
-    
+	
     function openSocket() {	
-		var url = "ws://172.30.1.87:8080/echo/"
-		var userNickName = '<%=userNickName%>';
-		var roomNumber = '<%=roomNumber%>';
-		var userId = '<%=userId %>';
-		
+		let url = "ws://192.168.1.164:8080/echo/"
 		url += userNickName + "/" + roomNumber + "/" + userId;
-		
 		ws = new WebSocket(url);
 		ws.onmessage = onMessage;
-		ws.onopen = onOpen;
 		ws.onclose = onClose;
 	};
     
    	function onMessage(event){
-   		var message = event.data;
-   		var nickname="";	
-   		console.log(message);
-	   	if(message.startsWith("ROOM_SIZE:")){
-	   		var roomSize = message.substring(10);
-	   		var formattedRoomSize = roomSize + "명";
-	   		document.getElementById("roomSizeElement").textContent = formattedRoomSize;
-  		}else if (message.startsWith("NICKNAMES:")) {
-     		var nicknames = JSON.parse(message.substring(10));
-      	    var memberListDiv = document.getElementById("memberSelect");
+   		let message = event.data;
+   		let nickname="";	
+	   	if(message.startsWith("ROOM_SIZE:")){ // 채팅방 인원수 파악
+	   		let roomSize = message.substring(10);
+	   		roomSize += "명";
+	   		document.getElementById("roomSizeElement").textContent = roomSize;
+  		}else if (message.startsWith("NICKNAMES:")) { // 채팅방 접속 유저 리스트 업데이트 
+     		const nicknames = JSON.parse(message.substring(10));
+      	    const memberListDiv = document.getElementById("memberSelect");
 			memberListDiv.innerHTML = "";
-      		var uniqueNicknames = new Set();
+      		const uniqueNicknames = new Set();
        		nicknames.forEach(function (nickname) {
             	if (nickname !== null) {
               	uniqueNicknames.add(nickname);
            		}
         	});
       		uniqueNicknames.forEach(function (nickname) {
-      			var myProfileImage = document.createElement('img');
+      			const myProfileImage = document.createElement('img');
       			myProfileImage.src = "${context}/resources/image/chatRoom/chatProfill_2.jpg";
       			myProfileImage.style.width = "40px"; // 이미지의 너비 설정
       			myProfileImage.style.height = "40px"; // 이미지의 높이 설정
       			myProfileImage.style.borderRadius = "100px";
-				var memberDiv = document.createElement('div');
-				var memberDiva = document.createElement('h3');
+				const memberDiv = document.createElement('div');
+				const memberDiva = document.createElement('h3');
 				memberDiva.textContent = nickname;
 				memberDiv.classList.add("memberEl");
 				memberDiv.appendChild(myProfileImage);
@@ -189,8 +175,8 @@
 				memberListDiv.appendChild(memberDiv);
           	});
 		}else if (message.startsWith("NOTICE")){
-			var notice = message.substring(6);
-    	    var noticeElement = document.createElement('div');
+			const notice = message.substring(6);
+    	    const noticeElement = document.createElement('div');
     	    noticeElement.classList.add('notice');
     	    noticeElement.textContent = notice;
     	    messages.appendChild(noticeElement);
@@ -209,13 +195,13 @@
     	messages.scrollTop = messages.scrollHeight;
     };
 
-    var messageInput = document.getElementById("messageInput");
+    const messageInput = document.getElementById("messageInput");
     messageInput.addEventListener("keyup", function(event){
         if (event.keyCode === 13 || event.key === "Enter"){
 			sendMessage();
       	}});
     
-    var sendButton = document.getElementById('textSend');
+    const sendButton = document.getElementById('textSend');
     sendButton.addEventListener('click', function() {
     	sendMessage(); 
 	});
@@ -223,21 +209,21 @@
 
     function sendMessage() {
 		event.preventDefault(); // 기본 동작인 줄바꿈 방지
-		var text = messageInput.value.trim(); // 입력된 메시지에서 양 끝 공백 제거
+		const text = messageInput.value.trim(); // 입력된 메시지에서 양 끝 공백 제거
         if(text.startsWith("/w")){
-        	 var tokens = text.split(" ");
-             if (tokens.length >= 3) {
-               targetNickname = tokens[1].trim();
-               messageContent = tokens.slice(2).join(" ");
-             } else {
-               alert("잘못된 메시지 형식입니다.\n귓속말을 보내시려면 /w 닉네임 할말 형식으로 입력하세요.");
-               return;
-               messageInput.value = "";
-             }
-			var combinedMessage = "/w"+ targetNickname + "," + messageContent;
+			const tokens = text.split(" ");
+			if(tokens.length >= 3){
+				targetNickname = tokens[1].trim();
+				messageContent = tokens.slice(2).join(" ");
+			}else{
+				alert("잘못된 메시지 형식입니다.\n귓속말을 보내시려면 /w 닉네임 할말 형식으로 입력하세요.");
+				return;
+				messageInput.value = "";
+            }
+			let combinedMessage = "/w"+ targetNickname + "," + messageContent;
             ws.send(combinedMessage);
        }else if(text !== "") { // 메시지가 공백이 아닌 경우에만 전송
-        	var sender = document.getElementById("sender").value;
+			let sender = document.getElementById("sender").value;
         	ws.send(text + "," + sender);
        }
        messageInput.value = ""; // 메시지 전송 후 입력 필드를 비워줌
@@ -247,8 +233,8 @@
 		ws.close();
     }
     
-    function clearText(){
-		var messagesContainer = document.getElementById("messages");
+    function clearText(){ // 전체 대화 내용 삭제
+		const messagesContainer = document.getElementById("messages");
 			if (!confirm("대화내용을 삭제하시겠습니까?")) {
 				return;
     	    }else {
@@ -256,39 +242,45 @@
     	        messagesContainer.removeChild(messagesContainer.firstChild);
     	   		}
        		}};
-       		
+   
     function chatRoomListBack(){
-			if (!confirm("채팅방 목록으로 가시겠습니까?    (대화내용은 모두 삭제됩니다.)")){
+			if (!confirm("채팅방 목록으로 가시겠습니까? (대화내용은 모두 삭제됩니다.)")){
 				event.preventDefault();
-				
     	    }
-    	    };
+   	};
      
     function writeResponse(text) {
+    	let whisper_Nickname = '';
+    	let name = '';
+    	let whisper_Sender = '';
+    	let whisper_Receiver = '';
+    	let whisper_Message = '';
+    	let whisper_TargetNickname = '';
     	if(text.startsWith("$귓속말")){
-	        var whisper_Container = text.split(':');
-	        var whisper_Nickname = whisper_Container[1];
-	     	var whisper_Message = whisper_Container[2];
-	     	var whisper_TargetNickname = whisper_Container[3];
-			var whisper_Sender = whisper_Nickname+"("+whisper_TargetNickname+"님에게 보낸 귓속말입니다)"
-			var whisper_Receiver = whisper_Nickname+"("+whisper_Nickname+"님에게 받은 귓속말입니다)"
+	        let whisper_Container = text.split(':');
+	       	whisper_Nickname = whisper_Container[1];
+	     	whisper_Message = whisper_Container[2];
+	     	whisper_TargetNickname = whisper_Container[3];
+			whisper_Sender = whisper_Nickname+"("+whisper_TargetNickname+"님에게 보낸 귓속말입니다)"
+			console.log(whisper_Sender);
+			whisper_Receiver = whisper_Nickname+"("+whisper_Nickname+"님에게 받은 귓속말입니다)"
    		}
-    	var messages = document.getElementById("messages");
-    	var msgContainer = text.split(':');
- 		var name = msgContainer[0];
- 		var messageText = msgContainer[1];
-      	var currentDate = new Date();
+    	let messages = document.getElementById("messages");
+    	let msgContainer = text.split(':');
+ 		name = msgContainer[0];
+ 		let messageText = msgContainer[1];
+      	let currentDate = new Date();
       	var formattedTime = currentDate.toLocaleString('ko-KR', {
       	    hour: 'numeric',
       	    minute: 'numeric',
       	    hour12: true,
 		});
-      	if(whisper_Nickname === '<%= userNickName%>' || name === '<%= userNickName%>'){
-			var myMsgContainer = document.createElement('div');
+      	if(whisper_Nickname === userNickName || name === userNickName){
+      		let myMsgContainer = document.createElement('div');
       	    myMsgContainer.classList.add('myMsg');
-      	    var myNameSpan = document.createElement('span');
+      	  	let myNameSpan = document.createElement('span');
      	    myNameSpan.classList.add('myName');
-     	    var myTextSpan = document.createElement('span');
+     	   	let myTextSpan = document.createElement('span');
     	    myTextSpan.classList.add('myText', 'msg');
       	    if(text.startsWith("$귓속말")){
       	    	myNameSpan.style.color = "purple";
@@ -298,15 +290,14 @@
 				myNameSpan.textContent = name;	
 				myTextSpan.textContent = messageText;
 			}
-		var myProfileImage = document.createElement('img');
+        const myProfileImage = document.createElement('img');
 		myProfileImage.src = "${context}/resources/image/chatRoom/chatProfill.jpg";
 		myProfileImage.style.width = "40px"; // 이미지의 너비 설정
 		myProfileImage.style.height = "40px"; // 이미지의 높이 설정
 		myProfileImage.style.borderRadius = "100px";
-		var myCurrentTime = document.createElement('div');
+		const myCurrentTime = document.createElement('div');
 		myCurrentTime.classList.add('myMsg');
 		myCurrentTime.textContent = formattedTime;
- 		
     	myNameSpan.appendChild(myProfileImage);	 
     	myCurrentTime.appendChild(myTextSpan);
       	myMsgContainer.appendChild(myNameSpan);
@@ -314,11 +305,11 @@
       	messages.appendChild(myMsgContainer);
       	scrollToBottom();
 		}else{
-			var anotherMsgContainer = document.createElement('div');
+			let anotherMsgContainer = document.createElement('div');
 			anotherMsgContainer.classList.add('anotherMsg');
-	      	var anotherNameSpan = document.createElement('span');
+			let anotherNameSpan = document.createElement('span');
 	     	anotherNameSpan.classList.add('anotherName');
-	     	var anotherTextSpan = document.createElement('span');
+	     	let anotherTextSpan = document.createElement('span');
 		    anotherTextSpan.classList.add('anotherTexta', 'msg');
 	      	if(text.startsWith("$귓속말")){
 	      		anotherNameSpan.style.color = "purple";
@@ -328,32 +319,28 @@
 	    		anotherNameSpan.textContent = name;
 	 	 		anotherTextSpan.textContent = messageText;
 	      	}
-	    var anotherTopText = document.createElement('div');  	
-	    anotherTopText.classList.add('anotherText');
-	    var anotherProfileImage = document.createElement('img');
-	    anotherProfileImage.src = "${context}/resources/image/chatRoom/chatProfill_2.jpg";
-	    anotherProfileImage.style.width = "40px"; // 이미지의 너비 설정
-	    anotherProfileImage.style.height = "40px"; // 이미지의 높이 설정
-	    anotherProfileImage.style.borderRadius = "100px";
-		var anotherCurrentTime = document.createElement('div');
-		var anotherCurrentTimea = document.createElement('h3');
-		anotherCurrentTime.classList.add('anotherMsgBottom'); 
-		anotherCurrentTimea.textContent = formattedTime;
-	
-		
-		anotherTopText.appendChild(anotherProfileImage);
-		anotherTopText.appendChild(anotherNameSpan);
-		anotherCurrentTime.insertAdjacentElement('afterbegin', anotherTextSpan); 
-		anotherCurrentTime.appendChild(anotherCurrentTimea);
-		/* anotherMsgContainer.appendChild(anotherProfileImage); */
-		anotherMsgContainer.appendChild(anotherTopText);
-	  	anotherMsgContainer.appendChild(anotherCurrentTime);
-		messages.appendChild(anotherMsgContainer);
-	    scrollToBottom();
+		    let anotherTopText = document.createElement('div');  	
+		    anotherTopText.classList.add('anotherText');
+		    let anotherProfileImage = document.createElement('img');
+		    anotherProfileImage.src = "${context}/resources/image/chatRoom/chatProfill_2.jpg";
+		    anotherProfileImage.style.width = "40px"; // 이미지의 너비 설정
+		    anotherProfileImage.style.height = "40px"; // 이미지의 높이 설정
+		    anotherProfileImage.style.borderRadius = "100px";
+		    let anotherCurrentTime = document.createElement('div');
+		    let anotherCurrentTimea = document.createElement('h3');
+			anotherCurrentTime.classList.add('anotherMsgBottom'); 
+			anotherCurrentTimea.textContent = formattedTime;
+			anotherTopText.appendChild(anotherProfileImage);
+			anotherTopText.appendChild(anotherNameSpan);
+			anotherCurrentTime.insertAdjacentElement('afterbegin', anotherTextSpan); 
+			anotherCurrentTime.appendChild(anotherCurrentTimea);
+			anotherMsgContainer.appendChild(anotherTopText);
+		  	anotherMsgContainer.appendChild(anotherCurrentTime);
+			messages.appendChild(anotherMsgContainer);
+		    scrollToBottom();
 	    }
     }
-    
-
+   
   </script>
 </body>
 </html>

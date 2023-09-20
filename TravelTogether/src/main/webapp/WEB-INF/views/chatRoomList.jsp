@@ -24,7 +24,7 @@
 			<form action="insertChat" method="get">
 				<label id="roomCreate">채팅방 만들기</label><br>
        			<label for="chat_regionlist">지역 선택</label>
-            	<select id="chat_regionlist" name="chat_region">
+            	<select id="chat_regionlist" name="chatRegion">
 					<option value="전체">전체</option>
                 	<option value="서울">서울</option>
                	 	<option value="경기도">경기도</option>
@@ -44,15 +44,15 @@
                 	<option value="제주도">제주도</option>
            		</select><br>
             	<label for="roomTitle">채팅방 제목</label>
-            	<input type="text" id="roomTitle" name="chat_title" required><br>
+            	<input type="text" id="roomTitle" name="chatTitle" required><br>
            		<label for="passwordCheckbox">비밀번호 설정
-           			<input type="checkbox" id="passwordCheckbox" name="has_password" onclick="showPasswordInput()">
+           			<input type="checkbox" id="passwordCheckbox" name="hasPassword" onclick="showPasswordInput()">
            		</label>
  				<div id="passwordInput" style="display:none;">
-					<input type="password" id="roomPassword" name="chat_password">
+					<input type="password" id="roomPassword" name="chatPassword">
             	</div><br>
 				<input type="submit" value="생성">
-           		<input type="hidden" name="member_id" value="${sessionScope.userId}"> 
+           		<input type="hidden" name="memberId" value="${sessionScope.userId}"> 
 			</form>
 		</div>
 		</div>
@@ -75,20 +75,20 @@
 	            	</c:when>
 					<c:otherwise>
 						<c:forEach items="${chatRoomList}" var="chatRoomList"><tr>
-	      	  				<td>${chatRoomList.chat_number}</td>
+	      	  				<td>${chatRoomList.chatNumber}</td>
 	       					<td>
 	           					<c:choose>
-	               					<c:when test="${empty chatRoomList.chat_password}">
-	                  					<a href="ChatRoom?chat_number=${chatRoomList.chat_number}&chat_title=${chatRoomList.chat_title}&member_id=${sessionScope.userId}">
-	 										<span class="region-button">${chatRoomList.chat_region}</span>
-	 										${chatRoomList.chat_title}
+	               					<c:when test="${empty chatRoomList.chatPassword}">
+	                  					<a href="ChatRoom?chatNumber=${chatRoomList.chatNumber}&chatTitle=${chatRoomList.chatTitle}&memberId=${sessionScope.userId}">
+	 										<span class="region-button">${chatRoomList.chatRegion}</span>
+	 										${chatRoomList.chatTitle}
 	                    				</a> 
 									</c:when>
 									<c:otherwise>
-										<a href="#" data-chat-number="${chatRoomList.chat_number}" data-chat-password="${chatRoomList.chat_password}"
-	        							data-chat-title="${chatRoomList.chat_title}" data-chat-member_id="${sessionScope.userId}">
-											<span class="region-button">${chatRoomList.chat_region}</span>
-											${chatRoomList.chat_title}
+										<a href="#" data-chat-number="${chatRoomList.chatNumber}" data-chat-password="${chatRoomList.chatPassword}"
+	        							data-chat-title="${chatRoomList.chatTitle}" data-chat-member_id="${sessionScope.userId}">
+											<span class="region-button">${chatRoomList.chatRegion}</span>
+											${chatRoomList.chatTitle}
 											<span class="lock-icon">&#128274;</span>
 										</a>
 									</c:otherwise> 
@@ -96,13 +96,13 @@
 							</td>  
 							<td class="d"> 
 								<c:forEach items="${NumberOfPeople}" var="numberOfPeople">
-									<c:if test="${chatRoomList.chat_number eq numberOfPeople.chat_number}">
-	                    			${numberOfPeople.count}명
+									<c:if test="${chatRoomList.chatNumber eq numberOfPeople.chatNumber}">
+	                    				${numberOfPeople.count}명
 									</c:if>
 								</c:forEach>
 							</td>
 							<td>
-								<fmt:formatDate value="${chatRoomList.chat_create_date}" pattern="MM월 dd일 a HH시 mm분" />
+								<fmt:formatDate value="${chatRoomList.chatCreateDate}" pattern="MM월 dd일 a HH시 mm분" />
 							</td>
 						</c:forEach> 
 					</c:otherwise>
@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function(){
 function handlePassword(chatNumber, chatPassword, chatTitle, memberId){
 	const enteredPassword = prompt("비밀번호를 입력하세요:");
 	if(enteredPassword === chatPassword){
-		const loginURL = "ChatRoom.do?chat_number=" + chatNumber + "&chat_title=" + chatTitle + "&member_id=" + memberId;
+		const loginURL = "ChatRoom.do?chatNumber=" + chatNumber + "&chatTitle=" + chatTitle + "&memberId=" + memberId;
 		location.href = loginURL;
 	}else{
 		alert("비밀번호가 다릅니다.");
@@ -144,8 +144,8 @@ function handlePassword(chatNumber, chatPassword, chatTitle, memberId){
 };
 
 function showPasswordInput(){
-	var passwordCheckbox = document.getElementById("passwordCheckbox");
-	var passwordInput = document.getElementById("passwordInput");
+	const passwordCheckbox = document.getElementById("passwordCheckbox");
+	const passwordInput = document.getElementById("passwordInput");
 	if(passwordCheckbox.checked){
 		passwordInput.style.display = "block";
 	}else{
@@ -165,7 +165,7 @@ document.getElementById("closeModal").onclick = function(){
 
 // 모달 외부 클릭 시 모달 닫기
 window.onclick = function(event){
-	var modal = document.getElementById("myModal");
+	const modal = document.getElementById("myModal");
 	if(event.target == modal){
 		modal.style.display = "none";
 	}

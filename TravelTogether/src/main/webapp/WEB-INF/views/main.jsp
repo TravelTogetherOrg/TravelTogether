@@ -30,9 +30,7 @@
 					</ul>
 				</a>
 			</div>
-		
-      <!-- ---------------------------image swiper----------------------------- -->
-		<div id="main-top-section" style="background-color: rgb(192, 228, 255)">
+		<div id="main-top-section" style="background-color: rgb(192, 228, 255)"> <!-- image swiper -->
         	<img src="${context}/resources/image/main/main_top_symbol.png" id="main-top-img" />
         	<div class="swiper mySwiper gallery-top">
           		<div class="swiper-wrapper">
@@ -50,10 +48,9 @@
             		</div>
           		</div>
         	</div>
-        <!-- ---------------------------text swiper-------------------------------- -->
-        	<div class="wrap_thumb_layout">
+        	<div class="wrap_thumb_layout"><!-- text swiper -->
           		<div class="swiper-container gallery-thumbs">
-            		<div class="swiper-wrapper">
+					<div class="swiper-wrapper">
               			<div class="swiper-slide">
                 			<div class="swiper-slide-container">
 					            <em>오감만족</em>
@@ -96,10 +93,8 @@
 				<div class="pagination_progress"></div>
 			</div>  
 		</div>
-<!-- ---------------------------middle section-------------------------------- -->
    		<div class="middle-blank"></div>
-<!-- ---------------------------main-middle-banner-------------------------------- -->
-		<div id ="main-middle-banner">
+		<div id ="main-middle-banner"> <!-- main-middle-banner -->
         	<div id="banner-top-box"> 
 				<h2>여행콕콕</h2>
 				<p>빅데이터 정보를 기반으로 이번달 가장 핫🔥한 여행지를 추천해드려요</p>
@@ -115,8 +110,7 @@
           		</ul>
         	</div>
 		</div>
-<!------------------------------main-bottom-grid----------------------------------->
-		<div class="main-bottom-section">
+		<div class="main-bottom-section"><!-- main-bottom-grid -->
 			<div id="bottom-grid" class="bottom-grid1" >
 				<c:forEach items="${festivalRandomList}" var="festivalrandom">   
 					<div class="grid">
@@ -128,9 +122,7 @@
 		            </div>
 				</c:forEach>
 			</div>
-	        
-	<!------------------------------TT추천----------------------------------->
-			<div id="bottom-grid" class="bottom-grid2" style="display: none;">
+			<div id="bottom-grid" class="bottom-grid2" style="display: none;"> <!-- TT 추천 -->
 				<c:forEach items="${festivalLikeList}" var="festivallike">
 					<div class="grid">
 						<c:set var="imagePath" value="${context}/resources/image/festival/${festivallike.festival_name}/${festivallike.festival_name}_1_공공3유형" />
@@ -144,131 +136,112 @@
 			<%@ include file="footer.jsp" %>
 		</div>
 	</div>
- 
- <!-----------------------------script---------------------------------->
-   <script>
-    
-
-  
-  $(document).ready(function(){
-		// 퀵배너 스크롤
-		function updateChatIcon() {
-			var quickPos = $('.chat-icon').offset().top;
-			var winPos = $(window).scrollTop();
-			if( winPos > quickPos ) $('.chat-icon .chat-icon-inner').addClass('fixed');
-			else $('.chat-icon .chat-icon-inner').removeClass('fixed');
-		}
-
-		// 초기 로드 시 아이콘 상태 업데이트
-		updateChatIcon();
-
-		// 스크롤 이벤트 핸들러 등록
-		$(window).scroll(function(){
-			updateChatIcon();
+	<script> 
+		$(document).ready(function(){ // 퀵 배너 스크롤 
+			function updateChatIcon() {
+				var quickPos = $('.chat-icon').offset().top;
+				var winPos = $(window).scrollTop();
+				if( winPos > quickPos ) $('.chat-icon .chat-icon-inner').addClass('fixed');
+				else $('.chat-icon .chat-icon-inner').removeClass('fixed');
+			}
+			updateChatIcon();// 초기 로드 시 아이콘 상태 업데이트
+			$(window).scroll(function(){	// 스크롤 이벤트 핸들러 등록
+				updateChatIcon();
+			});
 		});
-	});
-  </script>
-  
+	</script>
   <!-----------------------------swiper js-------------------------------- -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-  <script>
-  
-    var galleryTop = new Swiper(".gallery-top", {
-      spaceBetween: 10, speed: 800, loop: true, loopedSlides: 1,
-      autoplay: {
-        delay: 3000, disableOnInteraction: false},
-      pagination: {
-        el: ".swiper-pagination", type: "fraction"},
-      navigation: {
-        nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev"},
-      on: {activeIndexChange: function () {
-        if (this.realIndex == 0) {
-          document.getElementById("main-top-section").style.backgroundColor = "rgb(192, 228, 255)";
-        } else if (this.realIndex === 1) {
-          document.getElementById("main-top-section").style.backgroundColor = "rgb(252, 243, 224)";
-        } else if (this.realIndex === 2) {
-          document.getElementById("main-top-section").style.backgroundColor = "rgb(255, 234, 217)";
-        } else if (this.realIndex === 3) {
-          document.getElementById("main-top-section").style.backgroundColor = "rgb(247, 212, 237)";
-        }},
-      },
-    });
+	<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+	<script>
+  		var galleryTop = new Swiper(".gallery-top", {
+			spaceBetween: 10, speed: 800, loop: true, loopedSlides: 1,
+			autoplay: {
+		       	delay: 3000, disableOnInteraction: false},
+		    pagination: {
+		        el: ".swiper-pagination", type: "fraction"},
+		    navigation: {
+		       	nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev"},
+		      	on: {activeIndexChange: function () {
+					if (this.realIndex == 0) {
+			          	document.getElementById("main-top-section").style.backgroundColor = "rgb(192, 228, 255)";
+			        }else if (this.realIndex === 1) {
+			        	document.getElementById("main-top-section").style.backgroundColor = "rgb(252, 243, 224)";
+			        }else if (this.realIndex === 2) {
+			          	document.getElementById("main-top-section").style.backgroundColor = "rgb(255, 234, 217)";
+			       	}else if (this.realIndex === 3) {
+			         	document.getElementById("main-top-section").style.backgroundColor = "rgb(247, 212, 237)";
+			        }},
+		      	},
+		});
+	
+		var galleryThumbs = new Swiper(".gallery-thumbs", {
+      		spaceBetween: 10, speed: 800, 
+      		pagination: {
+        		el: ".pagination_progress",
+			  	type: "progressbar",
+		  	},
+      		loop: true,loopedSlides: 1, allowTouchMove: false, 
+    	});
 
-    var galleryThumbs = new Swiper(".gallery-thumbs", {
-      spaceBetween: 10, speed: 800, 
-      pagination: {
-        el: ".pagination_progress",
-			  type: "progressbar",
-		  },
-      loop: true,loopedSlides: 1, allowTouchMove: false, 
-    });
+	    $(".swiper").each(function (elem, target) {
+			var swp = target.swiper;
+	      	$(this).hover(
+	        	function () {
+	          		swp.autoplay.stop();
+	        		$(".swiper-slide img").css({
+	           	 		transform: "scale(1.15)",
+	           			transition: "transform 0.2s linear",
+	          		});
+	        	},
+	        	function () {
+					swp.autoplay.start();
+	         	 	$(".swiper-slide img").css({
+	            		transform: "scale(1)",
+	            		transition: "transform 0.2s linear",
+	          		});
+	        	});
+		});
+	    galleryTop.controller.control = galleryThumbs;
+	    galleryTop.controller.control = galleryThumbs;
+	    galleryThumbs.controller.control = galleryTop;
+	  	const button1 = document.getElementById('button_1');
+	  	const button2 = document.getElementById('button_2');
+	  	const bottomGrid1 = document.querySelector('.bottom-grid1');
+	  	const bottomGrid2 = document.querySelector('.bottom-grid2');
+	 	button1.addEventListener('click', function () {
+	   	 	bottomGrid1.style.display = 'grid';
+	    	bottomGrid2.style.display = 'none';
+	  	});
+	 	
+	  	button2.addEventListener('click', function () {
+	    	bottomGrid1.style.display = 'none';
+	    	bottomGrid2.style.display = 'grid';
+	  	});
 
-    $(".swiper").each(function (elem, target) {
-      var swp = target.swiper;
-      $(this).hover(
-        function () {
-          swp.autoplay.stop();
-          $(".swiper-slide img").css({
-            transform: "scale(1.15)",
-            transition: "transform 0.2s linear",
-          });
-        },
-        function () {
-          swp.autoplay.start();
-          $(".swiper-slide img").css({
-            transform: "scale(1)",
-            transition: "transform 0.2s linear",
-          });
-        }
-      );
-    });
-
-    galleryTop.controller.control = galleryThumbs;
-    galleryTop.controller.control = galleryThumbs;
-    galleryThumbs.controller.control = galleryTop;
-
-  <!-- 따로 만든것!!! 여기는 제가 편집했습니다. -->
-  <!-- button_1,2 관한것 -->
-
-  const button1 = document.getElementById('button_1');
-  const button2 = document.getElementById('button_2');
-  const bottomGrid1 = document.querySelector('.bottom-grid1');
-  const bottomGrid2 = document.querySelector('.bottom-grid2');
-
-  button1.addEventListener('click', function () {
-    bottomGrid1.style.display = 'grid';
-    bottomGrid2.style.display = 'none';
-  });
-
-  button2.addEventListener('click', function () {
-    bottomGrid1.style.display = 'none';
-    bottomGrid2.style.display = 'grid';
-  });
-  
-  var firstButton = document.getElementsByClassName('banner-inner-button')[0];
-  var secondButton = document.getElementsByClassName('banner-inner-button')[1];
-  secondButton.addEventListener('click', function() {   // 배경색 변경
-    firstButton.style.backgroundColor = 'white';
-    firstButton.style.color ='#767676';
-    firstButton.style.fontweight='800';
-    secondButton.style.backgroundColor = '#567ff2';
-    secondButton.style.color ='white';});
-  firstButton.addEventListener('click', function() {  // 배경색 원래대로 되돌리기
-    firstButton.style.backgroundColor = '#567ff2';
-    firstButton.style.color ='white';
-    secondButton.style.backgroundColor = 'white';
-    secondButton.style.color ='#767676';
-  });
-
-  var liElements = document.querySelectorAll('#banner-bottom-inner .banner-inner-button');
-  liElements.forEach(function(liElement) {
-    liElement.addEventListener('mouseenter', function() { // 마우스 호버 시 i 요소에 스타일 추가
-      var iElement = liElement.querySelector('i');
-      iElement.style.animation = 'fa-beat-fade 1s infinite';});
-    liElement.addEventListener('mouseleave', function() {  // 마우스 이탈 시 i 요소의 스타일 제거
-      var iElement = liElement.querySelector('i');
-      iElement.style.animation = '';});
-  });
-</script>
+	  	let firstButton = document.getElementsByClassName('banner-inner-button')[0];
+	  	let secondButton = document.getElementsByClassName('banner-inner-button')[1];
+	  	secondButton.addEventListener('click', function() {   // 배경색 변경
+		    firstButton.style.backgroundColor = 'white';
+		    firstButton.style.color ='#767676';
+		    firstButton.style.fontweight='800';
+		    secondButton.style.backgroundColor = '#567ff2';
+		    secondButton.style.color ='white';});
+	  	firstButton.addEventListener('click', function() {  // 배경색 원래대로 되돌리기
+		    firstButton.style.backgroundColor = '#567ff2';
+		    firstButton.style.color ='white';
+		    secondButton.style.backgroundColor = 'white';
+		    secondButton.style.color ='#767676';
+	  	});
+	
+	  	let liElements = document.querySelectorAll('#banner-bottom-inner .banner-inner-button');
+	  	liElements.forEach(function(liElement) {
+	    	liElement.addEventListener('mouseenter', function() { // 마우스 호버 시 i 요소에 스타일 추가
+				iElement = liElement.querySelector('i');
+		      	iElement.style.animation = 'fa-beat-fade 1s infinite';});
+	   		liElement.addEventListener('mouseleave', function() {  // 마우스 이탈 시 i 요소의 스타일 제거
+	      		iElement = liElement.querySelector('i');
+	      		iElement.style.animation = '';});
+	  	});
+	</script>
 </body>
 </html>

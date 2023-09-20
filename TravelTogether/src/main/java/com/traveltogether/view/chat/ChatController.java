@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.traveltogether.biz.board.BoardPageCreate;
 import com.traveltogether.biz.board.BoardService;
 import com.traveltogether.biz.board.Criteria;
-import com.traveltogether.biz.chat.ChatCountVO;
-import com.traveltogether.biz.chat.ChatRoomVO;
+import com.traveltogether.biz.chat.ChatCountDTO;
+import com.traveltogether.biz.chat.ChatRoomDTO;
 import com.traveltogether.biz.chat.impl.ChatRoomServiceImpl;
 import com.traveltogether.biz.festival.FestivalService;
 import com.traveltogether.biz.festival.FestivalVO;
@@ -40,159 +40,102 @@ public class ChatController {
 	@Autowired
 	private FestivalService festivalService;
 	
-	
 	@Autowired
 	private BoardService boardService;
 	
-	private static final Logger logger = LoggerFactory.getLogger(ChatController.class);
-	
 	@RequestMapping(value = "ChatRoomList", method = RequestMethod.GET)
-	public String roomList(HttpServletRequest request, ChatRoomVO vo, ChatCountVO voo, Model model)  {
+	public String roomList(HttpServletRequest request, ChatRoomDTO dto, ChatCountDTO dto2, Model model)throws IOException  {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("chatNumber") != null) {
-			int roomNumber = (int) session.getAttribute("chatNumber");
-			String userId = (String)session.getAttribute("userId");
-			vo.setMember_id(userId);
-			chatService.deleteChatUser(vo);
-			voo.setChat_number(roomNumber);
-			
-			if(chatService.getChatRoomUser(voo) == null || chatService.getChatRoomUser(voo) == 0) {
-				chatService.deleteChatRoom(voo); 
-		}	
-	}
-		model.addAttribute("chatRoomList",chatService.getChatList(vo));
-		model.addAttribute("NumberOfPeople", chatService.getNumberOfPeople(voo)); 
+			deleteChat(request, dto, dto2);
+		}
+		model.addAttribute("chatRoomList",chatService.getChatList(dto));
+		model.addAttribute("NumberOfPeople", chatService.getNumberOfPeople(dto2)); 
 		return "chatRoomList";
 	}
 	
 	@RequestMapping(value = "insertChat", method = RequestMethod.GET)
-	public String insertChatRoom(HttpServletRequest request, ChatRoomVO vo,ChatCountVO voo, Model model)throws IOException {
-		chatService.createChat(vo);
-		chatService.chatRoomUserInsert(voo);
-	    HttpSession session = request.getSession();
-	    session.setAttribute("chatTitle", vo.getChat_title());
-		session.setAttribute("chatNumber", voo.getChat_number());
+	public String insertChatRoom(HttpServletRequest request, ChatRoomDTO dto, ChatCountDTO dto2, Model model)throws IOException {
+		chatService.createChat(dto);
+		chatService.chatRoomUserInsert(dto2);
+		HttpSession session = request.getSession();
+		session.setAttribute("chatNumber", dto2.getChatNumber());
+		model.addAttribute("chatRoom", chatService.getChatRoom(dto2.getChatNumber()));
 		return "chatRoom";
 	}
 
 	@RequestMapping(value = "ChatRoom", method = RequestMethod.GET)
-	public String joinChatRoom(HttpServletRequest request, ChatRoomVO vo, @RequestParam("chat_number") int chatNumber,  
-								@RequestParam("chat_title") String chatTitle, @RequestParam("member_id") String memeberID,
-								Model model, ChatCountVO voo) {
-		chatService.chatRoomUserInsert(voo);
+	public String joinChatRoom(HttpServletRequest request, ChatRoomDTO dto, ChatCountDTO dto2, Model model)throws IOException {
+		chatService.chatRoomUserInsert(dto2);
 		HttpSession session = request.getSession();
-		session.setAttribute("chatNumber", vo.getChat_number());
-		session.setAttribute("chatTitle", vo.getChat_title());
+		session.setAttribute("chatNumber", dto2.getChatNumber());
+		model.addAttribute("chatRoom", chatService.getChatRoom(dto2.getChatNumber()));
 		return "chatRoom";
 	}
 	
-	@RequestMapping(value = "deleteChatUser", method = RequestMethod.GET)
-	public String deleteChatUser(HttpServletRequest request, ChatRoomVO vo, ChatCountVO voo, Model model) throws IOException{
+	@RequestMapping(value = "deleteChatUser")
+	public String deleteChatUser(HttpServletRequest request, ChatRoomDTO dto, ChatCountDTO dto2, Model model) throws IOException{
 		HttpSession session = request.getSession();
-		String userId = (String)session.getAttribute("userId");
-		String chatTitle = (String) session.getAttribute("chatTitle");
-		int roomNumber = (int) session.getAttribute("chatNumber");
-
-		vo.setMember_id(userId);
-		chatService.deleteChatUser(vo);
-		voo.setChat_number(roomNumber);
-
-		if(chatService.getChatRoomUser(voo) == null || chatService.getChatRoomUser(voo) == 0) {
-			chatService.deleteChatRoom(voo); 
+		if(session.getAttribute("chatNumber") != null) {
+			deleteChat(request, dto, dto2);
 		}
 		return "redirect:ChatRoomList";
 	}
 	
+	/* header */	
 	@RequestMapping(value = "/main")
-	public String main(HttpServletRequest request, ChatRoomVO vo, ChatCountVO voo, Model model, FestivalVO vo2) throws IOException{
-		
-
+	public String main(HttpServletRequest request, ChatRoomDTO dto, ChatCountDTO dto2, Model model, FestivalVO vo2) throws IOException{
 		model.addAttribute("festivalLikeList", festivalService.getFestivalLikeList(vo2));
 		model.addAttribute("festivalRandomList", festivalService.getFestivalRandomList(vo2));
-		
 		HttpSession session = request.getSession();
-		
-		if(session.getAttribute("chatNumber") != null) {
-		int roomNumber = (int) session.getAttribute("chatNumber");
-		String userId = (String)session.getAttribute("userId");
-		vo.setMember_id(userId);
-		chatService.deleteChatUser(vo);
-		voo.setChat_number(roomNumber);
-		
-		if(chatService.getChatRoomUser(voo) == null || chatService.getChatRoomUser(voo) == 0) {
-			chatService.deleteChatRoom(voo); 
-	}
 	
-}
 		return "main";
 	}
-	
-	@RequestMapping(value = "/boardList")
-	public String boardList(HttpServletRequest request, ChatRoomVO vo, ChatCountVO voo, Model model, Criteria criteria, ModelMap model2) throws IOException{
-		HttpSession session = request.getSession();
 		
+	@RequestMapping(value = "/boardList")
+	public String boardList(HttpServletRequest request, ChatRoomDTO vo, ChatCountDTO voo, Model model, Criteria criteria, ModelMap model2) throws IOException{
+		HttpSession session = request.getSession();
 		BoardPageCreate pageCreate = new BoardPageCreate();
 		pageCreate.setCriteria(criteria);
 		pageCreate.setTotalCount(boardService.getTotalBoardCount());
-		
 		model.addAttribute("boardList", boardService.getBoardListwithPaging(criteria));
 		model.addAttribute("pageCreate", pageCreate);
 		model.addAttribute("comments", boardService.getTotalCommentCount());
-		
 		if(session.getAttribute("chatNumber") != null) {
-			int roomNumber = (int) session.getAttribute("chatNumber");
-			String userId = (String)session.getAttribute("userId");
-			vo.setMember_id(userId);
-			chatService.deleteChatUser(vo);
-			voo.setChat_number(roomNumber);
-			
-			if(chatService.getChatRoomUser(voo) == null || chatService.getChatRoomUser(voo) == 0) {
-				chatService.deleteChatRoom(voo); 
+			deleteChat(request, vo, voo);
 		}
+		return "boardList";
 	}
-	return "boardList";
-}
 	
 	@RequestMapping(value = "/getFestivalList_Month", method = RequestMethod.GET)
-	public String getFestivalList_Month(HttpServletRequest request, ChatRoomVO vo, ChatCountVO voo, FestivalVO vo2, Model model) throws IOException{
+	public String getFestivalList_Month(HttpServletRequest request, ChatRoomDTO vo, ChatCountDTO voo, FestivalVO vo2, Model model) throws IOException{
 		HttpSession session = request.getSession();
 		model.addAttribute("festivalList", festivalService.getFestivalList_Month(vo2));
 		if(session.getAttribute("chatNumber") != null) {
-			int roomNumber = (int) session.getAttribute("chatNumber");
-			String userId = (String)session.getAttribute("userId");
-			vo.setMember_id(userId);
-			chatService.deleteChatUser(vo);
-			voo.setChat_number(roomNumber);
-			
-			if(chatService.getChatRoomUser(voo) == null || chatService.getChatRoomUser(voo) == 0) {
-				chatService.deleteChatRoom(voo); 
+			deleteChat(request, vo, voo);
 		}
-	}
 	return "festivalList";
-}
+	}
 	
 	@RequestMapping("/logout")
-	public String logoutMember(HttpServletRequest request, ChatRoomVO vo, ChatCountVO voo) {
+	public String logoutMember(HttpServletRequest request, ChatRoomDTO vo, ChatCountDTO voo) {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("chatNumber") != null) {
-			int roomNumber = (int) session.getAttribute("chatNumber");
-			String userId = (String)session.getAttribute("userId");
-			vo.setMember_id(userId);
-			chatService.deleteChatUser(vo);
-			voo.setChat_number(roomNumber);
-			
-			if(chatService.getChatRoomUser(voo) == null || chatService.getChatRoomUser(voo) == 0) {
-				chatService.deleteChatRoom(voo); 
+			deleteChat(request, vo, voo);
 		}
-		
-	}
 		session.invalidate();
 		return "redirect:main";
 	}
 	
-	
-	
-	
-	
-	
+	public void deleteChat(HttpServletRequest request, ChatRoomDTO dto, ChatCountDTO dto2) {
+		HttpSession session = request.getSession();
+		int roomNumber = (int) session.getAttribute("chatNumber");
+		String userId = (String)session.getAttribute("userId");
+		dto.setMemberId(userId);
+		dto2.setChatNumber(roomNumber);
+		chatService.deleteChatUser(dto);
+		if(chatService.getChatRoomUser(dto2) == null || chatService.getChatRoomUser(dto2) == 0) {
+			chatService.deleteChatRoom(dto2); 
+		}
+	}
 }

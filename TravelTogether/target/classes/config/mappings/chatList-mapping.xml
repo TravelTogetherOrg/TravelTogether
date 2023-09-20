@@ -5,68 +5,71 @@
 <mapper namespace="ChatRoomDAO">
 
 	<resultMap type="chatRoom" id="ChattingRoom">
-		<id property="chat_number"  column="ChattingRoom_Number"/>  <!-- primary key매핑 -->
-		<result property="chat_password" column="ChattingRoom_Password"/>
-		<result property="chat_title" column="ChattingRoom_TITLE"/>
-		<result property="chat_region" column="ChattingRoom_region"/>
-		<result property="chat_create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" column="ChattingRoom_Create_Date"/>
-		<!-- <result property="chat_create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" column="ChattingRoom_Create_Date"/> -->
+		<id property="chatNumber"  column="ChattingRoom_Number"/>  <!-- primary key매핑 -->
+		<result property="chatPassword" column="ChattingRoom_Password"/>
+		<result property="chatTitle" column="ChattingRoom_TITLE"/>
+		<result property="chatRegion" column="ChattingRoom_region"/>
+		<result property="chatCreateDate" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" column="ChattingRoom_Create_Date"/>
 	</resultMap>
 	
 	<resultMap type="chatCount" id="ChattingRoomCount" extends="ChattingRoom">
-		<id property="member_id" column="MEMBER_ID"/>	
-		<result property="chat_count_join_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" column="ChattingRoom_join_Date"/>
-		<result property="chat_title" column="ChattingRoomCount_Room_Title"/>
-		<result property="chat_number" column="ChattingRoom_Number"/>	
-		<!-- <result property="chat_number" column="ChattingRoom_Number"/> -->
+		<id property="memberId" column="MEMBER_ID"/>	
+		<result property="chatCountJoinDate" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" column="ChattingRoom_join_Date"/>
+		<result property="chatTitle" column="ChattingRoomCount_Room_Title"/>
+		<result property="chatNumber" column="ChattingRoom_Number"/>	
 	</resultMap>
-	
 	
 	<delete id="deleteChatUser">
 		DELETE FROM ChattingRoomCount
-    	WHERE MEMBER_ID = #{member_id};
-    </delete>
+    	WHERE MEMBER_ID = #{memberId};
+	</delete>
     
-
-     <delete id="deleteChatRoom">
+    <delete id="deleteChatRoom">
      	DELETE FROM ChattingRoom
-     	WHERE ChattingRoom_Number = #{chat_number};
-     </delete>
+     	WHERE ChattingRoom_Number = #{chatNumber};
+    </delete>
+     
+    <select id="getChatRoom" resultMap="ChattingRoom">
+     	SELECT * FROM ChattingRoom
+     	WHERE ChattingRoom_Number = #{chatNumber};
+     </select>
 
+	<select id="getChatRoomNumber">
+		SELECT ChattingRoom_Number FROM ChattingRoom
+     	WHERE ChattingRoom_Number = #{chatNumber};
+	</select>
 
     <select id="getChatRoomUser" parameterType="int" resultType="Integer">
-	SELECT ChattingRoom_Number, IFNULL(COUNT(*), 0) as count
-	FROM ChattingRoomCount
-	GROUP BY ChattingRoom_Number
-	ORDER BY ChattingRoom_Number = #{chat_number};
+		SELECT ChattingRoom_Number, IFNULL(COUNT(*), 0) as count
+		FROM ChattingRoomCount
+		GROUP BY ChattingRoom_Number
+		ORDER BY ChattingRoom_Number = #{chatNumber};
     </select>
     
  	<select id="getNumberOfPeople" resultType="string" resultMap="ChattingRoomCount">
-	SELECT ChattingRoom_Number, COUNT(*) as count
-	FROM ChattingRoomCount
-	GROUP BY ChattingRoom_Number
-	ORDER BY ChattingRoom_Number DESC;
+		SELECT ChattingRoom_Number, COUNT(*) as count
+		FROM ChattingRoomCount
+		GROUP BY ChattingRoom_Number
+		ORDER BY ChattingRoom_Number DESC;
 	</select>
 	
 	<insert id="chatRoomUserInsert" useGeneratedKeys="true" parameterType="chatCount">
-	   <selectKey resultType="int" order="BEFORE" keyProperty="chat_number">
-        SELECT ChattingRoom_Number
-        FROM ChattingRoom
-        WHERE ChattingRoom_TITLE = #{chat_title}
-   		 </selectKey>
-			insert into ChattingRoomCount (ChattingRoom_Number, ChattingRoomCount_Room_Title, MEMBER_ID, ChattingRoom_join_Date)
-			 values(#{chat_number},#{chat_title},#{member_id},now());
+		<selectKey resultType="int" order="BEFORE" keyProperty="chatNumber">
+			SELECT ChattingRoom_Number
+       	 	FROM ChattingRoom
+        	WHERE ChattingRoom_TITLE = #{chatTitle}
+   		</selectKey>
+		INSERT INTO ChattingRoomCount (ChattingRoom_Number, ChattingRoomCount_Room_Title, MEMBER_ID, ChattingRoom_join_Date)
+		VALUES(#{chatNumber},#{chatTitle},#{memberId},now());
 	</insert>
 	
 	<insert id="createChat" useGeneratedKeys="true" parameterType="chatRoom">
-		insert into ChattingRoom (ChattingRoom_Password, ChattingRoom_Number, ChattingRoom_TITLE, ChattingRoom_Create_Date, ChattingRoom_region)
-			values(#{chat_password},#{chat_number},#{chat_title},now(),#{chat_region});
+		INSERT INTO ChattingRoom (ChattingRoom_Password, ChattingRoom_Number, ChattingRoom_TITLE, ChattingRoom_Create_Date, ChattingRoom_region)
+		VALUES(#{chatPassword},#{chatNumber},#{chatTitle},now(),#{chatRegion});
 	</insert>
 	
-		<!-- 전체리스트 -->
 	<select id="getChatList" resultMap="ChattingRoom">
 		SELECT * FROM ChattingRoom ORDER BY ChattingRoom_Number DESC;
 	</select>
-	
 	
 </mapper>
